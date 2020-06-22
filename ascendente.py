@@ -49,6 +49,17 @@ tokens = [
     'pregunta',
     'exclamacion',
     'virgulilla',
+    'flecha',
+    'aumento',
+    'decremento',
+    'desplazamiento_izquierdo',
+    'desplazamiento_derecho',
+    'mayor_igual',
+    'menor_igual',
+    'equivale',
+    'distinto',
+    'and',
+    'or',
     'decimal',
     'entero',
     'identificador',
@@ -80,6 +91,17 @@ t_pleca = r'\|'
 t_pregunta = r'\?'
 t_exclamacion = r'!'
 t_virgulilla = r'~'
+t_flecha = r'->'
+t_aumento = r'\+\+'
+t_decremento = r'--'
+t_desplazamiento_izquierdo = r'<<'
+t_desplazamiento_derecho = r'>>'
+t_mayor_igual = r'>='
+t_menor_igual = r'<='
+t_equivale = r'=='
+t_distinto = r'!='
+t_and = r'&&'
+t_or = r'\|\|'
 
 
 def t_decimal(t):
@@ -324,9 +346,9 @@ def p_asignacion(t):
     '''
     ASIGNACION  :   IDENTIFICADORES INDICES COMPUESTO EXPRESION 
                 |   IDENTIFICADORES INDICES punto identificador COMPUESTO EXPRESION 
-                |   IDENTIFICADORES INDICES menos mayor identificador COMPUESTO EXPRESION %prec NIVEL1
-                |   IDENTIFICADORES mas mas %prec NIVEL2
-                |   IDENTIFICADORES menos menos %prec NIVEL2
+                |   IDENTIFICADORES INDICES flecha identificador COMPUESTO EXPRESION %prec NIVEL1
+                |   IDENTIFICADORES aumento %prec NIVEL2
+                |   IDENTIFICADORES decremento %prec NIVEL2
     '''
 
 
@@ -434,16 +456,16 @@ def p_expresion(t):
                 |   EXPRESION asterisco EXPRESION %prec NIVEL3
                 |   EXPRESION division EXPRESION %prec NIVEL3
                 |   EXPRESION porcentaje EXPRESION %prec NIVEL3
-                |   EXPRESION igual igual EXPRESION %prec NIVEL7
-                |   EXPRESION exclamacion igual EXPRESION %prec NIVEL7
+                |   EXPRESION equivale EXPRESION %prec NIVEL7
+                |   EXPRESION distinto EXPRESION %prec NIVEL7
                 |   EXPRESION mayor EXPRESION %prec NIVEL6
                 |   EXPRESION menor EXPRESION %prec NIVEL6
-                |   EXPRESION mayor igual EXPRESION %prec NIVEL6
-                |   EXPRESION menor igual EXPRESION %prec NIVEL6
-                |   EXPRESION et et EXPRESION %prec NIVEL11
-                |   EXPRESION pleca pleca EXPRESION %prec NIVEL12
-                |   EXPRESION menor menor EXPRESION %prec NIVEL5
-                |   EXPRESION mayor mayor EXPRESION %prec NIVEL5
+                |   EXPRESION mayor_igual EXPRESION %prec NIVEL6
+                |   EXPRESION menor_igual EXPRESION %prec NIVEL6
+                |   EXPRESION and EXPRESION %prec NIVEL11
+                |   EXPRESION or EXPRESION %prec NIVEL12
+                |   EXPRESION desplazamiento_izquierdo EXPRESION %prec NIVEL5
+                |   EXPRESION desplazamiento_derecho mayor EXPRESION %prec NIVEL5
                 |   EXPRESION et EXPRESION %prec NIVEL8
                 |   EXPRESION pleca EXPRESION %prec NIVEL10
                 |   EXPRESION elevado EXPRESION %prec NIVEL9
@@ -456,7 +478,7 @@ def p_expresion(t):
                 |   identificador parentesis_abre EXPRESIONES parentesis_cierra
                 |   identificador punto identificador
                 |   identificador ACCESOS
-                |   identificador menos mayor identificador %prec NIVEL1
+                |   identificador flecha identificador %prec NIVEL1
                 |   et identificador %prec NIVEL2
                 |   llave_abre EXPRESIONES llave_cierra
                 |   caracter
