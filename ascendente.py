@@ -49,7 +49,6 @@ tokens = [
     'pregunta',
     'exclamacion',
     'virgulilla',
-    'flecha',
     'aumento',
     'decremento',
     'desplazamiento_izquierdo',
@@ -91,7 +90,6 @@ t_pleca = r'\|'
 t_pregunta = r'\?'
 t_exclamacion = r'!'
 t_virgulilla = r'~'
-t_flecha = r'->'
 t_aumento = r'\+\+'
 t_decremento = r'--'
 t_desplazamiento_izquierdo = r'<<'
@@ -165,9 +163,6 @@ def t_error(t):
     t.lexer.skip(1)
 
 
-lexer = lex.lex()
-
-
 precedence = (('left', 'coma'), ('right', 'NIVEL14'), ('right', 'NIVEL13'),
               ('left', 'NIVEL12'), ('left', 'NIVEL11'), ('left', 'NIVEL10'),
               ('left', 'NIVEL9'), ('left', 'NIVEL8'), ('left', 'NIVEL7'),
@@ -223,6 +218,12 @@ def p_lista_caracteristicas(t):
     '''
 
 
+def p_caracteristica(t):
+    '''
+    CARACTERISTICA  :   TIPO identificador
+    '''
+
+
 def p_funcion(t):
     '''
     FUNCION    :   TIPO identificador parentesis_abre PARAMETROS parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
@@ -238,23 +239,15 @@ def p_parametros(t):
 
 def p_lista_parametros(t):
     '''
-    LISTA_PARAMETROS    :   LISTA_PARAMETROS coma CARACTERISTICA
-                        |   CARACTERISTICA
+    LISTA_PARAMETROS    :   LISTA_PARAMETROS coma PARAMETRO
+                        |   PARAMETRO
     '''
 
 
-def p_caracteristica(t):
+def p_parametro(t):
     '''
-    CARACTERISTICA  :   TIPO IDENTIFICADORES
-    '''
-
-
-def p_identificadores(t):
-    '''
-    IDENTIFICADORES :   asterisco asterisco identificador
-                    |   asterisco identificador
-                    |   identificador
-                    |   parentesis_abre IDENTIFICADORES parentesis_cierra %prec NIVEL1
+    PARAMETRO   :   TIPO identificador
+                |   TIPO et identificador
     '''
 
 
@@ -316,8 +309,8 @@ def p_lista_declaracion(t):
 
 def p_declaracion_final(t):
     '''
-    DECLARACION_FINAL   :   IDENTIFICADORES INDICES igual EXPRESION
-                        |   IDENTIFICADORES INDICES
+    DECLARACION_FINAL   :   identificador INDICES igual EXPRESION
+                        |   identificador INDICES
     '''
 
 
@@ -344,11 +337,10 @@ def p_acceso(t):
 
 def p_asignacion(t):
     '''
-    ASIGNACION  :   IDENTIFICADORES INDICES COMPUESTO EXPRESION 
-                |   IDENTIFICADORES INDICES punto identificador COMPUESTO EXPRESION 
-                |   IDENTIFICADORES INDICES flecha identificador COMPUESTO EXPRESION %prec NIVEL1
-                |   IDENTIFICADORES aumento %prec NIVEL2
-                |   IDENTIFICADORES decremento %prec NIVEL2
+    ASIGNACION  :   identificador INDICES COMPUESTO EXPRESION 
+                |   identificador INDICES punto identificador COMPUESTO EXPRESION 
+                |   identificador aumento %prec NIVEL2
+                |   identificador decremento %prec NIVEL2
     '''
 
 
@@ -478,7 +470,6 @@ def p_expresion(t):
                 |   identificador parentesis_abre EXPRESIONES parentesis_cierra
                 |   identificador punto identificador
                 |   identificador ACCESOS
-                |   identificador flecha identificador %prec NIVEL1
                 |   et identificador %prec NIVEL2
                 |   llave_abre EXPRESIONES llave_cierra
                 |   caracter
@@ -519,8 +510,8 @@ def p_error(t):
     print("Error sintáctico en '%s'" % t.value)
 
 
-parser = yacc.yacc()
-
-
 def parse(input):
-    return parser.parse(input)
+    global lexer, parser
+    lexer = lex.lex()
+    parser = yacc.yacc()
+    return parser.parse("input")
