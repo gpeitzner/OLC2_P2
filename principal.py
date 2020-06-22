@@ -10,32 +10,40 @@
 import recursos
 import os
 import pyperclip
+import webbrowser
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Resaltador(QtGui.QSyntaxHighlighter):
 
-    expresiones = ((r"[0-9]+|\d+\.\d+", QtGui.QColor(178, 202, 164)), (r"double|int|long|char|float|short|unsigned|signed|void", QtGui.QColor(75, 156, 208)),
-                   (r"auto|struct|break|else|switch|case|enum|register|typedef|extern|return|union|const|continue|for|default|goto|sizeof|volatile|do|if|static|while|printf|scanf",
-                    QtGui.QColor(62, 194, 176)), (r'\'[^\']*\'|\"[^\"]*\"', QtGui.QColor(201, 143, 120)),
-                   (r'\#.*', QtGui.QColor(99, 142, 71)))
+    expresiones = ((r'[0-9]+|\d+\.\d+', QtGui.QColor(178, 202, 164)),
+                   (r'[a-zA-Z_][a-zA-Z_0-9]*', QtGui.QColor(212, 212, 212)),
+                   (r'\b(auto|struct|break|else|switch|case|enum|register|typedef|extern|return|union|const|continue|for|default|goto|sizeof|volatile|do|if|static|while|printf|scanf)\b', QtGui.QColor(62, 194, 176)),
+                   (r'\b(double|int|long|char|float|short|unsigned|signed|void)\b',
+                    QtGui.QColor(75, 156, 208)),
+                   (r'\'[^\']*\'|\"[^\"]*\"', QtGui.QColor(201, 143, 120)),
+                   (r'/\*.*\*/|//.*', QtGui.QColor(99, 142, 71)))
 
     def highlightBlock(self, text):
         formato = QtGui.QTextCharFormat()
         for expresion in self.expresiones:
             formato.setForeground(QtGui.QColor(expresion[1]))
             patron = expresion[0]
-            expresionTemporal = QtCore.QRegExp(patron)
-            indice = expresionTemporal.indexIn(text, 0)
+            expresion_temporal = QtCore.QRegExp(patron)
+            indice = expresion_temporal.indexIn(text, 0)
             while indice >= 0:
-                longitud = expresionTemporal.matchedLength()
+                longitud = expresion_temporal.matchedLength()
                 self.setFormat(indice, longitud, formato)
-                indice = expresionTemporal.indexIn(text, indice + longitud)
+                indice = expresion_temporal.indexIn(text, indice + longitud)
 
 
 class Ui_MainWindow(object):
 
     rutaArchivo = None
+    errores_lexicos = []
+    errores_sintacticos = []
+    interpretacion = None
+    instrucciones = None
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -329,7 +337,24 @@ class Ui_MainWindow(object):
         self.textEdit.setText("")
 
     def ejecutarAscendente(self):
-        print("Ascendente")
+        self.erroresLexicos = []
+        self.erroresSintacticos = []
+        self.interpretacion = None
+        self.instrucciones = None
+        if self.textEdit.toPlainText():
+            self.plainTextEdit.appendPlainText(
+                "\nascendente.py "+self.label.text())
+            import ascendente as ascendente
+            instrucciones = ascendente.parse(self.textEdit.toPlainText(
+            ), self.erroresLexicos, self.erroresSintacticos, self.plainTextEdit)
+            if instrucciones:
+                self.plainTextEdit.appendPlainText(
+                    "interprete.py ascendente.out\n\n")
+                try:
+                    pass
+                except:
+                    self.plainTextEdit.appendPlainText(
+                        "ERROR: Error de ejecución.")
 
     def ejecutarDescendente(self):
         print("Descendente")
@@ -338,7 +363,46 @@ class Ui_MainWindow(object):
         print("AST")
 
     def ejecutarErrores(self):
-        print("Errores")
+        if len(self.erroresLexicos) > 0 or len(self.erroresSintacticos) > 0:
+            archivo = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Errores</title></head><body>'
+            if len(self.erroresLexicos) > 0:
+                archivo += '<center><h1>Lexicos</h1>'
+                archivo += '<table border="1"><tr><th>Token</th><th>Linea</th><th>Columna</th></th>'
+                indiceLexico = 0
+                while indiceLexico < len(self.erroresLexicos):
+                    archivo += '<tr>'
+                    archivo += '<td>' + \
+                        str(self.erroresLexicos[indiceLexico].valor) + '</td>'
+                    archivo += '<td>' + \
+                        str(self.erroresLexicos[indiceLexico].linea) + '</td>'
+                    archivo += '<td>' + \
+                        str(self.erroresLexicos[indiceLexico].columna) + '</td>'
+                    archivo += '</tr>'
+                    indiceLexico += 1
+                archivo += '</table></center>'
+            if len(self.erroresSintacticos) > 0:
+                archivo += '<center><h1>Sintacticos</h1>'
+                archivo += '<table border="1"><tr><th>Token</th><th>Linea</th><th>Columna</th></th>'
+                indiceSintactico = 0
+                while indiceSintactico < len(self.erroresSintacticos):
+                    archivo += '<tr>'
+                    archivo += '<td>' + \
+                        str(self.erroresSintacticos[indiceSintactico].valor) + '</td>'
+                    archivo += '<td>' + \
+                        str(self.erroresSintacticos[indiceSintactico].linea) + '</td>'
+                    archivo += '<td>' + \
+                        str(self.erroresSintacticos[indiceSintactico].columna) + '</td>'
+                    archivo += '</tr>'
+                    indiceSintactico += 1
+                archivo += '</table><center>'
+            archivo += '</body></html>'
+            f = open("errores.html", "w")
+            f.write(archivo)
+            f.close()
+            webbrowser.open('file://'+os.path.realpath("errores.html"))
+        else:
+            self.plainTextEdit.appendPlainText(
+                "ERROR: Reporte no disponible.")
 
     def ejecutarSimbolos(self):
         print("Simbolos")

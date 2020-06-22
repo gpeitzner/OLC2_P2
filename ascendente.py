@@ -1,5 +1,7 @@
 import ply.yacc as yacc
 import ply.lex as lex
+import clases
+from PyQt5 import QtWidgets, QtGui
 palabras_reservadas = {
     'struct': '_struct',
     'continue': '_continue',
@@ -15,7 +17,6 @@ palabras_reservadas = {
     'while': '_while',
     'do': '_do',
     'for': '_for',
-    'malloc': '_malloc',
     'sizeof': '_sizeof',
     'int': '_int',
     'char': '_char',
@@ -76,7 +77,7 @@ t_asterisco = r'\*'
 t_dos_puntos = r':'
 t_corchete_abre = r'\['
 t_corchete_cierra = r'\]'
-t_punto = r'.'
+t_punto = r'\.'
 t_mas = r'\+'
 t_menos = r'-'
 t_igual = r'='
@@ -159,7 +160,10 @@ def t_nueva_linea(t):
 
 
 def t_error(t):
-    print("Carácter no válido: '%s'" % t.value[0])
+    mostar_error("ERROR: Léxico en: "+str(t.value[0])+", línea: " + str(
+        t.lineno)+", columna: "+str(obtener_columna(entrada, t))+".")
+    errores_lexicos.append(clases.TError(str(t.value[0]), str(
+        t.lineno), str(obtener_columna(entrada, t))))
     t.lexer.skip(1)
 
 
@@ -213,14 +217,14 @@ def p_caracteristicas(t):
 
 def p_lista_caracteristicas(t):
     '''
-    LISTA_CARACTERISTICAS   :   LISTA_CARACTERISTICAS punto_coma CARACTERISTICA
+    LISTA_CARACTERISTICAS   :   LISTA_CARACTERISTICAS CARACTERISTICA
                             |   CARACTERISTICA
     '''
 
 
 def p_caracteristica(t):
     '''
-    CARACTERISTICA  :   TIPO identificador
+    CARACTERISTICA  :   TIPO identificador punto_coma
     '''
 
 
@@ -276,9 +280,16 @@ def p_instruccion_local(t):
                         |   WHILE
                         |   DO
                         |   FOR
+                        |   METODO punto_coma
                         |   _continue punto_coma
                         |   _break punto_coma
                         |   _return EXPRESION punto_coma
+    '''
+
+
+def p_metodo(t):
+    '''
+    METODO  :   identificador parentesis_abre EXPRESIONES parentesis_cierra 
     '''
 
 
@@ -388,6 +399,7 @@ def p_elseif(t):
 def p_else(t):
     '''
     ELSE    :   _else llave_abre CUERPO_LOCAL llave_cierra
+            |
     '''
 
 
@@ -466,12 +478,13 @@ def p_expresion(t):
                 |   exclamacion EXPRESION %prec NIVEL2
                 |   virgulilla EXPRESION %prec NIVEL2
                 |   parentesis_abre EXPRESION parentesis_cierra %prec NIVEL1
-                |   parentesis_abre TIPO asterisco parentesis_cierra _malloc parentesis_abre _sizeof parentesis_abre TIPO parentesis_cierra parentesis_cierra
                 |   identificador parentesis_abre EXPRESIONES parentesis_cierra
                 |   identificador punto identificador
                 |   identificador ACCESOS
+                |   identificador ACCESOS punto identificador
                 |   et identificador %prec NIVEL2
                 |   llave_abre EXPRESIONES llave_cierra
+                |   _sizeof parentesis_abre TIPO parentesis_cierra
                 |   caracter
                 |   cadena
                 |   entero
@@ -506,12 +519,38 @@ def p_tipo(t):
 
 
 def p_error(t):
-    print(t)
-    print("Error sintáctico en '%s'" % t.value)
+    if not t:
+        return
+    mostar_error("ERROR: Sintáctico en: "+str(t.value)+", línea: " +
+                 str(t.lineno)+", columna: "+str(obtener_columna(entrada, t))+".")
+    errores_sintacticos.append(clases.TError(
+        str(t.value), str(t.lineno), str(obtener_columna(entrada, t))))
+    while True:
+        tok = parser.token()
+        if not tok or tok.type == 'punto_coma':
+            break
+    parser.errok()
+    return tok
 
 
-def parse(input):
-    global lexer, parser
+def obtener_columna(entrada, token):
+    linea_inicio = str(entrada).rfind('\n', 0, token.lexpos) + 1
+    return ((token.lexpos - linea_inicio) + 1)
+
+
+def mostar_error(mensaje):
+    consola.appendPlainText(mensaje)
+    cursor_temporal = consola.textCursor()
+    cursor_temporal.setPosition(len(consola.toPlainText()))
+    consola.setTextCursor(cursor_temporal)
+
+
+def parse(_entrada, _errores_lexicos, _errores_sintacticos, _consola):
+    global lexer, parser, entrada, errores_lexicos, errores_sintacticos, consola
+    entrada = _entrada
+    errores_lexicos = _errores_lexicos
+    errores_sintacticos = _errores_sintacticos
+    consola = _consola
     lexer = lex.lex()
     parser = yacc.yacc()
-    return parser.parse("input")
+    return parser.parse(entrada)
