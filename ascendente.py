@@ -146,7 +146,11 @@ def t_error(t):
 lexer = lex.lex()
 
 
-precedence = ()
+precedence = (('left', 'coma'), ('right', 'NIVEL14'), ('right', 'NIVEL13'),
+              ('left', 'NIVEL12'), ('left', 'NIVEL11'), ('left', 'NIVEL10'),
+              ('left', 'NIVEL9'), ('left', 'NIVEL8'), ('left', 'NIVEL7'),
+              ('left', 'NIVEL6'), ('left', 'NIVEL5'), ('left', 'NIVEL4'),
+              ('left', 'NIVEL3'), ('right', 'NIVEL2'), ('left', 'NIVEL1'))
 
 
 def p_init(t):
@@ -228,7 +232,7 @@ def p_identificadores(t):
     IDENTIFICADORES :   asterisco asterisco identificador
                     |   asterisco identificador
                     |   identificador
-                    |   parentesis_abre IDENTIFICADORES parentesis_cierra
+                    |   parentesis_abre IDENTIFICADORES parentesis_cierra %prec NIVEL1
     '''
 
 
@@ -311,8 +315,8 @@ def p_accesos(t):
 
 def p_acceso(t):
     '''
-    ACCESO  :   corchete_abre EXPRESION corchete_cierra
-            |   corchete_abre corchete_cierra
+    ACCESO  :   corchete_abre EXPRESION corchete_cierra %prec NIVEL1
+            |   corchete_abre corchete_cierra %prec NIVEL1
     '''
 
 
@@ -320,24 +324,24 @@ def p_asignacion(t):
     '''
     ASIGNACION  :   IDENTIFICADORES INDICES COMPUESTO EXPRESION 
                 |   IDENTIFICADORES INDICES punto identificador COMPUESTO EXPRESION 
-                |   IDENTIFICADORES INDICES menos mayor identificador COMPUESTO EXPRESION 
-                |   IDENTIFICADORES mas mas 
-                |   IDENTIFICADORES menos menos 
+                |   IDENTIFICADORES INDICES menos mayor identificador COMPUESTO EXPRESION %prec NIVEL1
+                |   IDENTIFICADORES mas mas %prec NIVEL2
+                |   IDENTIFICADORES menos menos %prec NIVEL2
     '''
 
 
 def p_compuesto(t):
     '''
-    COMPUESTO   :   igual
-                |   mas igual
-                |   asterisco igual
-                |   division igual
-                |   porcentaje igual
-                |   menor menor igual
-                |   mayor mayor igual
-                |   et igual
-                |   elevado igual
-                |   pleca igual
+    COMPUESTO   :   igual %prec NIVEL14
+                |   mas igual %prec NIVEL14
+                |   asterisco igual %prec NIVEL14
+                |   division igual %prec NIVEL14
+                |   porcentaje igual %prec NIVEL14
+                |   menor menor igual %prec NIVEL14
+                |   mayor mayor igual %prec NIVEL14
+                |   et igual %prec NIVEL14
+                |   elevado igual %prec NIVEL14
+                |   pleca igual %prec NIVEL14
     '''
 
 
@@ -425,39 +429,41 @@ def p_for(t):
 
 def p_expresion(t):
     '''
-    EXPRESION   :   EXPRESION mas EXPRESION
-                |   EXPRESION menos EXPRESION
-                |   EXPRESION asterisco EXPRESION
-                |   EXPRESION division EXPRESION
-                |   EXPRESION porcentaje EXPRESION
-                |   EXPRESION igual igual EXPRESION
-                |   EXPRESION exclamacion igual EXPRESION
-                |   EXPRESION mayor EXPRESION
-                |   EXPRESION menor EXPRESION
-                |   EXPRESION mayor igual EXPRESION
-                |   EXPRESION menor igual EXPRESION
-                |   EXPRESION et et EXPRESION
-                |   EXPRESION pleca pleca EXPRESION
-                |   EXPRESION menor menor EXPRESION
-                |   EXPRESION mayor mayor EXPRESION
-                |   EXPRESION et EXPRESION
-                |   EXPRESION elevado EXPRESION
-                |   EXPRESION pregunta EXPRESION dos_puntos EXPRESION
-                |   menos EXPRESION
-                |   exclamacion EXPRESION
-                |   virgulilla EXPRESION
+    EXPRESION   :   EXPRESION mas EXPRESION %prec NIVEL4
+                |   EXPRESION menos EXPRESION %prec NIVEL4
+                |   EXPRESION asterisco EXPRESION %prec NIVEL3
+                |   EXPRESION division EXPRESION %prec NIVEL3
+                |   EXPRESION porcentaje EXPRESION %prec NIVEL3
+                |   EXPRESION igual igual EXPRESION %prec NIVEL7
+                |   EXPRESION exclamacion igual EXPRESION %prec NIVEL7
+                |   EXPRESION mayor EXPRESION %prec NIVEL6
+                |   EXPRESION menor EXPRESION %prec NIVEL6
+                |   EXPRESION mayor igual EXPRESION %prec NIVEL6
+                |   EXPRESION menor igual EXPRESION %prec NIVEL6
+                |   EXPRESION et et EXPRESION %prec NIVEL11
+                |   EXPRESION pleca pleca EXPRESION %prec NIVEL12
+                |   EXPRESION menor menor EXPRESION %prec NIVEL5
+                |   EXPRESION mayor mayor EXPRESION %prec NIVEL5
+                |   EXPRESION et EXPRESION %prec NIVEL8
+                |   EXPRESION pleca EXPRESION %prec NIVEL10
+                |   EXPRESION elevado EXPRESION %prec NIVEL9
+                |   EXPRESION pregunta EXPRESION dos_puntos EXPRESION %prec NIVEL13
+                |   menos EXPRESION %prec NIVEL2
+                |   exclamacion EXPRESION %prec NIVEL2
+                |   virgulilla EXPRESION %prec NIVEL2
+                |   parentesis_abre EXPRESION parentesis_cierra %prec NIVEL1
                 |   parentesis_abre TIPO asterisco parentesis_cierra _malloc parentesis_abre _sizeof parentesis_abre TIPO parentesis_cierra parentesis_cierra
-                |   identificador
                 |   identificador parentesis_abre EXPRESIONES parentesis_cierra
                 |   identificador punto identificador
                 |   identificador ACCESOS
-                |   identificador menos mayor identificador
-                |   et identificador
+                |   identificador menos mayor identificador %prec NIVEL1
+                |   et identificador %prec NIVEL2
                 |   llave_abre EXPRESIONES llave_cierra
                 |   caracter
                 |   cadena
                 |   entero
                 |   decimal
+                |   identificador
     '''
 
 

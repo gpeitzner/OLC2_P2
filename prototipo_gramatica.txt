@@ -166,7 +166,6 @@ TIPO	->	_int
 	|	_char
 	|	_double
 	|	_float
-	|	_char
 	|	_struct identificador
 	|	_void
 
