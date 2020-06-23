@@ -133,8 +133,6 @@ class Ui_MainWindow(object):
         self.actionCortar.setObjectName("actionCortar")
         self.actionAscendente = QtWidgets.QAction(MainWindow)
         self.actionAscendente.setObjectName("actionAscendente")
-        self.actionDescendente = QtWidgets.QAction(MainWindow)
-        self.actionDescendente.setObjectName("actionDescendente")
         self.actionErrores = QtWidgets.QAction(MainWindow)
         self.actionErrores.setObjectName("actionErrores")
         self.actionSimbolos = QtWidgets.QAction(MainWindow)
@@ -157,7 +155,6 @@ class Ui_MainWindow(object):
         self.menuEditar.addAction(self.actionPegar)
         self.menuEditar.addAction(self.actionCortar)
         self.menuEjecutar.addAction(self.actionAscendente)
-        self.menuEjecutar.addAction(self.actionDescendente)
         self.menuEjecutar.addSeparator()
         self.menuEjecutar.addAction(self.actionAST)
         self.menuEjecutar.addAction(self.actionErrores)
@@ -184,8 +181,6 @@ class Ui_MainWindow(object):
         self.actionCortar.triggered.connect(lambda: self.editarCortar())
         self.actionAscendente.triggered.connect(
             lambda: self.ejecutarAscendente())
-        self.actionDescendente.triggered.connect(
-            lambda: self.ejecutarDescendente())
         self.actionAST.triggered.connect(lambda: self.ejecutarAST())
         self.actionErrores.triggered.connect(lambda: self.ejecutarErrores())
         self.actionSimbolos.triggered.connect(lambda: self.ejecutarSimbolos())
@@ -249,10 +244,6 @@ class Ui_MainWindow(object):
         self.actionAscendente.setStatusTip(_translate(
             "MainWindow", "Ejecuta el archivo de manera ascendente"))
         self.actionAscendente.setShortcut(_translate("MainWindow", "F1"))
-        self.actionDescendente.setText(_translate("MainWindow", "Descendente"))
-        self.actionDescendente.setStatusTip(_translate(
-            "MainWindow", "Ejecuta el archivo de manera descendente"))
-        self.actionDescendente.setShortcut(_translate("MainWindow", "F2"))
         self.actionErrores.setText(_translate("MainWindow", "Errores"))
         self.actionErrores.setStatusTip(_translate(
             "MainWindow", "Reporte de errores léxicos y sintácticos"))
@@ -277,7 +268,7 @@ class Ui_MainWindow(object):
         self.textEdit.setText("")
         self.label.setText("Untitled-1")
         self.plainTextEdit.setPlainText(
-            "Augus IDE\nCopyright (C) Guillermo Peitzner, Todos los derechos reservados.\n")
+            "MinorC IDE\nCopyright (C) Guillermo Peitzner, Todos los derechos reservados.\n")
 
     def archivoAbrir(self):
         rutaArchivo = QtWidgets.QFileDialog.getOpenFileName()
@@ -356,9 +347,6 @@ class Ui_MainWindow(object):
                     self.plainTextEdit.appendPlainText(
                         "ERROR: Error de ejecución.")
 
-    def ejecutarDescendente(self):
-        print("Descendente")
-
     def ejecutarAST(self):
         print("AST")
 
@@ -417,7 +405,7 @@ class Ui_MainWindow(object):
     def actualizarLineaColumna(self):
         cursorTemporal = self.textEdit.textCursor()
         self.statusbar.showMessage(
-            "Ln "+str(cursorTemporal.blockNumber() + 1)+", Col "+str(cursorTemporal.columnNumber() + 1) + "     UTF-8     CRLF     Augus")
+            "Ln "+str(cursorTemporal.blockNumber() + 1)+", Col "+str(cursorTemporal.columnNumber() + 1) + "     UTF-8     CRLF     MinorC")
 
 
 if __name__ == "__main__":

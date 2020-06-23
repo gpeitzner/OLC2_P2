@@ -178,20 +178,36 @@ def p_init(t):
     '''
     INIT   :   CUERPO_GLOBAL
     '''
+    t[0] = t[1]
 
 
 def p_cuerpo_global(t):
     '''
     CUERPO_GLOBAL   :   LISTA_GLOBAL
-                    |   
     '''
+    t[0] = t[1]
 
 
-def p_lista_global(t):
+def p_cuerpo_global_vacio(t):
+    '''
+    CUERPO_GLOBAL   :
+    '''
+    t[0] = None
+
+
+def p_lista_global_lista(t):
     '''
     LISTA_GLOBAL    :   LISTA_GLOBAL INSTRUCCION_GLOBAL
-                    |   INSTRUCCION_GLOBAL
     '''
+    t[1].append(t[2])
+    t[0] = t[1]
+
+
+def p_lista_global_instruccion(t):
+    '''
+    LISTA_GLOBAL    :   INSTRUCCION_GLOBAL
+    '''
+    t[0] = [t[1]]
 
 
 def p_instruccion_global(t):
@@ -200,73 +216,129 @@ def p_instruccion_global(t):
                         |   ESTRUCTURA punto_coma
                         |   FUNCION
     '''
+    t[0] = t[1]
 
 
 def p_estructura(t):
     '''
     ESTRUCTURA  :   _struct identificador llave_abre CARACTERISTICAS llave_cierra
     '''
+    t[0] = clases.Estructura(t[2], t[4], str(t.slice[1].lineno))
 
 
 def p_caracteristicas(t):
     '''
     CARACTERISTICAS :   LISTA_CARACTERISTICAS
-                    |   
     '''
+    t[0] = t[1]
 
 
-def p_lista_caracteristicas(t):
+def p_caracteristicas_vacio(t):
+    '''
+    CARACTERISTICAS :
+    '''
+    t[0] = None
+
+
+def p_lista_caracteristicas_lista(t):
     '''
     LISTA_CARACTERISTICAS   :   LISTA_CARACTERISTICAS CARACTERISTICA
-                            |   CARACTERISTICA
     '''
+    t[1].append(t[2])
+    t[0] = t[1]
+
+
+def p_lista_caracteristicas_caracteristica(t):
+    '''
+    LISTA_CARACTERISTICAS : CARACTERISTICA
+    '''
+    t[0] = [t[1]]
 
 
 def p_caracteristica(t):
     '''
     CARACTERISTICA  :   DECLARACION punto_coma
     '''
+    t[0] = t[1]
 
 
 def p_funcion(t):
     '''
     FUNCION    :   TIPO identificador parentesis_abre PARAMETROS parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     '''
+    t[0] = clases.Funcion(t[1], t[2], t[4], t[7])
 
 
 def p_parametros(t):
     '''
     PARAMETROS  :   LISTA_PARAMETROS
-                |
     '''
+    t[0] = t[1]
 
 
-def p_lista_parametros(t):
+def p_parametros_vacio(t):
+    '''
+    PARAMETROS  :
+    '''
+    t[0] = None
+
+
+def p_lista_parametros_lista(t):
     '''
     LISTA_PARAMETROS    :   LISTA_PARAMETROS coma PARAMETRO
-                        |   PARAMETRO
     '''
+    t[1].append(t[3])
+    t[0] = t[1]
+
+
+def p_lista_parametros_parametro(t):
+    '''
+    LISTA_PARAMETROS    :   PARAMETRO
+    '''
+    t[0] = [t[1]]
 
 
 def p_parametro(t):
     '''
     PARAMETRO   :   TIPO identificador
-                |   TIPO et identificador
     '''
+    t[0] = clases.Parametro(t[1], False, t[2])
+
+
+def p_parametro_apuntador(t):
+    '''
+    PARAMETRO   :   TIPO et identificador
+    '''
+    t[1] = clases.Parametro(t[1], True, t[2])
 
 
 def p_cuerpo_local(t):
     '''
     CUERPO_LOCAL    :   LISTA_LOCAL
-                    |
     '''
+    t[0] = t[1]
+
+
+def p_cuerpo_local_vacio(t):
+    '''
+    CUERPO_LOCAL    :
+    '''
+    t[0] = None
 
 
 def p_lista_local(t):
     '''
     LISTA_LOCAL :   LISTA_LOCAL INSTRUCCION_LOCAL
-                |   INSTRUCCION_LOCAL
     '''
+    t[1].append(t[2])
+    t[0] = t[1]
+
+
+def p_lista_local_instruccion(t):
+    '''
+    LISTA_LOCAL :   INSTRUCCION_LOCAL
+    '''
+    t[0] = [t[1]]
 
 
 def p_instruccion_local(t):
@@ -281,78 +353,159 @@ def p_instruccion_local(t):
                         |   DO
                         |   FOR
                         |   METODO punto_coma
-                        |   _continue punto_coma
-                        |   _break punto_coma
-                        |   _return EXPRESION punto_coma
     '''
+    t[0] = t[1]
+
+
+def p_instruccion_local_continue(t):
+    '''
+    INSTRUCCION_LOCAL   :   _continue punto_coma
+    '''
+    t[0] = clases._Continue(str(t.slice[1].lineno))
+
+
+def p_instruccion_local_break(t):
+    '''
+    INSTRUCCION_LOCAL   :   _break punto_coma
+    '''
+    t[0] = clases._Break(str(t.slice[1].lineno))
+
+
+def p_instruccion_local_return(t):
+    '''
+    INSTRUCCION_LOCAL   :   _return EXPRESION punto_coma
+    '''
+    t[0] = clases._Return(t[2], str(t.slice[1].lineno))
 
 
 def p_metodo(t):
     '''
     METODO  :   identificador parentesis_abre EXPRESIONES parentesis_cierra 
     '''
+    t[0] = clases.Metodo(t[1], t[3], str(t.slice[1].lineno))
 
 
 def p_etiqueta(t):
     '''
     ETIQUETA    :   identificador dos_puntos
     '''
+    t[0] = clases.Etiqueta(t[1], str(t.slice[1].lineno))
 
 
 def p_salto(t):
     '''
     SALTO   :   _goto identificador punto_coma
     '''
+    t[0] = clases.Salto(t[2], str(t.slice[1].lineno))
 
 
 def p_declaracion(t):
     '''
     DECLARACION :   TIPO LISTA_DECLARACION
     '''
+    t[0] = clases.Declaracion(t[1], t[2])
 
 
-def p_lista_declaracion(t):
+def p_lista_declaracion_lista(t):
     '''
     LISTA_DECLARACION   :   LISTA_DECLARACION coma DECLARACION_FINAL
-                        |   DECLARACION_FINAL
     '''
+    t[1].append(t[3])
+    t[0] = t[1]
+
+
+def p_lista_declaracion_declaracion(t):
+    '''
+    LISTA_DECLARACION   :   DECLARACION_FINAL
+    '''
+    t[0] = [t[1]]
 
 
 def p_declaracion_final(t):
     '''
-    DECLARACION_FINAL   :   identificador INDICES igual EXPRESION
-                        |   identificador INDICES
+    DECLARACION_FINAL   :   identificador INDICES
     '''
+    t[0] = clases.DeclaracionFinal(t[1], t[2], None, str(t.slice[1].lineno))
+
+
+def p_declaracion_final_expresion(t):
+    '''
+    DECLARACION_FINAL   :   identificador INDICES igual EXPRESION
+    '''
+    t[0] = clases.DeclaracionFinal(t[1], t[2], t[4], str(t.slice[1].lineno))
 
 
 def p_indices(t):
     '''
     INDICES :   ACCESOS
-            |
     '''
+    t[0] = t[1]
 
 
-def p_accesos(t):
+def p_indices_vacio(t):
+    '''
+    INDICES :
+    '''
+    t[0] = None
+
+
+def p_accesos_lista(t):
     '''
     ACCESOS :   ACCESOS ACCESO
-            |   ACCESO
     '''
+    t[1].append(t[2])
+    t[0] = t[1]
+
+
+def p_accesos_acceso(t):
+    '''
+    ACCESOS :   ACCESO
+    '''
+    t[0] = [t[1]]
 
 
 def p_acceso(t):
     '''
     ACCESO  :   corchete_abre EXPRESION corchete_cierra %prec NIVEL1
-            |   corchete_abre corchete_cierra %prec NIVEL1
     '''
+    t[0] = t[1]
 
 
-def p_asignacion(t):
+def p_acceso_vacio(t):
+    '''
+    ACCESO : corchete_abre corchete_cierra %prec NIVEL1
+    '''
+    t[0] = None
+
+
+def p_asignacion_normal(t):
     '''
     ASIGNACION  :   identificador INDICES COMPUESTO EXPRESION 
-                |   identificador INDICES punto identificador COMPUESTO EXPRESION 
-                |   identificador aumento %prec NIVEL2
-                |   identificador decremento %prec NIVEL2
     '''
+    t[0] = clases.AsignacionNormal(
+        t[1], t[2], t[3], t[4], str(t.slice[1].lineno))
+
+
+def p_asignacion_estructura(t):
+    '''
+    ASIGNACION  :   identificador INDICES punto identificador COMPUESTO EXPRESION 
+    '''
+    t[0] = clases.AsignacionEstructura(
+        t[1], t[2], t[4], t[5], t[6], str(t.slice[1].lineno))
+
+
+def p_asignacion_aumento(t):
+    '''
+    ASIGNACION  :   identificador aumento %prec NIVEL2
+    '''
+    t[0] = clases.AsignacionAumento(t[1], str(t.slice[1].lineno))
+
+
+def p_asignacion_decremento(t):
+    '''
+    ASIGNACION  :   identificador decremento %prec NIVEL2
+    '''
+    t[0] = clases.AsignacionDecremento(t[1], str(t.slice[1].lineno))
 
 
 def p_compuesto(t):
@@ -368,143 +521,287 @@ def p_compuesto(t):
                 |   elevado igual %prec NIVEL14
                 |   pleca igual %prec NIVEL14
     '''
+    t[0] = t[1]
 
 
 def p_if(t):
     '''
     IF  :   _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
     '''
+    t[0] = clases._If(t[3], t[6], t[8], t[9], str(t.slice[1].lineno))
 
 
 def p_elseifs(t):
     '''
-    ELSEIFS     :   LISTA_ELSEIF
-                |   
+    ELSEIFS :   LISTA_ELSEIF
     '''
+    t[0] = t[1]
 
 
-def p_lista_elseif(t):
+def p_elseifs_vacio(t):
+    '''
+    ELSEIFS :
+    '''
+    t[0] = None
+
+
+def p_lista_elseif_lista(t):
     '''
     LISTA_ELSEIF    :   LISTA_ELSEIF ELSEIF
-                    |   ELSEIF
     '''
+    t[1].append(t[2])
+    t[0] = t[1]
+
+
+def p_lista_elseif_elseif(t):
+    '''
+    LISTA_ELSEIF    :   ELSEIF
+    '''
+    t[0] = [t[1]]
 
 
 def p_elseif(t):
     '''
     ELSEIF  :   _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     '''
+    t[0] = clases._ElseIf(t[3], t[6])
 
 
 def p_else(t):
     '''
     ELSE    :   _else llave_abre CUERPO_LOCAL llave_cierra
-            |
     '''
+    t[0] = clases._Else(t[3])
+
+
+def p_else_vacio(t):
+    '''
+    ELSE    :
+    '''
+    t[0] = None
 
 
 def p_switch(t):
     '''
     SWITCH  :   _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
     '''
+    t[0] = clases._Switch(t[3], t[6], t[7], str(t.slice[1].lineno))
 
 
 def p_cases(t):
     '''
     CASES   :   LISTA_CASE
-            |
     '''
+    t[0] = t[1]
 
 
-def p_lista_case(t):
+def p_cases_vacio(t):
+    '''
+    CASES   :
+    '''
+    t[0] = None
+
+
+def p_lista_case_lista(t):
     '''
     LISTA_CASE  :   LISTA_CASE CASE
-                |   CASE
     '''
+    t[1].append(t[2])
+    t[0] = t[1]
+
+
+def p_lista_case_case(t):
+    '''
+    LISTA_CASE  :   CASE
+    '''
+    t[0] = [t[1]]
 
 
 def p_case(t):
     '''
     CASE    :   _case EXPRESION dos_puntos CUERPO_LOCAL
     '''
+    t[0] = clases._Case(t[2], t[4])
 
 
 def p_default_case(t):
     '''
     DEFAULT_CASE    :   _default dos_puntos CUERPO_LOCAL
     '''
+    t[0] = clases._DefaultCase(t[4])
 
 
 def p_while(t):
     '''
     WHILE   :   _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     '''
+    t[0] = clases._While(t[3], t[6], str(t.slice[1].lineno))
 
 
 def p_do(t):
     '''
     DO  :   _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
     '''
+    t[0] = clases._Do(t[3], t[7], str(t.slice[1].lineno))
 
 
 def p_for(t):
     '''
     FOR :   _for parentesis_abre DECLARACION punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     '''
+    t[0] = clases._For(t[3], t[5], t[7], t[10], str(t.slice[1].lineno))
 
 
-def p_expresion(t):
+def p_expresion_aritmetica(t):
     '''
     EXPRESION   :   EXPRESION mas EXPRESION %prec NIVEL4
                 |   EXPRESION menos EXPRESION %prec NIVEL4
                 |   EXPRESION asterisco EXPRESION %prec NIVEL3
                 |   EXPRESION division EXPRESION %prec NIVEL3
                 |   EXPRESION porcentaje EXPRESION %prec NIVEL3
-                |   EXPRESION equivale EXPRESION %prec NIVEL7
+    '''
+    t[0] = clases.ExpresionAritmetica(t[1], t[2], t[3])
+
+
+def p_expresion_relacional(t):
+    '''
+    EXPRESION   :   EXPRESION equivale EXPRESION %prec NIVEL7
                 |   EXPRESION distinto EXPRESION %prec NIVEL7
                 |   EXPRESION mayor EXPRESION %prec NIVEL6
                 |   EXPRESION menor EXPRESION %prec NIVEL6
                 |   EXPRESION mayor_igual EXPRESION %prec NIVEL6
                 |   EXPRESION menor_igual EXPRESION %prec NIVEL6
-                |   EXPRESION and EXPRESION %prec NIVEL11
+    '''
+    t[0] = clases.ExpresionRelacional(t[1], t[2], t[3])
+
+
+def p_expresion_logica(t):
+    '''
+    EXPRESION   :   EXPRESION and EXPRESION %prec NIVEL11
                 |   EXPRESION or EXPRESION %prec NIVEL12
-                |   EXPRESION desplazamiento_izquierdo EXPRESION %prec NIVEL5
+    '''
+    t[0] = clases.ExpresionLogica(t[1], t[2], t[3])
+
+
+def p_expresion_bit(t):
+    '''
+    EXPRESION   :   EXPRESION desplazamiento_izquierdo EXPRESION %prec NIVEL5
                 |   EXPRESION desplazamiento_derecho mayor EXPRESION %prec NIVEL5
                 |   EXPRESION et EXPRESION %prec NIVEL8
                 |   EXPRESION pleca EXPRESION %prec NIVEL10
                 |   EXPRESION elevado EXPRESION %prec NIVEL9
-                |   EXPRESION pregunta EXPRESION dos_puntos EXPRESION %prec NIVEL13
-                |   menos EXPRESION %prec NIVEL2
+    '''
+    t[0] = clases.ExpresionBit(t[1], t[2], t[3])
+
+
+def p_expresion_ternaria(t):
+    '''
+    EXPRESION   :   EXPRESION pregunta EXPRESION dos_puntos EXPRESION %prec NIVEL13
+    '''
+    t[0] = clases.ExpresionTernaria(t[1], t[3], t[5])
+
+
+def p_expresion_unaria(t):
+    '''
+    EXPRESION   :   menos EXPRESION %prec NIVEL2
                 |   exclamacion EXPRESION %prec NIVEL2
                 |   virgulilla EXPRESION %prec NIVEL2
                 |   et identificador %prec NIVEL2
-                |   parentesis_abre EXPRESION parentesis_cierra %prec NIVEL1
-                |   METODO
-                |   identificador punto identificador
-                |   identificador ACCESOS
-                |   identificador ACCESOS punto identificador
-                |   llave_abre EXPRESIONES llave_cierra
-                |   _sizeof parentesis_abre TIPO parentesis_cierra
-                |   caracter
+    '''
+    t[0] = clases.ExpresionUnaria(t[1], t[2])
+
+
+def p_expresion_metodo(t):
+    '''
+    EXPRESION   :   METODO
+    '''
+    t[0] = t[1]
+
+
+def p_expresion_parentesis(t):
+    '''
+    EXPRESION   :   parentesis_abre EXPRESION parentesis_cierra %prec NIVEL1
+    '''
+    t[0] = t[2]
+
+
+def p_expresion_estructura(t):
+    '''
+    EXPRESION   :   identificador punto identificador
+    '''
+    t[0] = clases.ExpresionEstructura(t[1], t[3])
+
+
+def p_expresion_identificador_arreglo(t):
+    '''
+    EXPRESION   :   identificador ACCESOS
+    '''
+    t[0] = clases.ExpresionIdentificadorArreglo(t[1], t[2])
+
+
+def p_expresion_arreglo_estructura(t):
+    '''
+    EXPRESION   :   identificador ACCESOS punto identificador
+    '''
+    t[0] = clases.ExpresionArregloEstructura(t[1], t[2], t[4])
+
+
+def p_expresion_expresiones(t):
+    '''
+    EXPRESION   :   llave_abre EXPRESIONES llave_cierra
+    '''
+    t[0] = clases.ExpresionElementos(t[2])
+
+
+def p_expresion_sizeof(t):
+    '''
+    EXPRESION   :   _sizeof parentesis_abre TIPO parentesis_cierra
+    '''
+    t[0] = clases._SizeOf(t[3])
+
+
+def p_expresion_valor(t):
+    '''
+    EXPRESION   :   caracter
                 |   cadena
                 |   entero
                 |   decimal
-                |   identificador
     '''
+    t[0] = clases.Constante(t[1])
+
+
+def p_expresion_identificador(t):
+    'EXPRESION  :   identificador'
+    t[0] = clases.Identificador(t[1])
 
 
 def p_expresiones(t):
     '''
     EXPRESIONES :   LISTA_EXPRESIONES
-                |
     '''
+    t[0] = t[1]
 
 
-def p_lista_expresiones(t):
+def p_expresiones_vacio(t):
+    '''
+    EXPRESIONES :
+    '''
+    t[0] = None
+
+
+def p_lista_expresiones_lista(t):
     '''
     LISTA_EXPRESIONES   :   LISTA_EXPRESIONES coma EXPRESION
-                        |   EXPRESION
     '''
+    t[1].append(t[3])
+    t[0] = t[1]
+
+
+def p_lista_expresiones_expresion(t):
+    '''
+    LISTA_EXPRESIONES   :   EXPRESION
+    '''
+    t[0] = [t[1]]
 
 
 def p_tipo(t):
@@ -513,9 +810,16 @@ def p_tipo(t):
             |   _char
             |   _double
             |   _float
-            |   _struct identificador
             |   _void
     '''
+    t[0] = clases.Tipo(t[1], None)
+
+
+def p_tipo_struct(t):
+    '''
+    TIPO    :   _struct identificador
+    '''
+    t[0] = clases.Tipo(t[1], t[2])
 
 
 def p_error(t):

@@ -6,17 +6,17 @@ class _Error:
 
 
 class Declaracion:
-    def __init__(self, tipo, declaraciones, linea):
+    def __init__(self, tipo, declaraciones):
         self.tipo = tipo
         self.declaraciones = declaraciones
-        self.linea = linea
 
 
 class DeclaracionFinal:
-    def __init__(self, identificador, indices, expresion):
+    def __init__(self, identificador, indices, expresion, linea):
         self.identificador = identificador
         self.indices = indices
         self.expresion = expresion
+        self.linea = linea
 
 
 class Estructura:
@@ -110,6 +110,11 @@ class _ElseIf:
         self.cuerpo = cuerpo
 
 
+class _Else:
+    def __init__(self, cuerpo):
+        self.cuerpo = cuerpo
+
+
 class _Switch:
     def __init__(self, expresion, cases, defecto, linea):
         self.expresion = expresion
@@ -157,106 +162,80 @@ class Expresion:
 
 
 class ExpresionAritmetica(Expresion):
-    def __init__(self, primero, operacion, segundo, linea):
+    def __init__(self, primero, operacion, segundo):
         self.primero = primero
         self.operacion = operacion
         self.segundo = segundo
-        self.linea = linea
 
 
 class ExpresionRelacional(Expresion):
-    def __init__(self, primero, operacion, segundo, linea):
+    def __init__(self, primero, operacion, segundo):
         self.primero = primero
         self.operacion = operacion
         self.segundo = segundo
-        self.linea = linea
 
 
 class ExpresionLogica(Expresion):
-    def __init__(self, primero, operacion, segundo, linea):
+    def __init__(self, primero, operacion, segundo):
         self.primero = primero
         self.operacion = operacion
         self.segundo = segundo
-        self.linea = linea
 
 
 class ExpresionBit(Expresion):
-    def __init__(self, primero, operacion, segundo, linea):
+    def __init__(self, primero, operacion, segundo):
         self.primero = primero
         self.operacion = operacion
         self.segundo = segundo
-        self.linea = linea
 
 
 class ExpresionTernaria(Expresion):
-    def __init__(self, expresion, primero, segundo, linea):
+    def __init__(self, expresion, primero, segundo):
         self.expresion = expresion
         self.primero = primero
         self.segundo = segundo
-        self.linea = linea
 
 
 class ExpresionUnaria(Expresion):
-    def __init__(self, operacion, operando, linea):
+    def __init__(self, operacion, operando):
         self.operacion = operacion
         self.operando = operando
-        self.linea = linea
 
 
 class ExpresionEstructura(Expresion):
-    def __init__(self, identificador, atributo, linea):
+    def __init__(self, identificador, atributo):
         self.identificador = identificador
         self.atributo = atributo
-        self.linea = linea
 
 
-class ExpresionIdentificador(Expresion):
-    def __init__(self, identificador, accesos, linea):
+class ExpresionIdentificadorArreglo(Expresion):
+    def __init__(self, identificador, accesos):
         self.identificador = identificador
         self.accesos = accesos
-        self.linea = linea
 
 
 class ExpresionArregloEstructura(Expresion):
-    def __init__(self, identificador, accesos, atributo, linea):
+    def __init__(self, identificador, accesos, atributo):
         self.identificador = identificador
         self.accesos = accesos
         self.atributo = atributo
-        self.linea = linea
 
 
 class ExpresionElementos(Expresion):
-    def __init__(self, expresiones, linea):
+    def __init__(self, expresiones):
         self.expresiones = expresiones
-        self.linea = linea
 
 
 class _SizeOf(Expresion):
-    def __init__(self, tipo, linea):
+    def __init__(self, tipo):
         self.tipo = tipo
-        self.linea = linea
 
 
 class Valor:
     'Valor'
 
 
-class Caracter(Valor):
-    def __init__(self, valor):
-        self.valor = valor
-
-
-class Cadena(Valor):
-    def __init__(self, valor):
-        self.valor = valor
-
-
-class Entero(Valor):
-    def __init__(self, valor):
-        self.valor = valor
-
-
-class Decimal(Valor):
+class Constante(Valor):
     def __init__(self, valor):
         self.valor = valor
 
@@ -264,3 +243,25 @@ class Decimal(Valor):
 class Identificador(Valor):
     def __init__(self, valor):
         self.valor = valor
+
+
+class Tipo:
+    def __init__(self, tipo, identificador):
+        self.tipo = tipo
+        self.identificador = identificador
+
+
+class _Continue:
+    def __init__(self, linea):
+        self.linea = linea
+
+
+class _Break:
+    def __init__(self, linea):
+        self.linea = linea
+
+
+class _Return:
+    def __init__(self, expresion, linea):
+        self.expresion = expresion
+        self.linea = linea
