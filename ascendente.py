@@ -22,7 +22,7 @@ palabras_reservadas = {
     'char': '_char',
     'double': '_double',
     'float': '_float',
-    'void': '_void'
+    'void': '_void',
 }
 
 tokens = [
@@ -376,6 +376,13 @@ def p_instruccion_local_return(t):
     INSTRUCCION_LOCAL   :   _return EXPRESION punto_coma
     '''
     t[0] = clases._Return(t[2], str(t.slice[1].lineno))
+
+
+def p_instruccion_local_return_vacio(t):
+    '''
+    INSTRUCCION_LOCAL   :   _return punto_coma
+    '''
+    t[0] = clases._Return(None, str(t.slice[1].lineno))
 
 
 def p_metodo(t):
@@ -760,14 +767,24 @@ def p_expresion_sizeof(t):
     t[0] = clases._SizeOf(t[3])
 
 
-def p_expresion_valor(t):
-    '''
-    EXPRESION   :   caracter
-                |   cadena
-                |   entero
-                |   decimal
-    '''
-    t[0] = clases.Constante(t[1])
+def p_expresion_caracter(t):
+    'EXPRESION  :   caracter'
+    t[0] = clases.Caracter(t[1])
+
+
+def p_expresion_cadena(t):
+    'EXPRESION  :   cadena'
+    t[0] = clases.Cadena(t[1])
+
+
+def p_expresion_entero(t):
+    'EXPRESION  :   entero'
+    t[0] = clases.Entero(t[1])
+
+
+def p_expresion_decimal(t):
+    'EXPRESION  :   decimal'
+    t[0] = clases.Decimal(t[1])
 
 
 def p_expresion_identificador(t):

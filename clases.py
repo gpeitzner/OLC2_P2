@@ -235,7 +235,22 @@ class Valor:
     'Valor'
 
 
-class Constante(Valor):
+class Caracter(Valor):
+    def __init__(self, valor):
+        self.valor = valor
+
+
+class Cadena(Valor):
+    def __init__(self, valor):
+        self.valor = valor
+
+
+class Entero(Valor):
+    def __init__(self, valor):
+        self.valor = valor
+
+
+class Decimal(Valor):
     def __init__(self, valor):
         self.valor = valor
 
