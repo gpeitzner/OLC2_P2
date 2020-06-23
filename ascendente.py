@@ -162,7 +162,7 @@ def t_nueva_linea(t):
 def t_error(t):
     mostar_error("ERROR: Léxico en: "+str(t.value[0])+", línea: " + str(
         t.lineno)+", columna: "+str(obtener_columna(entrada, t))+".")
-    errores_lexicos.append(clases.TError(str(t.value[0]), str(
+    errores_lexicos.append(clases._Error(str(t.value[0]), str(
         t.lineno), str(obtener_columna(entrada, t))))
     t.lexer.skip(1)
 
@@ -224,7 +224,7 @@ def p_lista_caracteristicas(t):
 
 def p_caracteristica(t):
     '''
-    CARACTERISTICA  :   TIPO identificador punto_coma
+    CARACTERISTICA  :   DECLARACION punto_coma
     '''
 
 
@@ -477,12 +477,12 @@ def p_expresion(t):
                 |   menos EXPRESION %prec NIVEL2
                 |   exclamacion EXPRESION %prec NIVEL2
                 |   virgulilla EXPRESION %prec NIVEL2
+                |   et identificador %prec NIVEL2
                 |   parentesis_abre EXPRESION parentesis_cierra %prec NIVEL1
-                |   identificador parentesis_abre EXPRESIONES parentesis_cierra
+                |   METODO
                 |   identificador punto identificador
                 |   identificador ACCESOS
                 |   identificador ACCESOS punto identificador
-                |   et identificador %prec NIVEL2
                 |   llave_abre EXPRESIONES llave_cierra
                 |   _sizeof parentesis_abre TIPO parentesis_cierra
                 |   caracter
@@ -523,7 +523,7 @@ def p_error(t):
         return
     mostar_error("ERROR: Sintáctico en: "+str(t.value)+", línea: " +
                  str(t.lineno)+", columna: "+str(obtener_columna(entrada, t))+".")
-    errores_sintacticos.append(clases.TError(
+    errores_sintacticos.append(clases._Error(
         str(t.value), str(t.lineno), str(obtener_columna(entrada, t))))
     while True:
         tok = parser.token()
