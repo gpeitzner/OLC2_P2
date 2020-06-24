@@ -261,8 +261,8 @@ class Identificador(Valor):
 
 
 class Tipo:
-    def __init__(self, tipo, identificador):
-        self.tipo = tipo
+    def __init__(self, valor, identificador):
+        self.valor = valor
         self.identificador = identificador
 
 

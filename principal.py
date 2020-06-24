@@ -11,6 +11,7 @@ import recursos
 import os
 import pyperclip
 import webbrowser
+import tres_direcciones
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -340,10 +341,13 @@ class Ui_MainWindow(object):
             ), self.erroresLexicos, self.erroresSintacticos, self.plainTextEdit)
             if instrucciones:
                 self.plainTextEdit.appendPlainText(
-                    "interprete.py ascendente.out\n\n")
+                    "interprete.py ascendente.out\n")
                 try:
-                    pass
-                except:
+                    generador = tres_direcciones.TresDirecciones(
+                        self.plainTextEdit, instrucciones)
+                    generador.generar_codigo()
+                except Exception as ex:
+                    print(ex)
                     self.plainTextEdit.appendPlainText(
                         "ERROR: Error de ejecución.")
 
