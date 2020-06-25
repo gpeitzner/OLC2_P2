@@ -296,3 +296,9 @@ class _Return:
     def __init__(self, expresion, linea):
         self.expresion = expresion
         self.linea = linea
+
+
+class Variable:
+    def __init__(self, tipo, valor):
+        self.tipo = tipo
+        self.valor = valor

@@ -64,7 +64,7 @@ class TresDirecciones:
         if isinstance(expresion, clases.ExpresionTernaria):
             return self.obtener_expresion_ternaria(expresion)
         if isinstance(expresion, clases.Entero):
-            return str(expresion.valor)
+            return clases.Variable('int', str(expresion.valor))
         return None
 
     def obtener_expresion_aritmetica(self, expresion):
@@ -73,20 +73,63 @@ class TresDirecciones:
         if primero and segundo:
             registro = self.obtener_registro_temporal()
             if expresion.operacion == '+':
-                self.codigo3d += registro + ' = ' + primero + ' + ' + segundo + ';\n'
-                return registro
+                self.codigo3d += registro + ' = ' + primero.valor + ' + ' + segundo.valor + ';\n'
+                if primero.tipo == 'char' and segundo.tipo == 'char':
+                    return clases.Variable('char', registro)
+                elif primero.tipo == 'float' and segundo.tipo == 'float':
+                    return clases.Variable('float', registro)
+                elif primero.tipo == 'double' and segundo.tipo == 'double':
+                    return clases.Variable('double', registro)
+                elif primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                    return clases.Variable('int', registro)
+                else:
+                    return None
             elif expresion.operacion == '-':
-                self.codigo3d += registro + ' = ' + primero + ' - ' + segundo + ';\n'
-                return registro
+                self.codigo3d += registro + ' = ' + primero.valor + ' - ' + segundo.valor + ';\n'
+                if primero.tipo == 'float' and segundo.tipo == 'float':
+                    return clases.Variable('float', registro)
+                elif primero.tipo == 'double' and segundo.tipo == 'double':
+                    return clases.Variable('double', registro)
+                elif primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                    return clases.Variable('int', registro)
+                else:
+                    return None
             elif expresion.operacion == '*':
-                self.codigo3d += registro + ' = ' + primero + ' * ' + segundo + ';\n'
-                return registro
+                self.codigo3d += registro + ' = ' + primero.valor + ' * ' + segundo.valor + ';\n'
+                if primero.tipo == 'float' and segundo.tipo == 'float':
+                    return clases.Variable('float', registro)
+                elif primero.tipo == 'double' and segundo.tipo == 'double':
+                    return clases.Variable('double', registro)
+                elif primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                    return clases.Variable('int', registro)
+                else:
+                    return None
             elif expresion.operacion == '/':
-                self.codigo3d += registro + ' = ' + primero + ' / ' + segundo + ';\n'
-                return registro
+                if segundo.valor != '0':
+                    self.codigo3d += registro + ' = ' + primero.valor + ' / ' + segundo.valor + ';\n'
+                    if primero.tipo == 'float' and segundo.tipo == 'float':
+                        return clases.Variable('float', registro)
+                    elif primero.tipo == 'double' and segundo.tipo == 'double':
+                        return clases.Variable('double', registro)
+                    elif primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                        return clases.Variable('int', registro)
+                    else:
+                        return None
+                else:
+                    return None
             elif expresion.operacion == '%':
-                self.codigo3d += registro + ' = ' + primero + ' % ' + segundo + ';\n'
-                return registro
+                if segundo.valor != '0':
+                    self.codigo3d += registro + ' = ' + primero.valor + ' % ' + segundo.valor + ';\n'
+                    if primero.tipo == 'float' and segundo.tipo == 'float':
+                        return clases.Variable('float', registro)
+                    elif primero.tipo == 'double' and segundo.tipo == 'double':
+                        return clases.Variable('double', registro)
+                    elif primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                        return clases.Variable('int', registro)
+                    else:
+                        return None
+                else:
+                    return None
         return None
 
     def obtener_expresion_relacional(self, expresion):
@@ -95,23 +138,45 @@ class TresDirecciones:
         if primero and segundo:
             registro = self.obtener_registro_temporal()
             if expresion.operacion == '==':
-                self.codigo3d += registro + ' = ' + primero + ' == ' + segundo + ';\n'
-                return registro
+                self.codigo3d += registro + ' = ' + primero.valor + ' == ' + segundo.valor + ';\n'
+                if primero.tipo == 'char' and segundo.tipo == 'char':
+                    return clases.Variable('char', registro)
+                elif primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                    return clases.Variable('int', registro)
+                else:
+                    return None
             elif expresion.operacion == '!=':
-                self.codigo3d += registro + ' = ' + primero + ' != ' + segundo + ';\n'
-                return registro
+                self.codigo3d += registro + ' = ' + primero.valor + ' != ' + segundo.valor + ';\n'
+                if primero.tipo == 'char' and segundo.tipo == 'char':
+                    return clases.Variable('char', registro)
+                elif primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                    return clases.Variable('int', registro)
+                else:
+                    return None
             elif expresion.operacion == '>':
-                self.codigo3d += registro + ' = ' + primero + ' > ' + segundo + ';\n'
-                return registro
+                self.codigo3d += registro + ' = ' + primero.valor + ' > ' + segundo.valor + ';\n'
+                if primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                    return clases.Variable('int', registro)
+                else:
+                    return None
             elif expresion.operacion == '<':
-                self.codigo3d += registro + ' = ' + primero + ' < ' + segundo + ';\n'
-                return registro
+                self.codigo3d += registro + ' = ' + primero.valor + ' < ' + segundo.valor + ';\n'
+                if primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                    return clases.Variable('int', registro)
+                else:
+                    return None
             elif expresion.operacion == '>=':
-                self.codigo3d += registro + ' = ' + primero + ' >= ' + segundo + ";\n"
-                return registro
+                self.codigo3d += registro + ' = ' + primero.valor + ' >= ' + segundo.valor + ";\n"
+                if primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                    return clases.Variable('int', registro)
+                else:
+                    return None
             elif expresion.operacion == '<=':
-                self.codigo3d += registro + ' = ' + primero + ' <= ' + segundo + ';\n'
-                return registro
+                self.codigo3d += registro + ' = ' + primero.valor + ' <= ' + segundo.valor + ';\n'
+                if primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                    return clases.Variable('int', registro)
+                else:
+                    return None
         return None
 
     def obtener_expresion_logica(self, expresion):
@@ -120,11 +185,18 @@ class TresDirecciones:
         if primero and segundo:
             registro = self.obtener_registro_temporal()
             if expresion.operacion == '&&':
-                self.codigo3d += registro + ' = ' + primero + ' && ' + segundo + ';\n'
-                return registro
+                self.codigo3d += registro + ' = ' + \
+                    primero.valor + ' and ' + segundo.valor + ';\n'
+                if primero.tipo == 'int' and segundo.tipo == 'int':
+                    return clases.Variable('int', registro)
+                else:
+                    return None
             elif expresion.operacion == '||':
-                self.codigo3d += registro + ' = ' + primero + ' || ' + segundo + ';\n'
-                return registro
+                self.codigo3d += registro + ' = ' + primero.valor + ' or ' + segundo.valor + ';\n'
+                if primero.tipo == 'int' and segundo.tipo == 'int':
+                    return clases.Variable('int', registro)
+                else:
+                    return None
         return None
 
     def obtener_expresion_bit(self, expresion):
@@ -133,20 +205,35 @@ class TresDirecciones:
         if primero and segundo:
             registro = self.obtener_registro_temporal()
             if expresion.operacion == '<<':
-                self.codigo3d += registro + ' = ' + primero + ' << ' + segundo + ';\n'
-                return registro
+                self.codigo3d += registro + ' = ' + primero.valor + ' << ' + segundo.valor + ';\n'
+                if primero.tipo in ['int', 'double', 'float'] and segundo.tipo in ['int', 'double', 'float']:
+                    return clases.Variable('int', registro)
+                else:
+                    return None
             elif expresion.operacion == '>>':
-                self.codigo3d += registro + ' = ' + primero + ' >> ' + segundo + ';\n'
-                return registro
+                self.codigo3d += registro + ' = ' + primero.valor + ' >> ' + segundo.valor + ';\n'
+                if primero.tipo in ['int', 'double', 'float'] and segundo.tipo in ['int', 'double', 'float']:
+                    return clases.Variable('int', registro)
+                else:
+                    return None
             elif expresion.operacion == '&':
-                self.codigo3d += registro + ' = ' + primero + ' & ' + segundo + ';\n'
-                return registro
+                self.codigo3d += registro + ' = ' + primero.valor + ' & ' + segundo.valor + ';\n'
+                if primero.tipo in ['int', 'double', 'float'] and segundo.tipo in ['int', 'double', 'float']:
+                    return clases.Variable('int', registro)
+                else:
+                    return None
             elif expresion.operacion == '|':
-                self.codigo3d += registro + ' = ' + primero + ' | ' + segundo + ';\n'
-                return registro
+                self.codigo3d += registro + ' = ' + primero.valor + ' | ' + segundo.valor + ';\n'
+                if primero.tipo in ['int', 'double', 'float'] and segundo.tipo in ['int', 'double', 'float']:
+                    return clases.Variable('int', registro)
+                else:
+                    return None
             elif expresion.operacion == '^':
-                self.codigo3d += registro + ' = ' + primero + ' ^ ' + segundo + ';\n'
-                return registro
+                self.codigo3d += registro + ' = ' + primero.valor + ' ^ ' + segundo.valor + ';\n'
+                if primero.tipo in ['int', 'double', 'float'] and segundo.tipo in ['int', 'double', 'float']:
+                    return clases.Variable('int', registro)
+                else:
+                    return None
         return None
 
     def obtener_expresion_unaria(self, expresion):
@@ -155,15 +242,24 @@ class TresDirecciones:
             registro = self.obtener_registro_temporal()
             if expresion.operacion == '-':
                 self.codigo3d += registro + ' =  -' + operando + ';\n'
-                return registro
+                if operando.tipo in ['int', 'double', 'float'] and operando.tipo in ['int', 'double', 'float']:
+                    return clases.Variable('int', registro)
+                else:
+                    return None
             elif expresion.operacion == '!':
                 self.codigo3d += registro + ' =  !' + operando + ';\n'
-                return registro
+                if operando.tipo in ['int', 'double', 'float'] and operando.tipo in ['int', 'double', 'float']:
+                    return clases.Variable('int', registro)
+                else:
+                    return None
             elif expresion.operacion == '~':
-                self.codigo3d += registro + ' =  &' + operando + ';\n'
-                return registro
+                self.codigo3d += registro + ' =  ~' + operando + ';\n'
+                if operando.tipo in ['int', 'double', 'float'] and operando.tipo in ['int', 'double', 'float']:
+                    return clases.Variable('int', registro)
+                else:
+                    return None
             elif expresion.operacion == '&':
-                self.codigo3d += registro + ' =  |' + operando + ';\n'
+                self.codigo3d += registro + ' =  &' + operando + ';\n'
                 return registro
         return None
 
@@ -175,13 +271,14 @@ class TresDirecciones:
             registro = self.obtener_registro_temporal()
             etiqueta_verdadero = self.obtener_etiqueta_temporal()
             etiqueta_salida = self.obtener_etiqueta_temporal()
-            self.codigo3d += 'if('+expresion+') goto '+etiqueta_verdadero+';\n'
-            self.codigo3d += registro + ' = '+segundo+';\n'
+            self.codigo3d += 'if('+expresion.valor+') goto ' + \
+                etiqueta_verdadero+';\n'
+            self.codigo3d += registro + ' = '+segundo.valor+';\n'
             self.codigo3d += 'goto '+etiqueta_salida+';\n'
             self.codigo3d += etiqueta_verdadero + ':\n'
-            self.codigo3d += registro + ' = '+primero+';\n'
+            self.codigo3d += registro + ' = '+primero.valor+';\n'
             self.codigo3d += etiqueta_salida + ':\n'
-            return registro
+            return clases.Variable('ternary', registro)
 
     def obtener_registro_temporal(self):
         registro_temporal = '$t' + str(self.contador_registros_temporales)

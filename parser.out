@@ -104,7 +104,7 @@ Rule 98    EXPRESION -> EXPRESION menor_igual EXPRESION
 Rule 99    EXPRESION -> EXPRESION and EXPRESION
 Rule 100   EXPRESION -> EXPRESION or EXPRESION
 Rule 101   EXPRESION -> EXPRESION desplazamiento_izquierdo EXPRESION
-Rule 102   EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION
+Rule 102   EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION
 Rule 103   EXPRESION -> EXPRESION et EXPRESION
 Rule 104   EXPRESION -> EXPRESION pleca EXPRESION
 Rule 105   EXPRESION -> EXPRESION elevado EXPRESION
@@ -188,7 +188,7 @@ igual                : 49 60 61 62 63 64 65 66 67 68 69
 llave_abre           : 9 15 70 75 76 78 85 86 87 116
 llave_cierra         : 9 15 70 75 76 78 85 86 87 116
 mas                  : 61 88
-mayor                : 66 66 95 102
+mayor                : 66 66 95
 mayor_igual          : 97
 menor                : 65 65 96
 menor_igual          : 98
@@ -653,7 +653,7 @@ state 27
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -811,7 +811,7 @@ state 36
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -904,7 +904,7 @@ state 38
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
@@ -983,7 +983,7 @@ state 40
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -1049,7 +1049,7 @@ state 42
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -1108,7 +1108,7 @@ state 43
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -1243,7 +1243,7 @@ state 46
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -1319,7 +1319,7 @@ state 47
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -1637,7 +1637,7 @@ state 64
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
@@ -1717,7 +1717,7 @@ state 66
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -1776,7 +1776,7 @@ state 67
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -1835,7 +1835,7 @@ state 68
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -1894,7 +1894,7 @@ state 69
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -1953,7 +1953,7 @@ state 70
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -2012,7 +2012,7 @@ state 71
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -2071,7 +2071,7 @@ state 72
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -2130,7 +2130,7 @@ state 73
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -2189,7 +2189,7 @@ state 74
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -2248,7 +2248,7 @@ state 75
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -2307,7 +2307,7 @@ state 76
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -2366,7 +2366,7 @@ state 77
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -2425,7 +2425,7 @@ state 78
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -2484,7 +2484,7 @@ state 79
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -2528,10 +2528,62 @@ state 79
 
 state 80
 
-    (102) EXPRESION -> EXPRESION desplazamiento_derecho . mayor EXPRESION
+    (102) EXPRESION -> EXPRESION desplazamiento_derecho . EXPRESION
+    (88) EXPRESION -> . EXPRESION mas EXPRESION
+    (89) EXPRESION -> . EXPRESION menos EXPRESION
+    (90) EXPRESION -> . EXPRESION asterisco EXPRESION
+    (91) EXPRESION -> . EXPRESION division EXPRESION
+    (92) EXPRESION -> . EXPRESION porcentaje EXPRESION
+    (93) EXPRESION -> . EXPRESION equivale EXPRESION
+    (94) EXPRESION -> . EXPRESION distinto EXPRESION
+    (95) EXPRESION -> . EXPRESION mayor EXPRESION
+    (96) EXPRESION -> . EXPRESION menor EXPRESION
+    (97) EXPRESION -> . EXPRESION mayor_igual EXPRESION
+    (98) EXPRESION -> . EXPRESION menor_igual EXPRESION
+    (99) EXPRESION -> . EXPRESION and EXPRESION
+    (100) EXPRESION -> . EXPRESION or EXPRESION
+    (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
+    (103) EXPRESION -> . EXPRESION et EXPRESION
+    (104) EXPRESION -> . EXPRESION pleca EXPRESION
+    (105) EXPRESION -> . EXPRESION elevado EXPRESION
+    (106) EXPRESION -> . EXPRESION pregunta EXPRESION dos_puntos EXPRESION
+    (107) EXPRESION -> . menos EXPRESION
+    (108) EXPRESION -> . exclamacion EXPRESION
+    (109) EXPRESION -> . virgulilla EXPRESION
+    (110) EXPRESION -> . et identificador
+    (111) EXPRESION -> . METODO
+    (112) EXPRESION -> . parentesis_abre EXPRESION parentesis_cierra
+    (113) EXPRESION -> . identificador punto identificador
+    (114) EXPRESION -> . identificador ACCESOS
+    (115) EXPRESION -> . identificador ACCESOS punto identificador
+    (116) EXPRESION -> . llave_abre EXPRESIONES llave_cierra
+    (117) EXPRESION -> . _sizeof parentesis_abre TIPO parentesis_cierra
+    (118) EXPRESION -> . _scanf parentesis_abre parentesis_cierra
+    (119) EXPRESION -> . parentesis_abre TIPO parentesis_cierra EXPRESION
+    (120) EXPRESION -> . caracter
+    (121) EXPRESION -> . cadena
+    (122) EXPRESION -> . entero
+    (123) EXPRESION -> . decimal
+    (124) EXPRESION -> . identificador
+    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
 
-    mayor           shift and go to state 119
+    menos           shift and go to state 40
+    exclamacion     shift and go to state 42
+    virgulilla      shift and go to state 43
+    et              shift and go to state 41
+    parentesis_abre shift and go to state 46
+    identificador   shift and go to state 44
+    llave_abre      shift and go to state 47
+    _sizeof         shift and go to state 48
+    _scanf          shift and go to state 49
+    caracter        shift and go to state 50
+    cadena          shift and go to state 51
+    entero          shift and go to state 52
+    decimal         shift and go to state 53
 
+    EXPRESION                      shift and go to state 119
+    METODO                         shift and go to state 45
 
 state 81
 
@@ -2550,7 +2602,7 @@ state 81
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -2609,7 +2661,7 @@ state 82
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -2668,7 +2720,7 @@ state 83
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -2727,7 +2779,7 @@ state 84
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -2786,7 +2838,7 @@ state 85
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
@@ -2887,7 +2939,7 @@ state 87
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
@@ -2957,7 +3009,7 @@ state 88
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
@@ -3076,7 +3128,7 @@ state 91
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -3138,7 +3190,7 @@ state 92
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
@@ -3207,7 +3259,7 @@ state 96
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
@@ -3407,7 +3459,7 @@ state 105
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
@@ -3416,9 +3468,6 @@ state 105
     corchete_cierra reduce using rule 88 (EXPRESION -> EXPRESION mas EXPRESION .)
     mas             reduce using rule 88 (EXPRESION -> EXPRESION mas EXPRESION .)
     menos           reduce using rule 88 (EXPRESION -> EXPRESION mas EXPRESION .)
-    asterisco       reduce using rule 88 (EXPRESION -> EXPRESION mas EXPRESION .)
-    division        reduce using rule 88 (EXPRESION -> EXPRESION mas EXPRESION .)
-    porcentaje      reduce using rule 88 (EXPRESION -> EXPRESION mas EXPRESION .)
     equivale        reduce using rule 88 (EXPRESION -> EXPRESION mas EXPRESION .)
     distinto        reduce using rule 88 (EXPRESION -> EXPRESION mas EXPRESION .)
     mayor           reduce using rule 88 (EXPRESION -> EXPRESION mas EXPRESION .)
@@ -3438,12 +3487,15 @@ state 105
     parentesis_cierra reduce using rule 88 (EXPRESION -> EXPRESION mas EXPRESION .)
     llave_cierra    reduce using rule 88 (EXPRESION -> EXPRESION mas EXPRESION .)
     dos_puntos      reduce using rule 88 (EXPRESION -> EXPRESION mas EXPRESION .)
+    asterisco       shift and go to state 68
+    division        shift and go to state 69
+    porcentaje      shift and go to state 70
 
+  ! asterisco       [ reduce using rule 88 (EXPRESION -> EXPRESION mas EXPRESION .) ]
+  ! division        [ reduce using rule 88 (EXPRESION -> EXPRESION mas EXPRESION .) ]
+  ! porcentaje      [ reduce using rule 88 (EXPRESION -> EXPRESION mas EXPRESION .) ]
   ! mas             [ shift and go to state 66 ]
   ! menos           [ shift and go to state 67 ]
-  ! asterisco       [ shift and go to state 68 ]
-  ! division        [ shift and go to state 69 ]
-  ! porcentaje      [ shift and go to state 70 ]
   ! equivale        [ shift and go to state 71 ]
   ! distinto        [ shift and go to state 72 ]
   ! mayor           [ shift and go to state 73 ]
@@ -3477,7 +3529,7 @@ state 106
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
@@ -3486,9 +3538,6 @@ state 106
     corchete_cierra reduce using rule 89 (EXPRESION -> EXPRESION menos EXPRESION .)
     mas             reduce using rule 89 (EXPRESION -> EXPRESION menos EXPRESION .)
     menos           reduce using rule 89 (EXPRESION -> EXPRESION menos EXPRESION .)
-    asterisco       reduce using rule 89 (EXPRESION -> EXPRESION menos EXPRESION .)
-    division        reduce using rule 89 (EXPRESION -> EXPRESION menos EXPRESION .)
-    porcentaje      reduce using rule 89 (EXPRESION -> EXPRESION menos EXPRESION .)
     equivale        reduce using rule 89 (EXPRESION -> EXPRESION menos EXPRESION .)
     distinto        reduce using rule 89 (EXPRESION -> EXPRESION menos EXPRESION .)
     mayor           reduce using rule 89 (EXPRESION -> EXPRESION menos EXPRESION .)
@@ -3508,12 +3557,15 @@ state 106
     parentesis_cierra reduce using rule 89 (EXPRESION -> EXPRESION menos EXPRESION .)
     llave_cierra    reduce using rule 89 (EXPRESION -> EXPRESION menos EXPRESION .)
     dos_puntos      reduce using rule 89 (EXPRESION -> EXPRESION menos EXPRESION .)
+    asterisco       shift and go to state 68
+    division        shift and go to state 69
+    porcentaje      shift and go to state 70
 
+  ! asterisco       [ reduce using rule 89 (EXPRESION -> EXPRESION menos EXPRESION .) ]
+  ! division        [ reduce using rule 89 (EXPRESION -> EXPRESION menos EXPRESION .) ]
+  ! porcentaje      [ reduce using rule 89 (EXPRESION -> EXPRESION menos EXPRESION .) ]
   ! mas             [ shift and go to state 66 ]
   ! menos           [ shift and go to state 67 ]
-  ! asterisco       [ shift and go to state 68 ]
-  ! division        [ shift and go to state 69 ]
-  ! porcentaje      [ shift and go to state 70 ]
   ! equivale        [ shift and go to state 71 ]
   ! distinto        [ shift and go to state 72 ]
   ! mayor           [ shift and go to state 73 ]
@@ -3547,7 +3599,7 @@ state 107
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
@@ -3617,7 +3669,7 @@ state 108
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
@@ -3687,7 +3739,7 @@ state 109
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
@@ -3757,28 +3809,17 @@ state 110
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
     corchete_cierra reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
-    mas             reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
-    menos           reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
-    asterisco       reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
-    division        reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
-    porcentaje      reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
     equivale        reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
     distinto        reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
-    mayor           reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
-    menor           reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
-    mayor_igual     reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
-    menor_igual     reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
     and             reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
     or              reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
-    desplazamiento_izquierdo reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
-    desplazamiento_derecho reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
     et              reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
     pleca           reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
     elevado         reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
@@ -3788,22 +3829,33 @@ state 110
     parentesis_cierra reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
     llave_cierra    reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
     dos_puntos      reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .)
+    mas             shift and go to state 66
+    menos           shift and go to state 67
+    asterisco       shift and go to state 68
+    division        shift and go to state 69
+    porcentaje      shift and go to state 70
+    mayor           shift and go to state 73
+    menor           shift and go to state 74
+    mayor_igual     shift and go to state 75
+    menor_igual     shift and go to state 76
+    desplazamiento_izquierdo shift and go to state 79
+    desplazamiento_derecho shift and go to state 80
 
-  ! mas             [ shift and go to state 66 ]
-  ! menos           [ shift and go to state 67 ]
-  ! asterisco       [ shift and go to state 68 ]
-  ! division        [ shift and go to state 69 ]
-  ! porcentaje      [ shift and go to state 70 ]
+  ! mas             [ reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .) ]
+  ! menos           [ reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .) ]
+  ! asterisco       [ reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .) ]
+  ! division        [ reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .) ]
+  ! porcentaje      [ reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .) ]
+  ! mayor           [ reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .) ]
+  ! menor           [ reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .) ]
+  ! mayor_igual     [ reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .) ]
+  ! menor_igual     [ reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .) ]
+  ! desplazamiento_izquierdo [ reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .) ]
+  ! desplazamiento_derecho [ reduce using rule 93 (EXPRESION -> EXPRESION equivale EXPRESION .) ]
   ! equivale        [ shift and go to state 71 ]
   ! distinto        [ shift and go to state 72 ]
-  ! mayor           [ shift and go to state 73 ]
-  ! menor           [ shift and go to state 74 ]
-  ! mayor_igual     [ shift and go to state 75 ]
-  ! menor_igual     [ shift and go to state 76 ]
   ! and             [ shift and go to state 77 ]
   ! or              [ shift and go to state 78 ]
-  ! desplazamiento_izquierdo [ shift and go to state 79 ]
-  ! desplazamiento_derecho [ shift and go to state 80 ]
   ! et              [ shift and go to state 81 ]
   ! pleca           [ shift and go to state 82 ]
   ! elevado         [ shift and go to state 83 ]
@@ -3827,28 +3879,17 @@ state 111
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
     corchete_cierra reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
-    mas             reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
-    menos           reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
-    asterisco       reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
-    division        reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
-    porcentaje      reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
     equivale        reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
     distinto        reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
-    mayor           reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
-    menor           reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
-    mayor_igual     reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
-    menor_igual     reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
     and             reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
     or              reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
-    desplazamiento_izquierdo reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
-    desplazamiento_derecho reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
     et              reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
     pleca           reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
     elevado         reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
@@ -3858,22 +3899,33 @@ state 111
     parentesis_cierra reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
     llave_cierra    reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
     dos_puntos      reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .)
+    mas             shift and go to state 66
+    menos           shift and go to state 67
+    asterisco       shift and go to state 68
+    division        shift and go to state 69
+    porcentaje      shift and go to state 70
+    mayor           shift and go to state 73
+    menor           shift and go to state 74
+    mayor_igual     shift and go to state 75
+    menor_igual     shift and go to state 76
+    desplazamiento_izquierdo shift and go to state 79
+    desplazamiento_derecho shift and go to state 80
 
-  ! mas             [ shift and go to state 66 ]
-  ! menos           [ shift and go to state 67 ]
-  ! asterisco       [ shift and go to state 68 ]
-  ! division        [ shift and go to state 69 ]
-  ! porcentaje      [ shift and go to state 70 ]
+  ! mas             [ reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .) ]
+  ! menos           [ reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .) ]
+  ! asterisco       [ reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .) ]
+  ! division        [ reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .) ]
+  ! porcentaje      [ reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .) ]
+  ! mayor           [ reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .) ]
+  ! menor           [ reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .) ]
+  ! mayor_igual     [ reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .) ]
+  ! menor_igual     [ reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .) ]
+  ! desplazamiento_izquierdo [ reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .) ]
+  ! desplazamiento_derecho [ reduce using rule 94 (EXPRESION -> EXPRESION distinto EXPRESION .) ]
   ! equivale        [ shift and go to state 71 ]
   ! distinto        [ shift and go to state 72 ]
-  ! mayor           [ shift and go to state 73 ]
-  ! menor           [ shift and go to state 74 ]
-  ! mayor_igual     [ shift and go to state 75 ]
-  ! menor_igual     [ shift and go to state 76 ]
   ! and             [ shift and go to state 77 ]
   ! or              [ shift and go to state 78 ]
-  ! desplazamiento_izquierdo [ shift and go to state 79 ]
-  ! desplazamiento_derecho [ shift and go to state 80 ]
   ! et              [ shift and go to state 81 ]
   ! pleca           [ shift and go to state 82 ]
   ! elevado         [ shift and go to state 83 ]
@@ -3897,18 +3949,13 @@ state 112
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
     corchete_cierra reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
-    mas             reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
-    menos           reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
-    asterisco       reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
-    division        reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
-    porcentaje      reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
     equivale        reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
     distinto        reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
     mayor           reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
@@ -3917,8 +3964,6 @@ state 112
     menor_igual     reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
     and             reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
     or              reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
-    desplazamiento_izquierdo reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
-    desplazamiento_derecho reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
     et              reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
     pleca           reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
     elevado         reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
@@ -3928,12 +3973,21 @@ state 112
     parentesis_cierra reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
     llave_cierra    reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
     dos_puntos      reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .)
+    mas             shift and go to state 66
+    menos           shift and go to state 67
+    asterisco       shift and go to state 68
+    division        shift and go to state 69
+    porcentaje      shift and go to state 70
+    desplazamiento_izquierdo shift and go to state 79
+    desplazamiento_derecho shift and go to state 80
 
-  ! mas             [ shift and go to state 66 ]
-  ! menos           [ shift and go to state 67 ]
-  ! asterisco       [ shift and go to state 68 ]
-  ! division        [ shift and go to state 69 ]
-  ! porcentaje      [ shift and go to state 70 ]
+  ! mas             [ reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .) ]
+  ! menos           [ reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .) ]
+  ! asterisco       [ reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .) ]
+  ! division        [ reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .) ]
+  ! porcentaje      [ reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .) ]
+  ! desplazamiento_izquierdo [ reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .) ]
+  ! desplazamiento_derecho [ reduce using rule 95 (EXPRESION -> EXPRESION mayor EXPRESION .) ]
   ! equivale        [ shift and go to state 71 ]
   ! distinto        [ shift and go to state 72 ]
   ! mayor           [ shift and go to state 73 ]
@@ -3942,8 +3996,6 @@ state 112
   ! menor_igual     [ shift and go to state 76 ]
   ! and             [ shift and go to state 77 ]
   ! or              [ shift and go to state 78 ]
-  ! desplazamiento_izquierdo [ shift and go to state 79 ]
-  ! desplazamiento_derecho [ shift and go to state 80 ]
   ! et              [ shift and go to state 81 ]
   ! pleca           [ shift and go to state 82 ]
   ! elevado         [ shift and go to state 83 ]
@@ -3967,18 +4019,13 @@ state 113
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
     corchete_cierra reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
-    mas             reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
-    menos           reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
-    asterisco       reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
-    division        reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
-    porcentaje      reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
     equivale        reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
     distinto        reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
     mayor           reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
@@ -3987,8 +4034,6 @@ state 113
     menor_igual     reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
     and             reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
     or              reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
-    desplazamiento_izquierdo reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
-    desplazamiento_derecho reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
     et              reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
     pleca           reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
     elevado         reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
@@ -3998,12 +4043,21 @@ state 113
     parentesis_cierra reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
     llave_cierra    reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
     dos_puntos      reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .)
+    mas             shift and go to state 66
+    menos           shift and go to state 67
+    asterisco       shift and go to state 68
+    division        shift and go to state 69
+    porcentaje      shift and go to state 70
+    desplazamiento_izquierdo shift and go to state 79
+    desplazamiento_derecho shift and go to state 80
 
-  ! mas             [ shift and go to state 66 ]
-  ! menos           [ shift and go to state 67 ]
-  ! asterisco       [ shift and go to state 68 ]
-  ! division        [ shift and go to state 69 ]
-  ! porcentaje      [ shift and go to state 70 ]
+  ! mas             [ reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .) ]
+  ! menos           [ reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .) ]
+  ! asterisco       [ reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .) ]
+  ! division        [ reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .) ]
+  ! porcentaje      [ reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .) ]
+  ! desplazamiento_izquierdo [ reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .) ]
+  ! desplazamiento_derecho [ reduce using rule 96 (EXPRESION -> EXPRESION menor EXPRESION .) ]
   ! equivale        [ shift and go to state 71 ]
   ! distinto        [ shift and go to state 72 ]
   ! mayor           [ shift and go to state 73 ]
@@ -4012,8 +4066,6 @@ state 113
   ! menor_igual     [ shift and go to state 76 ]
   ! and             [ shift and go to state 77 ]
   ! or              [ shift and go to state 78 ]
-  ! desplazamiento_izquierdo [ shift and go to state 79 ]
-  ! desplazamiento_derecho [ shift and go to state 80 ]
   ! et              [ shift and go to state 81 ]
   ! pleca           [ shift and go to state 82 ]
   ! elevado         [ shift and go to state 83 ]
@@ -4037,18 +4089,13 @@ state 114
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
     corchete_cierra reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
-    mas             reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
-    menos           reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
-    asterisco       reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
-    division        reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
-    porcentaje      reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
     equivale        reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
     distinto        reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
     mayor           reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
@@ -4057,8 +4104,6 @@ state 114
     menor_igual     reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
     and             reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
     or              reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
-    desplazamiento_izquierdo reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
-    desplazamiento_derecho reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
     et              reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
     pleca           reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
     elevado         reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
@@ -4068,12 +4113,21 @@ state 114
     parentesis_cierra reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
     llave_cierra    reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
     dos_puntos      reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .)
+    mas             shift and go to state 66
+    menos           shift and go to state 67
+    asterisco       shift and go to state 68
+    division        shift and go to state 69
+    porcentaje      shift and go to state 70
+    desplazamiento_izquierdo shift and go to state 79
+    desplazamiento_derecho shift and go to state 80
 
-  ! mas             [ shift and go to state 66 ]
-  ! menos           [ shift and go to state 67 ]
-  ! asterisco       [ shift and go to state 68 ]
-  ! division        [ shift and go to state 69 ]
-  ! porcentaje      [ shift and go to state 70 ]
+  ! mas             [ reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .) ]
+  ! menos           [ reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .) ]
+  ! asterisco       [ reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .) ]
+  ! division        [ reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .) ]
+  ! porcentaje      [ reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .) ]
+  ! desplazamiento_izquierdo [ reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .) ]
+  ! desplazamiento_derecho [ reduce using rule 97 (EXPRESION -> EXPRESION mayor_igual EXPRESION .) ]
   ! equivale        [ shift and go to state 71 ]
   ! distinto        [ shift and go to state 72 ]
   ! mayor           [ shift and go to state 73 ]
@@ -4082,8 +4136,6 @@ state 114
   ! menor_igual     [ shift and go to state 76 ]
   ! and             [ shift and go to state 77 ]
   ! or              [ shift and go to state 78 ]
-  ! desplazamiento_izquierdo [ shift and go to state 79 ]
-  ! desplazamiento_derecho [ shift and go to state 80 ]
   ! et              [ shift and go to state 81 ]
   ! pleca           [ shift and go to state 82 ]
   ! elevado         [ shift and go to state 83 ]
@@ -4107,18 +4159,13 @@ state 115
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
     corchete_cierra reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
-    mas             reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
-    menos           reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
-    asterisco       reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
-    division        reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
-    porcentaje      reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
     equivale        reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
     distinto        reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
     mayor           reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
@@ -4127,8 +4174,6 @@ state 115
     menor_igual     reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
     and             reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
     or              reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
-    desplazamiento_izquierdo reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
-    desplazamiento_derecho reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
     et              reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
     pleca           reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
     elevado         reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
@@ -4138,12 +4183,21 @@ state 115
     parentesis_cierra reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
     llave_cierra    reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
     dos_puntos      reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .)
+    mas             shift and go to state 66
+    menos           shift and go to state 67
+    asterisco       shift and go to state 68
+    division        shift and go to state 69
+    porcentaje      shift and go to state 70
+    desplazamiento_izquierdo shift and go to state 79
+    desplazamiento_derecho shift and go to state 80
 
-  ! mas             [ shift and go to state 66 ]
-  ! menos           [ shift and go to state 67 ]
-  ! asterisco       [ shift and go to state 68 ]
-  ! division        [ shift and go to state 69 ]
-  ! porcentaje      [ shift and go to state 70 ]
+  ! mas             [ reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .) ]
+  ! menos           [ reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .) ]
+  ! asterisco       [ reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .) ]
+  ! division        [ reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .) ]
+  ! porcentaje      [ reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .) ]
+  ! desplazamiento_izquierdo [ reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .) ]
+  ! desplazamiento_derecho [ reduce using rule 98 (EXPRESION -> EXPRESION menor_igual EXPRESION .) ]
   ! equivale        [ shift and go to state 71 ]
   ! distinto        [ shift and go to state 72 ]
   ! mayor           [ shift and go to state 73 ]
@@ -4152,8 +4206,6 @@ state 115
   ! menor_igual     [ shift and go to state 76 ]
   ! and             [ shift and go to state 77 ]
   ! or              [ shift and go to state 78 ]
-  ! desplazamiento_izquierdo [ shift and go to state 79 ]
-  ! desplazamiento_derecho [ shift and go to state 80 ]
   ! et              [ shift and go to state 81 ]
   ! pleca           [ shift and go to state 82 ]
   ! elevado         [ shift and go to state 83 ]
@@ -4177,56 +4229,56 @@ state 116
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
     corchete_cierra reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
-    mas             reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
-    menos           reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
-    asterisco       reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
-    division        reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
-    porcentaje      reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
-    equivale        reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
-    distinto        reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
-    mayor           reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
-    menor           reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
-    mayor_igual     reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
-    menor_igual     reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
     and             reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
     or              reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
-    desplazamiento_izquierdo reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
-    desplazamiento_derecho reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
-    et              reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
-    pleca           reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
-    elevado         reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
     pregunta        reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
     coma            reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
     punto_coma      reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
     parentesis_cierra reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
     llave_cierra    reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
     dos_puntos      reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .)
+    mas             shift and go to state 66
+    menos           shift and go to state 67
+    asterisco       shift and go to state 68
+    division        shift and go to state 69
+    porcentaje      shift and go to state 70
+    equivale        shift and go to state 71
+    distinto        shift and go to state 72
+    mayor           shift and go to state 73
+    menor           shift and go to state 74
+    mayor_igual     shift and go to state 75
+    menor_igual     shift and go to state 76
+    desplazamiento_izquierdo shift and go to state 79
+    desplazamiento_derecho shift and go to state 80
+    et              shift and go to state 81
+    pleca           shift and go to state 82
+    elevado         shift and go to state 83
 
-  ! mas             [ shift and go to state 66 ]
-  ! menos           [ shift and go to state 67 ]
-  ! asterisco       [ shift and go to state 68 ]
-  ! division        [ shift and go to state 69 ]
-  ! porcentaje      [ shift and go to state 70 ]
-  ! equivale        [ shift and go to state 71 ]
-  ! distinto        [ shift and go to state 72 ]
-  ! mayor           [ shift and go to state 73 ]
-  ! menor           [ shift and go to state 74 ]
-  ! mayor_igual     [ shift and go to state 75 ]
-  ! menor_igual     [ shift and go to state 76 ]
+  ! mas             [ reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .) ]
+  ! menos           [ reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .) ]
+  ! asterisco       [ reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .) ]
+  ! division        [ reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .) ]
+  ! porcentaje      [ reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .) ]
+  ! equivale        [ reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .) ]
+  ! distinto        [ reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .) ]
+  ! mayor           [ reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .) ]
+  ! menor           [ reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .) ]
+  ! mayor_igual     [ reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .) ]
+  ! menor_igual     [ reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .) ]
+  ! desplazamiento_izquierdo [ reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .) ]
+  ! desplazamiento_derecho [ reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .) ]
+  ! et              [ reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .) ]
+  ! pleca           [ reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .) ]
+  ! elevado         [ reduce using rule 99 (EXPRESION -> EXPRESION and EXPRESION .) ]
   ! and             [ shift and go to state 77 ]
   ! or              [ shift and go to state 78 ]
-  ! desplazamiento_izquierdo [ shift and go to state 79 ]
-  ! desplazamiento_derecho [ shift and go to state 80 ]
-  ! et              [ shift and go to state 81 ]
-  ! pleca           [ shift and go to state 82 ]
-  ! elevado         [ shift and go to state 83 ]
   ! pregunta        [ shift and go to state 84 ]
 
 
@@ -4247,56 +4299,56 @@ state 117
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
     corchete_cierra reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
-    mas             reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
-    menos           reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
-    asterisco       reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
-    division        reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
-    porcentaje      reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
-    equivale        reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
-    distinto        reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
-    mayor           reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
-    menor           reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
-    mayor_igual     reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
-    menor_igual     reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
-    and             reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
     or              reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
-    desplazamiento_izquierdo reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
-    desplazamiento_derecho reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
-    et              reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
-    pleca           reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
-    elevado         reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
     pregunta        reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
     coma            reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
     punto_coma      reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
     parentesis_cierra reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
     llave_cierra    reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
     dos_puntos      reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .)
+    mas             shift and go to state 66
+    menos           shift and go to state 67
+    asterisco       shift and go to state 68
+    division        shift and go to state 69
+    porcentaje      shift and go to state 70
+    equivale        shift and go to state 71
+    distinto        shift and go to state 72
+    mayor           shift and go to state 73
+    menor           shift and go to state 74
+    mayor_igual     shift and go to state 75
+    menor_igual     shift and go to state 76
+    and             shift and go to state 77
+    desplazamiento_izquierdo shift and go to state 79
+    desplazamiento_derecho shift and go to state 80
+    et              shift and go to state 81
+    pleca           shift and go to state 82
+    elevado         shift and go to state 83
 
-  ! mas             [ shift and go to state 66 ]
-  ! menos           [ shift and go to state 67 ]
-  ! asterisco       [ shift and go to state 68 ]
-  ! division        [ shift and go to state 69 ]
-  ! porcentaje      [ shift and go to state 70 ]
-  ! equivale        [ shift and go to state 71 ]
-  ! distinto        [ shift and go to state 72 ]
-  ! mayor           [ shift and go to state 73 ]
-  ! menor           [ shift and go to state 74 ]
-  ! mayor_igual     [ shift and go to state 75 ]
-  ! menor_igual     [ shift and go to state 76 ]
-  ! and             [ shift and go to state 77 ]
+  ! mas             [ reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .) ]
+  ! menos           [ reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .) ]
+  ! asterisco       [ reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .) ]
+  ! division        [ reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .) ]
+  ! porcentaje      [ reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .) ]
+  ! equivale        [ reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .) ]
+  ! distinto        [ reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .) ]
+  ! mayor           [ reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .) ]
+  ! menor           [ reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .) ]
+  ! mayor_igual     [ reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .) ]
+  ! menor_igual     [ reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .) ]
+  ! and             [ reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .) ]
+  ! desplazamiento_izquierdo [ reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .) ]
+  ! desplazamiento_derecho [ reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .) ]
+  ! et              [ reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .) ]
+  ! pleca           [ reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .) ]
+  ! elevado         [ reduce using rule 100 (EXPRESION -> EXPRESION or EXPRESION .) ]
   ! or              [ shift and go to state 78 ]
-  ! desplazamiento_izquierdo [ shift and go to state 79 ]
-  ! desplazamiento_derecho [ shift and go to state 80 ]
-  ! et              [ shift and go to state 81 ]
-  ! pleca           [ shift and go to state 82 ]
-  ! elevado         [ shift and go to state 83 ]
   ! pregunta        [ shift and go to state 84 ]
 
 
@@ -4317,18 +4369,13 @@ state 118
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
     corchete_cierra reduce using rule 101 (EXPRESION -> EXPRESION desplazamiento_izquierdo EXPRESION .)
-    mas             reduce using rule 101 (EXPRESION -> EXPRESION desplazamiento_izquierdo EXPRESION .)
-    menos           reduce using rule 101 (EXPRESION -> EXPRESION desplazamiento_izquierdo EXPRESION .)
-    asterisco       reduce using rule 101 (EXPRESION -> EXPRESION desplazamiento_izquierdo EXPRESION .)
-    division        reduce using rule 101 (EXPRESION -> EXPRESION desplazamiento_izquierdo EXPRESION .)
-    porcentaje      reduce using rule 101 (EXPRESION -> EXPRESION desplazamiento_izquierdo EXPRESION .)
     equivale        reduce using rule 101 (EXPRESION -> EXPRESION desplazamiento_izquierdo EXPRESION .)
     distinto        reduce using rule 101 (EXPRESION -> EXPRESION desplazamiento_izquierdo EXPRESION .)
     mayor           reduce using rule 101 (EXPRESION -> EXPRESION desplazamiento_izquierdo EXPRESION .)
@@ -4348,12 +4395,17 @@ state 118
     parentesis_cierra reduce using rule 101 (EXPRESION -> EXPRESION desplazamiento_izquierdo EXPRESION .)
     llave_cierra    reduce using rule 101 (EXPRESION -> EXPRESION desplazamiento_izquierdo EXPRESION .)
     dos_puntos      reduce using rule 101 (EXPRESION -> EXPRESION desplazamiento_izquierdo EXPRESION .)
+    mas             shift and go to state 66
+    menos           shift and go to state 67
+    asterisco       shift and go to state 68
+    division        shift and go to state 69
+    porcentaje      shift and go to state 70
 
-  ! mas             [ shift and go to state 66 ]
-  ! menos           [ shift and go to state 67 ]
-  ! asterisco       [ shift and go to state 68 ]
-  ! division        [ shift and go to state 69 ]
-  ! porcentaje      [ shift and go to state 70 ]
+  ! mas             [ reduce using rule 101 (EXPRESION -> EXPRESION desplazamiento_izquierdo EXPRESION .) ]
+  ! menos           [ reduce using rule 101 (EXPRESION -> EXPRESION desplazamiento_izquierdo EXPRESION .) ]
+  ! asterisco       [ reduce using rule 101 (EXPRESION -> EXPRESION desplazamiento_izquierdo EXPRESION .) ]
+  ! division        [ reduce using rule 101 (EXPRESION -> EXPRESION desplazamiento_izquierdo EXPRESION .) ]
+  ! porcentaje      [ reduce using rule 101 (EXPRESION -> EXPRESION desplazamiento_izquierdo EXPRESION .) ]
   ! equivale        [ shift and go to state 71 ]
   ! distinto        [ shift and go to state 72 ]
   ! mayor           [ shift and go to state 73 ]
@@ -4372,62 +4424,73 @@ state 118
 
 state 119
 
-    (102) EXPRESION -> EXPRESION desplazamiento_derecho mayor . EXPRESION
-    (88) EXPRESION -> . EXPRESION mas EXPRESION
-    (89) EXPRESION -> . EXPRESION menos EXPRESION
-    (90) EXPRESION -> . EXPRESION asterisco EXPRESION
-    (91) EXPRESION -> . EXPRESION division EXPRESION
-    (92) EXPRESION -> . EXPRESION porcentaje EXPRESION
-    (93) EXPRESION -> . EXPRESION equivale EXPRESION
-    (94) EXPRESION -> . EXPRESION distinto EXPRESION
-    (95) EXPRESION -> . EXPRESION mayor EXPRESION
-    (96) EXPRESION -> . EXPRESION menor EXPRESION
-    (97) EXPRESION -> . EXPRESION mayor_igual EXPRESION
-    (98) EXPRESION -> . EXPRESION menor_igual EXPRESION
-    (99) EXPRESION -> . EXPRESION and EXPRESION
-    (100) EXPRESION -> . EXPRESION or EXPRESION
-    (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
-    (103) EXPRESION -> . EXPRESION et EXPRESION
-    (104) EXPRESION -> . EXPRESION pleca EXPRESION
-    (105) EXPRESION -> . EXPRESION elevado EXPRESION
-    (106) EXPRESION -> . EXPRESION pregunta EXPRESION dos_puntos EXPRESION
-    (107) EXPRESION -> . menos EXPRESION
-    (108) EXPRESION -> . exclamacion EXPRESION
-    (109) EXPRESION -> . virgulilla EXPRESION
-    (110) EXPRESION -> . et identificador
-    (111) EXPRESION -> . METODO
-    (112) EXPRESION -> . parentesis_abre EXPRESION parentesis_cierra
-    (113) EXPRESION -> . identificador punto identificador
-    (114) EXPRESION -> . identificador ACCESOS
-    (115) EXPRESION -> . identificador ACCESOS punto identificador
-    (116) EXPRESION -> . llave_abre EXPRESIONES llave_cierra
-    (117) EXPRESION -> . _sizeof parentesis_abre TIPO parentesis_cierra
-    (118) EXPRESION -> . _scanf parentesis_abre parentesis_cierra
-    (119) EXPRESION -> . parentesis_abre TIPO parentesis_cierra EXPRESION
-    (120) EXPRESION -> . caracter
-    (121) EXPRESION -> . cadena
-    (122) EXPRESION -> . entero
-    (123) EXPRESION -> . decimal
-    (124) EXPRESION -> . identificador
-    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
+    (102) EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .
+    (88) EXPRESION -> EXPRESION . mas EXPRESION
+    (89) EXPRESION -> EXPRESION . menos EXPRESION
+    (90) EXPRESION -> EXPRESION . asterisco EXPRESION
+    (91) EXPRESION -> EXPRESION . division EXPRESION
+    (92) EXPRESION -> EXPRESION . porcentaje EXPRESION
+    (93) EXPRESION -> EXPRESION . equivale EXPRESION
+    (94) EXPRESION -> EXPRESION . distinto EXPRESION
+    (95) EXPRESION -> EXPRESION . mayor EXPRESION
+    (96) EXPRESION -> EXPRESION . menor EXPRESION
+    (97) EXPRESION -> EXPRESION . mayor_igual EXPRESION
+    (98) EXPRESION -> EXPRESION . menor_igual EXPRESION
+    (99) EXPRESION -> EXPRESION . and EXPRESION
+    (100) EXPRESION -> EXPRESION . or EXPRESION
+    (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
+    (103) EXPRESION -> EXPRESION . et EXPRESION
+    (104) EXPRESION -> EXPRESION . pleca EXPRESION
+    (105) EXPRESION -> EXPRESION . elevado EXPRESION
+    (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
-    menos           shift and go to state 40
-    exclamacion     shift and go to state 42
-    virgulilla      shift and go to state 43
-    et              shift and go to state 41
-    parentesis_abre shift and go to state 46
-    identificador   shift and go to state 44
-    llave_abre      shift and go to state 47
-    _sizeof         shift and go to state 48
-    _scanf          shift and go to state 49
-    caracter        shift and go to state 50
-    cadena          shift and go to state 51
-    entero          shift and go to state 52
-    decimal         shift and go to state 53
+    corchete_cierra reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    equivale        reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    distinto        reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    mayor           reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    menor           reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    mayor_igual     reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    menor_igual     reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    and             reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    or              reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    desplazamiento_izquierdo reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    desplazamiento_derecho reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    et              reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    pleca           reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    elevado         reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    pregunta        reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    coma            reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    punto_coma      reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    parentesis_cierra reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    llave_cierra    reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    dos_puntos      reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .)
+    mas             shift and go to state 66
+    menos           shift and go to state 67
+    asterisco       shift and go to state 68
+    division        shift and go to state 69
+    porcentaje      shift and go to state 70
 
-    EXPRESION                      shift and go to state 158
-    METODO                         shift and go to state 45
+  ! mas             [ reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .) ]
+  ! menos           [ reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .) ]
+  ! asterisco       [ reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .) ]
+  ! division        [ reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .) ]
+  ! porcentaje      [ reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho EXPRESION .) ]
+  ! equivale        [ shift and go to state 71 ]
+  ! distinto        [ shift and go to state 72 ]
+  ! mayor           [ shift and go to state 73 ]
+  ! menor           [ shift and go to state 74 ]
+  ! mayor_igual     [ shift and go to state 75 ]
+  ! menor_igual     [ shift and go to state 76 ]
+  ! and             [ shift and go to state 77 ]
+  ! or              [ shift and go to state 78 ]
+  ! desplazamiento_izquierdo [ shift and go to state 79 ]
+  ! desplazamiento_derecho [ shift and go to state 80 ]
+  ! et              [ shift and go to state 81 ]
+  ! pleca           [ shift and go to state 82 ]
+  ! elevado         [ shift and go to state 83 ]
+  ! pregunta        [ shift and go to state 84 ]
+
 
 state 120
 
@@ -4446,28 +4509,15 @@ state 120
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
     corchete_cierra reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
-    mas             reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
-    menos           reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
-    asterisco       reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
-    division        reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
-    porcentaje      reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
-    equivale        reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
-    distinto        reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
-    mayor           reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
-    menor           reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
-    mayor_igual     reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
-    menor_igual     reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
     and             reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
     or              reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
-    desplazamiento_izquierdo reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
-    desplazamiento_derecho reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
     et              reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
     pleca           reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
     elevado         reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
@@ -4477,22 +4527,35 @@ state 120
     parentesis_cierra reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
     llave_cierra    reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
     dos_puntos      reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .)
+    mas             shift and go to state 66
+    menos           shift and go to state 67
+    asterisco       shift and go to state 68
+    division        shift and go to state 69
+    porcentaje      shift and go to state 70
+    equivale        shift and go to state 71
+    distinto        shift and go to state 72
+    mayor           shift and go to state 73
+    menor           shift and go to state 74
+    mayor_igual     shift and go to state 75
+    menor_igual     shift and go to state 76
+    desplazamiento_izquierdo shift and go to state 79
+    desplazamiento_derecho shift and go to state 80
 
-  ! mas             [ shift and go to state 66 ]
-  ! menos           [ shift and go to state 67 ]
-  ! asterisco       [ shift and go to state 68 ]
-  ! division        [ shift and go to state 69 ]
-  ! porcentaje      [ shift and go to state 70 ]
-  ! equivale        [ shift and go to state 71 ]
-  ! distinto        [ shift and go to state 72 ]
-  ! mayor           [ shift and go to state 73 ]
-  ! menor           [ shift and go to state 74 ]
-  ! mayor_igual     [ shift and go to state 75 ]
-  ! menor_igual     [ shift and go to state 76 ]
+  ! mas             [ reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .) ]
+  ! menos           [ reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .) ]
+  ! asterisco       [ reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .) ]
+  ! division        [ reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .) ]
+  ! porcentaje      [ reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .) ]
+  ! equivale        [ reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .) ]
+  ! distinto        [ reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .) ]
+  ! mayor           [ reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .) ]
+  ! menor           [ reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .) ]
+  ! mayor_igual     [ reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .) ]
+  ! menor_igual     [ reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .) ]
+  ! desplazamiento_izquierdo [ reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .) ]
+  ! desplazamiento_derecho [ reduce using rule 103 (EXPRESION -> EXPRESION et EXPRESION .) ]
   ! and             [ shift and go to state 77 ]
   ! or              [ shift and go to state 78 ]
-  ! desplazamiento_izquierdo [ shift and go to state 79 ]
-  ! desplazamiento_derecho [ shift and go to state 80 ]
   ! et              [ shift and go to state 81 ]
   ! pleca           [ shift and go to state 82 ]
   ! elevado         [ shift and go to state 83 ]
@@ -4516,56 +4579,56 @@ state 121
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
     corchete_cierra reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
-    mas             reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
-    menos           reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
-    asterisco       reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
-    division        reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
-    porcentaje      reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
-    equivale        reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
-    distinto        reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
-    mayor           reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
-    menor           reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
-    mayor_igual     reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
-    menor_igual     reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
     and             reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
     or              reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
-    desplazamiento_izquierdo reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
-    desplazamiento_derecho reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
-    et              reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
     pleca           reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
-    elevado         reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
     pregunta        reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
     coma            reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
     punto_coma      reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
     parentesis_cierra reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
     llave_cierra    reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
     dos_puntos      reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .)
+    mas             shift and go to state 66
+    menos           shift and go to state 67
+    asterisco       shift and go to state 68
+    division        shift and go to state 69
+    porcentaje      shift and go to state 70
+    equivale        shift and go to state 71
+    distinto        shift and go to state 72
+    mayor           shift and go to state 73
+    menor           shift and go to state 74
+    mayor_igual     shift and go to state 75
+    menor_igual     shift and go to state 76
+    desplazamiento_izquierdo shift and go to state 79
+    desplazamiento_derecho shift and go to state 80
+    et              shift and go to state 81
+    elevado         shift and go to state 83
 
-  ! mas             [ shift and go to state 66 ]
-  ! menos           [ shift and go to state 67 ]
-  ! asterisco       [ shift and go to state 68 ]
-  ! division        [ shift and go to state 69 ]
-  ! porcentaje      [ shift and go to state 70 ]
-  ! equivale        [ shift and go to state 71 ]
-  ! distinto        [ shift and go to state 72 ]
-  ! mayor           [ shift and go to state 73 ]
-  ! menor           [ shift and go to state 74 ]
-  ! mayor_igual     [ shift and go to state 75 ]
-  ! menor_igual     [ shift and go to state 76 ]
+  ! mas             [ reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .) ]
+  ! menos           [ reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .) ]
+  ! asterisco       [ reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .) ]
+  ! division        [ reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .) ]
+  ! porcentaje      [ reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .) ]
+  ! equivale        [ reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .) ]
+  ! distinto        [ reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .) ]
+  ! mayor           [ reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .) ]
+  ! menor           [ reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .) ]
+  ! mayor_igual     [ reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .) ]
+  ! menor_igual     [ reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .) ]
+  ! desplazamiento_izquierdo [ reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .) ]
+  ! desplazamiento_derecho [ reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .) ]
+  ! et              [ reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .) ]
+  ! elevado         [ reduce using rule 104 (EXPRESION -> EXPRESION pleca EXPRESION .) ]
   ! and             [ shift and go to state 77 ]
   ! or              [ shift and go to state 78 ]
-  ! desplazamiento_izquierdo [ shift and go to state 79 ]
-  ! desplazamiento_derecho [ shift and go to state 80 ]
-  ! et              [ shift and go to state 81 ]
   ! pleca           [ shift and go to state 82 ]
-  ! elevado         [ shift and go to state 83 ]
   ! pregunta        [ shift and go to state 84 ]
 
 
@@ -4586,29 +4649,15 @@ state 122
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
     corchete_cierra reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
-    mas             reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
-    menos           reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
-    asterisco       reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
-    division        reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
-    porcentaje      reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
-    equivale        reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
-    distinto        reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
-    mayor           reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
-    menor           reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
-    mayor_igual     reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
-    menor_igual     reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
     and             reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
     or              reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
-    desplazamiento_izquierdo reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
-    desplazamiento_derecho reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
-    et              reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
     pleca           reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
     elevado         reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
     pregunta        reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
@@ -4617,23 +4666,37 @@ state 122
     parentesis_cierra reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
     llave_cierra    reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
     dos_puntos      reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .)
+    mas             shift and go to state 66
+    menos           shift and go to state 67
+    asterisco       shift and go to state 68
+    division        shift and go to state 69
+    porcentaje      shift and go to state 70
+    equivale        shift and go to state 71
+    distinto        shift and go to state 72
+    mayor           shift and go to state 73
+    menor           shift and go to state 74
+    mayor_igual     shift and go to state 75
+    menor_igual     shift and go to state 76
+    desplazamiento_izquierdo shift and go to state 79
+    desplazamiento_derecho shift and go to state 80
+    et              shift and go to state 81
 
-  ! mas             [ shift and go to state 66 ]
-  ! menos           [ shift and go to state 67 ]
-  ! asterisco       [ shift and go to state 68 ]
-  ! division        [ shift and go to state 69 ]
-  ! porcentaje      [ shift and go to state 70 ]
-  ! equivale        [ shift and go to state 71 ]
-  ! distinto        [ shift and go to state 72 ]
-  ! mayor           [ shift and go to state 73 ]
-  ! menor           [ shift and go to state 74 ]
-  ! mayor_igual     [ shift and go to state 75 ]
-  ! menor_igual     [ shift and go to state 76 ]
+  ! mas             [ reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .) ]
+  ! menos           [ reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .) ]
+  ! asterisco       [ reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .) ]
+  ! division        [ reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .) ]
+  ! porcentaje      [ reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .) ]
+  ! equivale        [ reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .) ]
+  ! distinto        [ reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .) ]
+  ! mayor           [ reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .) ]
+  ! menor           [ reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .) ]
+  ! mayor_igual     [ reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .) ]
+  ! menor_igual     [ reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .) ]
+  ! desplazamiento_izquierdo [ reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .) ]
+  ! desplazamiento_derecho [ reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .) ]
+  ! et              [ reduce using rule 105 (EXPRESION -> EXPRESION elevado EXPRESION .) ]
   ! and             [ shift and go to state 77 ]
   ! or              [ shift and go to state 78 ]
-  ! desplazamiento_izquierdo [ shift and go to state 79 ]
-  ! desplazamiento_derecho [ shift and go to state 80 ]
-  ! et              [ shift and go to state 81 ]
   ! pleca           [ shift and go to state 82 ]
   ! elevado         [ shift and go to state 83 ]
   ! pregunta        [ shift and go to state 84 ]
@@ -4656,13 +4719,13 @@ state 123
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
-    dos_puntos      shift and go to state 159
+    dos_puntos      shift and go to state 158
     mas             shift and go to state 66
     menos           shift and go to state 67
     asterisco       shift and go to state 68
@@ -4719,14 +4782,14 @@ state 125
 
     (115) EXPRESION -> identificador ACCESOS punto . identificador
 
-    identificador   shift and go to state 160
+    identificador   shift and go to state 159
 
 
 state 126
 
     (42) METODO -> identificador parentesis_abre EXPRESIONES . parentesis_cierra
 
-    parentesis_cierra shift and go to state 161
+    parentesis_cierra shift and go to state 160
 
 
 state 127
@@ -4777,7 +4840,7 @@ state 128
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -4816,7 +4879,7 @@ state 128
     entero          shift and go to state 52
     decimal         shift and go to state 53
 
-    EXPRESION                      shift and go to state 162
+    EXPRESION                      shift and go to state 161
     METODO                         shift and go to state 45
 
 state 129
@@ -4867,7 +4930,7 @@ state 130
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -4906,14 +4969,14 @@ state 130
     entero          shift and go to state 52
     decimal         shift and go to state 53
 
-    EXPRESION                      shift and go to state 163
+    EXPRESION                      shift and go to state 162
     METODO                         shift and go to state 45
 
 state 131
 
     (117) EXPRESION -> _sizeof parentesis_abre TIPO . parentesis_cierra
 
-    parentesis_cierra shift and go to state 164
+    parentesis_cierra shift and go to state 163
 
 
 state 132
@@ -4962,9 +5025,9 @@ state 133
     (54) ACCESO -> . corchete_abre EXPRESION corchete_cierra
     (55) ACCESO -> . corchete_abre corchete_cierra
 
-    dos_puntos      shift and go to state 165
-    aumento         shift and go to state 167
-    decremento      shift and go to state 168
+    dos_puntos      shift and go to state 164
+    aumento         shift and go to state 166
+    decremento      shift and go to state 167
     parentesis_abre shift and go to state 91
     punto           reduce using rule 51 (INDICES -> .)
     igual           reduce using rule 51 (INDICES -> .)
@@ -4979,7 +5042,7 @@ state 133
     pleca           reduce using rule 51 (INDICES -> .)
     corchete_abre   shift and go to state 27
 
-    INDICES                        shift and go to state 166
+    INDICES                        shift and go to state 165
     ACCESOS                        shift and go to state 25
     ACCESO                         shift and go to state 26
 
@@ -4987,7 +5050,7 @@ state 134
 
     (15) FUNCION -> TIPO identificador parentesis_abre PARAMETROS parentesis_cierra llave_abre CUERPO_LOCAL . llave_cierra
 
-    llave_cierra    shift and go to state 169
+    llave_cierra    shift and go to state 168
 
 
 state 135
@@ -5051,7 +5114,7 @@ state 135
     _void           shift and go to state 14
     _struct         shift and go to state 35
 
-    INSTRUCCION_LOCAL              shift and go to state 170
+    INSTRUCCION_LOCAL              shift and go to state 169
     ETIQUETA                       shift and go to state 137
     SALTO                          shift and go to state 138
     DECLARACION                    shift and go to state 139
@@ -5147,14 +5210,14 @@ state 139
 
     (28) INSTRUCCION_LOCAL -> DECLARACION . punto_coma
 
-    punto_coma      shift and go to state 171
+    punto_coma      shift and go to state 170
 
 
 state 140
 
     (29) INSTRUCCION_LOCAL -> ASIGNACION . punto_coma
 
-    punto_coma      shift and go to state 172
+    punto_coma      shift and go to state 171
 
 
 state 141
@@ -5291,28 +5354,28 @@ state 146
 
     (35) INSTRUCCION_LOCAL -> METODO . punto_coma
 
-    punto_coma      shift and go to state 173
+    punto_coma      shift and go to state 172
 
 
 state 147
 
     (36) INSTRUCCION_LOCAL -> PRINT . punto_coma
 
-    punto_coma      shift and go to state 174
+    punto_coma      shift and go to state 173
 
 
 state 148
 
     (38) INSTRUCCION_LOCAL -> _continue . punto_coma
 
-    punto_coma      shift and go to state 175
+    punto_coma      shift and go to state 174
 
 
 state 149
 
     (39) INSTRUCCION_LOCAL -> _break . punto_coma
 
-    punto_coma      shift and go to state 176
+    punto_coma      shift and go to state 175
 
 
 state 150
@@ -5333,7 +5396,7 @@ state 150
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -5358,7 +5421,7 @@ state 150
     (124) EXPRESION -> . identificador
     (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
 
-    punto_coma      shift and go to state 178
+    punto_coma      shift and go to state 177
     menos           shift and go to state 40
     exclamacion     shift and go to state 42
     virgulilla      shift and go to state 43
@@ -5373,129 +5436,59 @@ state 150
     entero          shift and go to state 52
     decimal         shift and go to state 53
 
-    EXPRESION                      shift and go to state 177
+    EXPRESION                      shift and go to state 176
     METODO                         shift and go to state 45
 
 state 151
 
     (44) SALTO -> _goto . identificador punto_coma
 
-    identificador   shift and go to state 179
+    identificador   shift and go to state 178
 
 
 state 152
 
     (70) IF -> _if . parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
 
-    parentesis_abre shift and go to state 180
+    parentesis_abre shift and go to state 179
 
 
 state 153
 
     (78) SWITCH -> _switch . parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
 
-    parentesis_abre shift and go to state 181
+    parentesis_abre shift and go to state 180
 
 
 state 154
 
     (85) WHILE -> _while . parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
 
-    parentesis_abre shift and go to state 182
+    parentesis_abre shift and go to state 181
 
 
 state 155
 
     (86) DO -> _do . llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
 
-    llave_abre      shift and go to state 183
+    llave_abre      shift and go to state 182
 
 
 state 156
 
     (87) FOR -> _for . parentesis_abre DECLARACION punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
 
-    parentesis_abre shift and go to state 184
+    parentesis_abre shift and go to state 183
 
 
 state 157
 
     (37) PRINT -> _printf . parentesis_abre LISTA_EXPRESIONES parentesis_cierra
 
-    parentesis_abre shift and go to state 185
+    parentesis_abre shift and go to state 184
 
 
 state 158
-
-    (102) EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .
-    (88) EXPRESION -> EXPRESION . mas EXPRESION
-    (89) EXPRESION -> EXPRESION . menos EXPRESION
-    (90) EXPRESION -> EXPRESION . asterisco EXPRESION
-    (91) EXPRESION -> EXPRESION . division EXPRESION
-    (92) EXPRESION -> EXPRESION . porcentaje EXPRESION
-    (93) EXPRESION -> EXPRESION . equivale EXPRESION
-    (94) EXPRESION -> EXPRESION . distinto EXPRESION
-    (95) EXPRESION -> EXPRESION . mayor EXPRESION
-    (96) EXPRESION -> EXPRESION . menor EXPRESION
-    (97) EXPRESION -> EXPRESION . mayor_igual EXPRESION
-    (98) EXPRESION -> EXPRESION . menor_igual EXPRESION
-    (99) EXPRESION -> EXPRESION . and EXPRESION
-    (100) EXPRESION -> EXPRESION . or EXPRESION
-    (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
-    (103) EXPRESION -> EXPRESION . et EXPRESION
-    (104) EXPRESION -> EXPRESION . pleca EXPRESION
-    (105) EXPRESION -> EXPRESION . elevado EXPRESION
-    (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
-
-    corchete_cierra reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    mas             reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    menos           reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    asterisco       reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    division        reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    porcentaje      reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    equivale        reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    distinto        reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    mayor           reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    menor           reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    mayor_igual     reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    menor_igual     reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    and             reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    or              reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    desplazamiento_izquierdo reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    desplazamiento_derecho reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    et              reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    pleca           reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    elevado         reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    pregunta        reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    coma            reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    punto_coma      reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    parentesis_cierra reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    llave_cierra    reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-    dos_puntos      reduce using rule 102 (EXPRESION -> EXPRESION desplazamiento_derecho mayor EXPRESION .)
-
-  ! mas             [ shift and go to state 66 ]
-  ! menos           [ shift and go to state 67 ]
-  ! asterisco       [ shift and go to state 68 ]
-  ! division        [ shift and go to state 69 ]
-  ! porcentaje      [ shift and go to state 70 ]
-  ! equivale        [ shift and go to state 71 ]
-  ! distinto        [ shift and go to state 72 ]
-  ! mayor           [ shift and go to state 73 ]
-  ! menor           [ shift and go to state 74 ]
-  ! mayor_igual     [ shift and go to state 75 ]
-  ! menor_igual     [ shift and go to state 76 ]
-  ! and             [ shift and go to state 77 ]
-  ! or              [ shift and go to state 78 ]
-  ! desplazamiento_izquierdo [ shift and go to state 79 ]
-  ! desplazamiento_derecho [ shift and go to state 80 ]
-  ! et              [ shift and go to state 81 ]
-  ! pleca           [ shift and go to state 82 ]
-  ! elevado         [ shift and go to state 83 ]
-  ! pregunta        [ shift and go to state 84 ]
-
-
-state 159
 
     (106) EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos . EXPRESION
     (88) EXPRESION -> . EXPRESION mas EXPRESION
@@ -5512,7 +5505,7 @@ state 159
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -5551,10 +5544,10 @@ state 159
     entero          shift and go to state 52
     decimal         shift and go to state 53
 
-    EXPRESION                      shift and go to state 186
+    EXPRESION                      shift and go to state 185
     METODO                         shift and go to state 45
 
-state 160
+state 159
 
     (115) EXPRESION -> identificador ACCESOS punto identificador .
 
@@ -5585,7 +5578,7 @@ state 160
     dos_puntos      reduce using rule 115 (EXPRESION -> identificador ACCESOS punto identificador .)
 
 
-state 161
+state 160
 
     (42) METODO -> identificador parentesis_abre EXPRESIONES parentesis_cierra .
 
@@ -5616,7 +5609,7 @@ state 161
     dos_puntos      reduce using rule 42 (METODO -> identificador parentesis_abre EXPRESIONES parentesis_cierra .)
 
 
-state 162
+state 161
 
     (119) EXPRESION -> parentesis_abre TIPO parentesis_cierra EXPRESION .
     (88) EXPRESION -> EXPRESION . mas EXPRESION
@@ -5633,7 +5626,7 @@ state 162
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
@@ -5686,7 +5679,7 @@ state 162
   ! pregunta        [ shift and go to state 84 ]
 
 
-state 163
+state 162
 
     (127) LISTA_EXPRESIONES -> LISTA_EXPRESIONES coma EXPRESION .
     (88) EXPRESION -> EXPRESION . mas EXPRESION
@@ -5703,7 +5696,7 @@ state 163
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
@@ -5733,7 +5726,7 @@ state 163
     pregunta        shift and go to state 84
 
 
-state 164
+state 163
 
     (117) EXPRESION -> _sizeof parentesis_abre TIPO parentesis_cierra .
 
@@ -5764,7 +5757,7 @@ state 164
     dos_puntos      reduce using rule 117 (EXPRESION -> _sizeof parentesis_abre TIPO parentesis_cierra .)
 
 
-state 165
+state 164
 
     (43) ETIQUETA -> identificador dos_puntos .
 
@@ -5790,7 +5783,7 @@ state 165
     _default        reduce using rule 43 (ETIQUETA -> identificador dos_puntos .)
 
 
-state 166
+state 165
 
     (56) ASIGNACION -> identificador INDICES . COMPUESTO EXPRESION
     (57) ASIGNACION -> identificador INDICES . punto identificador COMPUESTO EXPRESION
@@ -5805,21 +5798,21 @@ state 166
     (68) COMPUESTO -> . elevado igual
     (69) COMPUESTO -> . pleca igual
 
-    punto           shift and go to state 188
-    igual           shift and go to state 189
-    mas             shift and go to state 190
-    asterisco       shift and go to state 191
-    division        shift and go to state 192
-    porcentaje      shift and go to state 193
-    menor           shift and go to state 194
-    mayor           shift and go to state 195
-    et              shift and go to state 196
-    elevado         shift and go to state 197
-    pleca           shift and go to state 198
+    punto           shift and go to state 187
+    igual           shift and go to state 188
+    mas             shift and go to state 189
+    asterisco       shift and go to state 190
+    division        shift and go to state 191
+    porcentaje      shift and go to state 192
+    menor           shift and go to state 193
+    mayor           shift and go to state 194
+    et              shift and go to state 195
+    elevado         shift and go to state 196
+    pleca           shift and go to state 197
 
-    COMPUESTO                      shift and go to state 187
+    COMPUESTO                      shift and go to state 186
 
-state 167
+state 166
 
     (58) ASIGNACION -> identificador aumento .
 
@@ -5827,7 +5820,7 @@ state 167
     parentesis_cierra reduce using rule 58 (ASIGNACION -> identificador aumento .)
 
 
-state 168
+state 167
 
     (59) ASIGNACION -> identificador decremento .
 
@@ -5835,7 +5828,7 @@ state 168
     parentesis_cierra reduce using rule 59 (ASIGNACION -> identificador decremento .)
 
 
-state 169
+state 168
 
     (15) FUNCION -> TIPO identificador parentesis_abre PARAMETROS parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .
 
@@ -5848,7 +5841,7 @@ state 169
     $end            reduce using rule 15 (FUNCION -> TIPO identificador parentesis_abre PARAMETROS parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
 
 
-state 170
+state 169
 
     (24) LISTA_LOCAL -> LISTA_LOCAL INSTRUCCION_LOCAL .
 
@@ -5874,7 +5867,7 @@ state 170
     _default        reduce using rule 24 (LISTA_LOCAL -> LISTA_LOCAL INSTRUCCION_LOCAL .)
 
 
-state 171
+state 170
 
     (28) INSTRUCCION_LOCAL -> DECLARACION punto_coma .
 
@@ -5900,7 +5893,7 @@ state 171
     _default        reduce using rule 28 (INSTRUCCION_LOCAL -> DECLARACION punto_coma .)
 
 
-state 172
+state 171
 
     (29) INSTRUCCION_LOCAL -> ASIGNACION punto_coma .
 
@@ -5926,7 +5919,7 @@ state 172
     _default        reduce using rule 29 (INSTRUCCION_LOCAL -> ASIGNACION punto_coma .)
 
 
-state 173
+state 172
 
     (35) INSTRUCCION_LOCAL -> METODO punto_coma .
 
@@ -5952,7 +5945,7 @@ state 173
     _default        reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
 
 
-state 174
+state 173
 
     (36) INSTRUCCION_LOCAL -> PRINT punto_coma .
 
@@ -5978,7 +5971,7 @@ state 174
     _default        reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
 
 
-state 175
+state 174
 
     (38) INSTRUCCION_LOCAL -> _continue punto_coma .
 
@@ -6004,7 +5997,7 @@ state 175
     _default        reduce using rule 38 (INSTRUCCION_LOCAL -> _continue punto_coma .)
 
 
-state 176
+state 175
 
     (39) INSTRUCCION_LOCAL -> _break punto_coma .
 
@@ -6030,7 +6023,7 @@ state 176
     _default        reduce using rule 39 (INSTRUCCION_LOCAL -> _break punto_coma .)
 
 
-state 177
+state 176
 
     (40) INSTRUCCION_LOCAL -> _return EXPRESION . punto_coma
     (88) EXPRESION -> EXPRESION . mas EXPRESION
@@ -6047,13 +6040,13 @@ state 177
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
-    punto_coma      shift and go to state 199
+    punto_coma      shift and go to state 198
     mas             shift and go to state 66
     menos           shift and go to state 67
     asterisco       shift and go to state 68
@@ -6075,7 +6068,7 @@ state 177
     pregunta        shift and go to state 84
 
 
-state 178
+state 177
 
     (41) INSTRUCCION_LOCAL -> _return punto_coma .
 
@@ -6101,14 +6094,14 @@ state 178
     _default        reduce using rule 41 (INSTRUCCION_LOCAL -> _return punto_coma .)
 
 
-state 179
+state 178
 
     (44) SALTO -> _goto identificador . punto_coma
 
-    punto_coma      shift and go to state 200
+    punto_coma      shift and go to state 199
 
 
-state 180
+state 179
 
     (70) IF -> _if parentesis_abre . EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
     (88) EXPRESION -> . EXPRESION mas EXPRESION
@@ -6125,7 +6118,66 @@ state 180
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
+    (103) EXPRESION -> . EXPRESION et EXPRESION
+    (104) EXPRESION -> . EXPRESION pleca EXPRESION
+    (105) EXPRESION -> . EXPRESION elevado EXPRESION
+    (106) EXPRESION -> . EXPRESION pregunta EXPRESION dos_puntos EXPRESION
+    (107) EXPRESION -> . menos EXPRESION
+    (108) EXPRESION -> . exclamacion EXPRESION
+    (109) EXPRESION -> . virgulilla EXPRESION
+    (110) EXPRESION -> . et identificador
+    (111) EXPRESION -> . METODO
+    (112) EXPRESION -> . parentesis_abre EXPRESION parentesis_cierra
+    (113) EXPRESION -> . identificador punto identificador
+    (114) EXPRESION -> . identificador ACCESOS
+    (115) EXPRESION -> . identificador ACCESOS punto identificador
+    (116) EXPRESION -> . llave_abre EXPRESIONES llave_cierra
+    (117) EXPRESION -> . _sizeof parentesis_abre TIPO parentesis_cierra
+    (118) EXPRESION -> . _scanf parentesis_abre parentesis_cierra
+    (119) EXPRESION -> . parentesis_abre TIPO parentesis_cierra EXPRESION
+    (120) EXPRESION -> . caracter
+    (121) EXPRESION -> . cadena
+    (122) EXPRESION -> . entero
+    (123) EXPRESION -> . decimal
+    (124) EXPRESION -> . identificador
+    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
+
+    menos           shift and go to state 40
+    exclamacion     shift and go to state 42
+    virgulilla      shift and go to state 43
+    et              shift and go to state 41
+    parentesis_abre shift and go to state 46
+    identificador   shift and go to state 44
+    llave_abre      shift and go to state 47
+    _sizeof         shift and go to state 48
+    _scanf          shift and go to state 49
+    caracter        shift and go to state 50
+    cadena          shift and go to state 51
+    entero          shift and go to state 52
+    decimal         shift and go to state 53
+
+    EXPRESION                      shift and go to state 200
+    METODO                         shift and go to state 45
+
+state 180
+
+    (78) SWITCH -> _switch parentesis_abre . EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
+    (88) EXPRESION -> . EXPRESION mas EXPRESION
+    (89) EXPRESION -> . EXPRESION menos EXPRESION
+    (90) EXPRESION -> . EXPRESION asterisco EXPRESION
+    (91) EXPRESION -> . EXPRESION division EXPRESION
+    (92) EXPRESION -> . EXPRESION porcentaje EXPRESION
+    (93) EXPRESION -> . EXPRESION equivale EXPRESION
+    (94) EXPRESION -> . EXPRESION distinto EXPRESION
+    (95) EXPRESION -> . EXPRESION mayor EXPRESION
+    (96) EXPRESION -> . EXPRESION menor EXPRESION
+    (97) EXPRESION -> . EXPRESION mayor_igual EXPRESION
+    (98) EXPRESION -> . EXPRESION menor_igual EXPRESION
+    (99) EXPRESION -> . EXPRESION and EXPRESION
+    (100) EXPRESION -> . EXPRESION or EXPRESION
+    (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -6169,7 +6221,7 @@ state 180
 
 state 181
 
-    (78) SWITCH -> _switch parentesis_abre . EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
+    (85) WHILE -> _while parentesis_abre . EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (88) EXPRESION -> . EXPRESION mas EXPRESION
     (89) EXPRESION -> . EXPRESION menos EXPRESION
     (90) EXPRESION -> . EXPRESION asterisco EXPRESION
@@ -6184,7 +6236,7 @@ state 181
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -6227,65 +6279,6 @@ state 181
     METODO                         shift and go to state 45
 
 state 182
-
-    (85) WHILE -> _while parentesis_abre . EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
-    (88) EXPRESION -> . EXPRESION mas EXPRESION
-    (89) EXPRESION -> . EXPRESION menos EXPRESION
-    (90) EXPRESION -> . EXPRESION asterisco EXPRESION
-    (91) EXPRESION -> . EXPRESION division EXPRESION
-    (92) EXPRESION -> . EXPRESION porcentaje EXPRESION
-    (93) EXPRESION -> . EXPRESION equivale EXPRESION
-    (94) EXPRESION -> . EXPRESION distinto EXPRESION
-    (95) EXPRESION -> . EXPRESION mayor EXPRESION
-    (96) EXPRESION -> . EXPRESION menor EXPRESION
-    (97) EXPRESION -> . EXPRESION mayor_igual EXPRESION
-    (98) EXPRESION -> . EXPRESION menor_igual EXPRESION
-    (99) EXPRESION -> . EXPRESION and EXPRESION
-    (100) EXPRESION -> . EXPRESION or EXPRESION
-    (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
-    (103) EXPRESION -> . EXPRESION et EXPRESION
-    (104) EXPRESION -> . EXPRESION pleca EXPRESION
-    (105) EXPRESION -> . EXPRESION elevado EXPRESION
-    (106) EXPRESION -> . EXPRESION pregunta EXPRESION dos_puntos EXPRESION
-    (107) EXPRESION -> . menos EXPRESION
-    (108) EXPRESION -> . exclamacion EXPRESION
-    (109) EXPRESION -> . virgulilla EXPRESION
-    (110) EXPRESION -> . et identificador
-    (111) EXPRESION -> . METODO
-    (112) EXPRESION -> . parentesis_abre EXPRESION parentesis_cierra
-    (113) EXPRESION -> . identificador punto identificador
-    (114) EXPRESION -> . identificador ACCESOS
-    (115) EXPRESION -> . identificador ACCESOS punto identificador
-    (116) EXPRESION -> . llave_abre EXPRESIONES llave_cierra
-    (117) EXPRESION -> . _sizeof parentesis_abre TIPO parentesis_cierra
-    (118) EXPRESION -> . _scanf parentesis_abre parentesis_cierra
-    (119) EXPRESION -> . parentesis_abre TIPO parentesis_cierra EXPRESION
-    (120) EXPRESION -> . caracter
-    (121) EXPRESION -> . cadena
-    (122) EXPRESION -> . entero
-    (123) EXPRESION -> . decimal
-    (124) EXPRESION -> . identificador
-    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
-
-    menos           shift and go to state 40
-    exclamacion     shift and go to state 42
-    virgulilla      shift and go to state 43
-    et              shift and go to state 41
-    parentesis_abre shift and go to state 46
-    identificador   shift and go to state 44
-    llave_abre      shift and go to state 47
-    _sizeof         shift and go to state 48
-    _scanf          shift and go to state 49
-    caracter        shift and go to state 50
-    cadena          shift and go to state 51
-    entero          shift and go to state 52
-    decimal         shift and go to state 53
-
-    EXPRESION                      shift and go to state 203
-    METODO                         shift and go to state 45
-
-state 183
 
     (86) DO -> _do llave_abre . CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
     (22) CUERPO_LOCAL -> . LISTA_LOCAL
@@ -6347,7 +6340,7 @@ state 183
     _void           shift and go to state 14
     _struct         shift and go to state 35
 
-    CUERPO_LOCAL                   shift and go to state 204
+    CUERPO_LOCAL                   shift and go to state 203
     LISTA_LOCAL                    shift and go to state 135
     INSTRUCCION_LOCAL              shift and go to state 136
     ETIQUETA                       shift and go to state 137
@@ -6363,7 +6356,7 @@ state 183
     PRINT                          shift and go to state 147
     TIPO                           shift and go to state 58
 
-state 184
+state 183
 
     (87) FOR -> _for parentesis_abre . DECLARACION punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (45) DECLARACION -> . TIPO LISTA_DECLARACION
@@ -6381,10 +6374,10 @@ state 184
     _void           shift and go to state 14
     _struct         shift and go to state 35
 
-    DECLARACION                    shift and go to state 205
+    DECLARACION                    shift and go to state 204
     TIPO                           shift and go to state 58
 
-state 185
+state 184
 
     (37) PRINT -> _printf parentesis_abre . LISTA_EXPRESIONES parentesis_cierra
     (127) LISTA_EXPRESIONES -> . LISTA_EXPRESIONES coma EXPRESION
@@ -6403,7 +6396,7 @@ state 185
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -6442,11 +6435,11 @@ state 185
     entero          shift and go to state 52
     decimal         shift and go to state 53
 
-    LISTA_EXPRESIONES              shift and go to state 206
+    LISTA_EXPRESIONES              shift and go to state 205
     EXPRESION                      shift and go to state 96
     METODO                         shift and go to state 45
 
-state 186
+state 185
 
     (106) EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .
     (88) EXPRESION -> EXPRESION . mas EXPRESION
@@ -6463,60 +6456,60 @@ state 186
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
     corchete_cierra reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
-    mas             reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
-    menos           reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
-    asterisco       reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
-    division        reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
-    porcentaje      reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
-    equivale        reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
-    distinto        reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
-    mayor           reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
-    menor           reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
-    mayor_igual     reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
-    menor_igual     reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
-    and             reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
-    or              reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
-    desplazamiento_izquierdo reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
-    desplazamiento_derecho reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
-    et              reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
-    pleca           reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
-    elevado         reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
     pregunta        reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
     coma            reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
     punto_coma      reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
     parentesis_cierra reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
     llave_cierra    reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
     dos_puntos      reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .)
+    mas             shift and go to state 66
+    menos           shift and go to state 67
+    asterisco       shift and go to state 68
+    division        shift and go to state 69
+    porcentaje      shift and go to state 70
+    equivale        shift and go to state 71
+    distinto        shift and go to state 72
+    mayor           shift and go to state 73
+    menor           shift and go to state 74
+    mayor_igual     shift and go to state 75
+    menor_igual     shift and go to state 76
+    and             shift and go to state 77
+    or              shift and go to state 78
+    desplazamiento_izquierdo shift and go to state 79
+    desplazamiento_derecho shift and go to state 80
+    et              shift and go to state 81
+    pleca           shift and go to state 82
+    elevado         shift and go to state 83
 
-  ! mas             [ shift and go to state 66 ]
-  ! menos           [ shift and go to state 67 ]
-  ! asterisco       [ shift and go to state 68 ]
-  ! division        [ shift and go to state 69 ]
-  ! porcentaje      [ shift and go to state 70 ]
-  ! equivale        [ shift and go to state 71 ]
-  ! distinto        [ shift and go to state 72 ]
-  ! mayor           [ shift and go to state 73 ]
-  ! menor           [ shift and go to state 74 ]
-  ! mayor_igual     [ shift and go to state 75 ]
-  ! menor_igual     [ shift and go to state 76 ]
-  ! and             [ shift and go to state 77 ]
-  ! or              [ shift and go to state 78 ]
-  ! desplazamiento_izquierdo [ shift and go to state 79 ]
-  ! desplazamiento_derecho [ shift and go to state 80 ]
-  ! et              [ shift and go to state 81 ]
-  ! pleca           [ shift and go to state 82 ]
-  ! elevado         [ shift and go to state 83 ]
+  ! mas             [ reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .) ]
+  ! menos           [ reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .) ]
+  ! asterisco       [ reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .) ]
+  ! division        [ reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .) ]
+  ! porcentaje      [ reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .) ]
+  ! equivale        [ reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .) ]
+  ! distinto        [ reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .) ]
+  ! mayor           [ reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .) ]
+  ! menor           [ reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .) ]
+  ! mayor_igual     [ reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .) ]
+  ! menor_igual     [ reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .) ]
+  ! and             [ reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .) ]
+  ! or              [ reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .) ]
+  ! desplazamiento_izquierdo [ reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .) ]
+  ! desplazamiento_derecho [ reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .) ]
+  ! et              [ reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .) ]
+  ! pleca           [ reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .) ]
+  ! elevado         [ reduce using rule 106 (EXPRESION -> EXPRESION pregunta EXPRESION dos_puntos EXPRESION .) ]
   ! pregunta        [ shift and go to state 84 ]
 
 
-state 187
+state 186
 
     (56) ASIGNACION -> identificador INDICES COMPUESTO . EXPRESION
     (88) EXPRESION -> . EXPRESION mas EXPRESION
@@ -6533,7 +6526,7 @@ state 187
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -6572,17 +6565,17 @@ state 187
     entero          shift and go to state 52
     decimal         shift and go to state 53
 
-    EXPRESION                      shift and go to state 207
+    EXPRESION                      shift and go to state 206
     METODO                         shift and go to state 45
 
-state 188
+state 187
 
     (57) ASIGNACION -> identificador INDICES punto . identificador COMPUESTO EXPRESION
 
-    identificador   shift and go to state 208
+    identificador   shift and go to state 207
 
 
-state 189
+state 188
 
     (60) COMPUESTO -> igual .
 
@@ -6601,70 +6594,70 @@ state 189
     decimal         reduce using rule 60 (COMPUESTO -> igual .)
 
 
-state 190
+state 189
 
     (61) COMPUESTO -> mas . igual
+
+    igual           shift and go to state 208
+
+
+state 190
+
+    (62) COMPUESTO -> asterisco . igual
 
     igual           shift and go to state 209
 
 
 state 191
 
-    (62) COMPUESTO -> asterisco . igual
+    (63) COMPUESTO -> division . igual
 
     igual           shift and go to state 210
 
 
 state 192
 
-    (63) COMPUESTO -> division . igual
+    (64) COMPUESTO -> porcentaje . igual
 
     igual           shift and go to state 211
 
 
 state 193
 
-    (64) COMPUESTO -> porcentaje . igual
+    (65) COMPUESTO -> menor . menor igual
 
-    igual           shift and go to state 212
+    menor           shift and go to state 212
 
 
 state 194
 
-    (65) COMPUESTO -> menor . menor igual
+    (66) COMPUESTO -> mayor . mayor igual
 
-    menor           shift and go to state 213
+    mayor           shift and go to state 213
 
 
 state 195
 
-    (66) COMPUESTO -> mayor . mayor igual
+    (67) COMPUESTO -> et . igual
 
-    mayor           shift and go to state 214
+    igual           shift and go to state 214
 
 
 state 196
 
-    (67) COMPUESTO -> et . igual
+    (68) COMPUESTO -> elevado . igual
 
     igual           shift and go to state 215
 
 
 state 197
 
-    (68) COMPUESTO -> elevado . igual
+    (69) COMPUESTO -> pleca . igual
 
     igual           shift and go to state 216
 
 
 state 198
-
-    (69) COMPUESTO -> pleca . igual
-
-    igual           shift and go to state 217
-
-
-state 199
 
     (40) INSTRUCCION_LOCAL -> _return EXPRESION punto_coma .
 
@@ -6690,7 +6683,7 @@ state 199
     _default        reduce using rule 40 (INSTRUCCION_LOCAL -> _return EXPRESION punto_coma .)
 
 
-state 200
+state 199
 
     (44) SALTO -> _goto identificador punto_coma .
 
@@ -6716,7 +6709,7 @@ state 200
     _default        reduce using rule 44 (SALTO -> _goto identificador punto_coma .)
 
 
-state 201
+state 200
 
     (70) IF -> _if parentesis_abre EXPRESION . parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
     (88) EXPRESION -> EXPRESION . mas EXPRESION
@@ -6733,7 +6726,52 @@ state 201
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
+    (103) EXPRESION -> EXPRESION . et EXPRESION
+    (104) EXPRESION -> EXPRESION . pleca EXPRESION
+    (105) EXPRESION -> EXPRESION . elevado EXPRESION
+    (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
+
+    parentesis_cierra shift and go to state 217
+    mas             shift and go to state 66
+    menos           shift and go to state 67
+    asterisco       shift and go to state 68
+    division        shift and go to state 69
+    porcentaje      shift and go to state 70
+    equivale        shift and go to state 71
+    distinto        shift and go to state 72
+    mayor           shift and go to state 73
+    menor           shift and go to state 74
+    mayor_igual     shift and go to state 75
+    menor_igual     shift and go to state 76
+    and             shift and go to state 77
+    or              shift and go to state 78
+    desplazamiento_izquierdo shift and go to state 79
+    desplazamiento_derecho shift and go to state 80
+    et              shift and go to state 81
+    pleca           shift and go to state 82
+    elevado         shift and go to state 83
+    pregunta        shift and go to state 84
+
+
+state 201
+
+    (78) SWITCH -> _switch parentesis_abre EXPRESION . parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
+    (88) EXPRESION -> EXPRESION . mas EXPRESION
+    (89) EXPRESION -> EXPRESION . menos EXPRESION
+    (90) EXPRESION -> EXPRESION . asterisco EXPRESION
+    (91) EXPRESION -> EXPRESION . division EXPRESION
+    (92) EXPRESION -> EXPRESION . porcentaje EXPRESION
+    (93) EXPRESION -> EXPRESION . equivale EXPRESION
+    (94) EXPRESION -> EXPRESION . distinto EXPRESION
+    (95) EXPRESION -> EXPRESION . mayor EXPRESION
+    (96) EXPRESION -> EXPRESION . menor EXPRESION
+    (97) EXPRESION -> EXPRESION . mayor_igual EXPRESION
+    (98) EXPRESION -> EXPRESION . menor_igual EXPRESION
+    (99) EXPRESION -> EXPRESION . and EXPRESION
+    (100) EXPRESION -> EXPRESION . or EXPRESION
+    (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
@@ -6763,7 +6801,7 @@ state 201
 
 state 202
 
-    (78) SWITCH -> _switch parentesis_abre EXPRESION . parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
+    (85) WHILE -> _while parentesis_abre EXPRESION . parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (88) EXPRESION -> EXPRESION . mas EXPRESION
     (89) EXPRESION -> EXPRESION . menos EXPRESION
     (90) EXPRESION -> EXPRESION . asterisco EXPRESION
@@ -6778,7 +6816,7 @@ state 202
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
@@ -6808,73 +6846,28 @@ state 202
 
 state 203
 
-    (85) WHILE -> _while parentesis_abre EXPRESION . parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
-    (88) EXPRESION -> EXPRESION . mas EXPRESION
-    (89) EXPRESION -> EXPRESION . menos EXPRESION
-    (90) EXPRESION -> EXPRESION . asterisco EXPRESION
-    (91) EXPRESION -> EXPRESION . division EXPRESION
-    (92) EXPRESION -> EXPRESION . porcentaje EXPRESION
-    (93) EXPRESION -> EXPRESION . equivale EXPRESION
-    (94) EXPRESION -> EXPRESION . distinto EXPRESION
-    (95) EXPRESION -> EXPRESION . mayor EXPRESION
-    (96) EXPRESION -> EXPRESION . menor EXPRESION
-    (97) EXPRESION -> EXPRESION . mayor_igual EXPRESION
-    (98) EXPRESION -> EXPRESION . menor_igual EXPRESION
-    (99) EXPRESION -> EXPRESION . and EXPRESION
-    (100) EXPRESION -> EXPRESION . or EXPRESION
-    (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
-    (103) EXPRESION -> EXPRESION . et EXPRESION
-    (104) EXPRESION -> EXPRESION . pleca EXPRESION
-    (105) EXPRESION -> EXPRESION . elevado EXPRESION
-    (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
+    (86) DO -> _do llave_abre CUERPO_LOCAL . llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
 
-    parentesis_cierra shift and go to state 220
-    mas             shift and go to state 66
-    menos           shift and go to state 67
-    asterisco       shift and go to state 68
-    division        shift and go to state 69
-    porcentaje      shift and go to state 70
-    equivale        shift and go to state 71
-    distinto        shift and go to state 72
-    mayor           shift and go to state 73
-    menor           shift and go to state 74
-    mayor_igual     shift and go to state 75
-    menor_igual     shift and go to state 76
-    and             shift and go to state 77
-    or              shift and go to state 78
-    desplazamiento_izquierdo shift and go to state 79
-    desplazamiento_derecho shift and go to state 80
-    et              shift and go to state 81
-    pleca           shift and go to state 82
-    elevado         shift and go to state 83
-    pregunta        shift and go to state 84
+    llave_cierra    shift and go to state 220
 
 
 state 204
 
-    (86) DO -> _do llave_abre CUERPO_LOCAL . llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
+    (87) FOR -> _for parentesis_abre DECLARACION . punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
 
-    llave_cierra    shift and go to state 221
+    punto_coma      shift and go to state 221
 
 
 state 205
 
-    (87) FOR -> _for parentesis_abre DECLARACION . punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
-
-    punto_coma      shift and go to state 222
-
-
-state 206
-
     (37) PRINT -> _printf parentesis_abre LISTA_EXPRESIONES . parentesis_cierra
     (127) LISTA_EXPRESIONES -> LISTA_EXPRESIONES . coma EXPRESION
 
-    parentesis_cierra shift and go to state 223
+    parentesis_cierra shift and go to state 222
     coma            shift and go to state 130
 
 
-state 207
+state 206
 
     (56) ASIGNACION -> identificador INDICES COMPUESTO EXPRESION .
     (88) EXPRESION -> EXPRESION . mas EXPRESION
@@ -6891,7 +6884,7 @@ state 207
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
@@ -6920,7 +6913,7 @@ state 207
     pregunta        shift and go to state 84
 
 
-state 208
+state 207
 
     (57) ASIGNACION -> identificador INDICES punto identificador . COMPUESTO EXPRESION
     (60) COMPUESTO -> . igual
@@ -6934,20 +6927,20 @@ state 208
     (68) COMPUESTO -> . elevado igual
     (69) COMPUESTO -> . pleca igual
 
-    igual           shift and go to state 189
-    mas             shift and go to state 190
-    asterisco       shift and go to state 191
-    division        shift and go to state 192
-    porcentaje      shift and go to state 193
-    menor           shift and go to state 194
-    mayor           shift and go to state 195
-    et              shift and go to state 196
-    elevado         shift and go to state 197
-    pleca           shift and go to state 198
+    igual           shift and go to state 188
+    mas             shift and go to state 189
+    asterisco       shift and go to state 190
+    division        shift and go to state 191
+    porcentaje      shift and go to state 192
+    menor           shift and go to state 193
+    mayor           shift and go to state 194
+    et              shift and go to state 195
+    elevado         shift and go to state 196
+    pleca           shift and go to state 197
 
-    COMPUESTO                      shift and go to state 224
+    COMPUESTO                      shift and go to state 223
 
-state 209
+state 208
 
     (61) COMPUESTO -> mas igual .
 
@@ -6966,7 +6959,7 @@ state 209
     decimal         reduce using rule 61 (COMPUESTO -> mas igual .)
 
 
-state 210
+state 209
 
     (62) COMPUESTO -> asterisco igual .
 
@@ -6985,7 +6978,7 @@ state 210
     decimal         reduce using rule 62 (COMPUESTO -> asterisco igual .)
 
 
-state 211
+state 210
 
     (63) COMPUESTO -> division igual .
 
@@ -7004,7 +6997,7 @@ state 211
     decimal         reduce using rule 63 (COMPUESTO -> division igual .)
 
 
-state 212
+state 211
 
     (64) COMPUESTO -> porcentaje igual .
 
@@ -7023,21 +7016,21 @@ state 212
     decimal         reduce using rule 64 (COMPUESTO -> porcentaje igual .)
 
 
-state 213
+state 212
 
     (65) COMPUESTO -> menor menor . igual
+
+    igual           shift and go to state 224
+
+
+state 213
+
+    (66) COMPUESTO -> mayor mayor . igual
 
     igual           shift and go to state 225
 
 
 state 214
-
-    (66) COMPUESTO -> mayor mayor . igual
-
-    igual           shift and go to state 226
-
-
-state 215
 
     (67) COMPUESTO -> et igual .
 
@@ -7056,7 +7049,7 @@ state 215
     decimal         reduce using rule 67 (COMPUESTO -> et igual .)
 
 
-state 216
+state 215
 
     (68) COMPUESTO -> elevado igual .
 
@@ -7075,7 +7068,7 @@ state 216
     decimal         reduce using rule 68 (COMPUESTO -> elevado igual .)
 
 
-state 217
+state 216
 
     (69) COMPUESTO -> pleca igual .
 
@@ -7094,35 +7087,35 @@ state 217
     decimal         reduce using rule 69 (COMPUESTO -> pleca igual .)
 
 
-state 218
+state 217
 
     (70) IF -> _if parentesis_abre EXPRESION parentesis_cierra . llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
+
+    llave_abre      shift and go to state 226
+
+
+state 218
+
+    (78) SWITCH -> _switch parentesis_abre EXPRESION parentesis_cierra . llave_abre CASES DEFAULT_CASE llave_cierra
 
     llave_abre      shift and go to state 227
 
 
 state 219
 
-    (78) SWITCH -> _switch parentesis_abre EXPRESION parentesis_cierra . llave_abre CASES DEFAULT_CASE llave_cierra
+    (85) WHILE -> _while parentesis_abre EXPRESION parentesis_cierra . llave_abre CUERPO_LOCAL llave_cierra
 
     llave_abre      shift and go to state 228
 
 
 state 220
 
-    (85) WHILE -> _while parentesis_abre EXPRESION parentesis_cierra . llave_abre CUERPO_LOCAL llave_cierra
+    (86) DO -> _do llave_abre CUERPO_LOCAL llave_cierra . _while parentesis_abre EXPRESION parentesis_cierra punto_coma
 
-    llave_abre      shift and go to state 229
+    _while          shift and go to state 229
 
 
 state 221
-
-    (86) DO -> _do llave_abre CUERPO_LOCAL llave_cierra . _while parentesis_abre EXPRESION parentesis_cierra punto_coma
-
-    _while          shift and go to state 230
-
-
-state 222
 
     (87) FOR -> _for parentesis_abre DECLARACION punto_coma . EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (88) EXPRESION -> . EXPRESION mas EXPRESION
@@ -7139,7 +7132,73 @@ state 222
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
+    (103) EXPRESION -> . EXPRESION et EXPRESION
+    (104) EXPRESION -> . EXPRESION pleca EXPRESION
+    (105) EXPRESION -> . EXPRESION elevado EXPRESION
+    (106) EXPRESION -> . EXPRESION pregunta EXPRESION dos_puntos EXPRESION
+    (107) EXPRESION -> . menos EXPRESION
+    (108) EXPRESION -> . exclamacion EXPRESION
+    (109) EXPRESION -> . virgulilla EXPRESION
+    (110) EXPRESION -> . et identificador
+    (111) EXPRESION -> . METODO
+    (112) EXPRESION -> . parentesis_abre EXPRESION parentesis_cierra
+    (113) EXPRESION -> . identificador punto identificador
+    (114) EXPRESION -> . identificador ACCESOS
+    (115) EXPRESION -> . identificador ACCESOS punto identificador
+    (116) EXPRESION -> . llave_abre EXPRESIONES llave_cierra
+    (117) EXPRESION -> . _sizeof parentesis_abre TIPO parentesis_cierra
+    (118) EXPRESION -> . _scanf parentesis_abre parentesis_cierra
+    (119) EXPRESION -> . parentesis_abre TIPO parentesis_cierra EXPRESION
+    (120) EXPRESION -> . caracter
+    (121) EXPRESION -> . cadena
+    (122) EXPRESION -> . entero
+    (123) EXPRESION -> . decimal
+    (124) EXPRESION -> . identificador
+    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
+
+    menos           shift and go to state 40
+    exclamacion     shift and go to state 42
+    virgulilla      shift and go to state 43
+    et              shift and go to state 41
+    parentesis_abre shift and go to state 46
+    identificador   shift and go to state 44
+    llave_abre      shift and go to state 47
+    _sizeof         shift and go to state 48
+    _scanf          shift and go to state 49
+    caracter        shift and go to state 50
+    cadena          shift and go to state 51
+    entero          shift and go to state 52
+    decimal         shift and go to state 53
+
+    EXPRESION                      shift and go to state 230
+    METODO                         shift and go to state 45
+
+state 222
+
+    (37) PRINT -> _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra .
+
+    punto_coma      reduce using rule 37 (PRINT -> _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra .)
+
+
+state 223
+
+    (57) ASIGNACION -> identificador INDICES punto identificador COMPUESTO . EXPRESION
+    (88) EXPRESION -> . EXPRESION mas EXPRESION
+    (89) EXPRESION -> . EXPRESION menos EXPRESION
+    (90) EXPRESION -> . EXPRESION asterisco EXPRESION
+    (91) EXPRESION -> . EXPRESION division EXPRESION
+    (92) EXPRESION -> . EXPRESION porcentaje EXPRESION
+    (93) EXPRESION -> . EXPRESION equivale EXPRESION
+    (94) EXPRESION -> . EXPRESION distinto EXPRESION
+    (95) EXPRESION -> . EXPRESION mayor EXPRESION
+    (96) EXPRESION -> . EXPRESION menor EXPRESION
+    (97) EXPRESION -> . EXPRESION mayor_igual EXPRESION
+    (98) EXPRESION -> . EXPRESION menor_igual EXPRESION
+    (99) EXPRESION -> . EXPRESION and EXPRESION
+    (100) EXPRESION -> . EXPRESION or EXPRESION
+    (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -7181,73 +7240,7 @@ state 222
     EXPRESION                      shift and go to state 231
     METODO                         shift and go to state 45
 
-state 223
-
-    (37) PRINT -> _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra .
-
-    punto_coma      reduce using rule 37 (PRINT -> _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra .)
-
-
 state 224
-
-    (57) ASIGNACION -> identificador INDICES punto identificador COMPUESTO . EXPRESION
-    (88) EXPRESION -> . EXPRESION mas EXPRESION
-    (89) EXPRESION -> . EXPRESION menos EXPRESION
-    (90) EXPRESION -> . EXPRESION asterisco EXPRESION
-    (91) EXPRESION -> . EXPRESION division EXPRESION
-    (92) EXPRESION -> . EXPRESION porcentaje EXPRESION
-    (93) EXPRESION -> . EXPRESION equivale EXPRESION
-    (94) EXPRESION -> . EXPRESION distinto EXPRESION
-    (95) EXPRESION -> . EXPRESION mayor EXPRESION
-    (96) EXPRESION -> . EXPRESION menor EXPRESION
-    (97) EXPRESION -> . EXPRESION mayor_igual EXPRESION
-    (98) EXPRESION -> . EXPRESION menor_igual EXPRESION
-    (99) EXPRESION -> . EXPRESION and EXPRESION
-    (100) EXPRESION -> . EXPRESION or EXPRESION
-    (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
-    (103) EXPRESION -> . EXPRESION et EXPRESION
-    (104) EXPRESION -> . EXPRESION pleca EXPRESION
-    (105) EXPRESION -> . EXPRESION elevado EXPRESION
-    (106) EXPRESION -> . EXPRESION pregunta EXPRESION dos_puntos EXPRESION
-    (107) EXPRESION -> . menos EXPRESION
-    (108) EXPRESION -> . exclamacion EXPRESION
-    (109) EXPRESION -> . virgulilla EXPRESION
-    (110) EXPRESION -> . et identificador
-    (111) EXPRESION -> . METODO
-    (112) EXPRESION -> . parentesis_abre EXPRESION parentesis_cierra
-    (113) EXPRESION -> . identificador punto identificador
-    (114) EXPRESION -> . identificador ACCESOS
-    (115) EXPRESION -> . identificador ACCESOS punto identificador
-    (116) EXPRESION -> . llave_abre EXPRESIONES llave_cierra
-    (117) EXPRESION -> . _sizeof parentesis_abre TIPO parentesis_cierra
-    (118) EXPRESION -> . _scanf parentesis_abre parentesis_cierra
-    (119) EXPRESION -> . parentesis_abre TIPO parentesis_cierra EXPRESION
-    (120) EXPRESION -> . caracter
-    (121) EXPRESION -> . cadena
-    (122) EXPRESION -> . entero
-    (123) EXPRESION -> . decimal
-    (124) EXPRESION -> . identificador
-    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
-
-    menos           shift and go to state 40
-    exclamacion     shift and go to state 42
-    virgulilla      shift and go to state 43
-    et              shift and go to state 41
-    parentesis_abre shift and go to state 46
-    identificador   shift and go to state 44
-    llave_abre      shift and go to state 47
-    _sizeof         shift and go to state 48
-    _scanf          shift and go to state 49
-    caracter        shift and go to state 50
-    cadena          shift and go to state 51
-    entero          shift and go to state 52
-    decimal         shift and go to state 53
-
-    EXPRESION                      shift and go to state 232
-    METODO                         shift and go to state 45
-
-state 225
 
     (65) COMPUESTO -> menor menor igual .
 
@@ -7266,7 +7259,7 @@ state 225
     decimal         reduce using rule 65 (COMPUESTO -> menor menor igual .)
 
 
-state 226
+state 225
 
     (66) COMPUESTO -> mayor mayor igual .
 
@@ -7285,7 +7278,7 @@ state 226
     decimal         reduce using rule 66 (COMPUESTO -> mayor mayor igual .)
 
 
-state 227
+state 226
 
     (70) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre . CUERPO_LOCAL llave_cierra ELSEIFS ELSE
     (22) CUERPO_LOCAL -> . LISTA_LOCAL
@@ -7347,7 +7340,7 @@ state 227
     _void           shift and go to state 14
     _struct         shift and go to state 35
 
-    CUERPO_LOCAL                   shift and go to state 233
+    CUERPO_LOCAL                   shift and go to state 232
     LISTA_LOCAL                    shift and go to state 135
     INSTRUCCION_LOCAL              shift and go to state 136
     ETIQUETA                       shift and go to state 137
@@ -7363,7 +7356,7 @@ state 227
     PRINT                          shift and go to state 147
     TIPO                           shift and go to state 58
 
-state 228
+state 227
 
     (78) SWITCH -> _switch parentesis_abre EXPRESION parentesis_cierra llave_abre . CASES DEFAULT_CASE llave_cierra
     (79) CASES -> . LISTA_CASE
@@ -7373,13 +7366,13 @@ state 228
     (83) CASE -> . _case EXPRESION dos_puntos CUERPO_LOCAL
 
     _default        reduce using rule 80 (CASES -> .)
-    _case           shift and go to state 237
+    _case           shift and go to state 236
 
-    CASES                          shift and go to state 234
-    LISTA_CASE                     shift and go to state 235
-    CASE                           shift and go to state 236
+    CASES                          shift and go to state 233
+    LISTA_CASE                     shift and go to state 234
+    CASE                           shift and go to state 235
 
-state 229
+state 228
 
     (85) WHILE -> _while parentesis_abre EXPRESION parentesis_cierra llave_abre . CUERPO_LOCAL llave_cierra
     (22) CUERPO_LOCAL -> . LISTA_LOCAL
@@ -7441,7 +7434,7 @@ state 229
     _void           shift and go to state 14
     _struct         shift and go to state 35
 
-    CUERPO_LOCAL                   shift and go to state 238
+    CUERPO_LOCAL                   shift and go to state 237
     LISTA_LOCAL                    shift and go to state 135
     INSTRUCCION_LOCAL              shift and go to state 136
     ETIQUETA                       shift and go to state 137
@@ -7457,14 +7450,14 @@ state 229
     PRINT                          shift and go to state 147
     TIPO                           shift and go to state 58
 
-state 230
+state 229
 
     (86) DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while . parentesis_abre EXPRESION parentesis_cierra punto_coma
 
-    parentesis_abre shift and go to state 239
+    parentesis_abre shift and go to state 238
 
 
-state 231
+state 230
 
     (87) FOR -> _for parentesis_abre DECLARACION punto_coma EXPRESION . punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (88) EXPRESION -> EXPRESION . mas EXPRESION
@@ -7481,13 +7474,13 @@ state 231
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
-    punto_coma      shift and go to state 240
+    punto_coma      shift and go to state 239
     mas             shift and go to state 66
     menos           shift and go to state 67
     asterisco       shift and go to state 68
@@ -7509,7 +7502,7 @@ state 231
     pregunta        shift and go to state 84
 
 
-state 232
+state 231
 
     (57) ASIGNACION -> identificador INDICES punto identificador COMPUESTO EXPRESION .
     (88) EXPRESION -> EXPRESION . mas EXPRESION
@@ -7526,7 +7519,7 @@ state 232
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
@@ -7555,34 +7548,34 @@ state 232
     pregunta        shift and go to state 84
 
 
-state 233
+state 232
 
     (70) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL . llave_cierra ELSEIFS ELSE
 
-    llave_cierra    shift and go to state 241
+    llave_cierra    shift and go to state 240
 
 
-state 234
+state 233
 
     (78) SWITCH -> _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES . DEFAULT_CASE llave_cierra
     (84) DEFAULT_CASE -> . _default dos_puntos CUERPO_LOCAL
 
-    _default        shift and go to state 243
+    _default        shift and go to state 242
 
-    DEFAULT_CASE                   shift and go to state 242
+    DEFAULT_CASE                   shift and go to state 241
 
-state 235
+state 234
 
     (79) CASES -> LISTA_CASE .
     (81) LISTA_CASE -> LISTA_CASE . CASE
     (83) CASE -> . _case EXPRESION dos_puntos CUERPO_LOCAL
 
     _default        reduce using rule 79 (CASES -> LISTA_CASE .)
-    _case           shift and go to state 237
+    _case           shift and go to state 236
 
-    CASE                           shift and go to state 244
+    CASE                           shift and go to state 243
 
-state 236
+state 235
 
     (82) LISTA_CASE -> CASE .
 
@@ -7590,7 +7583,7 @@ state 236
     _default        reduce using rule 82 (LISTA_CASE -> CASE .)
 
 
-state 237
+state 236
 
     (83) CASE -> _case . EXPRESION dos_puntos CUERPO_LOCAL
     (88) EXPRESION -> . EXPRESION mas EXPRESION
@@ -7607,7 +7600,7 @@ state 237
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -7646,17 +7639,17 @@ state 237
     entero          shift and go to state 52
     decimal         shift and go to state 53
 
-    EXPRESION                      shift and go to state 245
+    EXPRESION                      shift and go to state 244
     METODO                         shift and go to state 45
 
-state 238
+state 237
 
     (85) WHILE -> _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL . llave_cierra
 
-    llave_cierra    shift and go to state 246
+    llave_cierra    shift and go to state 245
 
 
-state 239
+state 238
 
     (86) DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre . EXPRESION parentesis_cierra punto_coma
     (88) EXPRESION -> . EXPRESION mas EXPRESION
@@ -7673,7 +7666,7 @@ state 239
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -7712,10 +7705,10 @@ state 239
     entero          shift and go to state 52
     decimal         shift and go to state 53
 
-    EXPRESION                      shift and go to state 247
+    EXPRESION                      shift and go to state 246
     METODO                         shift and go to state 45
 
-state 240
+state 239
 
     (87) FOR -> _for parentesis_abre DECLARACION punto_coma EXPRESION punto_coma . ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (56) ASIGNACION -> . identificador INDICES COMPUESTO EXPRESION
@@ -7723,11 +7716,11 @@ state 240
     (58) ASIGNACION -> . identificador aumento
     (59) ASIGNACION -> . identificador decremento
 
-    identificador   shift and go to state 249
+    identificador   shift and go to state 248
 
-    ASIGNACION                     shift and go to state 248
+    ASIGNACION                     shift and go to state 247
 
-state 241
+state 240
 
     (70) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra . ELSEIFS ELSE
     (71) ELSEIFS -> . LISTA_ELSEIF
@@ -7757,27 +7750,27 @@ state 241
     llave_cierra    reduce using rule 72 (ELSEIFS -> .)
     _case           reduce using rule 72 (ELSEIFS -> .)
     _default        reduce using rule 72 (ELSEIFS -> .)
-    _elseif         shift and go to state 253
+    _elseif         shift and go to state 252
 
-    ELSEIFS                        shift and go to state 250
-    LISTA_ELSEIF                   shift and go to state 251
-    ELSEIF                         shift and go to state 252
+    ELSEIFS                        shift and go to state 249
+    LISTA_ELSEIF                   shift and go to state 250
+    ELSEIF                         shift and go to state 251
 
-state 242
+state 241
 
     (78) SWITCH -> _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE . llave_cierra
 
-    llave_cierra    shift and go to state 254
+    llave_cierra    shift and go to state 253
 
 
-state 243
+state 242
 
     (84) DEFAULT_CASE -> _default . dos_puntos CUERPO_LOCAL
 
-    dos_puntos      shift and go to state 255
+    dos_puntos      shift and go to state 254
 
 
-state 244
+state 243
 
     (81) LISTA_CASE -> LISTA_CASE CASE .
 
@@ -7785,7 +7778,7 @@ state 244
     _default        reduce using rule 81 (LISTA_CASE -> LISTA_CASE CASE .)
 
 
-state 245
+state 244
 
     (83) CASE -> _case EXPRESION . dos_puntos CUERPO_LOCAL
     (88) EXPRESION -> EXPRESION . mas EXPRESION
@@ -7802,13 +7795,13 @@ state 245
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
-    dos_puntos      shift and go to state 256
+    dos_puntos      shift and go to state 255
     mas             shift and go to state 66
     menos           shift and go to state 67
     asterisco       shift and go to state 68
@@ -7830,7 +7823,7 @@ state 245
     pregunta        shift and go to state 84
 
 
-state 246
+state 245
 
     (85) WHILE -> _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .
 
@@ -7856,7 +7849,7 @@ state 246
     _default        reduce using rule 85 (WHILE -> _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
 
 
-state 247
+state 246
 
     (86) DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION . parentesis_cierra punto_coma
     (88) EXPRESION -> EXPRESION . mas EXPRESION
@@ -7873,13 +7866,13 @@ state 247
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
-    parentesis_cierra shift and go to state 257
+    parentesis_cierra shift and go to state 256
     mas             shift and go to state 66
     menos           shift and go to state 67
     asterisco       shift and go to state 68
@@ -7901,14 +7894,14 @@ state 247
     pregunta        shift and go to state 84
 
 
-state 248
+state 247
 
     (87) FOR -> _for parentesis_abre DECLARACION punto_coma EXPRESION punto_coma ASIGNACION . parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
 
-    parentesis_cierra shift and go to state 258
+    parentesis_cierra shift and go to state 257
 
 
-state 249
+state 248
 
     (56) ASIGNACION -> identificador . INDICES COMPUESTO EXPRESION
     (57) ASIGNACION -> identificador . INDICES punto identificador COMPUESTO EXPRESION
@@ -7921,8 +7914,8 @@ state 249
     (54) ACCESO -> . corchete_abre EXPRESION corchete_cierra
     (55) ACCESO -> . corchete_abre corchete_cierra
 
-    aumento         shift and go to state 167
-    decremento      shift and go to state 168
+    aumento         shift and go to state 166
+    decremento      shift and go to state 167
     punto           reduce using rule 51 (INDICES -> .)
     igual           reduce using rule 51 (INDICES -> .)
     mas             reduce using rule 51 (INDICES -> .)
@@ -7936,17 +7929,17 @@ state 249
     pleca           reduce using rule 51 (INDICES -> .)
     corchete_abre   shift and go to state 27
 
-    INDICES                        shift and go to state 166
+    INDICES                        shift and go to state 165
     ACCESOS                        shift and go to state 25
     ACCESO                         shift and go to state 26
 
-state 250
+state 249
 
     (70) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS . ELSE
     (76) ELSE -> . _else llave_abre CUERPO_LOCAL llave_cierra
     (77) ELSE -> .
 
-    _else           shift and go to state 260
+    _else           shift and go to state 259
     _continue       reduce using rule 77 (ELSE -> .)
     _break          reduce using rule 77 (ELSE -> .)
     _return         reduce using rule 77 (ELSE -> .)
@@ -7968,9 +7961,9 @@ state 250
     _case           reduce using rule 77 (ELSE -> .)
     _default        reduce using rule 77 (ELSE -> .)
 
-    ELSE                           shift and go to state 259
+    ELSE                           shift and go to state 258
 
-state 251
+state 250
 
     (71) ELSEIFS -> LISTA_ELSEIF .
     (73) LISTA_ELSEIF -> LISTA_ELSEIF . ELSEIF
@@ -7997,11 +7990,11 @@ state 251
     llave_cierra    reduce using rule 71 (ELSEIFS -> LISTA_ELSEIF .)
     _case           reduce using rule 71 (ELSEIFS -> LISTA_ELSEIF .)
     _default        reduce using rule 71 (ELSEIFS -> LISTA_ELSEIF .)
-    _elseif         shift and go to state 253
+    _elseif         shift and go to state 252
 
-    ELSEIF                         shift and go to state 261
+    ELSEIF                         shift and go to state 260
 
-state 252
+state 251
 
     (74) LISTA_ELSEIF -> ELSEIF .
 
@@ -8029,14 +8022,14 @@ state 252
     _default        reduce using rule 74 (LISTA_ELSEIF -> ELSEIF .)
 
 
-state 253
+state 252
 
     (75) ELSEIF -> _elseif . parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
 
-    parentesis_abre shift and go to state 262
+    parentesis_abre shift and go to state 261
 
 
-state 254
+state 253
 
     (78) SWITCH -> _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra .
 
@@ -8062,7 +8055,7 @@ state 254
     _default        reduce using rule 78 (SWITCH -> _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra .)
 
 
-state 255
+state 254
 
     (84) DEFAULT_CASE -> _default dos_puntos . CUERPO_LOCAL
     (22) CUERPO_LOCAL -> . LISTA_LOCAL
@@ -8124,7 +8117,7 @@ state 255
     _void           shift and go to state 14
     _struct         shift and go to state 35
 
-    CUERPO_LOCAL                   shift and go to state 263
+    CUERPO_LOCAL                   shift and go to state 262
     LISTA_LOCAL                    shift and go to state 135
     INSTRUCCION_LOCAL              shift and go to state 136
     ETIQUETA                       shift and go to state 137
@@ -8140,7 +8133,7 @@ state 255
     PRINT                          shift and go to state 147
     TIPO                           shift and go to state 58
 
-state 256
+state 255
 
     (83) CASE -> _case EXPRESION dos_puntos . CUERPO_LOCAL
     (22) CUERPO_LOCAL -> . LISTA_LOCAL
@@ -8203,7 +8196,7 @@ state 256
     _void           shift and go to state 14
     _struct         shift and go to state 35
 
-    CUERPO_LOCAL                   shift and go to state 264
+    CUERPO_LOCAL                   shift and go to state 263
     LISTA_LOCAL                    shift and go to state 135
     INSTRUCCION_LOCAL              shift and go to state 136
     ETIQUETA                       shift and go to state 137
@@ -8219,21 +8212,21 @@ state 256
     PRINT                          shift and go to state 147
     TIPO                           shift and go to state 58
 
-state 257
+state 256
 
     (86) DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra . punto_coma
 
-    punto_coma      shift and go to state 265
+    punto_coma      shift and go to state 264
 
 
-state 258
+state 257
 
     (87) FOR -> _for parentesis_abre DECLARACION punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra . llave_abre CUERPO_LOCAL llave_cierra
 
-    llave_abre      shift and go to state 266
+    llave_abre      shift and go to state 265
 
 
-state 259
+state 258
 
     (70) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .
 
@@ -8259,14 +8252,14 @@ state 259
     _default        reduce using rule 70 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
 
 
-state 260
+state 259
 
     (76) ELSE -> _else . llave_abre CUERPO_LOCAL llave_cierra
 
-    llave_abre      shift and go to state 267
+    llave_abre      shift and go to state 266
 
 
-state 261
+state 260
 
     (73) LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .
 
@@ -8294,7 +8287,7 @@ state 261
     _default        reduce using rule 73 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
 
 
-state 262
+state 261
 
     (75) ELSEIF -> _elseif parentesis_abre . EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (88) EXPRESION -> . EXPRESION mas EXPRESION
@@ -8311,7 +8304,7 @@ state 262
     (99) EXPRESION -> . EXPRESION and EXPRESION
     (100) EXPRESION -> . EXPRESION or EXPRESION
     (101) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
     (103) EXPRESION -> . EXPRESION et EXPRESION
     (104) EXPRESION -> . EXPRESION pleca EXPRESION
     (105) EXPRESION -> . EXPRESION elevado EXPRESION
@@ -8350,17 +8343,17 @@ state 262
     entero          shift and go to state 52
     decimal         shift and go to state 53
 
-    EXPRESION                      shift and go to state 268
+    EXPRESION                      shift and go to state 267
     METODO                         shift and go to state 45
 
-state 263
+state 262
 
     (84) DEFAULT_CASE -> _default dos_puntos CUERPO_LOCAL .
 
     llave_cierra    reduce using rule 84 (DEFAULT_CASE -> _default dos_puntos CUERPO_LOCAL .)
 
 
-state 264
+state 263
 
     (83) CASE -> _case EXPRESION dos_puntos CUERPO_LOCAL .
 
@@ -8368,7 +8361,7 @@ state 264
     _default        reduce using rule 83 (CASE -> _case EXPRESION dos_puntos CUERPO_LOCAL .)
 
 
-state 265
+state 264
 
     (86) DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .
 
@@ -8394,7 +8387,7 @@ state 265
     _default        reduce using rule 86 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
 
 
-state 266
+state 265
 
     (87) FOR -> _for parentesis_abre DECLARACION punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre . CUERPO_LOCAL llave_cierra
     (22) CUERPO_LOCAL -> . LISTA_LOCAL
@@ -8458,7 +8451,7 @@ state 266
 
     DECLARACION                    shift and go to state 139
     ASIGNACION                     shift and go to state 140
-    CUERPO_LOCAL                   shift and go to state 269
+    CUERPO_LOCAL                   shift and go to state 268
     LISTA_LOCAL                    shift and go to state 135
     INSTRUCCION_LOCAL              shift and go to state 136
     ETIQUETA                       shift and go to state 137
@@ -8472,7 +8465,7 @@ state 266
     PRINT                          shift and go to state 147
     TIPO                           shift and go to state 58
 
-state 267
+state 266
 
     (76) ELSE -> _else llave_abre . CUERPO_LOCAL llave_cierra
     (22) CUERPO_LOCAL -> . LISTA_LOCAL
@@ -8534,7 +8527,7 @@ state 267
     _void           shift and go to state 14
     _struct         shift and go to state 35
 
-    CUERPO_LOCAL                   shift and go to state 270
+    CUERPO_LOCAL                   shift and go to state 269
     LISTA_LOCAL                    shift and go to state 135
     INSTRUCCION_LOCAL              shift and go to state 136
     ETIQUETA                       shift and go to state 137
@@ -8550,7 +8543,7 @@ state 267
     PRINT                          shift and go to state 147
     TIPO                           shift and go to state 58
 
-state 268
+state 267
 
     (75) ELSEIF -> _elseif parentesis_abre EXPRESION . parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (88) EXPRESION -> EXPRESION . mas EXPRESION
@@ -8567,13 +8560,13 @@ state 268
     (99) EXPRESION -> EXPRESION . and EXPRESION
     (100) EXPRESION -> EXPRESION . or EXPRESION
     (101) EXPRESION -> EXPRESION . desplazamiento_izquierdo EXPRESION
-    (102) EXPRESION -> EXPRESION . desplazamiento_derecho mayor EXPRESION
+    (102) EXPRESION -> EXPRESION . desplazamiento_derecho EXPRESION
     (103) EXPRESION -> EXPRESION . et EXPRESION
     (104) EXPRESION -> EXPRESION . pleca EXPRESION
     (105) EXPRESION -> EXPRESION . elevado EXPRESION
     (106) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
-    parentesis_cierra shift and go to state 271
+    parentesis_cierra shift and go to state 270
     mas             shift and go to state 66
     menos           shift and go to state 67
     asterisco       shift and go to state 68
@@ -8595,28 +8588,28 @@ state 268
     pregunta        shift and go to state 84
 
 
-state 269
+state 268
 
     (87) FOR -> _for parentesis_abre DECLARACION punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL . llave_cierra
+
+    llave_cierra    shift and go to state 271
+
+
+state 269
+
+    (76) ELSE -> _else llave_abre CUERPO_LOCAL . llave_cierra
 
     llave_cierra    shift and go to state 272
 
 
 state 270
 
-    (76) ELSE -> _else llave_abre CUERPO_LOCAL . llave_cierra
+    (75) ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra . llave_abre CUERPO_LOCAL llave_cierra
 
-    llave_cierra    shift and go to state 273
+    llave_abre      shift and go to state 273
 
 
 state 271
-
-    (75) ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra . llave_abre CUERPO_LOCAL llave_cierra
-
-    llave_abre      shift and go to state 274
-
-
-state 272
 
     (87) FOR -> _for parentesis_abre DECLARACION punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .
 
@@ -8642,7 +8635,7 @@ state 272
     _default        reduce using rule 87 (FOR -> _for parentesis_abre DECLARACION punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
 
 
-state 273
+state 272
 
     (76) ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .
 
@@ -8668,7 +8661,7 @@ state 273
     _default        reduce using rule 76 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
 
 
-state 274
+state 273
 
     (75) ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre . CUERPO_LOCAL llave_cierra
     (22) CUERPO_LOCAL -> . LISTA_LOCAL
@@ -8730,7 +8723,7 @@ state 274
     _void           shift and go to state 14
     _struct         shift and go to state 35
 
-    CUERPO_LOCAL                   shift and go to state 275
+    CUERPO_LOCAL                   shift and go to state 274
     LISTA_LOCAL                    shift and go to state 135
     INSTRUCCION_LOCAL              shift and go to state 136
     ETIQUETA                       shift and go to state 137
@@ -8746,14 +8739,14 @@ state 274
     PRINT                          shift and go to state 147
     TIPO                           shift and go to state 58
 
-state 275
+state 274
 
     (75) ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL . llave_cierra
 
-    llave_cierra    shift and go to state 276
+    llave_cierra    shift and go to state 275
 
 
-state 276
+state 275
 
     (75) ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .
 

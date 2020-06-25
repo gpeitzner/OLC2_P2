@@ -170,10 +170,13 @@ def t_error(t):
 
 
 precedence = (('left', 'coma'), ('right', 'NIVEL14'), ('right', 'NIVEL13'),
-              ('left', 'NIVEL12'), ('left', 'NIVEL11'), ('left', 'NIVEL10'),
-              ('left', 'NIVEL9'), ('left', 'NIVEL8'), ('left', 'NIVEL7'),
-              ('left', 'NIVEL6'), ('left', 'NIVEL5'), ('left', 'NIVEL4'),
-              ('left', 'NIVEL3'), ('right', 'NIVEL2'), ('left', 'NIVEL1'))
+              ('left', 'or'), ('left', 'and'), ('left', 'pleca'),
+              ('left', 'elevado'), ('left', 'et'), ('left', 'equivale', 'distinto'),
+              ('left', 'mayor', 'menor', 'mayor_igual', 'menor_igual'),
+              ('left', 'desplazamiento_izquierdo',
+               'desplazamiento_derecho'), ('left', 'mas', 'menos'),
+              ('left', 'asterisco', 'division', 'porcentaje'), ('right', 'NIVEL2'),
+              ('left', 'parentesis_abre', 'parentesis_cierra', 'corchete_abre', 'corchete_cierra'))
 
 
 def p_init(t):
@@ -483,14 +486,14 @@ def p_accesos_acceso(t):
 
 def p_acceso(t):
     '''
-    ACCESO  :   corchete_abre EXPRESION corchete_cierra %prec NIVEL1
+    ACCESO  :   corchete_abre EXPRESION corchete_cierra 
     '''
     t[0] = t[1]
 
 
 def p_acceso_vacio(t):
     '''
-    ACCESO : corchete_abre corchete_cierra %prec NIVEL1
+    ACCESO : corchete_abre corchete_cierra
     '''
     t[0] = None
 
@@ -671,42 +674,42 @@ def p_for(t):
 
 def p_expresion_aritmetica(t):
     '''
-    EXPRESION   :   EXPRESION mas EXPRESION %prec NIVEL4
-                |   EXPRESION menos EXPRESION %prec NIVEL4
-                |   EXPRESION asterisco EXPRESION %prec NIVEL3
-                |   EXPRESION division EXPRESION %prec NIVEL3
-                |   EXPRESION porcentaje EXPRESION %prec NIVEL3
+    EXPRESION   :   EXPRESION mas EXPRESION 
+                |   EXPRESION menos EXPRESION
+                |   EXPRESION asterisco EXPRESION
+                |   EXPRESION division EXPRESION 
+                |   EXPRESION porcentaje EXPRESION 
     '''
     t[0] = clases.ExpresionAritmetica(t[1], t[2], t[3])
 
 
 def p_expresion_relacional(t):
     '''
-    EXPRESION   :   EXPRESION equivale EXPRESION %prec NIVEL7
-                |   EXPRESION distinto EXPRESION %prec NIVEL7
-                |   EXPRESION mayor EXPRESION %prec NIVEL6
-                |   EXPRESION menor EXPRESION %prec NIVEL6
-                |   EXPRESION mayor_igual EXPRESION %prec NIVEL6
-                |   EXPRESION menor_igual EXPRESION %prec NIVEL6
+    EXPRESION   :   EXPRESION equivale EXPRESION 
+                |   EXPRESION distinto EXPRESION
+                |   EXPRESION mayor EXPRESION 
+                |   EXPRESION menor EXPRESION 
+                |   EXPRESION mayor_igual EXPRESION 
+                |   EXPRESION menor_igual EXPRESION
     '''
     t[0] = clases.ExpresionRelacional(t[1], t[2], t[3])
 
 
 def p_expresion_logica(t):
     '''
-    EXPRESION   :   EXPRESION and EXPRESION %prec NIVEL11
-                |   EXPRESION or EXPRESION %prec NIVEL12
+    EXPRESION   :   EXPRESION and EXPRESION 
+                |   EXPRESION or EXPRESION 
     '''
     t[0] = clases.ExpresionLogica(t[1], t[2], t[3])
 
 
 def p_expresion_bit(t):
     '''
-    EXPRESION   :   EXPRESION desplazamiento_izquierdo EXPRESION %prec NIVEL5
-                |   EXPRESION desplazamiento_derecho mayor EXPRESION %prec NIVEL5
-                |   EXPRESION et EXPRESION %prec NIVEL8
-                |   EXPRESION pleca EXPRESION %prec NIVEL10
-                |   EXPRESION elevado EXPRESION %prec NIVEL9
+    EXPRESION   :   EXPRESION desplazamiento_izquierdo EXPRESION 
+                |   EXPRESION desplazamiento_derecho EXPRESION 
+                |   EXPRESION et EXPRESION
+                |   EXPRESION pleca EXPRESION
+                |   EXPRESION elevado EXPRESION
     '''
     t[0] = clases.ExpresionBit(t[1], t[2], t[3])
 
@@ -737,7 +740,7 @@ def p_expresion_metodo(t):
 
 def p_expresion_parentesis(t):
     '''
-    EXPRESION   :   parentesis_abre EXPRESION parentesis_cierra %prec NIVEL1
+    EXPRESION   :   parentesis_abre EXPRESION parentesis_cierra
     '''
     t[0] = t[2]
 
