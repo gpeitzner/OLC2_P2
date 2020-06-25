@@ -81,7 +81,7 @@ class TresDirecciones:
                         variable = self.obtener_expresion(
                             declaracion.expresion)
                         if variable:
-                            if variable.tipo == tipo or variable.tipo == 'ternary':
+                            if variable.tipo == tipo or variable.tipo == 'ternary' or variable.tipo == 'scanf':
                                 if not self.tabla_simbolos[0].existe(identificador):
                                     self.tabla_simbolos[0].actualizar(
                                         Simbolo(tipo, identificador, variable.valor))
@@ -136,6 +136,10 @@ class TresDirecciones:
                     return None
             else:
                 return None
+        if isinstance(expresion, clases.ExpresionScan):
+            registro = self.obtener_registro_temporal()
+            self.codigo3d += registro + ' = read();\n'
+            return clases.Variable('scanf', registro)
         return None
 
     def obtener_expresion_aritmetica(self, expresion):
@@ -145,44 +149,44 @@ class TresDirecciones:
             registro = self.obtener_registro_temporal()
             if expresion.operacion == '+':
                 self.codigo3d += registro + ' = ' + primero.valor + ' + ' + segundo.valor + ';\n'
-                if primero.tipo == 'char' and segundo.tipo == 'char':
+                if primero.tipo in ['char', 'scanf', 'ternary'] and segundo.tipo in ['char', 'scanf', 'ternary']:
                     return clases.Variable('char', registro)
-                elif primero.tipo == 'float' and segundo.tipo == 'float':
+                elif primero.tipo in ['float', 'scanf', 'ternary'] and segundo.tipo in ['float', 'scanf', 'ternary']:
                     return clases.Variable('float', registro)
-                elif primero.tipo == 'double' and segundo.tipo == 'double':
+                elif primero.tipo in ['double', 'scanf', 'ternary'] and segundo.tipo in ['double', 'scanf', 'ternary']:
                     return clases.Variable('double', registro)
-                elif primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                elif primero.tipo in ['int', 'float', 'double', 'scanf', 'ternary'] and segundo.tipo in ['int', 'float', 'double', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
             elif expresion.operacion == '-':
                 self.codigo3d += registro + ' = ' + primero.valor + ' - ' + segundo.valor + ';\n'
-                if primero.tipo == 'float' and segundo.tipo == 'float':
+                if primero.tipo in ['float', 'scanf', 'ternary'] and segundo.tipo in ['float', 'scanf', 'ternary']:
                     return clases.Variable('float', registro)
-                elif primero.tipo == 'double' and segundo.tipo == 'double':
+                elif primero.tipo in ['double', 'scanf', 'ternary'] and segundo.tipo in ['double', 'scanf', 'ternary']:
                     return clases.Variable('double', registro)
-                elif primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                elif primero.tipo in ['int', 'float', 'double', 'scanf', 'ternary'] and segundo.tipo in ['int', 'float', 'double', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
             elif expresion.operacion == '*':
                 self.codigo3d += registro + ' = ' + primero.valor + ' * ' + segundo.valor + ';\n'
-                if primero.tipo == 'float' and segundo.tipo == 'float':
+                if primero.tipo in ['float', 'scanf', 'ternary'] and segundo.tipo in ['float', 'scanf', 'ternary']:
                     return clases.Variable('float', registro)
-                elif primero.tipo == 'double' and segundo.tipo == 'double':
+                elif primero.tipo in ['double', 'scanf', 'ternary'] and segundo.tipo in ['double', 'scanf', 'ternary']:
                     return clases.Variable('double', registro)
-                elif primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                elif primero.tipo in ['int', 'float', 'double', 'scanf', 'ternary'] and segundo.tipo in ['int', 'float', 'double', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
             elif expresion.operacion == '/':
                 if segundo.valor != '0':
                     self.codigo3d += registro + ' = ' + primero.valor + ' / ' + segundo.valor + ';\n'
-                    if primero.tipo == 'float' and segundo.tipo == 'float':
+                    if primero.tipo in ['float', 'scanf', 'ternary'] and segundo.tipo in ['float', 'scanf', 'ternary']:
                         return clases.Variable('float', registro)
-                    elif primero.tipo == 'double' and segundo.tipo == 'double':
+                    elif primero.tipo in ['double', 'scanf', 'ternary'] and segundo.tipo == ['double', 'scanf', 'ternary']:
                         return clases.Variable('double', registro)
-                    elif primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                    elif primero.tipo in ['int', 'float', 'double', 'scanf', 'ternary'] and segundo.tipo in ['int', 'float', 'double', 'scanf', 'ternary']:
                         return clases.Variable('int', registro)
                     else:
                         return None
@@ -191,11 +195,11 @@ class TresDirecciones:
             elif expresion.operacion == '%':
                 if segundo.valor != '0':
                     self.codigo3d += registro + ' = ' + primero.valor + ' % ' + segundo.valor + ';\n'
-                    if primero.tipo == 'float' and segundo.tipo == 'float':
+                    if primero.tipo in ['float', 'scanf', 'ternary'] and segundo.tipo in ['float', 'scanf', 'ternary']:
                         return clases.Variable('float', registro)
-                    elif primero.tipo == 'double' and segundo.tipo == 'double':
+                    elif primero.tipo in ['double', 'scanf', 'ternary'] and segundo.tipo in ['double', 'scanf', 'ternary']:
                         return clases.Variable('double', registro)
-                    elif primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                    elif primero.tipo in ['int', 'float', 'double', 'scanf', 'ternary'] and segundo.tipo in ['int', 'float', 'double', 'scanf', 'ternary']:
                         return clases.Variable('int', registro)
                     else:
                         return None
@@ -210,41 +214,41 @@ class TresDirecciones:
             registro = self.obtener_registro_temporal()
             if expresion.operacion == '==':
                 self.codigo3d += registro + ' = ' + primero.valor + ' == ' + segundo.valor + ';\n'
-                if primero.tipo == 'char' and segundo.tipo == 'char':
+                if primero.tipo in ['char', 'scanf', 'ternary'] and segundo.tipo in ['char', 'scanf', 'ternary']:
                     return clases.Variable('char', registro)
-                elif primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                elif primero.tipo in ['int', 'float', 'double', 'scanf', 'ternary'] and segundo.tipo in ['int', 'float', 'double', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
             elif expresion.operacion == '!=':
                 self.codigo3d += registro + ' = ' + primero.valor + ' != ' + segundo.valor + ';\n'
-                if primero.tipo == 'char' and segundo.tipo == 'char':
+                if primero.tipo in ['char', 'scanf', 'ternary'] and segundo.tipo in ['char', 'scanf', 'ternary']:
                     return clases.Variable('char', registro)
-                elif primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                elif primero.tipo in ['int', 'float', 'double', 'scanf', 'ternary'] and segundo.tipo in ['int', 'float', 'double', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
             elif expresion.operacion == '>':
                 self.codigo3d += registro + ' = ' + primero.valor + ' > ' + segundo.valor + ';\n'
-                if primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                if primero.tipo in ['int', 'float', 'double', 'scanf', 'ternary'] and segundo.tipo in ['int', 'float', 'double', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
             elif expresion.operacion == '<':
                 self.codigo3d += registro + ' = ' + primero.valor + ' < ' + segundo.valor + ';\n'
-                if primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                if primero.tipo in ['int', 'float', 'double', 'scanf', 'ternary'] and segundo.tipo in ['int', 'float', 'double', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
             elif expresion.operacion == '>=':
                 self.codigo3d += registro + ' = ' + primero.valor + ' >= ' + segundo.valor + ";\n"
-                if primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                if primero.tipo in ['int', 'float', 'double', 'scanf', 'ternary'] and segundo.tipo in ['int', 'float', 'double', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
             elif expresion.operacion == '<=':
                 self.codigo3d += registro + ' = ' + primero.valor + ' <= ' + segundo.valor + ';\n'
-                if primero.tipo in ['int', 'float', 'double'] and segundo.tipo in ['int', 'float', 'double']:
+                if primero.tipo in ['int', 'float', 'double', 'scanf', 'ternary'] and segundo.tipo in ['int', 'float', 'double', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
@@ -258,13 +262,13 @@ class TresDirecciones:
             if expresion.operacion == '&&':
                 self.codigo3d += registro + ' = ' + \
                     primero.valor + ' and ' + segundo.valor + ';\n'
-                if primero.tipo == 'int' and segundo.tipo == 'int':
+                if primero.tipo in ['int', 'scanf', 'ternary'] and segundo.tipo in ['int', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
             elif expresion.operacion == '||':
                 self.codigo3d += registro + ' = ' + primero.valor + ' or ' + segundo.valor + ';\n'
-                if primero.tipo == 'int' and segundo.tipo == 'int':
+                if primero.tipo in ['int', 'scanf', 'ternary'] and segundo.tipo in ['int', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
@@ -277,31 +281,31 @@ class TresDirecciones:
             registro = self.obtener_registro_temporal()
             if expresion.operacion == '<<':
                 self.codigo3d += registro + ' = ' + primero.valor + ' << ' + segundo.valor + ';\n'
-                if primero.tipo in ['int', 'double', 'float'] and segundo.tipo in ['int', 'double', 'float']:
+                if primero.tipo in ['int', 'double', 'float', 'scanf', 'ternary'] and segundo.tipo in ['int', 'double', 'float', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
             elif expresion.operacion == '>>':
                 self.codigo3d += registro + ' = ' + primero.valor + ' >> ' + segundo.valor + ';\n'
-                if primero.tipo in ['int', 'double', 'float'] and segundo.tipo in ['int', 'double', 'float']:
+                if primero.tipo in ['int', 'double', 'float', 'scanf', 'ternary'] and segundo.tipo in ['int', 'double', 'float', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
             elif expresion.operacion == '&':
                 self.codigo3d += registro + ' = ' + primero.valor + ' & ' + segundo.valor + ';\n'
-                if primero.tipo in ['int', 'double', 'float'] and segundo.tipo in ['int', 'double', 'float']:
+                if primero.tipo in ['int', 'double', 'float', 'scanf', 'ternary'] and segundo.tipo in ['int', 'double', 'float', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
             elif expresion.operacion == '|':
                 self.codigo3d += registro + ' = ' + primero.valor + ' | ' + segundo.valor + ';\n'
-                if primero.tipo in ['int', 'double', 'float'] and segundo.tipo in ['int', 'double', 'float']:
+                if primero.tipo in ['int', 'double', 'float', 'scanf', 'ternary'] and segundo.tipo in ['int', 'double', 'float', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
             elif expresion.operacion == '^':
                 self.codigo3d += registro + ' = ' + primero.valor + ' ^ ' + segundo.valor + ';\n'
-                if primero.tipo in ['int', 'double', 'float'] and segundo.tipo in ['int', 'double', 'float']:
+                if primero.tipo in ['int', 'double', 'float', 'scanf', 'ternary'] and segundo.tipo in ['int', 'double', 'float', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
@@ -313,19 +317,19 @@ class TresDirecciones:
             registro = self.obtener_registro_temporal()
             if expresion.operacion == '-':
                 self.codigo3d += registro + ' =  -' + operando + ';\n'
-                if operando.tipo in ['int', 'double', 'float'] and operando.tipo in ['int', 'double', 'float']:
+                if operando.tipo in ['int', 'double', 'float', 'scanf', 'ternary'] and operando.tipo in ['int', 'double', 'float', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
             elif expresion.operacion == '!':
                 self.codigo3d += registro + ' =  !' + operando + ';\n'
-                if operando.tipo in ['int', 'double', 'float'] and operando.tipo in ['int', 'double', 'float']:
+                if operando.tipo in ['int', 'double', 'float', 'scanf', 'ternary'] and operando.tipo in ['int', 'double', 'float', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
             elif expresion.operacion == '~':
                 self.codigo3d += registro + ' =  ~' + operando + ';\n'
-                if operando.tipo in ['int', 'double', 'float'] and operando.tipo in ['int', 'double', 'float']:
+                if operando.tipo in ['int', 'double', 'float', 'scanf', 'ternary'] and operando.tipo in ['int', 'double', 'float', 'scanf', 'ternary']:
                     return clases.Variable('int', registro)
                 else:
                     return None
