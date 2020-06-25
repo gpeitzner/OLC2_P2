@@ -23,6 +23,8 @@ palabras_reservadas = {
     'double': '_double',
     'float': '_float',
     'void': '_void',
+    'printf': '_printf',
+    'scanf': '_scanf'
 }
 
 tokens = [
@@ -353,8 +355,16 @@ def p_instruccion_local(t):
                         |   DO
                         |   FOR
                         |   METODO punto_coma
+                        |   PRINT punto_coma
     '''
     t[0] = t[1]
+
+
+def p_instruccion_local_print(t):
+    '''
+    PRINT   :   _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra
+    '''
+    t[0] = clases._PrintF(t[3], str(t.slice[1].lineno))
 
 
 def p_instruccion_local_continue(t):
@@ -762,9 +772,23 @@ def p_expresion_expresiones(t):
 
 def p_expresion_sizeof(t):
     '''
-    EXPRESION   :   _sizeof parentesis_abre TIPO parentesis_cierra
+    EXPRESION   :   _sizeof parentesis_abre TIPO parentesis_cierra %prec NIVEL2
     '''
     t[0] = clases._SizeOf(t[3])
+
+
+def p_expresion_scanf(t):
+    '''
+    EXPRESION   :   _scanf parentesis_abre parentesis_cierra
+    '''
+    t[0] = clases.ExpresionScan()
+
+
+def p_expresion_casteo(t):
+    '''
+    EXPRESION   :   parentesis_abre TIPO parentesis_cierra EXPRESION %prec NIVEL2
+    '''
+    t[0] = clases.ExpresionCasteo(t[2], t[4])
 
 
 def p_expresion_caracter(t):

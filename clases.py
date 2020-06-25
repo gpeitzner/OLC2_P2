@@ -231,6 +231,22 @@ class _SizeOf(Expresion):
         self.tipo = tipo
 
 
+class ExpresionCasteo(Expresion):
+    def __init__(self, tipo, expresion):
+        self.tipo = tipo
+        self.expresion = expresion
+
+
+class ExpresionScan(Expresion):
+    'Scan'
+
+
+class _PrintF:
+    def __init__(self, expresiones, linea):
+        self.expresiones = expresiones
+        self.linea = linea
+
+
 class Valor:
     'Valor'
 
