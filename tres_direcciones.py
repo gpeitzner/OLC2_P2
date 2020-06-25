@@ -2,6 +2,35 @@ import clases
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
+class Simbolo:
+    def __init__(self, tipo, identificador, temporal):
+        self.tipo = tipo
+        self.identificador = identificador
+        self.temporal = temporal
+
+
+class TablaSimbolos:
+    def __init__(self, ambito):
+        self.ambito = ambito
+        self.simbolos = {}
+
+    def existe(self, identificador):
+        if identificador in self.simbolos.keys():
+            return True
+        return False
+
+    def obtener_temporal(self, identificador):
+        if identificador in self.simbolos.keys():
+            return self.simbolos[identificador]
+        return None
+
+    def actualizar(self, simbolo):
+        self.simbolos[simbolo.identificador] = simbolo
+
+    def obtener_ambito(self):
+        return self.ambito
+
+
 class TresDirecciones:
 
     def __init__(self, consola, ast):
@@ -11,11 +40,13 @@ class TresDirecciones:
         self.codigo3d = 'main:\n'
         self.contador_registros_temporales = 0
         self.contador_etiquetas_temporales = 0
+        self.tabla_simbolos = [TablaSimbolos(0)]
 
     def generar_codigo(self):
         if self.obtener_funciones():
             if self.existe_main():
-                self.cargar_variables_globales()
+                if self.cargar_variables_globales():
+                    print(self.codigo3d)
             else:
                 self.mostrar_mensaje_consola(
                     'ERROR: No existe la función main.')
@@ -43,12 +74,38 @@ class TresDirecciones:
     def cargar_variables_globales(self):
         for instruccion_global in self.ast:
             if isinstance(instruccion_global, clases.Declaracion):
-                tipo = instruccion_global.tipo
+                tipo = instruccion_global.tipo.valor
                 for declaracion in instruccion_global.declaraciones:
                     identificador = declaracion.identificador
-                    print(str(tipo.valor)+' '+str(identificador))
-                    print(self.obtener_expresion(declaracion.expresion))
-                    print(self.codigo3d)
+                    if declaracion.expresion:
+                        variable = self.obtener_expresion(
+                            declaracion.expresion)
+                        if variable:
+                            if variable.tipo == tipo or variable.tipo == 'ternary':
+                                if not self.tabla_simbolos[0].existe(identificador):
+                                    self.tabla_simbolos[0].actualizar(
+                                        Simbolo(tipo, identificador, variable.valor))
+                                else:
+                                    self.mostrar_mensaje_consola(
+                                        'ERROR: Ya existe la variable global en línea: '+str(declaracion.linea))
+                                    return False
+                            else:
+                                self.mostrar_mensaje_consola(
+                                    "ERROR: Tipo de expresión no válida en línea: "+str(declaracion.linea))
+                                return False
+                        else:
+                            self.mostrar_mensaje_consola(
+                                'ERROR: Expresión no válida en línea: '+str(declaracion.linea))
+                            return False
+                    else:
+                        if not self.tabla_simbolos[0].existe(identificador):
+                            self.tabla_simbolos[0].actualizar(
+                                Simbolo(tipo, identificador, None))
+                        else:
+                            self.mostrar_mensaje_consola(
+                                'ERROR: Ya existe la variable global en línea: '+str(declaracion.linea))
+                            return False
+        return True
 
     def obtener_expresion(self, expresion):
         if isinstance(expresion, clases.ExpresionAritmetica):
@@ -65,6 +122,20 @@ class TresDirecciones:
             return self.obtener_expresion_ternaria(expresion)
         if isinstance(expresion, clases.Entero):
             return clases.Variable('int', str(expresion.valor))
+        if isinstance(expresion, (clases.Cadena, clases.Caracter)):
+            return clases.Variable('char', str(expresion.valor))
+        if isinstance(expresion, clases.Decimal):
+            return clases.Variable('float', str(expresion.valor))
+        if isinstance(expresion, clases.Identificador):
+            if self.tabla_simbolos[0].existe(expresion.valor):
+                simbolo = self.tabla_simbolos[0].obtener_temporal(
+                    expresion.valor)
+                if simbolo.temporal:
+                    return clases.Variable(simbolo.tipo, simbolo.temporal)
+                else:
+                    return None
+            else:
+                return None
         return None
 
     def obtener_expresion_aritmetica(self, expresion):
