@@ -3,23 +3,65 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Simbolo:
-    def __init__(self, temporal, tipo):
-        self.temporal = temporal
+    def __init__(self, tipo, identificador, temporal):
         self.tipo = tipo
+        self.identificador = identificador
+        self.temporal = temporal
 
 
 class TablaSimbolos:
-    def __init__(self, ambito):
-        self.ambito = ambito
+    def __init__(self):
         self.simbolos = {}
 
-    def existe(self, identificador):
-        if identificador in self.simbolos.keys():
-            return self.simbolos[identificador]
+
+class Ambito:
+    def __init__(self):
+        self.tablas_simbolos = []
+
+    def buscar_simbolo_actual(self, identificador):
+        if len(self.tablas_simbolos) > 0:
+            tabla_simbolos_actual = self.tablas_simbolos[len(
+                self.tablas_simbolos) - 1]
+            if identificador in tabla_simbolos_actual.simbolos.keys():
+                return tabla_simbolos_actual.simbolos[identificador]
         return None
 
-    def actualizar(self, identificador, simbolo):
-        self.simbolos[identificador] = simbolo
+    def buscar_simbolo_ambito(self, identificador):
+        if len(self.tablas_simbolos) > 0:
+            tablas_simbolos_temporal = None
+            if len(self.tablas_simbolos) > 1:
+                tablas_simbolos_temporal = self.tablas_simbolos.reverse()
+            else:
+                tablas_simbolos_temporal = self.tablas_simbolos
+            for tabla_auxiliar in tablas_simbolos_temporal:
+                if identificador in tabla_auxiliar.simbolos.keys():
+                    return tabla_auxiliar.simbolos[identificador]
+        return None
+
+    def actualizar_simbolo_ambito(self, identificador, temporal):
+        if len(self.tablas_simbolos) > 0:
+            tablas_simbolos_temporal = None
+            if len(self.tablas_simbolos) > 1:
+                tablas_simbolos_temporal = self.tablas_simbolos.reverse()
+            else:
+                tablas_simbolos_temporal = self.tablas_simbolos
+            for tabla_auxiliar in tablas_simbolos_temporal:
+                if identificador in tabla_auxiliar.simbolos.keys():
+                    tabla_auxiliar.simbolos[identificador].temporal = temporal
+                    return True
+        return False
+
+    def agregar_tabla_simbolos(self):
+        self.tablas_simbolos.append(TablaSimbolos())
+
+    def eliminar_tabla_simbolos(self):
+        if len(self.tablas_simbolos) > 0:
+            self.tablas_simbolos.pop()
+
+    def agregar_simbolo(self, simbolo):
+        if len(self.tablas_simbolos) > 0:
+            self.tablas_simbolos[len(
+                self.tablas_simbolos) - 1].simbolos[simbolo.identificador] = simbolo
 
 
 class TresDirecciones:
@@ -31,9 +73,9 @@ class TresDirecciones:
         self.codigo3d = 'main:\n'
         self.contador_registros_temporales = 0
         self.contador_etiquetas_temporales = 0
-        self.tabla_simbolos = [TablaSimbolos(0)]
-        self.ambito_actual = 0
-        self.etiquetas = []
+        self.ambitos = []
+        self.agregar_ambito()
+        self.obtener_ambito().agregar_tabla_simbolos()
         self.detener_ejecucion = False
 
     def generar_codigo(self):
@@ -41,7 +83,8 @@ class TresDirecciones:
             if self.existe_main():
                 if self.cargar_variables_globales():
                     self.generar_codigo_main()
-                    print(self.codigo3d)
+                    if not self.detener_ejecucion:
+                        self.consola.setPlainText(str(self.codigo3d))
             else:
                 self.mostrar_mensaje_consola(
                     'ERROR: No existe la función main.')
@@ -72,25 +115,24 @@ class TresDirecciones:
                 tipo = instruccion_global.tipo.valor
                 for declaracion in instruccion_global.declaraciones:
                     identificador = declaracion.identificador
-                    if self.tabla_simbolos[0].existe(identificador):
+                    if self.obtener_ambito().buscar_simbolo_actual(identificador):
                         self.mostrar_mensaje_consola(
                             'ERROR: Variable repetida en línea: '+declaracion.linea+'.')
                         return False
                     else:
                         if declaracion.expresion:
-                            registro = self.obtener_expresion(
+                            temporal = self.obtener_expresion(
                                 declaracion.expresion)
-                            if registro:
-                                self.tabla_simbolos[0].actualizar(
-                                    identificador, Simbolo(registro, tipo))
+                            if temporal:
+                                self.obtener_ambito().agregar_simbolo(
+                                    Simbolo(tipo, identificador, temporal))
                             else:
                                 self.mostrar_mensaje_consola(
                                     'ERROR: Expresión no válida en línea: '+declaracion.linea+'.')
+                                return False
                         else:
-                            registro = self.obtener_registro_temporal()
-                            self.codigo3d += registro + ' = 0;\n'
-                            self.tabla_simbolos[0].actualizar(
-                                identificador, Simbolo(registro, tipo))
+                            self.obtener_ambito().agregar_simbolo(
+                                Simbolo(tipo, identificador, None))
         return True
 
     def obtener_expresion(self, expresion):
@@ -259,30 +301,40 @@ class TresDirecciones:
             if isinstance(instrucciones, clases.Etiqueta):
                 self.generar_codigo_etiqueta(instruccion)
             elif isinstance(instruccion, clases.Salto):
-                pass
+                self.generar_codigo_salto(instruccion)
+            elif isinstance(instruccion, clases.Declaracion):
+                self.generar_codigo_declaracion(instruccion)
             if self.detener_ejecucion:
                 break
 
     def generar_codigo_etiqueta(self, instruccion):
-        if not instruccion.identificador in self.etiquetas:
-            self.codigo3d += instruccion.identificador + ':\n'
-            self.etiquetas.append(instruccion.identificador)
-        else:
-            self.detener_ejecucion = True
-            self.mostrar_mensaje_consola('ERROR: Etiqueta repetida.')
+        self.codigo3d += instruccion.identificador + ':\n'
 
     def generar_codigo_salto(self, instruccion):
+        self.codigo3d += 'goto '+instruccion.identificador+';\n'
+
+    def generar_codigo_declaracion(self, instruccion):
         pass
 
+    def agregar_ambito(self):
+        self.ambitos.append(Ambito())
+
+    def eliminar_ambito(self):
+        if len(self.ambitos) > 0:
+            self.ambitos.pop()
+
+    def obtener_ambito(self):
+        if len(self.ambitos) > 0:
+            return self.ambitos[len(self.ambitos) - 1]
+
     def obtener_temporal_variable(self, identificador):
-        tabla_auxiliar = None
-        if len(self.tabla_simbolos) > 1:
-            tabla_auxiliar = self.tabla_simbolos.reverse()
-        else:
-            tabla_auxiliar = self.tabla_simbolos
-        for tabla_temporal in tabla_auxiliar:
-            if tabla_temporal.ambito == self.ambito_actual or tabla_temporal.ambito == 0:
-                simbolo = tabla_temporal.existe(identificador)
-                if simbolo:
-                    return simbolo.temporal
+        if len(self.ambitos) > 0:
+            registro = self.obtener_ambito().buscar_simbolo_ambito(identificador)
+            if registro:
+                return registro.temporal
+            else:
+                actual = self.ambitos[0]
+                registro = actual.buscar_simbolo_ambito(identificador)
+                if registro:
+                    return registro.temporal
         return None

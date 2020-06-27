@@ -342,14 +342,17 @@ class Ui_MainWindow(object):
             if instrucciones:
                 self.plainTextEdit.appendPlainText(
                     "interprete.py ascendente.out\n")
-                try:
-                    generador = tres_direcciones.TresDirecciones(
+                generador = tres_direcciones.TresDirecciones(
                         self.plainTextEdit, instrucciones)
-                    generador.generar_codigo()
-                except Exception as ex:
-                    print(ex)
-                    self.plainTextEdit.appendPlainText(
-                        "ERROR: Error de ejecución.")
+                generador.generar_codigo()
+                # try:
+                #     generador = tres_direcciones.TresDirecciones(
+                #         self.plainTextEdit, instrucciones)
+                #     generador.generar_codigo()
+                # except Exception as ex:
+                #     print(ex)
+                #     self.plainTextEdit.appendPlainText(
+                #         "ERROR: Error de ejecución.")
 
     def ejecutarAST(self):
         print("AST")
