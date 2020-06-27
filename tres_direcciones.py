@@ -34,7 +34,7 @@ class Ambito:
             else:
                 tablas_simbolos_temporal = self.tablas_simbolos
             for tabla_auxiliar in tablas_simbolos_temporal:
-                if identificador in tabla_auxiliar.simbolos.keys():
+                if str(identificador) in tabla_auxiliar.simbolos.keys():
                     return tabla_auxiliar.simbolos[identificador]
         return None
 
@@ -81,7 +81,8 @@ class TresDirecciones:
     def generar_codigo(self):
         if self.obtener_funciones():
             if self.existe_main():
-                if self.cargar_variables_globales():
+                self.cargar_variables_globales()
+                if not self.detener_ejecucion:
                     self.generar_codigo_main()
                     if not self.detener_ejecucion:
                         self.consola.setPlainText(str(self.codigo3d))
@@ -112,28 +113,7 @@ class TresDirecciones:
     def cargar_variables_globales(self):
         for instruccion_global in self.ast:
             if isinstance(instruccion_global, clases.Declaracion):
-                tipo = instruccion_global.tipo.valor
-                for declaracion in instruccion_global.declaraciones:
-                    identificador = declaracion.identificador
-                    if self.obtener_ambito().buscar_simbolo_actual(identificador):
-                        self.mostrar_mensaje_consola(
-                            'ERROR: Variable repetida en línea: '+declaracion.linea+'.')
-                        return False
-                    else:
-                        if declaracion.expresion:
-                            temporal = self.obtener_expresion(
-                                declaracion.expresion)
-                            if temporal:
-                                self.obtener_ambito().agregar_simbolo(
-                                    Simbolo(tipo, identificador, temporal))
-                            else:
-                                self.mostrar_mensaje_consola(
-                                    'ERROR: Expresión no válida en línea: '+declaracion.linea+'.')
-                                return False
-                        else:
-                            self.obtener_ambito().agregar_simbolo(
-                                Simbolo(tipo, identificador, None))
-        return True
+                self.generar_codigo_declaracion(instruccion_global)
 
     def obtener_expresion(self, expresion):
         if isinstance(expresion, clases.ExpresionAritmetica):
@@ -293,19 +273,26 @@ class TresDirecciones:
     def generar_codigo_main(self):
         self.codigo3d += 'm_c_ep:\n'
         principal = self.funciones['main']
+        self.agregar_ambito()
+        self.obtener_ambito().agregar_tabla_simbolos()
         self.generar_codigo_instrucciones(principal.cuerpo)
+        self.obtener_ambito().eliminar_tabla_simbolos()
+        self.eliminar_ambito()
         self.codigo3d += 'exit;\n'
 
     def generar_codigo_instrucciones(self, instrucciones):
-        for instruccion in instrucciones:
-            if isinstance(instrucciones, clases.Etiqueta):
-                self.generar_codigo_etiqueta(instruccion)
-            elif isinstance(instruccion, clases.Salto):
-                self.generar_codigo_salto(instruccion)
-            elif isinstance(instruccion, clases.Declaracion):
-                self.generar_codigo_declaracion(instruccion)
-            if self.detener_ejecucion:
-                break
+        if instrucciones:
+            for instruccion in instrucciones:
+                if isinstance(instrucciones, clases.Etiqueta):
+                    self.generar_codigo_etiqueta(instruccion)
+                elif isinstance(instruccion, clases.Salto):
+                    self.generar_codigo_salto(instruccion)
+                elif isinstance(instruccion, clases.Declaracion):
+                    self.generar_codigo_declaracion(instruccion)
+                elif isinstance(instruccion, clases.Asignacion):
+                    self.generar_codigo_asignacion(instruccion)
+                if self.detener_ejecucion:
+                    break
 
     def generar_codigo_etiqueta(self, instruccion):
         self.codigo3d += instruccion.identificador + ':\n'
@@ -314,7 +301,64 @@ class TresDirecciones:
         self.codigo3d += 'goto '+instruccion.identificador+';\n'
 
     def generar_codigo_declaracion(self, instruccion):
-        pass
+        tipo = instruccion.tipo.valor
+        for declaracion in instruccion.declaraciones:
+            identificador = declaracion.identificador
+            if self.obtener_ambito().buscar_simbolo_actual(identificador):
+                self.mostrar_mensaje_consola(
+                    'ERROR: Variable repetida en línea: '+declaracion.linea+'.')
+                self.detener_ejecucion = True
+            else:
+                if declaracion.indices:
+                    pass
+                else:
+                    self.generar_codigo_declaracion_estandar(
+                        tipo, identificador, declaracion)
+
+    def generar_codigo_declaracion_estandar(self, tipo, identificador, declaracion):
+        if declaracion.expresion:
+            temporal = self.obtener_expresion(
+                declaracion.expresion)
+            if temporal:
+                self.obtener_ambito().agregar_simbolo(
+                    Simbolo(tipo, identificador, temporal))
+            else:
+                self.mostrar_mensaje_consola(
+                    'ERROR: Expresión no válida en línea: '+declaracion.linea+'.')
+                self.detener_ejecucion = True
+        else:
+            self.obtener_ambito().agregar_simbolo(
+                Simbolo(tipo, identificador, None))
+
+    def generar_codigo_asignacion(self, instruccion):
+        if isinstance(instruccion, clases.AsignacionNormal):
+            self.generar_codigo_asignacion_normal(instruccion)
+
+    def generar_codigo_asignacion_normal(self, instruccion):
+        simbolo = self.existe_variable(instruccion.identificador)
+        if simbolo:
+            if instruccion.indices:
+                pass
+            else:
+                temporal = self.obtener_expresion(instruccion.expresion)
+                if temporal:
+                    registro = simbolo.temporal
+                    if not registro:
+                        registro = self.obtener_registro_temporal()
+                    if self.actualizar_temporal_variable(instruccion.identificador, registro):
+                        self.codigo3d += registro + ' = '+temporal+';\n'
+                    else:
+                        self.mostrar_mensaje_consola(
+                            'ERROR: Asignación no válida en línea: '+instruccion.linea+'.')
+                        self.detener_ejecucion = True
+                else:
+                    self.mostrar_mensaje_consola(
+                        'ERROR: Expresión no válida en línea: '+instruccion.linea+'.')
+                    self.detener_ejecucion = True
+        else:
+            self.mostrar_mensaje_consola(
+                'ERROR: No existe la variable en línea: '+instruccion.linea+'.')
+            self.detener_ejecucion = True
 
     def agregar_ambito(self):
         self.ambitos.append(Ambito())
@@ -332,9 +376,25 @@ class TresDirecciones:
             registro = self.obtener_ambito().buscar_simbolo_ambito(identificador)
             if registro:
                 return registro.temporal
-            else:
-                actual = self.ambitos[0]
-                registro = actual.buscar_simbolo_ambito(identificador)
-                if registro:
-                    return registro.temporal
+            registro = self.ambitos[0].buscar_simbolo_ambito(identificador)
+            if registro:
+                return registro.temporal
+        return None
+
+    def actualizar_temporal_variable(self, identificador, temporal):
+        if len(self.ambitos) > 0:
+            if self.obtener_ambito().actualizar_simbolo_ambito(identificador, temporal):
+                return True
+            if self.ambitos[0].actualizar_simbolo_ambito(identificador, temporal):
+                return True
+        return False
+
+    def existe_variable(self, identificador):
+        if len(self.ambitos) > 0:
+            registro = self.obtener_ambito().buscar_simbolo_ambito(identificador)
+            if registro:
+                return registro
+            registro = self.ambitos[0].buscar_simbolo_ambito(identificador)
+            if registro:
+                return registro
         return None

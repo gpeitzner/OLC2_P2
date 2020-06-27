@@ -9,7 +9,7 @@ palabras_reservadas = {
     'return': '_return',
     'goto': '_goto',
     'if': '_if',
-    'elseif': '_elseif',
+    'else if': '_elseif',
     'else': '_else',
     'switch': '_switch',
     'case': '_case',
