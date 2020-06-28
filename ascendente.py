@@ -535,8 +535,8 @@ def p_compuesto(t):
                 |   asterisco igual %prec NIVEL14
                 |   division igual %prec NIVEL14
                 |   porcentaje igual %prec NIVEL14
-                |   menor menor igual %prec NIVEL14
-                |   mayor mayor igual %prec NIVEL14
+                |   desplazamiento_izquierdo igual %prec NIVEL14
+                |   desplazamiento_derecho igual %prec NIVEL14
                 |   et igual %prec NIVEL14
                 |   elevado igual %prec NIVEL14
                 |   pleca igual %prec NIVEL14
@@ -674,9 +674,17 @@ def p_do(t):
 
 def p_for(t):
     '''
-    FOR :   _for parentesis_abre DECLARACION punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    FOR :   _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     '''
     t[0] = clases._For(t[3], t[5], t[7], t[10], str(t.slice[1].lineno))
+
+
+def p_(t):
+    '''
+    INICIO_FOR  :   DECLARACION
+                |   ASIGNACION
+    '''
+    t[0] = t[1]
 
 
 def p_expresion_aritmetica(t):

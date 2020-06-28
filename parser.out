@@ -67,8 +67,8 @@ Rule 61    COMPUESTO -> mas igual
 Rule 62    COMPUESTO -> asterisco igual
 Rule 63    COMPUESTO -> division igual
 Rule 64    COMPUESTO -> porcentaje igual
-Rule 65    COMPUESTO -> menor menor igual
-Rule 66    COMPUESTO -> mayor mayor igual
+Rule 65    COMPUESTO -> desplazamiento_izquierdo igual
+Rule 66    COMPUESTO -> desplazamiento_derecho igual
 Rule 67    COMPUESTO -> et igual
 Rule 68    COMPUESTO -> elevado igual
 Rule 69    COMPUESTO -> pleca igual
@@ -173,8 +173,8 @@ corchete_abre        : 54 55
 corchete_cierra      : 54 55
 decimal              : 124
 decremento           : 59
-desplazamiento_derecho : 103
-desplazamiento_izquierdo : 102
+desplazamiento_derecho : 66 103
+desplazamiento_izquierdo : 65 102
 distinto             : 95
 division             : 63 92
 dos_puntos           : 43 83 84 107
@@ -189,9 +189,9 @@ igual                : 49 60 61 62 63 64 65 66 67 68 69
 llave_abre           : 9 15 70 75 76 78 86 87 88 117
 llave_cierra         : 9 15 70 75 76 78 86 87 88 117
 mas                  : 61 89
-mayor                : 66 66 96
+mayor                : 96
 mayor_igual          : 98
-menor                : 65 65 97
+menor                : 97
 menor_igual          : 99
 menos                : 90 108
 or                   : 101
@@ -593,8 +593,8 @@ state 25
     asterisco       reduce using rule 50 (INDICES -> ACCESOS .)
     division        reduce using rule 50 (INDICES -> ACCESOS .)
     porcentaje      reduce using rule 50 (INDICES -> ACCESOS .)
-    menor           reduce using rule 50 (INDICES -> ACCESOS .)
-    mayor           reduce using rule 50 (INDICES -> ACCESOS .)
+    desplazamiento_izquierdo reduce using rule 50 (INDICES -> ACCESOS .)
+    desplazamiento_derecho reduce using rule 50 (INDICES -> ACCESOS .)
     et              reduce using rule 50 (INDICES -> ACCESOS .)
     elevado         reduce using rule 50 (INDICES -> ACCESOS .)
     pleca           reduce using rule 50 (INDICES -> ACCESOS .)
@@ -946,8 +946,8 @@ state 39
     asterisco       reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
     division        reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
     porcentaje      reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
-    menor           reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
-    mayor           reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
+    desplazamiento_izquierdo reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
+    desplazamiento_derecho reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
     et              reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
     elevado         reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
     pleca           reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
@@ -955,12 +955,12 @@ state 39
     menos           reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
     equivale        reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
     distinto        reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
+    mayor           reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
+    menor           reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
     mayor_igual     reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
     menor_igual     reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
     and             reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
     or              reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
-    desplazamiento_izquierdo reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
-    desplazamiento_derecho reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
     pregunta        reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
     parentesis_cierra reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
     llave_cierra    reduce using rule 55 (ACCESO -> corchete_abre corchete_cierra .)
@@ -1680,8 +1680,8 @@ state 65
     asterisco       reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
     division        reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
     porcentaje      reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
-    menor           reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
-    mayor           reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
+    desplazamiento_izquierdo reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
+    desplazamiento_derecho reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
     et              reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
     elevado         reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
     pleca           reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
@@ -1689,12 +1689,12 @@ state 65
     menos           reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
     equivale        reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
     distinto        reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
+    mayor           reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
+    menor           reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
     mayor_igual     reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
     menor_igual     reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
     and             reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
     or              reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
-    desplazamiento_izquierdo reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
-    desplazamiento_derecho reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
     pregunta        reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
     parentesis_cierra reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
     llave_cierra    reduce using rule 54 (ACCESO -> corchete_abre EXPRESION corchete_cierra .)
@@ -5036,8 +5036,8 @@ state 133
     asterisco       reduce using rule 51 (INDICES -> .)
     division        reduce using rule 51 (INDICES -> .)
     porcentaje      reduce using rule 51 (INDICES -> .)
-    menor           reduce using rule 51 (INDICES -> .)
-    mayor           reduce using rule 51 (INDICES -> .)
+    desplazamiento_izquierdo reduce using rule 51 (INDICES -> .)
+    desplazamiento_derecho reduce using rule 51 (INDICES -> .)
     et              reduce using rule 51 (INDICES -> .)
     elevado         reduce using rule 51 (INDICES -> .)
     pleca           reduce using rule 51 (INDICES -> .)
@@ -5793,8 +5793,8 @@ state 165
     (62) COMPUESTO -> . asterisco igual
     (63) COMPUESTO -> . division igual
     (64) COMPUESTO -> . porcentaje igual
-    (65) COMPUESTO -> . menor menor igual
-    (66) COMPUESTO -> . mayor mayor igual
+    (65) COMPUESTO -> . desplazamiento_izquierdo igual
+    (66) COMPUESTO -> . desplazamiento_derecho igual
     (67) COMPUESTO -> . et igual
     (68) COMPUESTO -> . elevado igual
     (69) COMPUESTO -> . pleca igual
@@ -5805,8 +5805,8 @@ state 165
     asterisco       shift and go to state 190
     division        shift and go to state 191
     porcentaje      shift and go to state 192
-    menor           shift and go to state 193
-    mayor           shift and go to state 194
+    desplazamiento_izquierdo shift and go to state 193
+    desplazamiento_derecho shift and go to state 194
     et              shift and go to state 195
     elevado         shift and go to state 196
     pleca           shift and go to state 197
@@ -6625,16 +6625,16 @@ state 192
 
 state 193
 
-    (65) COMPUESTO -> menor . menor igual
+    (65) COMPUESTO -> desplazamiento_izquierdo . igual
 
-    menor           shift and go to state 212
+    igual           shift and go to state 212
 
 
 state 194
 
-    (66) COMPUESTO -> mayor . mayor igual
+    (66) COMPUESTO -> desplazamiento_derecho . igual
 
-    mayor           shift and go to state 213
+    igual           shift and go to state 213
 
 
 state 195
@@ -6922,8 +6922,8 @@ state 207
     (62) COMPUESTO -> . asterisco igual
     (63) COMPUESTO -> . division igual
     (64) COMPUESTO -> . porcentaje igual
-    (65) COMPUESTO -> . menor menor igual
-    (66) COMPUESTO -> . mayor mayor igual
+    (65) COMPUESTO -> . desplazamiento_izquierdo igual
+    (66) COMPUESTO -> . desplazamiento_derecho igual
     (67) COMPUESTO -> . et igual
     (68) COMPUESTO -> . elevado igual
     (69) COMPUESTO -> . pleca igual
@@ -6933,8 +6933,8 @@ state 207
     asterisco       shift and go to state 190
     division        shift and go to state 191
     porcentaje      shift and go to state 192
-    menor           shift and go to state 193
-    mayor           shift and go to state 194
+    desplazamiento_izquierdo shift and go to state 193
+    desplazamiento_derecho shift and go to state 194
     et              shift and go to state 195
     elevado         shift and go to state 196
     pleca           shift and go to state 197
@@ -7019,16 +7019,40 @@ state 211
 
 state 212
 
-    (65) COMPUESTO -> menor menor . igual
+    (65) COMPUESTO -> desplazamiento_izquierdo igual .
 
-    igual           shift and go to state 224
+    menos           reduce using rule 65 (COMPUESTO -> desplazamiento_izquierdo igual .)
+    exclamacion     reduce using rule 65 (COMPUESTO -> desplazamiento_izquierdo igual .)
+    virgulilla      reduce using rule 65 (COMPUESTO -> desplazamiento_izquierdo igual .)
+    et              reduce using rule 65 (COMPUESTO -> desplazamiento_izquierdo igual .)
+    parentesis_abre reduce using rule 65 (COMPUESTO -> desplazamiento_izquierdo igual .)
+    identificador   reduce using rule 65 (COMPUESTO -> desplazamiento_izquierdo igual .)
+    llave_abre      reduce using rule 65 (COMPUESTO -> desplazamiento_izquierdo igual .)
+    _sizeof         reduce using rule 65 (COMPUESTO -> desplazamiento_izquierdo igual .)
+    _scanf          reduce using rule 65 (COMPUESTO -> desplazamiento_izquierdo igual .)
+    caracter        reduce using rule 65 (COMPUESTO -> desplazamiento_izquierdo igual .)
+    cadena          reduce using rule 65 (COMPUESTO -> desplazamiento_izquierdo igual .)
+    entero          reduce using rule 65 (COMPUESTO -> desplazamiento_izquierdo igual .)
+    decimal         reduce using rule 65 (COMPUESTO -> desplazamiento_izquierdo igual .)
 
 
 state 213
 
-    (66) COMPUESTO -> mayor mayor . igual
+    (66) COMPUESTO -> desplazamiento_derecho igual .
 
-    igual           shift and go to state 225
+    menos           reduce using rule 66 (COMPUESTO -> desplazamiento_derecho igual .)
+    exclamacion     reduce using rule 66 (COMPUESTO -> desplazamiento_derecho igual .)
+    virgulilla      reduce using rule 66 (COMPUESTO -> desplazamiento_derecho igual .)
+    et              reduce using rule 66 (COMPUESTO -> desplazamiento_derecho igual .)
+    parentesis_abre reduce using rule 66 (COMPUESTO -> desplazamiento_derecho igual .)
+    identificador   reduce using rule 66 (COMPUESTO -> desplazamiento_derecho igual .)
+    llave_abre      reduce using rule 66 (COMPUESTO -> desplazamiento_derecho igual .)
+    _sizeof         reduce using rule 66 (COMPUESTO -> desplazamiento_derecho igual .)
+    _scanf          reduce using rule 66 (COMPUESTO -> desplazamiento_derecho igual .)
+    caracter        reduce using rule 66 (COMPUESTO -> desplazamiento_derecho igual .)
+    cadena          reduce using rule 66 (COMPUESTO -> desplazamiento_derecho igual .)
+    entero          reduce using rule 66 (COMPUESTO -> desplazamiento_derecho igual .)
+    decimal         reduce using rule 66 (COMPUESTO -> desplazamiento_derecho igual .)
 
 
 state 214
@@ -7092,28 +7116,28 @@ state 217
 
     (70) IF -> _if parentesis_abre EXPRESION parentesis_cierra . llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
 
-    llave_abre      shift and go to state 226
+    llave_abre      shift and go to state 224
 
 
 state 218
 
     (78) SWITCH -> _switch parentesis_abre EXPRESION parentesis_cierra . llave_abre CASES DEFAULT_CASE llave_cierra
 
-    llave_abre      shift and go to state 227
+    llave_abre      shift and go to state 225
 
 
 state 219
 
     (86) WHILE -> _while parentesis_abre EXPRESION parentesis_cierra . llave_abre CUERPO_LOCAL llave_cierra
 
-    llave_abre      shift and go to state 228
+    llave_abre      shift and go to state 226
 
 
 state 220
 
     (87) DO -> _do llave_abre CUERPO_LOCAL llave_cierra . _while parentesis_abre EXPRESION parentesis_cierra punto_coma
 
-    _while          shift and go to state 229
+    _while          shift and go to state 227
 
 
 state 221
@@ -7172,7 +7196,7 @@ state 221
     entero          shift and go to state 52
     decimal         shift and go to state 53
 
-    EXPRESION                      shift and go to state 230
+    EXPRESION                      shift and go to state 228
     METODO                         shift and go to state 45
 
 state 222
@@ -7238,48 +7262,10 @@ state 223
     entero          shift and go to state 52
     decimal         shift and go to state 53
 
-    EXPRESION                      shift and go to state 231
+    EXPRESION                      shift and go to state 229
     METODO                         shift and go to state 45
 
 state 224
-
-    (65) COMPUESTO -> menor menor igual .
-
-    menos           reduce using rule 65 (COMPUESTO -> menor menor igual .)
-    exclamacion     reduce using rule 65 (COMPUESTO -> menor menor igual .)
-    virgulilla      reduce using rule 65 (COMPUESTO -> menor menor igual .)
-    et              reduce using rule 65 (COMPUESTO -> menor menor igual .)
-    parentesis_abre reduce using rule 65 (COMPUESTO -> menor menor igual .)
-    identificador   reduce using rule 65 (COMPUESTO -> menor menor igual .)
-    llave_abre      reduce using rule 65 (COMPUESTO -> menor menor igual .)
-    _sizeof         reduce using rule 65 (COMPUESTO -> menor menor igual .)
-    _scanf          reduce using rule 65 (COMPUESTO -> menor menor igual .)
-    caracter        reduce using rule 65 (COMPUESTO -> menor menor igual .)
-    cadena          reduce using rule 65 (COMPUESTO -> menor menor igual .)
-    entero          reduce using rule 65 (COMPUESTO -> menor menor igual .)
-    decimal         reduce using rule 65 (COMPUESTO -> menor menor igual .)
-
-
-state 225
-
-    (66) COMPUESTO -> mayor mayor igual .
-
-    menos           reduce using rule 66 (COMPUESTO -> mayor mayor igual .)
-    exclamacion     reduce using rule 66 (COMPUESTO -> mayor mayor igual .)
-    virgulilla      reduce using rule 66 (COMPUESTO -> mayor mayor igual .)
-    et              reduce using rule 66 (COMPUESTO -> mayor mayor igual .)
-    parentesis_abre reduce using rule 66 (COMPUESTO -> mayor mayor igual .)
-    identificador   reduce using rule 66 (COMPUESTO -> mayor mayor igual .)
-    llave_abre      reduce using rule 66 (COMPUESTO -> mayor mayor igual .)
-    _sizeof         reduce using rule 66 (COMPUESTO -> mayor mayor igual .)
-    _scanf          reduce using rule 66 (COMPUESTO -> mayor mayor igual .)
-    caracter        reduce using rule 66 (COMPUESTO -> mayor mayor igual .)
-    cadena          reduce using rule 66 (COMPUESTO -> mayor mayor igual .)
-    entero          reduce using rule 66 (COMPUESTO -> mayor mayor igual .)
-    decimal         reduce using rule 66 (COMPUESTO -> mayor mayor igual .)
-
-
-state 226
 
     (70) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre . CUERPO_LOCAL llave_cierra ELSEIFS ELSE
     (22) CUERPO_LOCAL -> . LISTA_LOCAL
@@ -7341,7 +7327,7 @@ state 226
     _void           shift and go to state 14
     _struct         shift and go to state 35
 
-    CUERPO_LOCAL                   shift and go to state 232
+    CUERPO_LOCAL                   shift and go to state 230
     LISTA_LOCAL                    shift and go to state 135
     INSTRUCCION_LOCAL              shift and go to state 136
     ETIQUETA                       shift and go to state 137
@@ -7357,7 +7343,7 @@ state 226
     PRINT                          shift and go to state 147
     TIPO                           shift and go to state 58
 
-state 227
+state 225
 
     (78) SWITCH -> _switch parentesis_abre EXPRESION parentesis_cierra llave_abre . CASES DEFAULT_CASE llave_cierra
     (79) CASES -> . LISTA_CASE
@@ -7368,13 +7354,13 @@ state 227
 
     _default        reduce using rule 80 (CASES -> .)
     llave_cierra    reduce using rule 80 (CASES -> .)
-    _case           shift and go to state 236
+    _case           shift and go to state 234
 
-    CASES                          shift and go to state 233
-    LISTA_CASE                     shift and go to state 234
-    CASE                           shift and go to state 235
+    CASES                          shift and go to state 231
+    LISTA_CASE                     shift and go to state 232
+    CASE                           shift and go to state 233
 
-state 228
+state 226
 
     (86) WHILE -> _while parentesis_abre EXPRESION parentesis_cierra llave_abre . CUERPO_LOCAL llave_cierra
     (22) CUERPO_LOCAL -> . LISTA_LOCAL
@@ -7436,7 +7422,7 @@ state 228
     _void           shift and go to state 14
     _struct         shift and go to state 35
 
-    CUERPO_LOCAL                   shift and go to state 237
+    CUERPO_LOCAL                   shift and go to state 235
     LISTA_LOCAL                    shift and go to state 135
     INSTRUCCION_LOCAL              shift and go to state 136
     ETIQUETA                       shift and go to state 137
@@ -7452,14 +7438,14 @@ state 228
     PRINT                          shift and go to state 147
     TIPO                           shift and go to state 58
 
-state 229
+state 227
 
     (87) DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while . parentesis_abre EXPRESION parentesis_cierra punto_coma
 
-    parentesis_abre shift and go to state 238
+    parentesis_abre shift and go to state 236
 
 
-state 230
+state 228
 
     (88) FOR -> _for parentesis_abre DECLARACION punto_coma EXPRESION . punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (89) EXPRESION -> EXPRESION . mas EXPRESION
@@ -7482,7 +7468,7 @@ state 230
     (106) EXPRESION -> EXPRESION . elevado EXPRESION
     (107) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
-    punto_coma      shift and go to state 239
+    punto_coma      shift and go to state 237
     mas             shift and go to state 66
     menos           shift and go to state 67
     asterisco       shift and go to state 68
@@ -7504,7 +7490,7 @@ state 230
     pregunta        shift and go to state 84
 
 
-state 231
+state 229
 
     (57) ASIGNACION -> identificador INDICES punto identificador COMPUESTO EXPRESION .
     (89) EXPRESION -> EXPRESION . mas EXPRESION
@@ -7550,25 +7536,25 @@ state 231
     pregunta        shift and go to state 84
 
 
-state 232
+state 230
 
     (70) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL . llave_cierra ELSEIFS ELSE
 
-    llave_cierra    shift and go to state 240
+    llave_cierra    shift and go to state 238
 
 
-state 233
+state 231
 
     (78) SWITCH -> _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES . DEFAULT_CASE llave_cierra
     (84) DEFAULT_CASE -> . _default dos_puntos CUERPO_LOCAL
     (85) DEFAULT_CASE -> .
 
-    _default        shift and go to state 242
+    _default        shift and go to state 240
     llave_cierra    reduce using rule 85 (DEFAULT_CASE -> .)
 
-    DEFAULT_CASE                   shift and go to state 241
+    DEFAULT_CASE                   shift and go to state 239
 
-state 234
+state 232
 
     (79) CASES -> LISTA_CASE .
     (81) LISTA_CASE -> LISTA_CASE . CASE
@@ -7576,11 +7562,11 @@ state 234
 
     _default        reduce using rule 79 (CASES -> LISTA_CASE .)
     llave_cierra    reduce using rule 79 (CASES -> LISTA_CASE .)
-    _case           shift and go to state 236
+    _case           shift and go to state 234
 
-    CASE                           shift and go to state 243
+    CASE                           shift and go to state 241
 
-state 235
+state 233
 
     (82) LISTA_CASE -> CASE .
 
@@ -7589,9 +7575,75 @@ state 235
     llave_cierra    reduce using rule 82 (LISTA_CASE -> CASE .)
 
 
-state 236
+state 234
 
     (83) CASE -> _case . EXPRESION dos_puntos CUERPO_LOCAL
+    (89) EXPRESION -> . EXPRESION mas EXPRESION
+    (90) EXPRESION -> . EXPRESION menos EXPRESION
+    (91) EXPRESION -> . EXPRESION asterisco EXPRESION
+    (92) EXPRESION -> . EXPRESION division EXPRESION
+    (93) EXPRESION -> . EXPRESION porcentaje EXPRESION
+    (94) EXPRESION -> . EXPRESION equivale EXPRESION
+    (95) EXPRESION -> . EXPRESION distinto EXPRESION
+    (96) EXPRESION -> . EXPRESION mayor EXPRESION
+    (97) EXPRESION -> . EXPRESION menor EXPRESION
+    (98) EXPRESION -> . EXPRESION mayor_igual EXPRESION
+    (99) EXPRESION -> . EXPRESION menor_igual EXPRESION
+    (100) EXPRESION -> . EXPRESION and EXPRESION
+    (101) EXPRESION -> . EXPRESION or EXPRESION
+    (102) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
+    (103) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
+    (104) EXPRESION -> . EXPRESION et EXPRESION
+    (105) EXPRESION -> . EXPRESION pleca EXPRESION
+    (106) EXPRESION -> . EXPRESION elevado EXPRESION
+    (107) EXPRESION -> . EXPRESION pregunta EXPRESION dos_puntos EXPRESION
+    (108) EXPRESION -> . menos EXPRESION
+    (109) EXPRESION -> . exclamacion EXPRESION
+    (110) EXPRESION -> . virgulilla EXPRESION
+    (111) EXPRESION -> . et identificador
+    (112) EXPRESION -> . METODO
+    (113) EXPRESION -> . parentesis_abre EXPRESION parentesis_cierra
+    (114) EXPRESION -> . identificador punto identificador
+    (115) EXPRESION -> . identificador ACCESOS
+    (116) EXPRESION -> . identificador ACCESOS punto identificador
+    (117) EXPRESION -> . llave_abre EXPRESIONES llave_cierra
+    (118) EXPRESION -> . _sizeof parentesis_abre TIPO parentesis_cierra
+    (119) EXPRESION -> . _scanf parentesis_abre parentesis_cierra
+    (120) EXPRESION -> . parentesis_abre TIPO parentesis_cierra EXPRESION
+    (121) EXPRESION -> . caracter
+    (122) EXPRESION -> . cadena
+    (123) EXPRESION -> . entero
+    (124) EXPRESION -> . decimal
+    (125) EXPRESION -> . identificador
+    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
+
+    menos           shift and go to state 40
+    exclamacion     shift and go to state 42
+    virgulilla      shift and go to state 43
+    et              shift and go to state 41
+    parentesis_abre shift and go to state 46
+    identificador   shift and go to state 44
+    llave_abre      shift and go to state 47
+    _sizeof         shift and go to state 48
+    _scanf          shift and go to state 49
+    caracter        shift and go to state 50
+    cadena          shift and go to state 51
+    entero          shift and go to state 52
+    decimal         shift and go to state 53
+
+    EXPRESION                      shift and go to state 242
+    METODO                         shift and go to state 45
+
+state 235
+
+    (86) WHILE -> _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL . llave_cierra
+
+    llave_cierra    shift and go to state 243
+
+
+state 236
+
+    (87) DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre . EXPRESION parentesis_cierra punto_coma
     (89) EXPRESION -> . EXPRESION mas EXPRESION
     (90) EXPRESION -> . EXPRESION menos EXPRESION
     (91) EXPRESION -> . EXPRESION asterisco EXPRESION
@@ -7650,83 +7702,17 @@ state 236
 
 state 237
 
-    (86) WHILE -> _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL . llave_cierra
-
-    llave_cierra    shift and go to state 245
-
-
-state 238
-
-    (87) DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre . EXPRESION parentesis_cierra punto_coma
-    (89) EXPRESION -> . EXPRESION mas EXPRESION
-    (90) EXPRESION -> . EXPRESION menos EXPRESION
-    (91) EXPRESION -> . EXPRESION asterisco EXPRESION
-    (92) EXPRESION -> . EXPRESION division EXPRESION
-    (93) EXPRESION -> . EXPRESION porcentaje EXPRESION
-    (94) EXPRESION -> . EXPRESION equivale EXPRESION
-    (95) EXPRESION -> . EXPRESION distinto EXPRESION
-    (96) EXPRESION -> . EXPRESION mayor EXPRESION
-    (97) EXPRESION -> . EXPRESION menor EXPRESION
-    (98) EXPRESION -> . EXPRESION mayor_igual EXPRESION
-    (99) EXPRESION -> . EXPRESION menor_igual EXPRESION
-    (100) EXPRESION -> . EXPRESION and EXPRESION
-    (101) EXPRESION -> . EXPRESION or EXPRESION
-    (102) EXPRESION -> . EXPRESION desplazamiento_izquierdo EXPRESION
-    (103) EXPRESION -> . EXPRESION desplazamiento_derecho EXPRESION
-    (104) EXPRESION -> . EXPRESION et EXPRESION
-    (105) EXPRESION -> . EXPRESION pleca EXPRESION
-    (106) EXPRESION -> . EXPRESION elevado EXPRESION
-    (107) EXPRESION -> . EXPRESION pregunta EXPRESION dos_puntos EXPRESION
-    (108) EXPRESION -> . menos EXPRESION
-    (109) EXPRESION -> . exclamacion EXPRESION
-    (110) EXPRESION -> . virgulilla EXPRESION
-    (111) EXPRESION -> . et identificador
-    (112) EXPRESION -> . METODO
-    (113) EXPRESION -> . parentesis_abre EXPRESION parentesis_cierra
-    (114) EXPRESION -> . identificador punto identificador
-    (115) EXPRESION -> . identificador ACCESOS
-    (116) EXPRESION -> . identificador ACCESOS punto identificador
-    (117) EXPRESION -> . llave_abre EXPRESIONES llave_cierra
-    (118) EXPRESION -> . _sizeof parentesis_abre TIPO parentesis_cierra
-    (119) EXPRESION -> . _scanf parentesis_abre parentesis_cierra
-    (120) EXPRESION -> . parentesis_abre TIPO parentesis_cierra EXPRESION
-    (121) EXPRESION -> . caracter
-    (122) EXPRESION -> . cadena
-    (123) EXPRESION -> . entero
-    (124) EXPRESION -> . decimal
-    (125) EXPRESION -> . identificador
-    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
-
-    menos           shift and go to state 40
-    exclamacion     shift and go to state 42
-    virgulilla      shift and go to state 43
-    et              shift and go to state 41
-    parentesis_abre shift and go to state 46
-    identificador   shift and go to state 44
-    llave_abre      shift and go to state 47
-    _sizeof         shift and go to state 48
-    _scanf          shift and go to state 49
-    caracter        shift and go to state 50
-    cadena          shift and go to state 51
-    entero          shift and go to state 52
-    decimal         shift and go to state 53
-
-    EXPRESION                      shift and go to state 246
-    METODO                         shift and go to state 45
-
-state 239
-
     (88) FOR -> _for parentesis_abre DECLARACION punto_coma EXPRESION punto_coma . ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (56) ASIGNACION -> . identificador INDICES COMPUESTO EXPRESION
     (57) ASIGNACION -> . identificador INDICES punto identificador COMPUESTO EXPRESION
     (58) ASIGNACION -> . identificador aumento
     (59) ASIGNACION -> . identificador decremento
 
-    identificador   shift and go to state 248
+    identificador   shift and go to state 246
 
-    ASIGNACION                     shift and go to state 247
+    ASIGNACION                     shift and go to state 245
 
-state 240
+state 238
 
     (70) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra . ELSEIFS ELSE
     (71) ELSEIFS -> . LISTA_ELSEIF
@@ -7756,27 +7742,27 @@ state 240
     llave_cierra    reduce using rule 72 (ELSEIFS -> .)
     _case           reduce using rule 72 (ELSEIFS -> .)
     _default        reduce using rule 72 (ELSEIFS -> .)
-    _elseif         shift and go to state 252
+    _elseif         shift and go to state 250
 
-    ELSEIFS                        shift and go to state 249
-    LISTA_ELSEIF                   shift and go to state 250
-    ELSEIF                         shift and go to state 251
+    ELSEIFS                        shift and go to state 247
+    LISTA_ELSEIF                   shift and go to state 248
+    ELSEIF                         shift and go to state 249
 
-state 241
+state 239
 
     (78) SWITCH -> _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE . llave_cierra
 
-    llave_cierra    shift and go to state 253
+    llave_cierra    shift and go to state 251
 
 
-state 242
+state 240
 
     (84) DEFAULT_CASE -> _default . dos_puntos CUERPO_LOCAL
 
-    dos_puntos      shift and go to state 254
+    dos_puntos      shift and go to state 252
 
 
-state 243
+state 241
 
     (81) LISTA_CASE -> LISTA_CASE CASE .
 
@@ -7785,7 +7771,7 @@ state 243
     llave_cierra    reduce using rule 81 (LISTA_CASE -> LISTA_CASE CASE .)
 
 
-state 244
+state 242
 
     (83) CASE -> _case EXPRESION . dos_puntos CUERPO_LOCAL
     (89) EXPRESION -> EXPRESION . mas EXPRESION
@@ -7808,7 +7794,7 @@ state 244
     (106) EXPRESION -> EXPRESION . elevado EXPRESION
     (107) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
-    dos_puntos      shift and go to state 255
+    dos_puntos      shift and go to state 253
     mas             shift and go to state 66
     menos           shift and go to state 67
     asterisco       shift and go to state 68
@@ -7830,7 +7816,7 @@ state 244
     pregunta        shift and go to state 84
 
 
-state 245
+state 243
 
     (86) WHILE -> _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .
 
@@ -7856,7 +7842,7 @@ state 245
     _default        reduce using rule 86 (WHILE -> _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
 
 
-state 246
+state 244
 
     (87) DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION . parentesis_cierra punto_coma
     (89) EXPRESION -> EXPRESION . mas EXPRESION
@@ -7879,7 +7865,7 @@ state 246
     (106) EXPRESION -> EXPRESION . elevado EXPRESION
     (107) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
-    parentesis_cierra shift and go to state 256
+    parentesis_cierra shift and go to state 254
     mas             shift and go to state 66
     menos           shift and go to state 67
     asterisco       shift and go to state 68
@@ -7901,14 +7887,14 @@ state 246
     pregunta        shift and go to state 84
 
 
-state 247
+state 245
 
     (88) FOR -> _for parentesis_abre DECLARACION punto_coma EXPRESION punto_coma ASIGNACION . parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
 
-    parentesis_cierra shift and go to state 257
+    parentesis_cierra shift and go to state 255
 
 
-state 248
+state 246
 
     (56) ASIGNACION -> identificador . INDICES COMPUESTO EXPRESION
     (57) ASIGNACION -> identificador . INDICES punto identificador COMPUESTO EXPRESION
@@ -7929,8 +7915,8 @@ state 248
     asterisco       reduce using rule 51 (INDICES -> .)
     division        reduce using rule 51 (INDICES -> .)
     porcentaje      reduce using rule 51 (INDICES -> .)
-    menor           reduce using rule 51 (INDICES -> .)
-    mayor           reduce using rule 51 (INDICES -> .)
+    desplazamiento_izquierdo reduce using rule 51 (INDICES -> .)
+    desplazamiento_derecho reduce using rule 51 (INDICES -> .)
     et              reduce using rule 51 (INDICES -> .)
     elevado         reduce using rule 51 (INDICES -> .)
     pleca           reduce using rule 51 (INDICES -> .)
@@ -7940,13 +7926,13 @@ state 248
     ACCESOS                        shift and go to state 25
     ACCESO                         shift and go to state 26
 
-state 249
+state 247
 
     (70) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS . ELSE
     (76) ELSE -> . _else llave_abre CUERPO_LOCAL llave_cierra
     (77) ELSE -> .
 
-    _else           shift and go to state 259
+    _else           shift and go to state 257
     _continue       reduce using rule 77 (ELSE -> .)
     _break          reduce using rule 77 (ELSE -> .)
     _return         reduce using rule 77 (ELSE -> .)
@@ -7968,9 +7954,9 @@ state 249
     _case           reduce using rule 77 (ELSE -> .)
     _default        reduce using rule 77 (ELSE -> .)
 
-    ELSE                           shift and go to state 258
+    ELSE                           shift and go to state 256
 
-state 250
+state 248
 
     (71) ELSEIFS -> LISTA_ELSEIF .
     (73) LISTA_ELSEIF -> LISTA_ELSEIF . ELSEIF
@@ -7997,11 +7983,11 @@ state 250
     llave_cierra    reduce using rule 71 (ELSEIFS -> LISTA_ELSEIF .)
     _case           reduce using rule 71 (ELSEIFS -> LISTA_ELSEIF .)
     _default        reduce using rule 71 (ELSEIFS -> LISTA_ELSEIF .)
-    _elseif         shift and go to state 252
+    _elseif         shift and go to state 250
 
-    ELSEIF                         shift and go to state 260
+    ELSEIF                         shift and go to state 258
 
-state 251
+state 249
 
     (74) LISTA_ELSEIF -> ELSEIF .
 
@@ -8029,14 +8015,14 @@ state 251
     _default        reduce using rule 74 (LISTA_ELSEIF -> ELSEIF .)
 
 
-state 252
+state 250
 
     (75) ELSEIF -> _elseif . parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
 
-    parentesis_abre shift and go to state 261
+    parentesis_abre shift and go to state 259
 
 
-state 253
+state 251
 
     (78) SWITCH -> _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra .
 
@@ -8062,7 +8048,7 @@ state 253
     _default        reduce using rule 78 (SWITCH -> _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra .)
 
 
-state 254
+state 252
 
     (84) DEFAULT_CASE -> _default dos_puntos . CUERPO_LOCAL
     (22) CUERPO_LOCAL -> . LISTA_LOCAL
@@ -8124,7 +8110,7 @@ state 254
     _void           shift and go to state 14
     _struct         shift and go to state 35
 
-    CUERPO_LOCAL                   shift and go to state 262
+    CUERPO_LOCAL                   shift and go to state 260
     LISTA_LOCAL                    shift and go to state 135
     INSTRUCCION_LOCAL              shift and go to state 136
     ETIQUETA                       shift and go to state 137
@@ -8140,7 +8126,7 @@ state 254
     PRINT                          shift and go to state 147
     TIPO                           shift and go to state 58
 
-state 255
+state 253
 
     (83) CASE -> _case EXPRESION dos_puntos . CUERPO_LOCAL
     (22) CUERPO_LOCAL -> . LISTA_LOCAL
@@ -8204,7 +8190,7 @@ state 255
     _void           shift and go to state 14
     _struct         shift and go to state 35
 
-    CUERPO_LOCAL                   shift and go to state 263
+    CUERPO_LOCAL                   shift and go to state 261
     LISTA_LOCAL                    shift and go to state 135
     INSTRUCCION_LOCAL              shift and go to state 136
     ETIQUETA                       shift and go to state 137
@@ -8220,21 +8206,21 @@ state 255
     PRINT                          shift and go to state 147
     TIPO                           shift and go to state 58
 
-state 256
+state 254
 
     (87) DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra . punto_coma
 
-    punto_coma      shift and go to state 264
+    punto_coma      shift and go to state 262
 
 
-state 257
+state 255
 
     (88) FOR -> _for parentesis_abre DECLARACION punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra . llave_abre CUERPO_LOCAL llave_cierra
 
-    llave_abre      shift and go to state 265
+    llave_abre      shift and go to state 263
 
 
-state 258
+state 256
 
     (70) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .
 
@@ -8260,14 +8246,14 @@ state 258
     _default        reduce using rule 70 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
 
 
-state 259
+state 257
 
     (76) ELSE -> _else . llave_abre CUERPO_LOCAL llave_cierra
 
-    llave_abre      shift and go to state 266
+    llave_abre      shift and go to state 264
 
 
-state 260
+state 258
 
     (73) LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .
 
@@ -8295,7 +8281,7 @@ state 260
     _default        reduce using rule 73 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
 
 
-state 261
+state 259
 
     (75) ELSEIF -> _elseif parentesis_abre . EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (89) EXPRESION -> . EXPRESION mas EXPRESION
@@ -8351,17 +8337,17 @@ state 261
     entero          shift and go to state 52
     decimal         shift and go to state 53
 
-    EXPRESION                      shift and go to state 267
+    EXPRESION                      shift and go to state 265
     METODO                         shift and go to state 45
 
-state 262
+state 260
 
     (84) DEFAULT_CASE -> _default dos_puntos CUERPO_LOCAL .
 
     llave_cierra    reduce using rule 84 (DEFAULT_CASE -> _default dos_puntos CUERPO_LOCAL .)
 
 
-state 263
+state 261
 
     (83) CASE -> _case EXPRESION dos_puntos CUERPO_LOCAL .
 
@@ -8370,7 +8356,7 @@ state 263
     llave_cierra    reduce using rule 83 (CASE -> _case EXPRESION dos_puntos CUERPO_LOCAL .)
 
 
-state 264
+state 262
 
     (87) DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .
 
@@ -8396,7 +8382,7 @@ state 264
     _default        reduce using rule 87 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
 
 
-state 265
+state 263
 
     (88) FOR -> _for parentesis_abre DECLARACION punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre . CUERPO_LOCAL llave_cierra
     (22) CUERPO_LOCAL -> . LISTA_LOCAL
@@ -8460,7 +8446,7 @@ state 265
 
     DECLARACION                    shift and go to state 139
     ASIGNACION                     shift and go to state 140
-    CUERPO_LOCAL                   shift and go to state 268
+    CUERPO_LOCAL                   shift and go to state 266
     LISTA_LOCAL                    shift and go to state 135
     INSTRUCCION_LOCAL              shift and go to state 136
     ETIQUETA                       shift and go to state 137
@@ -8474,7 +8460,7 @@ state 265
     PRINT                          shift and go to state 147
     TIPO                           shift and go to state 58
 
-state 266
+state 264
 
     (76) ELSE -> _else llave_abre . CUERPO_LOCAL llave_cierra
     (22) CUERPO_LOCAL -> . LISTA_LOCAL
@@ -8536,7 +8522,7 @@ state 266
     _void           shift and go to state 14
     _struct         shift and go to state 35
 
-    CUERPO_LOCAL                   shift and go to state 269
+    CUERPO_LOCAL                   shift and go to state 267
     LISTA_LOCAL                    shift and go to state 135
     INSTRUCCION_LOCAL              shift and go to state 136
     ETIQUETA                       shift and go to state 137
@@ -8552,7 +8538,7 @@ state 266
     PRINT                          shift and go to state 147
     TIPO                           shift and go to state 58
 
-state 267
+state 265
 
     (75) ELSEIF -> _elseif parentesis_abre EXPRESION . parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (89) EXPRESION -> EXPRESION . mas EXPRESION
@@ -8575,7 +8561,7 @@ state 267
     (106) EXPRESION -> EXPRESION . elevado EXPRESION
     (107) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
-    parentesis_cierra shift and go to state 270
+    parentesis_cierra shift and go to state 268
     mas             shift and go to state 66
     menos           shift and go to state 67
     asterisco       shift and go to state 68
@@ -8597,28 +8583,28 @@ state 267
     pregunta        shift and go to state 84
 
 
-state 268
+state 266
 
     (88) FOR -> _for parentesis_abre DECLARACION punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL . llave_cierra
 
-    llave_cierra    shift and go to state 271
+    llave_cierra    shift and go to state 269
 
 
-state 269
+state 267
 
     (76) ELSE -> _else llave_abre CUERPO_LOCAL . llave_cierra
 
-    llave_cierra    shift and go to state 272
+    llave_cierra    shift and go to state 270
 
 
-state 270
+state 268
 
     (75) ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra . llave_abre CUERPO_LOCAL llave_cierra
 
-    llave_abre      shift and go to state 273
+    llave_abre      shift and go to state 271
 
 
-state 271
+state 269
 
     (88) FOR -> _for parentesis_abre DECLARACION punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .
 
@@ -8644,7 +8630,7 @@ state 271
     _default        reduce using rule 88 (FOR -> _for parentesis_abre DECLARACION punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
 
 
-state 272
+state 270
 
     (76) ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .
 
@@ -8670,7 +8656,7 @@ state 272
     _default        reduce using rule 76 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
 
 
-state 273
+state 271
 
     (75) ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre . CUERPO_LOCAL llave_cierra
     (22) CUERPO_LOCAL -> . LISTA_LOCAL
@@ -8732,7 +8718,7 @@ state 273
     _void           shift and go to state 14
     _struct         shift and go to state 35
 
-    CUERPO_LOCAL                   shift and go to state 274
+    CUERPO_LOCAL                   shift and go to state 272
     LISTA_LOCAL                    shift and go to state 135
     INSTRUCCION_LOCAL              shift and go to state 136
     ETIQUETA                       shift and go to state 137
@@ -8748,14 +8734,14 @@ state 273
     PRINT                          shift and go to state 147
     TIPO                           shift and go to state 58
 
-state 274
+state 272
 
     (75) ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL . llave_cierra
 
-    llave_cierra    shift and go to state 275
+    llave_cierra    shift and go to state 273
 
 
-state 275
+state 273
 
     (75) ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .
 

@@ -356,6 +356,10 @@ class TresDirecciones:
     def generar_codigo_asignacion(self, instruccion):
         if isinstance(instruccion, clases.AsignacionNormal):
             self.generar_codigo_asignacion_normal(instruccion)
+        elif isinstance(instruccion, clases.AsignacionAumento):
+            self.generar_codigo_asignacion_aumento(instruccion)
+        elif isinstance(instruccion, clases.AsignacionDecremento):
+            self.generar_codigo_asignacion_decremento(instruccion)
 
     def generar_codigo_asignacion_normal(self, instruccion):
         simbolo = self.existe_variable(instruccion.identificador)
@@ -369,7 +373,8 @@ class TresDirecciones:
                     if not registro:
                         registro = self.obtener_registro_temporal()
                     if self.actualizar_temporal_variable(instruccion.identificador, registro):
-                        self.codigo3d += registro + ' = '+temporal+';\n'
+                        self.generar_codigo_compuesto(
+                            instruccion, registro, temporal)
                     else:
                         self.mostrar_mensaje_consola(
                             'ERROR: Asignación no válida en línea: '+instruccion.linea+'.')
@@ -382,6 +387,52 @@ class TresDirecciones:
             self.mostrar_mensaje_consola(
                 'ERROR: No existe la variable en línea: '+instruccion.linea+'.')
             self.detener_ejecucion = True
+
+    def generar_codigo_asignacion_aumento(self, instruccion):
+        simbolo = self.existe_variable(instruccion.identificador)
+        if simbolo:
+            registro = simbolo.temporal
+            if not registro:
+                registro = self.obtener_registro_temporal()
+            self.codigo3d += registro + ' = '+registro+' + 1;\n'
+        else:
+            self.mostrar_mensaje_consola(
+                'ERROR: No existe la variable en línea: '+instruccion.linea+'.')
+            self.detener_ejecucion = True
+
+    def generar_codigo_asignacion_decremento(self, instruccion):
+        simbolo = self.existe_variable(instruccion.identificador)
+        if simbolo:
+            registro = simbolo.temporal
+            if not registro:
+                registro = self.obtener_registro_temporal()
+            self.codigo3d += registro + ' = '+registro+' - 1;\n'
+        else:
+            self.mostrar_mensaje_consola(
+                'ERROR: No existe la variable en línea: '+instruccion.linea+'.')
+            self.detener_ejecucion = True
+
+    def generar_codigo_compuesto(self, instruccion, registro, temporal):
+        if instruccion.compuesto == '=':
+            self.codigo3d += registro + ' = '+temporal+';\n'
+        elif instruccion.compuesto == '+':
+            self.codigo3d += registro + ' = '+registro+' + '+temporal+';\n'
+        elif instruccion.compuesto == '*':
+            self.codigo3d += registro + ' = '+registro+' * '+temporal+';\n'
+        elif instruccion.compuesto == '/':
+            self.codigo3d += registro + ' = '+registro+' / '+temporal+';\n'
+        elif instruccion.compuesto == '%':
+            self.codigo3d += registro + ' = '+registro+' % '+temporal+';\n'
+        elif instruccion.compuesto == '<<':
+            self.codigo3d += registro + ' = '+registro+' << '+temporal+';\n'
+        elif instruccion.compuesto == '>>':
+            self.codigo3d += registro + ' = '+registro+' >> '+temporal+';\n'
+        elif instruccion.compuesto == '&':
+            self.codigo3d += registro + ' = '+registro+' & '+temporal+';\n'
+        elif instruccion.compuesto == '^':
+            self.codigo3d += registro + ' = '+registro+' ^ '+temporal+';\n'
+        elif instruccion.compuesto == '|':
+            self.codigo3d += registro + ' = '+registro+' | '+temporal+';\n'
 
     def generar_codigo_if(self, instruccion):
         expresion_inicio = self.obtener_expresion(instruccion.expresion)
