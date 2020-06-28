@@ -648,7 +648,14 @@ def p_default_case(t):
     '''
     DEFAULT_CASE    :   _default dos_puntos CUERPO_LOCAL
     '''
-    t[0] = clases._DefaultCase(t[4])
+    t[0] = clases._DefaultCase(t[3])
+
+
+def p_default_case_vacio(t):
+    '''
+    DEFAULT_CASE    :
+    '''
+    t[0] == None
 
 
 def p_while(t):
