@@ -309,7 +309,9 @@ class TresDirecciones:
                 elif isinstance(instruccion, clases._Do):
                     self.generar_codigo_do(instruccion)
                 elif isinstance(instruccion, clases._Continue):
-                    pass
+                    self.generar_codigo_continue(instruccion)
+                elif isinstance(instruccion, clases._For):
+                    self.generar_codigo_for(instruccion)
                 if self.detener_ejecucion:
                     break
 
@@ -461,7 +463,7 @@ class TresDirecciones:
                     self.obtener_ambito().agregar_tabla_simbolos()
                     self.generar_codigo_instrucciones(instruccion._else.cuerpo)
                     self.obtener_ambito().eliminar_tabla_simbolos()
-                    self.codigo3d += 'goto '+etiqueta_salida+';\n'
+                self.codigo3d += 'goto '+etiqueta_salida+';\n'
                 self.codigo3d += etiqueta_inicio + ':\n'
                 self.obtener_ambito().agregar_tabla_simbolos()
                 self.generar_codigo_instrucciones(instruccion.cuerpo)
@@ -566,7 +568,8 @@ class TresDirecciones:
     def generar_codigo_do(self, instruccion):
         etiqueta_inicio = self.obtener_etiqueta_temporal()
         etiqueta_fin = self.obtener_etiqueta_temporal()
-        self.etiquetas_inicio.append(etiqueta_inicio)
+        etiqueta_inicio_ciclo = self.obtener_etiqueta_temporal()
+        self.etiquetas_inicio.append(etiqueta_inicio_ciclo)
         self.etiquetas_salida.append(etiqueta_fin)
         self.codigo3d += etiqueta_inicio + ':\n'
         self.obtener_ambito().agregar_tabla_simbolos()
@@ -574,6 +577,7 @@ class TresDirecciones:
         self.obtener_ambito().eliminar_tabla_simbolos()
         self.etiquetas_inicio.pop()
         self.etiquetas_salida.pop()
+        self.codigo3d += etiqueta_inicio_ciclo+':\n'
         expresion = self.obtener_expresion(instruccion.expresion)
         if expresion:
             self.codigo3d += 'if('+expresion+') goto '+etiqueta_inicio+';\n'
@@ -591,6 +595,43 @@ class TresDirecciones:
             self.mostrar_mensaje_consola(
                 'ERROR: Continue no válido en línea: '+instruccion.linea)
             self.detener_ejecucion = True
+
+    def generar_codigo_for(self, instruccion):
+        self.obtener_ambito().agregar_tabla_simbolos()
+        self.generar_codigo_instrucciones([instruccion.inicio])
+        if not self.detener_ejecucion:
+            if isinstance(instruccion.expresion, (clases.ExpresionRelacional, clases.ExpresionLogica)):
+                etiqueta_inicio = self.obtener_etiqueta_temporal()
+                etiqueta_fin = self.obtener_etiqueta_temporal()
+                etiqueta_verdadero = self.obtener_etiqueta_temporal()
+                self.etiquetas_salida.append(etiqueta_fin)
+                self.codigo3d += etiqueta_inicio + ':\n'
+                expresion = self.obtener_expresion(instruccion.expresion)
+                if expresion:
+                    etiqueta_inicio_ciclo = self.obtener_etiqueta_temporal()
+                    self.etiquetas_inicio.append(etiqueta_inicio_ciclo)
+                    self.codigo3d += 'if('+expresion+') goto ' + \
+                        etiqueta_verdadero+';\n'
+                    self.codigo3d += 'goto '+etiqueta_fin+';\n'
+                    self.codigo3d += etiqueta_verdadero+':\n'
+                    self.obtener_ambito().agregar_tabla_simbolos()
+                    self.generar_codigo_instrucciones(instruccion.cuerpo)
+                    self.obtener_ambito().eliminar_tabla_simbolos()
+                    self.codigo3d += etiqueta_inicio_ciclo + ':\n'
+                    self.generar_codigo_instrucciones([instruccion.asignacion])
+                    self.codigo3d += 'goto '+etiqueta_inicio+';\n'
+                    self.codigo3d += etiqueta_fin+':\n'
+                    self.etiquetas_inicio.pop()
+                else:
+                    self.mostrar_mensaje_consola(
+                        'ERROR: Expresión no válida en línea: '+instruccion.linea)
+                    self.detener_ejecucion = True
+                self.etiquetas_salida.pop()
+            else:
+                self.mostrar_mensaje_consola(
+                    'ERROR: Expresión no válida en línea: '+instruccion.linea)
+                self.detener_ejecucion = True
+        self.obtener_ambito().eliminar_tabla_simbolos()
 
     def agregar_ambito(self):
         self.ambitos.append(Ambito())

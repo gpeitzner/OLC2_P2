@@ -149,8 +149,8 @@ class _Do:
 
 
 class _For:
-    def __init__(self, declaracion, expresion, asignacion, cuerpo, linea):
-        self.declaracion = declaracion
+    def __init__(self, inicio, expresion, asignacion, cuerpo, linea):
+        self.inicio = inicio
         self.expresion = expresion
         self.asignacion = asignacion
         self.cuerpo = cuerpo
