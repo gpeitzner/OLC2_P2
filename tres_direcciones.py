@@ -30,7 +30,8 @@ class Ambito:
         if len(self.tablas_simbolos) > 0:
             tablas_simbolos_temporal = None
             if len(self.tablas_simbolos) > 1:
-                tablas_simbolos_temporal = self.tablas_simbolos.reverse()
+                tablas_simbolos_temporal = self.tablas_simbolos.copy()
+                tablas_simbolos_temporal.reverse()
             else:
                 tablas_simbolos_temporal = self.tablas_simbolos
             for tabla_auxiliar in tablas_simbolos_temporal:
@@ -42,7 +43,8 @@ class Ambito:
         if len(self.tablas_simbolos) > 0:
             tablas_simbolos_temporal = None
             if len(self.tablas_simbolos) > 1:
-                tablas_simbolos_temporal = self.tablas_simbolos.reverse()
+                tablas_simbolos_temporal = self.tablas_simbolos.copy()
+                tablas_simbolos_temporal.reverse()
             else:
                 tablas_simbolos_temporal = self.tablas_simbolos
             for tabla_auxiliar in tablas_simbolos_temporal:
@@ -291,6 +293,8 @@ class TresDirecciones:
                     self.generar_codigo_declaracion(instruccion)
                 elif isinstance(instruccion, clases.Asignacion):
                     self.generar_codigo_asignacion(instruccion)
+                elif isinstance(instruccion, clases._If):
+                    self.generar_codigo_if(instruccion)
                 if self.detener_ejecucion:
                     break
 
@@ -359,6 +363,57 @@ class TresDirecciones:
             self.mostrar_mensaje_consola(
                 'ERROR: No existe la variable en línea: '+instruccion.linea+'.')
             self.detener_ejecucion = True
+
+    def generar_codigo_if(self, instruccion):
+        expresion_inicio = self.obtener_expresion(instruccion.expresion)
+        if expresion_inicio:
+            etiqueta_inicio = self.obtener_etiqueta_temporal()
+            etiqueta_salida = self.obtener_etiqueta_temporal()
+            self.codigo3d += 'if('+expresion_inicio + \
+                ') goto '+etiqueta_inicio+';\n'
+            etiquetas_temporales = []
+            if instruccion.elseifs:
+                for expresion_elseif in instruccion.elseifs:
+                    expresion_temporal = self.obtener_expresion(
+                        expresion_elseif.expresion)
+                    if expresion_temporal:
+                        etiqueta_temporal = self.obtener_etiqueta_temporal()
+                        etiquetas_temporales.append(etiqueta_temporal)
+                        self.codigo3d += 'if('+expresion_temporal + \
+                            ') goto '+etiqueta_temporal+';\n'
+                    else:
+                        self.mostrar_mensaje_consola(
+                            'ERROR: Expresión no válida en línea: '+instruccion.linea+'.')
+                        self.detener_ejecucion = True
+                        break
+            if not self.detener_ejecucion:
+                if instruccion._else:
+                    self.obtener_ambito().agregar_tabla_simbolos()
+                    self.generar_codigo_instrucciones(instruccion._else.cuerpo)
+                    self.obtener_ambito().eliminar_tabla_simbolos()
+                    self.codigo3d += 'goto '+etiqueta_salida+';\n'
+                self.codigo3d += etiqueta_inicio + ':\n'
+                self.obtener_ambito().agregar_tabla_simbolos()
+                self.generar_codigo_instrucciones(instruccion.cuerpo)
+                self.obtener_ambito().eliminar_tabla_simbolos()
+                self.codigo3d += 'goto '+etiqueta_salida+';\n'
+                if instruccion.elseifs:
+                    indice_etiqueta_temporal = 0
+                    for expresion_elseif in instruccion.elseifs:
+                        self.codigo3d += etiquetas_temporales[indice_etiqueta_temporal] + ':\n'
+                        self.obtener_ambito().agregar_tabla_simbolos()
+                        self.generar_codigo_instrucciones(
+                            expresion_elseif.cuerpo)
+                        self.obtener_ambito().eliminar_tabla_simbolos()
+                        self.codigo3d += 'goto '+etiqueta_salida+';\n'
+                        indice_etiqueta_temporal += 1
+                self.codigo3d += etiqueta_salida + ':\n'
+        else:
+            self.mostrar_mensaje_consola(
+                'ERROR: Expresión no válida en línea: '+instruccion.linea)
+            self.detener_ejecucion = True
+
+    
 
     def agregar_ambito(self):
         self.ambitos.append(Ambito())

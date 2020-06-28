@@ -19,7 +19,7 @@ class Resaltador(QtGui.QSyntaxHighlighter):
 
     expresiones = ((r'[0-9]+|\d+\.\d+', QtGui.QColor(178, 202, 164)),
                    (r'[a-zA-Z_][a-zA-Z_0-9]*', QtGui.QColor(212, 212, 212)),
-                   (r'\b(auto|struct|break|else|switch|case|enum|register|typedef|extern|return|union|const|continue|for|default|goto|sizeof|volatile|do|if|static|while|printf|scanf)\b', QtGui.QColor(62, 194, 176)),
+                   (r'\b(auto|struct|break|else|switch|case|enum|register|typedef|extern|return|union|const|continue|for|default|goto|sizeof|volatile|do|if|static|while|printf|scanf|elseif)\b', QtGui.QColor(62, 194, 176)),
                    (r'\b(double|int|long|char|float|short|unsigned|signed|void)\b',
                     QtGui.QColor(75, 156, 208)),
                    (r'\'[^\']*\'|\"[^\"]*\"', QtGui.QColor(201, 143, 120)),
