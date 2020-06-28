@@ -305,6 +305,8 @@ class TresDirecciones:
                     self.generar_codigo_break(instruccion)
                 elif isinstance(instruccion, clases._While):
                     self.generar_codigo_while(instruccion)
+                elif isinstance(instruccion, clases._Do):
+                    self.generar_codigo_do(instruccion)
                 if self.detener_ejecucion:
                     break
 
@@ -497,6 +499,24 @@ class TresDirecciones:
             self.generar_codigo_instrucciones(instruccion.cuerpo)
             self.obtener_ambito().eliminar_tabla_simbolos()
             self.codigo3d += 'goto '+etiqueta_inicio+';\n'
+            self.codigo3d += etiqueta_fin+':\n'
+        else:
+            self.mostrar_mensaje_consola(
+                'ERROR: Expresión no válida en línea: '+instruccion.linea)
+            self.detener_ejecucion = True
+
+    def generar_codigo_do(self, instruccion):
+        etiqueta_inicio = self.obtener_etiqueta_temporal()
+        etiqueta_fin = self.obtener_etiqueta_temporal()
+        self.etiqueta_salidas.append(etiqueta_fin)
+        self.codigo3d += etiqueta_inicio + ':\n'
+        self.obtener_ambito().agregar_tabla_simbolos()
+        self.generar_codigo_instrucciones(instruccion.cuerpo)
+        self.obtener_ambito().eliminar_tabla_simbolos()
+        self.etiqueta_salidas.pop()
+        expresion = self.obtener_expresion(instruccion.expresion)
+        if expresion:
+            self.codigo3d += 'if('+expresion+') goto '+etiqueta_inicio+';\n'
             self.codigo3d += etiqueta_fin+':\n'
         else:
             self.mostrar_mensaje_consola(
