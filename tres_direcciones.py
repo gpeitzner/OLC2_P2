@@ -143,6 +143,8 @@ class TresDirecciones:
             return str(expresion.valor)
         if isinstance(expresion, clases.Identificador):
             return self.obtener_temporal_variable(expresion.valor)
+        if isinstance(expresion, clases.ExpresionReferencia):
+            return self.obtener_temporal_variable(expresion.identificador)
         if isinstance(expresion, clases.ExpresionScan):
             registro = self.obtener_registro_temporal()
             self.codigo3d += registro + ' = read();\n'
@@ -244,9 +246,6 @@ class TresDirecciones:
             elif expresion.operacion == '~':
                 self.codigo3d += registro + ' =  ~' + operando + ';\n'
                 return registro
-            elif expresion.operacion == '&':
-                self.codigo3d += registro + ' =  &' + operando + ';\n'
-                return registro
         return None
 
     def obtener_expresion_ternaria(self, expresion):
@@ -312,6 +311,8 @@ class TresDirecciones:
                     self.generar_codigo_continue(instruccion)
                 elif isinstance(instruccion, clases._For):
                     self.generar_codigo_for(instruccion)
+                elif isinstance(instruccion, clases.Metodo):
+                    self.generar_codigo_metodo(instruccion)
                 if self.detener_ejecucion:
                     break
 
@@ -632,6 +633,78 @@ class TresDirecciones:
                     'ERROR: Expresión no válida en línea: '+instruccion.linea)
                 self.detener_ejecucion = True
         self.obtener_ambito().eliminar_tabla_simbolos()
+
+    def generar_codigo_metodo(self, instruccion):
+        if instruccion.identificador in self.funciones.keys():
+            funcion = self.funciones[instruccion.identificador]
+            if funcion.parametros:
+                if instruccion.expresiones:
+                    if len(funcion.parametros) == len(instruccion.expresiones):
+                        temporales = []
+                        for expresion in instruccion.expresiones:
+                            temporal = self.obtener_expresion(expresion)
+                            if temporal:
+                                temporales.append(temporal)
+                            else:
+                                self.mostrar_mensaje_consola(
+                                    'ERROR: Expresión no válida en línea: '+instruccion.linea)
+                                self.detener_ejecucion = True
+                                break
+                        if not self.detener_ejecucion:
+                            self.agregar_ambito()
+                            self.obtener_ambito().agregar_tabla_simbolos()
+                            etiqueta_funcion = self.obtener_etiqueta_temporal()
+                            self.codigo3d += etiqueta_funcion + ':\n'
+                            parametros = []
+                            for parametro in funcion.parametros:
+                                parametros.append(parametro)
+                            if len(parametros) == len(set(parametros)):
+                                indice_temporales = 0
+                                for parametro in funcion.parametros:
+                                    if parametro.modo:
+                                        referencia = temporales[indice_temporales]
+                                        self.obtener_ambito().agregar_simbolo(
+                                            Simbolo(parametro.tipo, parametro.identificador, referencia))
+                                    else:
+                                        temporal = self.obtener_registro_temporal()
+                                        valor = temporales[indice_temporales]
+                                        self.codigo3d += temporal + ' = '+valor+';\n'
+                                        self.obtener_ambito().agregar_simbolo(
+                                            Simbolo(parametro.tipo, parametro.identificador, temporal))
+                                    indice_temporales += 1
+                                self.generar_codigo_instrucciones(
+                                    funcion.cuerpo)
+                            else:
+                                self.mostrar_mensaje_consola(
+                                    'ERROR: Parametros no válidos en línea: '+instruccion.linea)
+                                self.detener_ejecucion = True
+                            self.obtener_ambito().eliminar_tabla_simbolos()
+                            self.eliminar_ambito()
+                    else:
+                        self.mostrar_mensaje_consola(
+                            'ERROR: Cantidad de parametros no válida en línea: '+instruccion.linea)
+                        self.detener_ejecucion = True
+                else:
+                    self.mostrar_mensaje_consola(
+                        'ERROR: Cantidad de parametros no válida en línea: '+instruccion.linea)
+                    self.detener_ejecucion = True
+            else:
+                if not instruccion.expresiones:
+                    self.agregar_ambito()
+                    self.obtener_ambito().agregar_tabla_simbolos()
+                    etiqueta_funcion = self.obtener_etiqueta_temporal()
+                    self.codigo3d += etiqueta_funcion + ':\n'
+                    self.generar_codigo_instrucciones(funcion.cuerpo)
+                    self.obtener_ambito().eliminar_tabla_simbolos()
+                    self.eliminar_ambito()
+                else:
+                    self.mostrar_mensaje_consola(
+                        'ERROR: Cantidad de parametros no válida en línea: '+instruccion.linea)
+                    self.detener_ejecucion = True
+        else:
+            self.mostrar_mensaje_consola(
+                'ERROR: La función no existe en línea: '+instruccion.linea)
+            self.detener_ejecucion = True
 
     def agregar_ambito(self):
         self.ambitos.append(Ambito())

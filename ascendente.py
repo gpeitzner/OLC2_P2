@@ -314,7 +314,7 @@ def p_parametro_apuntador(t):
     '''
     PARAMETRO   :   TIPO et identificador
     '''
-    t[1] = clases.Parametro(t[1], True, t[2])
+    t[0] = clases.Parametro(t[1], True, t[3])
 
 
 def p_cuerpo_local(t):
@@ -741,9 +741,15 @@ def p_expresion_unaria(t):
     EXPRESION   :   menos EXPRESION %prec NIVEL2
                 |   exclamacion EXPRESION %prec NIVEL2
                 |   virgulilla EXPRESION %prec NIVEL2
-                |   et identificador %prec NIVEL2
     '''
     t[0] = clases.ExpresionUnaria(t[1], t[2])
+
+
+def p_expresion_referencia(t):
+    '''
+    EXPRESION   :   et identificador %prec NIVEL2
+    '''
+    t[0] = clases.ExpresionReferencia(t[2])
 
 
 def p_expresion_metodo(t):

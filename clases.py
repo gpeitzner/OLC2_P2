@@ -241,6 +241,11 @@ class ExpresionScan(Expresion):
     'Scan'
 
 
+class ExpresionReferencia(Expresion):
+    def __init__(self, identificador):
+        self.identificador = identificador
+
+
 class _PrintF:
     def __init__(self, expresiones, linea):
         self.expresiones = expresiones
