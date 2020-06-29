@@ -420,6 +420,8 @@ class TresDirecciones:
             self.codigo3d += registro + ' = '+temporal+';\n'
         elif instruccion.compuesto == '+':
             self.codigo3d += registro + ' = '+registro+' + '+temporal+';\n'
+        elif instruccion.compuesto == '-':
+            self.codigo3d += registro + ' = '+registro+' - '+temporal+';\n'
         elif instruccion.compuesto == '*':
             self.codigo3d += registro + ' = '+registro+' * '+temporal+';\n'
         elif instruccion.compuesto == '/':

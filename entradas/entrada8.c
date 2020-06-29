@@ -14,6 +14,7 @@ int metodo1(int &var){
 
 int main(){
 	int var = 3 * 3;
+	int var1 = 3;
 	for(int i = 0; i < 5; i++){
 		var += 1;
 		for(int j = 0; j < 3; j = j + 2){
@@ -24,4 +25,5 @@ int main(){
 		}
 	}
 	metodo1(var);
+	var1 -= 1;
 }

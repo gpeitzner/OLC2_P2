@@ -532,6 +532,7 @@ def p_compuesto(t):
     '''
     COMPUESTO   :   igual %prec NIVEL14
                 |   mas igual %prec NIVEL14
+                |   menos igual %prec NIVEL14
                 |   asterisco igual %prec NIVEL14
                 |   division igual %prec NIVEL14
                 |   porcentaje igual %prec NIVEL14
