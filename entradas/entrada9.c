@@ -1,5 +1,5 @@
 //entrada9.c
 
 int main(){
-	printf("hola mundo %d", 1);
+	printf("hola\nmundo %d\n%d\n", 1, 3*3);
 }

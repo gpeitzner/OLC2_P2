@@ -137,14 +137,18 @@ class TresDirecciones:
             return self.obtener_expresion_ternaria(expresion)
         if isinstance(expresion, clases.Entero):
             return str(expresion.valor)
-        if isinstance(expresion, (clases.Cadena, clases.Caracter)):
-            return str(expresion.valor)
+        if isinstance(expresion, clases.Cadena):
+            return '"'+str(expresion.valor)+'"'
+        if isinstance(expresion, clases.Caracter):
+            return "'"+str(expresion.valor)+"'"
         if isinstance(expresion, clases.Decimal):
             return str(expresion.valor)
         if isinstance(expresion, clases.Identificador):
             return self.obtener_temporal_variable(expresion.valor)
         if isinstance(expresion, clases.ExpresionReferencia):
             return self.obtener_temporal_variable(expresion.identificador)
+        if isinstance(expresion, clases.ExpresionCasteo):
+            return self.obtener_expresion_casteo(expresion)
         if isinstance(expresion, clases.ExpresionScan):
             registro = self.obtener_registro_temporal()
             self.codigo3d += registro + ' = read();\n'
@@ -264,6 +268,17 @@ class TresDirecciones:
             self.codigo3d += registro + ' = '+primero+';\n'
             self.codigo3d += etiqueta_salida + ':\n'
             return registro
+        return None
+
+    def obtener_expresion_casteo(self, expresion):
+        operando = self.obtener_expresion(expresion.expresion)
+        if operando:
+            if expresion.tipo.valor in ['int', 'float', 'char']:
+                registro = self.obtener_registro_temporal()
+                self.codigo3d += registro + \
+                    ' = ('+expresion.tipo.valor+') '+operando+';\n'
+                return registro
+        return None
 
     def obtener_registro_temporal(self):
         registro_temporal = '$t' + str(self.contador_registros_temporales)
@@ -289,7 +304,7 @@ class TresDirecciones:
     def generar_codigo_instrucciones(self, instrucciones):
         if instrucciones:
             for instruccion in instrucciones:
-                if isinstance(instrucciones, clases.Etiqueta):
+                if isinstance(instruccion, clases.Etiqueta):
                     self.generar_codigo_etiqueta(instruccion)
                 elif isinstance(instruccion, clases.Salto):
                     self.generar_codigo_salto(instruccion)
@@ -735,11 +750,11 @@ class TresDirecciones:
                             if indice_expresiones > 0:
                                 self.codigo3d += 'print(' + \
                                     temporales[indice_temporales]+');\n'
-                                self.generar_codigo_printf_final(
+                                self.generar_codigo_saltos_linea(
                                     salida_auxiliar[1:])
                                 indice_temporales += 1
                             else:
-                                self.generar_codigo_printf_final(
+                                self.generar_codigo_saltos_linea(
                                     salida_auxiliar)
                                 indice_expresiones += 1
                 else:
@@ -747,14 +762,14 @@ class TresDirecciones:
                         'ERROR: Número de expreiones no válido en línea: '+instruccion.linea)
                     self.detener_ejecucion = True
             else:
-                self.generar_codigo_printf_final(
+                self.generar_codigo_saltos_linea(
                     instruccion.expresiones[0].valor)
         else:
             self.mostrar_mensaje_consola(
                 'ERROR: Expresión no válida en línea: '+instruccion.linea)
             self.detener_ejecucion = True
 
-    def generar_codigo_printf_final(self, cadena):
+    def generar_codigo_saltos_linea(self, cadena):
         salida = cadena.split('\\n')
         if len(salida) > 1:
             indice_salida = 0
