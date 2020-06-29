@@ -1,15 +1,15 @@
 //entrada8.c
 
-int metodo1(int &var){
+int metodo1(int &var2, int var1){
 	do{
-		var += 1;
-		if(var == 1){
+		var2 += 1;
+		if(var2 == 1){
 			continue;
 		}else{
 			break;
 		}
-		var += 1;
-	}while(var < 5);
+		var2 += 1;
+	}while(var2 < 5);
 }
 
 int main(){
@@ -24,6 +24,6 @@ int main(){
 			var += 1;
 		}
 	}
-	metodo1(var);
+	metodo1(var, var1);
 	var1 -= 1;
 }

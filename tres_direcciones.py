@@ -313,6 +313,8 @@ class TresDirecciones:
                     self.generar_codigo_for(instruccion)
                 elif isinstance(instruccion, clases.Metodo):
                     self.generar_codigo_metodo(instruccion)
+                elif isinstance(instruccion, clases._PrintF):
+                    self.generar_codigo_printf(instruccion)
                 if self.detener_ejecucion:
                     break
 
@@ -707,6 +709,63 @@ class TresDirecciones:
             self.mostrar_mensaje_consola(
                 'ERROR: La función no existe en línea: '+instruccion.linea)
             self.detener_ejecucion = True
+
+    def generar_codigo_printf(self, instruccion):
+        if isinstance(instruccion.expresiones[0], clases.Cadena):
+            if len(instruccion.expresiones) > 1:
+                salida_temporal = instruccion.expresiones[0].valor.split('%')
+                if (len(instruccion.expresiones) - 1) == len(salida_temporal) - 1:
+                    temporales = []
+                    indice_expresiones = 1
+                    while indice_expresiones < len(instruccion.expresiones):
+                        registro = self.obtener_expresion(
+                            instruccion.expresiones[indice_expresiones])
+                        if registro:
+                            temporales.append(registro)
+                        else:
+                            self.mostrar_mensaje_consola(
+                                'ERROR: Expresión no válida en línea: '+instruccion.linea)
+                            self.detener_ejecucion = True
+                            break
+                        indice_expresiones += 1
+                    if not self.detener_ejecucion:
+                        indice_expresiones = 0
+                        indice_temporales = 0
+                        for salida_auxiliar in salida_temporal:
+                            if indice_expresiones > 0:
+                                self.codigo3d += 'print(' + \
+                                    temporales[indice_temporales]+');\n'
+                                self.generar_codigo_printf_final(
+                                    salida_auxiliar[1:])
+                                indice_temporales += 1
+                            else:
+                                self.generar_codigo_printf_final(
+                                    salida_auxiliar)
+                                indice_expresiones += 1
+                else:
+                    self.mostrar_mensaje_consola(
+                        'ERROR: Número de expreiones no válido en línea: '+instruccion.linea)
+                    self.detener_ejecucion = True
+            else:
+                self.generar_codigo_printf_final(
+                    instruccion.expresiones[0].valor)
+        else:
+            self.mostrar_mensaje_consola(
+                'ERROR: Expresión no válida en línea: '+instruccion.linea)
+            self.detener_ejecucion = True
+
+    def generar_codigo_printf_final(self, cadena):
+        salida = cadena.split('\\n')
+        if len(salida) > 1:
+            indice_salida = 0
+            while indice_salida < len(salida):
+                if indice_salida > 0:
+                    self.codigo3d += 'print("\\n");\n'
+                self.codigo3d += 'print("' + \
+                    salida[indice_salida]+'");\n'
+                indice_salida += 1
+        else:
+            self.codigo3d += 'print("'+salida[0]+'");\n'
 
     def agregar_ambito(self):
         self.ambitos.append(Ambito())
