@@ -37,8 +37,8 @@ Rule 31    INSTRUCCION_LOCAL -> SWITCH
 Rule 32    INSTRUCCION_LOCAL -> WHILE
 Rule 33    INSTRUCCION_LOCAL -> DO
 Rule 34    INSTRUCCION_LOCAL -> FOR
-Rule 35    INSTRUCCION_LOCAL -> METODO punto_coma
-Rule 36    INSTRUCCION_LOCAL -> PRINT punto_coma
+Rule 35    INSTRUCCION_LOCAL -> PRINT punto_coma
+Rule 36    INSTRUCCION_LOCAL -> METODO punto_coma
 Rule 37    PRINT -> _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra
 Rule 38    INSTRUCCION_LOCAL -> _continue punto_coma
 Rule 39    INSTRUCCION_LOCAL -> _break punto_coma
@@ -73,14 +73,14 @@ Rule 67    COMPUESTO -> desplazamiento_derecho igual
 Rule 68    COMPUESTO -> et igual
 Rule 69    COMPUESTO -> elevado igual
 Rule 70    COMPUESTO -> pleca igual
-Rule 71    IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
-Rule 72    ELSEIFS -> LISTA_ELSEIF
-Rule 73    ELSEIFS -> <empty>
-Rule 74    LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF
-Rule 75    LISTA_ELSEIF -> ELSEIF
-Rule 76    ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
-Rule 77    ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra
-Rule 78    ELSE -> <empty>
+Rule 71    IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+Rule 72    IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE
+Rule 73    IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL
+Rule 74    IF_FINAL -> ELSEIF IF_FINAL
+Rule 75    IF_FINAL -> ELSE
+Rule 76    IF_FINAL -> <empty>
+Rule 77    ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+Rule 78    ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra
 Rule 79    SWITCH -> _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
 Rule 80    CASES -> LISTA_CASE
 Rule 81    CASES -> <empty>
@@ -151,12 +151,11 @@ _continue            : 38
 _default             : 85
 _do                  : 88
 _double              : 135
-_else                : 77
-_elseif              : 76
+_else                : 77 78
 _float               : 136
 _for                 : 89
 _goto                : 44
-_if                  : 71
+_if                  : 71 72 73 77
 _int                 : 133
 _printf              : 37
 _return              : 40 41
@@ -189,8 +188,8 @@ et                   : 21 68 107 114
 exclamacion          : 112
 identificador        : 9 15 20 21 42 43 44 48 49 56 57 57 58 59 114 117 117 118 119 119 128 138
 igual                : 49 60 61 62 63 64 65 66 67 68 69 70
-llave_abre           : 9 15 71 76 77 79 87 88 89 120
-llave_cierra         : 9 15 71 76 77 79 87 88 89 120
+llave_abre           : 9 15 71 72 73 77 78 79 87 88 89 120
+llave_cierra         : 9 15 71 72 73 77 78 79 87 88 89 120
 mas                  : 61 92
 mayor                : 99
 mayor_igual          : 101
@@ -198,8 +197,8 @@ menor                : 100
 menor_igual          : 102
 menos                : 62 93 111
 or                   : 104
-parentesis_abre      : 15 37 42 71 76 79 87 88 89 116 121 122 123
-parentesis_cierra    : 15 37 42 71 76 79 87 88 89 116 121 122 123
+parentesis_abre      : 15 37 42 71 72 73 77 79 87 88 89 116 121 122 123
+parentesis_cierra    : 15 37 42 71 72 73 77 79 87 88 89 116 121 122 123
 pleca                : 70 108
 porcentaje           : 65 96
 pregunta             : 110
@@ -218,21 +217,21 @@ CASE                 : 82 83
 CASES                : 79
 COMPUESTO            : 56 57
 CUERPO_GLOBAL        : 1
-CUERPO_LOCAL         : 15 71 76 77 84 85 87 88 89
+CUERPO_LOCAL         : 15 71 72 73 77 78 84 85 87 88 89
 DECLARACION          : 6 14 28 90
 DECLARACION_FINAL    : 46 47
 DEFAULT_CASE         : 79
 DO                   : 33
-ELSE                 : 71
-ELSEIF               : 74 75
-ELSEIFS              : 71
+ELSE                 : 72 75
+ELSEIF               : 73 74
 ESTRUCTURA           : 7
 ETIQUETA             : 26
-EXPRESION            : 40 49 54 56 57 71 76 79 84 87 88 89 92 92 93 93 94 94 95 95 96 96 97 97 98 98 99 99 100 100 101 101 102 102 103 103 104 104 105 105 106 106 107 107 108 108 109 109 110 110 110 111 112 113 116 123 131 132
+EXPRESION            : 40 49 54 56 57 71 72 73 77 79 84 87 88 89 92 92 93 93 94 94 95 95 96 96 97 97 98 98 99 99 100 100 101 101 102 102 103 103 104 104 105 105 106 106 107 107 108 108 109 109 110 110 110 111 112 113 116 123 131 132
 EXPRESIONES          : 42 120
 FOR                  : 34
 FUNCION              : 8
 IF                   : 30
+IF_FINAL             : 73 74
 INDICES              : 48 49 56 57
 INICIO_FOR           : 89
 INIT                 : 0
@@ -241,15 +240,14 @@ INSTRUCCION_LOCAL    : 24 25
 LISTA_CARACTERISTICAS : 10 12
 LISTA_CASE           : 80 82
 LISTA_DECLARACION    : 45 46
-LISTA_ELSEIF         : 72 74
 LISTA_EXPRESIONES    : 37 129 131
 LISTA_GLOBAL         : 2 4
 LISTA_LOCAL          : 22 24
 LISTA_PARAMETROS     : 16 18
-METODO               : 35 115
+METODO               : 36 115
 PARAMETRO            : 18 19
 PARAMETROS           : 15
-PRINT                : 36
+PRINT                : 35
 SALTO                : 27
 SWITCH               : 31
 TIPO                 : 15 20 21 45 121 123
@@ -3378,8 +3376,8 @@ state 103
     (32) INSTRUCCION_LOCAL -> . WHILE
     (33) INSTRUCCION_LOCAL -> . DO
     (34) INSTRUCCION_LOCAL -> . FOR
-    (35) INSTRUCCION_LOCAL -> . METODO punto_coma
-    (36) INSTRUCCION_LOCAL -> . PRINT punto_coma
+    (35) INSTRUCCION_LOCAL -> . PRINT punto_coma
+    (36) INSTRUCCION_LOCAL -> . METODO punto_coma
     (38) INSTRUCCION_LOCAL -> . _continue punto_coma
     (39) INSTRUCCION_LOCAL -> . _break punto_coma
     (40) INSTRUCCION_LOCAL -> . _return EXPRESION punto_coma
@@ -3391,13 +3389,15 @@ state 103
     (57) ASIGNACION -> . identificador INDICES punto identificador COMPUESTO EXPRESION
     (58) ASIGNACION -> . identificador aumento
     (59) ASIGNACION -> . identificador decremento
-    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
+    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (72) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE
+    (73) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL
     (79) SWITCH -> . _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
     (87) WHILE -> . _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (88) DO -> . _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
     (89) FOR -> . _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
-    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
     (37) PRINT -> . _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra
+    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
     (133) TIPO -> . _int
     (134) TIPO -> . _char
     (135) TIPO -> . _double
@@ -3437,8 +3437,8 @@ state 103
     WHILE                          shift and go to state 143
     DO                             shift and go to state 144
     FOR                            shift and go to state 145
-    METODO                         shift and go to state 146
-    PRINT                          shift and go to state 147
+    PRINT                          shift and go to state 146
+    METODO                         shift and go to state 147
 
 state 104
 
@@ -5073,8 +5073,8 @@ state 135
     (32) INSTRUCCION_LOCAL -> . WHILE
     (33) INSTRUCCION_LOCAL -> . DO
     (34) INSTRUCCION_LOCAL -> . FOR
-    (35) INSTRUCCION_LOCAL -> . METODO punto_coma
-    (36) INSTRUCCION_LOCAL -> . PRINT punto_coma
+    (35) INSTRUCCION_LOCAL -> . PRINT punto_coma
+    (36) INSTRUCCION_LOCAL -> . METODO punto_coma
     (38) INSTRUCCION_LOCAL -> . _continue punto_coma
     (39) INSTRUCCION_LOCAL -> . _break punto_coma
     (40) INSTRUCCION_LOCAL -> . _return EXPRESION punto_coma
@@ -5086,13 +5086,15 @@ state 135
     (57) ASIGNACION -> . identificador INDICES punto identificador COMPUESTO EXPRESION
     (58) ASIGNACION -> . identificador aumento
     (59) ASIGNACION -> . identificador decremento
-    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
+    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (72) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE
+    (73) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL
     (79) SWITCH -> . _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
     (87) WHILE -> . _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (88) DO -> . _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
     (89) FOR -> . _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
-    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
     (37) PRINT -> . _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra
+    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
     (133) TIPO -> . _int
     (134) TIPO -> . _char
     (135) TIPO -> . _double
@@ -5131,8 +5133,8 @@ state 135
     WHILE                          shift and go to state 143
     DO                             shift and go to state 144
     FOR                            shift and go to state 145
-    METODO                         shift and go to state 146
-    PRINT                          shift and go to state 147
+    PRINT                          shift and go to state 146
+    METODO                         shift and go to state 147
     TIPO                           shift and go to state 58
 
 state 136
@@ -5359,14 +5361,14 @@ state 145
 
 state 146
 
-    (35) INSTRUCCION_LOCAL -> METODO . punto_coma
+    (35) INSTRUCCION_LOCAL -> PRINT . punto_coma
 
     punto_coma      shift and go to state 172
 
 
 state 147
 
-    (36) INSTRUCCION_LOCAL -> PRINT . punto_coma
+    (36) INSTRUCCION_LOCAL -> METODO . punto_coma
 
     punto_coma      shift and go to state 173
 
@@ -5455,7 +5457,9 @@ state 151
 
 state 152
 
-    (71) IF -> _if . parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
+    (71) IF -> _if . parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (72) IF -> _if . parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE
+    (73) IF -> _if . parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL
 
     parentesis_abre shift and go to state 179
 
@@ -5930,54 +5934,54 @@ state 171
 
 state 172
 
-    (35) INSTRUCCION_LOCAL -> METODO punto_coma .
+    (35) INSTRUCCION_LOCAL -> PRINT punto_coma .
 
-    _continue       reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    _break          reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    _return         reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    identificador   reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    _goto           reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    _if             reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    _switch         reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    _while          reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    _do             reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    _for            reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    _printf         reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    _int            reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    _char           reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    _double         reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    _float          reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    _void           reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    _struct         reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    llave_cierra    reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    _case           reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
-    _default        reduce using rule 35 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    _continue       reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    _break          reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    _return         reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    identificador   reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    _goto           reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    _if             reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    _switch         reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    _while          reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    _do             reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    _for            reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    _printf         reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    _int            reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    _char           reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    _double         reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    _float          reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    _void           reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    _struct         reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    llave_cierra    reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    _case           reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    _default        reduce using rule 35 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
 
 
 state 173
 
-    (36) INSTRUCCION_LOCAL -> PRINT punto_coma .
+    (36) INSTRUCCION_LOCAL -> METODO punto_coma .
 
-    _continue       reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    _break          reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    _return         reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    identificador   reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    _goto           reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    _if             reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    _switch         reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    _while          reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    _do             reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    _for            reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    _printf         reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    _int            reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    _char           reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    _double         reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    _float          reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    _void           reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    _struct         reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    llave_cierra    reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    _case           reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
-    _default        reduce using rule 36 (INSTRUCCION_LOCAL -> PRINT punto_coma .)
+    _continue       reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    _break          reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    _return         reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    identificador   reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    _goto           reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    _if             reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    _switch         reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    _while          reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    _do             reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    _for            reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    _printf         reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    _int            reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    _char           reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    _double         reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    _float          reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    _void           reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    _struct         reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    llave_cierra    reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    _case           reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
+    _default        reduce using rule 36 (INSTRUCCION_LOCAL -> METODO punto_coma .)
 
 
 state 174
@@ -6112,7 +6116,9 @@ state 178
 
 state 179
 
-    (71) IF -> _if parentesis_abre . EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
+    (71) IF -> _if parentesis_abre . EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (72) IF -> _if parentesis_abre . EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE
+    (73) IF -> _if parentesis_abre . EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL
     (92) EXPRESION -> . EXPRESION mas EXPRESION
     (93) EXPRESION -> . EXPRESION menos EXPRESION
     (94) EXPRESION -> . EXPRESION asterisco EXPRESION
@@ -6303,8 +6309,8 @@ state 182
     (32) INSTRUCCION_LOCAL -> . WHILE
     (33) INSTRUCCION_LOCAL -> . DO
     (34) INSTRUCCION_LOCAL -> . FOR
-    (35) INSTRUCCION_LOCAL -> . METODO punto_coma
-    (36) INSTRUCCION_LOCAL -> . PRINT punto_coma
+    (35) INSTRUCCION_LOCAL -> . PRINT punto_coma
+    (36) INSTRUCCION_LOCAL -> . METODO punto_coma
     (38) INSTRUCCION_LOCAL -> . _continue punto_coma
     (39) INSTRUCCION_LOCAL -> . _break punto_coma
     (40) INSTRUCCION_LOCAL -> . _return EXPRESION punto_coma
@@ -6316,13 +6322,15 @@ state 182
     (57) ASIGNACION -> . identificador INDICES punto identificador COMPUESTO EXPRESION
     (58) ASIGNACION -> . identificador aumento
     (59) ASIGNACION -> . identificador decremento
-    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
+    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (72) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE
+    (73) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL
     (79) SWITCH -> . _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
     (87) WHILE -> . _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (88) DO -> . _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
     (89) FOR -> . _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
-    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
     (37) PRINT -> . _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra
+    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
     (133) TIPO -> . _int
     (134) TIPO -> . _char
     (135) TIPO -> . _double
@@ -6361,8 +6369,8 @@ state 182
     WHILE                          shift and go to state 143
     DO                             shift and go to state 144
     FOR                            shift and go to state 145
-    METODO                         shift and go to state 146
-    PRINT                          shift and go to state 147
+    PRINT                          shift and go to state 146
+    METODO                         shift and go to state 147
     TIPO                           shift and go to state 58
 
 state 183
@@ -6736,7 +6744,9 @@ state 200
 
 state 201
 
-    (71) IF -> _if parentesis_abre EXPRESION . parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
+    (71) IF -> _if parentesis_abre EXPRESION . parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (72) IF -> _if parentesis_abre EXPRESION . parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE
+    (73) IF -> _if parentesis_abre EXPRESION . parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL
     (92) EXPRESION -> EXPRESION . mas EXPRESION
     (93) EXPRESION -> EXPRESION . menos EXPRESION
     (94) EXPRESION -> EXPRESION . asterisco EXPRESION
@@ -7206,7 +7216,9 @@ state 221
 
 state 222
 
-    (71) IF -> _if parentesis_abre EXPRESION parentesis_cierra . llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
+    (71) IF -> _if parentesis_abre EXPRESION parentesis_cierra . llave_abre CUERPO_LOCAL llave_cierra
+    (72) IF -> _if parentesis_abre EXPRESION parentesis_cierra . llave_abre CUERPO_LOCAL llave_cierra ELSE
+    (73) IF -> _if parentesis_abre EXPRESION parentesis_cierra . llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL
 
     llave_abre      shift and go to state 229
 
@@ -7359,7 +7371,9 @@ state 228
 
 state 229
 
-    (71) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre . CUERPO_LOCAL llave_cierra ELSEIFS ELSE
+    (71) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre . CUERPO_LOCAL llave_cierra
+    (72) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre . CUERPO_LOCAL llave_cierra ELSE
+    (73) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre . CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL
     (22) CUERPO_LOCAL -> . LISTA_LOCAL
     (23) CUERPO_LOCAL -> .
     (24) LISTA_LOCAL -> . LISTA_LOCAL INSTRUCCION_LOCAL
@@ -7373,8 +7387,8 @@ state 229
     (32) INSTRUCCION_LOCAL -> . WHILE
     (33) INSTRUCCION_LOCAL -> . DO
     (34) INSTRUCCION_LOCAL -> . FOR
-    (35) INSTRUCCION_LOCAL -> . METODO punto_coma
-    (36) INSTRUCCION_LOCAL -> . PRINT punto_coma
+    (35) INSTRUCCION_LOCAL -> . PRINT punto_coma
+    (36) INSTRUCCION_LOCAL -> . METODO punto_coma
     (38) INSTRUCCION_LOCAL -> . _continue punto_coma
     (39) INSTRUCCION_LOCAL -> . _break punto_coma
     (40) INSTRUCCION_LOCAL -> . _return EXPRESION punto_coma
@@ -7386,13 +7400,15 @@ state 229
     (57) ASIGNACION -> . identificador INDICES punto identificador COMPUESTO EXPRESION
     (58) ASIGNACION -> . identificador aumento
     (59) ASIGNACION -> . identificador decremento
-    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
+    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (72) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE
+    (73) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL
     (79) SWITCH -> . _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
     (87) WHILE -> . _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (88) DO -> . _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
     (89) FOR -> . _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
-    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
     (37) PRINT -> . _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra
+    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
     (133) TIPO -> . _int
     (134) TIPO -> . _char
     (135) TIPO -> . _double
@@ -7431,8 +7447,8 @@ state 229
     WHILE                          shift and go to state 143
     DO                             shift and go to state 144
     FOR                            shift and go to state 145
-    METODO                         shift and go to state 146
-    PRINT                          shift and go to state 147
+    PRINT                          shift and go to state 146
+    METODO                         shift and go to state 147
     TIPO                           shift and go to state 58
 
 state 230
@@ -7468,8 +7484,8 @@ state 231
     (32) INSTRUCCION_LOCAL -> . WHILE
     (33) INSTRUCCION_LOCAL -> . DO
     (34) INSTRUCCION_LOCAL -> . FOR
-    (35) INSTRUCCION_LOCAL -> . METODO punto_coma
-    (36) INSTRUCCION_LOCAL -> . PRINT punto_coma
+    (35) INSTRUCCION_LOCAL -> . PRINT punto_coma
+    (36) INSTRUCCION_LOCAL -> . METODO punto_coma
     (38) INSTRUCCION_LOCAL -> . _continue punto_coma
     (39) INSTRUCCION_LOCAL -> . _break punto_coma
     (40) INSTRUCCION_LOCAL -> . _return EXPRESION punto_coma
@@ -7481,13 +7497,15 @@ state 231
     (57) ASIGNACION -> . identificador INDICES punto identificador COMPUESTO EXPRESION
     (58) ASIGNACION -> . identificador aumento
     (59) ASIGNACION -> . identificador decremento
-    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
+    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (72) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE
+    (73) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL
     (79) SWITCH -> . _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
     (87) WHILE -> . _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (88) DO -> . _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
     (89) FOR -> . _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
-    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
     (37) PRINT -> . _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra
+    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
     (133) TIPO -> . _int
     (134) TIPO -> . _char
     (135) TIPO -> . _double
@@ -7526,8 +7544,8 @@ state 231
     WHILE                          shift and go to state 143
     DO                             shift and go to state 144
     FOR                            shift and go to state 145
-    METODO                         shift and go to state 146
-    PRINT                          shift and go to state 147
+    PRINT                          shift and go to state 146
+    METODO                         shift and go to state 147
     TIPO                           shift and go to state 58
 
 state 232
@@ -7630,7 +7648,9 @@ state 234
 
 state 235
 
-    (71) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL . llave_cierra ELSEIFS ELSE
+    (71) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL . llave_cierra
+    (72) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL . llave_cierra ELSE
+    (73) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL . llave_cierra ELSEIF IF_FINAL
 
     llave_cierra    shift and go to state 243
 
@@ -7806,52 +7826,49 @@ state 242
 
 state 243
 
-    (71) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra . ELSEIFS ELSE
-    (72) ELSEIFS -> . LISTA_ELSEIF
-    (73) ELSEIFS -> .
-    (74) LISTA_ELSEIF -> . LISTA_ELSEIF ELSEIF
-    (75) LISTA_ELSEIF -> . ELSEIF
-    (76) ELSEIF -> . _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (71) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .
+    (72) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra . ELSE
+    (73) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra . ELSEIF IF_FINAL
+    (78) ELSE -> . _else llave_abre CUERPO_LOCAL llave_cierra
+    (77) ELSEIF -> . _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
 
-    _else           reduce using rule 73 (ELSEIFS -> .)
-    _continue       reduce using rule 73 (ELSEIFS -> .)
-    _break          reduce using rule 73 (ELSEIFS -> .)
-    _return         reduce using rule 73 (ELSEIFS -> .)
-    identificador   reduce using rule 73 (ELSEIFS -> .)
-    _goto           reduce using rule 73 (ELSEIFS -> .)
-    _if             reduce using rule 73 (ELSEIFS -> .)
-    _switch         reduce using rule 73 (ELSEIFS -> .)
-    _while          reduce using rule 73 (ELSEIFS -> .)
-    _do             reduce using rule 73 (ELSEIFS -> .)
-    _for            reduce using rule 73 (ELSEIFS -> .)
-    _printf         reduce using rule 73 (ELSEIFS -> .)
-    _int            reduce using rule 73 (ELSEIFS -> .)
-    _char           reduce using rule 73 (ELSEIFS -> .)
-    _double         reduce using rule 73 (ELSEIFS -> .)
-    _float          reduce using rule 73 (ELSEIFS -> .)
-    _void           reduce using rule 73 (ELSEIFS -> .)
-    _struct         reduce using rule 73 (ELSEIFS -> .)
-    llave_cierra    reduce using rule 73 (ELSEIFS -> .)
-    _case           reduce using rule 73 (ELSEIFS -> .)
-    _default        reduce using rule 73 (ELSEIFS -> .)
-    _elseif         shift and go to state 254
+    _continue       reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _break          reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _return         reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    identificador   reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _goto           reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _if             reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _switch         reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _while          reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _do             reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _for            reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _printf         reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _int            reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _char           reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _double         reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _float          reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _void           reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _struct         reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    llave_cierra    reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _case           reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _default        reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _else           shift and go to state 253
 
-    ELSEIFS                        shift and go to state 251
-    LISTA_ELSEIF                   shift and go to state 252
-    ELSEIF                         shift and go to state 253
+    ELSE                           shift and go to state 251
+    ELSEIF                         shift and go to state 252
 
 state 244
 
     (79) SWITCH -> _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE . llave_cierra
 
-    llave_cierra    shift and go to state 255
+    llave_cierra    shift and go to state 254
 
 
 state 245
 
     (85) DEFAULT_CASE -> _default . dos_puntos CUERPO_LOCAL
 
-    dos_puntos      shift and go to state 256
+    dos_puntos      shift and go to state 255
 
 
 state 246
@@ -7886,7 +7903,7 @@ state 247
     (109) EXPRESION -> EXPRESION . elevado EXPRESION
     (110) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
-    dos_puntos      shift and go to state 257
+    dos_puntos      shift and go to state 256
     mas             shift and go to state 66
     menos           shift and go to state 67
     asterisco       shift and go to state 68
@@ -7957,7 +7974,7 @@ state 249
     (109) EXPRESION -> EXPRESION . elevado EXPRESION
     (110) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
-    parentesis_cierra shift and go to state 258
+    parentesis_cierra shift and go to state 257
     mas             shift and go to state 66
     menos           shift and go to state 67
     asterisco       shift and go to state 68
@@ -7983,106 +8000,80 @@ state 250
 
     (89) FOR -> _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION . parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
 
-    parentesis_cierra shift and go to state 259
+    parentesis_cierra shift and go to state 258
 
 
 state 251
 
-    (71) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS . ELSE
-    (77) ELSE -> . _else llave_abre CUERPO_LOCAL llave_cierra
-    (78) ELSE -> .
+    (72) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .
 
-    _else           shift and go to state 261
-    _continue       reduce using rule 78 (ELSE -> .)
-    _break          reduce using rule 78 (ELSE -> .)
-    _return         reduce using rule 78 (ELSE -> .)
-    identificador   reduce using rule 78 (ELSE -> .)
-    _goto           reduce using rule 78 (ELSE -> .)
-    _if             reduce using rule 78 (ELSE -> .)
-    _switch         reduce using rule 78 (ELSE -> .)
-    _while          reduce using rule 78 (ELSE -> .)
-    _do             reduce using rule 78 (ELSE -> .)
-    _for            reduce using rule 78 (ELSE -> .)
-    _printf         reduce using rule 78 (ELSE -> .)
-    _int            reduce using rule 78 (ELSE -> .)
-    _char           reduce using rule 78 (ELSE -> .)
-    _double         reduce using rule 78 (ELSE -> .)
-    _float          reduce using rule 78 (ELSE -> .)
-    _void           reduce using rule 78 (ELSE -> .)
-    _struct         reduce using rule 78 (ELSE -> .)
-    llave_cierra    reduce using rule 78 (ELSE -> .)
-    _case           reduce using rule 78 (ELSE -> .)
-    _default        reduce using rule 78 (ELSE -> .)
+    _continue       reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    _break          reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    _return         reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    identificador   reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    _goto           reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    _if             reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    _switch         reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    _while          reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    _do             reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    _for            reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    _printf         reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    _int            reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    _char           reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    _double         reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    _float          reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    _void           reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    _struct         reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    llave_cierra    reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    _case           reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
+    _default        reduce using rule 72 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE .)
 
-    ELSE                           shift and go to state 260
 
 state 252
 
-    (72) ELSEIFS -> LISTA_ELSEIF .
-    (74) LISTA_ELSEIF -> LISTA_ELSEIF . ELSEIF
-    (76) ELSEIF -> . _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (73) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF . IF_FINAL
+    (74) IF_FINAL -> . ELSEIF IF_FINAL
+    (75) IF_FINAL -> . ELSE
+    (76) IF_FINAL -> .
+    (77) ELSEIF -> . _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (78) ELSE -> . _else llave_abre CUERPO_LOCAL llave_cierra
 
-    _else           reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _continue       reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _break          reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _return         reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    identificador   reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _goto           reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _if             reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _switch         reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _while          reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _do             reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _for            reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _printf         reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _int            reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _char           reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _double         reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _float          reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _void           reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _struct         reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    llave_cierra    reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _case           reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _default        reduce using rule 72 (ELSEIFS -> LISTA_ELSEIF .)
-    _elseif         shift and go to state 254
+    _continue       reduce using rule 76 (IF_FINAL -> .)
+    _break          reduce using rule 76 (IF_FINAL -> .)
+    _return         reduce using rule 76 (IF_FINAL -> .)
+    identificador   reduce using rule 76 (IF_FINAL -> .)
+    _goto           reduce using rule 76 (IF_FINAL -> .)
+    _if             reduce using rule 76 (IF_FINAL -> .)
+    _switch         reduce using rule 76 (IF_FINAL -> .)
+    _while          reduce using rule 76 (IF_FINAL -> .)
+    _do             reduce using rule 76 (IF_FINAL -> .)
+    _for            reduce using rule 76 (IF_FINAL -> .)
+    _printf         reduce using rule 76 (IF_FINAL -> .)
+    _int            reduce using rule 76 (IF_FINAL -> .)
+    _char           reduce using rule 76 (IF_FINAL -> .)
+    _double         reduce using rule 76 (IF_FINAL -> .)
+    _float          reduce using rule 76 (IF_FINAL -> .)
+    _void           reduce using rule 76 (IF_FINAL -> .)
+    _struct         reduce using rule 76 (IF_FINAL -> .)
+    llave_cierra    reduce using rule 76 (IF_FINAL -> .)
+    _case           reduce using rule 76 (IF_FINAL -> .)
+    _default        reduce using rule 76 (IF_FINAL -> .)
+    _else           shift and go to state 262
 
-    ELSEIF                         shift and go to state 262
+    ELSEIF                         shift and go to state 259
+    IF_FINAL                       shift and go to state 260
+    ELSE                           shift and go to state 261
 
 state 253
 
-    (75) LISTA_ELSEIF -> ELSEIF .
+    (78) ELSE -> _else . llave_abre CUERPO_LOCAL llave_cierra
+    (77) ELSEIF -> _else . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
 
-    _elseif         reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _else           reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _continue       reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _break          reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _return         reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    identificador   reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _goto           reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _if             reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _switch         reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _while          reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _do             reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _for            reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _printf         reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _int            reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _char           reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _double         reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _float          reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _void           reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _struct         reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    llave_cierra    reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _case           reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
-    _default        reduce using rule 75 (LISTA_ELSEIF -> ELSEIF .)
+    llave_abre      shift and go to state 263
+    _if             shift and go to state 264
 
 
 state 254
-
-    (76) ELSEIF -> _elseif . parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
-
-    parentesis_abre shift and go to state 263
-
-
-state 255
 
     (79) SWITCH -> _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra .
 
@@ -8108,7 +8099,7 @@ state 255
     _default        reduce using rule 79 (SWITCH -> _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra .)
 
 
-state 256
+state 255
 
     (85) DEFAULT_CASE -> _default dos_puntos . CUERPO_LOCAL
     (22) CUERPO_LOCAL -> . LISTA_LOCAL
@@ -8124,8 +8115,8 @@ state 256
     (32) INSTRUCCION_LOCAL -> . WHILE
     (33) INSTRUCCION_LOCAL -> . DO
     (34) INSTRUCCION_LOCAL -> . FOR
-    (35) INSTRUCCION_LOCAL -> . METODO punto_coma
-    (36) INSTRUCCION_LOCAL -> . PRINT punto_coma
+    (35) INSTRUCCION_LOCAL -> . PRINT punto_coma
+    (36) INSTRUCCION_LOCAL -> . METODO punto_coma
     (38) INSTRUCCION_LOCAL -> . _continue punto_coma
     (39) INSTRUCCION_LOCAL -> . _break punto_coma
     (40) INSTRUCCION_LOCAL -> . _return EXPRESION punto_coma
@@ -8137,13 +8128,15 @@ state 256
     (57) ASIGNACION -> . identificador INDICES punto identificador COMPUESTO EXPRESION
     (58) ASIGNACION -> . identificador aumento
     (59) ASIGNACION -> . identificador decremento
-    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
+    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (72) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE
+    (73) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL
     (79) SWITCH -> . _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
     (87) WHILE -> . _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (88) DO -> . _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
     (89) FOR -> . _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
-    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
     (37) PRINT -> . _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra
+    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
     (133) TIPO -> . _int
     (134) TIPO -> . _char
     (135) TIPO -> . _double
@@ -8151,86 +8144,6 @@ state 256
     (137) TIPO -> . _void
     (138) TIPO -> . _struct identificador
 
-    llave_cierra    reduce using rule 23 (CUERPO_LOCAL -> .)
-    _continue       shift and go to state 148
-    _break          shift and go to state 149
-    _return         shift and go to state 150
-    identificador   shift and go to state 133
-    _goto           shift and go to state 151
-    _if             shift and go to state 152
-    _switch         shift and go to state 153
-    _while          shift and go to state 154
-    _do             shift and go to state 155
-    _for            shift and go to state 156
-    _printf         shift and go to state 157
-    _int            shift and go to state 10
-    _char           shift and go to state 11
-    _double         shift and go to state 12
-    _float          shift and go to state 13
-    _void           shift and go to state 14
-    _struct         shift and go to state 35
-
-    CUERPO_LOCAL                   shift and go to state 264
-    LISTA_LOCAL                    shift and go to state 135
-    INSTRUCCION_LOCAL              shift and go to state 136
-    ETIQUETA                       shift and go to state 137
-    SALTO                          shift and go to state 138
-    DECLARACION                    shift and go to state 139
-    ASIGNACION                     shift and go to state 140
-    IF                             shift and go to state 141
-    SWITCH                         shift and go to state 142
-    WHILE                          shift and go to state 143
-    DO                             shift and go to state 144
-    FOR                            shift and go to state 145
-    METODO                         shift and go to state 146
-    PRINT                          shift and go to state 147
-    TIPO                           shift and go to state 58
-
-state 257
-
-    (84) CASE -> _case EXPRESION dos_puntos . CUERPO_LOCAL
-    (22) CUERPO_LOCAL -> . LISTA_LOCAL
-    (23) CUERPO_LOCAL -> .
-    (24) LISTA_LOCAL -> . LISTA_LOCAL INSTRUCCION_LOCAL
-    (25) LISTA_LOCAL -> . INSTRUCCION_LOCAL
-    (26) INSTRUCCION_LOCAL -> . ETIQUETA
-    (27) INSTRUCCION_LOCAL -> . SALTO
-    (28) INSTRUCCION_LOCAL -> . DECLARACION punto_coma
-    (29) INSTRUCCION_LOCAL -> . ASIGNACION punto_coma
-    (30) INSTRUCCION_LOCAL -> . IF
-    (31) INSTRUCCION_LOCAL -> . SWITCH
-    (32) INSTRUCCION_LOCAL -> . WHILE
-    (33) INSTRUCCION_LOCAL -> . DO
-    (34) INSTRUCCION_LOCAL -> . FOR
-    (35) INSTRUCCION_LOCAL -> . METODO punto_coma
-    (36) INSTRUCCION_LOCAL -> . PRINT punto_coma
-    (38) INSTRUCCION_LOCAL -> . _continue punto_coma
-    (39) INSTRUCCION_LOCAL -> . _break punto_coma
-    (40) INSTRUCCION_LOCAL -> . _return EXPRESION punto_coma
-    (41) INSTRUCCION_LOCAL -> . _return punto_coma
-    (43) ETIQUETA -> . identificador dos_puntos
-    (44) SALTO -> . _goto identificador punto_coma
-    (45) DECLARACION -> . TIPO LISTA_DECLARACION
-    (56) ASIGNACION -> . identificador INDICES COMPUESTO EXPRESION
-    (57) ASIGNACION -> . identificador INDICES punto identificador COMPUESTO EXPRESION
-    (58) ASIGNACION -> . identificador aumento
-    (59) ASIGNACION -> . identificador decremento
-    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
-    (79) SWITCH -> . _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
-    (87) WHILE -> . _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
-    (88) DO -> . _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
-    (89) FOR -> . _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
-    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
-    (37) PRINT -> . _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra
-    (133) TIPO -> . _int
-    (134) TIPO -> . _char
-    (135) TIPO -> . _double
-    (136) TIPO -> . _float
-    (137) TIPO -> . _void
-    (138) TIPO -> . _struct identificador
-
-    _case           reduce using rule 23 (CUERPO_LOCAL -> .)
-    _default        reduce using rule 23 (CUERPO_LOCAL -> .)
     llave_cierra    reduce using rule 23 (CUERPO_LOCAL -> .)
     _continue       shift and go to state 148
     _break          shift and go to state 149
@@ -8262,88 +8175,447 @@ state 257
     WHILE                          shift and go to state 143
     DO                             shift and go to state 144
     FOR                            shift and go to state 145
-    METODO                         shift and go to state 146
-    PRINT                          shift and go to state 147
+    PRINT                          shift and go to state 146
+    METODO                         shift and go to state 147
     TIPO                           shift and go to state 58
 
-state 258
+state 256
+
+    (84) CASE -> _case EXPRESION dos_puntos . CUERPO_LOCAL
+    (22) CUERPO_LOCAL -> . LISTA_LOCAL
+    (23) CUERPO_LOCAL -> .
+    (24) LISTA_LOCAL -> . LISTA_LOCAL INSTRUCCION_LOCAL
+    (25) LISTA_LOCAL -> . INSTRUCCION_LOCAL
+    (26) INSTRUCCION_LOCAL -> . ETIQUETA
+    (27) INSTRUCCION_LOCAL -> . SALTO
+    (28) INSTRUCCION_LOCAL -> . DECLARACION punto_coma
+    (29) INSTRUCCION_LOCAL -> . ASIGNACION punto_coma
+    (30) INSTRUCCION_LOCAL -> . IF
+    (31) INSTRUCCION_LOCAL -> . SWITCH
+    (32) INSTRUCCION_LOCAL -> . WHILE
+    (33) INSTRUCCION_LOCAL -> . DO
+    (34) INSTRUCCION_LOCAL -> . FOR
+    (35) INSTRUCCION_LOCAL -> . PRINT punto_coma
+    (36) INSTRUCCION_LOCAL -> . METODO punto_coma
+    (38) INSTRUCCION_LOCAL -> . _continue punto_coma
+    (39) INSTRUCCION_LOCAL -> . _break punto_coma
+    (40) INSTRUCCION_LOCAL -> . _return EXPRESION punto_coma
+    (41) INSTRUCCION_LOCAL -> . _return punto_coma
+    (43) ETIQUETA -> . identificador dos_puntos
+    (44) SALTO -> . _goto identificador punto_coma
+    (45) DECLARACION -> . TIPO LISTA_DECLARACION
+    (56) ASIGNACION -> . identificador INDICES COMPUESTO EXPRESION
+    (57) ASIGNACION -> . identificador INDICES punto identificador COMPUESTO EXPRESION
+    (58) ASIGNACION -> . identificador aumento
+    (59) ASIGNACION -> . identificador decremento
+    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (72) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE
+    (73) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL
+    (79) SWITCH -> . _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
+    (87) WHILE -> . _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (88) DO -> . _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
+    (89) FOR -> . _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (37) PRINT -> . _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra
+    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
+    (133) TIPO -> . _int
+    (134) TIPO -> . _char
+    (135) TIPO -> . _double
+    (136) TIPO -> . _float
+    (137) TIPO -> . _void
+    (138) TIPO -> . _struct identificador
+
+    _case           reduce using rule 23 (CUERPO_LOCAL -> .)
+    _default        reduce using rule 23 (CUERPO_LOCAL -> .)
+    llave_cierra    reduce using rule 23 (CUERPO_LOCAL -> .)
+    _continue       shift and go to state 148
+    _break          shift and go to state 149
+    _return         shift and go to state 150
+    identificador   shift and go to state 133
+    _goto           shift and go to state 151
+    _if             shift and go to state 152
+    _switch         shift and go to state 153
+    _while          shift and go to state 154
+    _do             shift and go to state 155
+    _for            shift and go to state 156
+    _printf         shift and go to state 157
+    _int            shift and go to state 10
+    _char           shift and go to state 11
+    _double         shift and go to state 12
+    _float          shift and go to state 13
+    _void           shift and go to state 14
+    _struct         shift and go to state 35
+
+    CUERPO_LOCAL                   shift and go to state 266
+    LISTA_LOCAL                    shift and go to state 135
+    INSTRUCCION_LOCAL              shift and go to state 136
+    ETIQUETA                       shift and go to state 137
+    SALTO                          shift and go to state 138
+    DECLARACION                    shift and go to state 139
+    ASIGNACION                     shift and go to state 140
+    IF                             shift and go to state 141
+    SWITCH                         shift and go to state 142
+    WHILE                          shift and go to state 143
+    DO                             shift and go to state 144
+    FOR                            shift and go to state 145
+    PRINT                          shift and go to state 146
+    METODO                         shift and go to state 147
+    TIPO                           shift and go to state 58
+
+state 257
 
     (88) DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra . punto_coma
 
-    punto_coma      shift and go to state 266
+    punto_coma      shift and go to state 267
 
 
-state 259
+state 258
 
     (89) FOR -> _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra . llave_abre CUERPO_LOCAL llave_cierra
-
-    llave_abre      shift and go to state 267
-
-
-state 260
-
-    (71) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .
-
-    _continue       reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    _break          reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    _return         reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    identificador   reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    _goto           reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    _if             reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    _switch         reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    _while          reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    _do             reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    _for            reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    _printf         reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    _int            reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    _char           reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    _double         reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    _float          reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    _void           reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    _struct         reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    llave_cierra    reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    _case           reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-    _default        reduce using rule 71 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE .)
-
-
-state 261
-
-    (77) ELSE -> _else . llave_abre CUERPO_LOCAL llave_cierra
 
     llave_abre      shift and go to state 268
 
 
+state 259
+
+    (74) IF_FINAL -> ELSEIF . IF_FINAL
+    (74) IF_FINAL -> . ELSEIF IF_FINAL
+    (75) IF_FINAL -> . ELSE
+    (76) IF_FINAL -> .
+    (77) ELSEIF -> . _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (78) ELSE -> . _else llave_abre CUERPO_LOCAL llave_cierra
+
+    _continue       reduce using rule 76 (IF_FINAL -> .)
+    _break          reduce using rule 76 (IF_FINAL -> .)
+    _return         reduce using rule 76 (IF_FINAL -> .)
+    identificador   reduce using rule 76 (IF_FINAL -> .)
+    _goto           reduce using rule 76 (IF_FINAL -> .)
+    _if             reduce using rule 76 (IF_FINAL -> .)
+    _switch         reduce using rule 76 (IF_FINAL -> .)
+    _while          reduce using rule 76 (IF_FINAL -> .)
+    _do             reduce using rule 76 (IF_FINAL -> .)
+    _for            reduce using rule 76 (IF_FINAL -> .)
+    _printf         reduce using rule 76 (IF_FINAL -> .)
+    _int            reduce using rule 76 (IF_FINAL -> .)
+    _char           reduce using rule 76 (IF_FINAL -> .)
+    _double         reduce using rule 76 (IF_FINAL -> .)
+    _float          reduce using rule 76 (IF_FINAL -> .)
+    _void           reduce using rule 76 (IF_FINAL -> .)
+    _struct         reduce using rule 76 (IF_FINAL -> .)
+    llave_cierra    reduce using rule 76 (IF_FINAL -> .)
+    _case           reduce using rule 76 (IF_FINAL -> .)
+    _default        reduce using rule 76 (IF_FINAL -> .)
+    _else           shift and go to state 262
+
+    ELSEIF                         shift and go to state 259
+    IF_FINAL                       shift and go to state 269
+    ELSE                           shift and go to state 261
+
+state 260
+
+    (73) IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .
+
+    _continue       reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    _break          reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    _return         reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    identificador   reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    _goto           reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    _if             reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    _switch         reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    _while          reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    _do             reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    _for            reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    _printf         reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    _int            reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    _char           reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    _double         reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    _float          reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    _void           reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    _struct         reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    llave_cierra    reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    _case           reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+    _default        reduce using rule 73 (IF -> _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL .)
+
+
+state 261
+
+    (75) IF_FINAL -> ELSE .
+
+    _continue       reduce using rule 75 (IF_FINAL -> ELSE .)
+    _break          reduce using rule 75 (IF_FINAL -> ELSE .)
+    _return         reduce using rule 75 (IF_FINAL -> ELSE .)
+    identificador   reduce using rule 75 (IF_FINAL -> ELSE .)
+    _goto           reduce using rule 75 (IF_FINAL -> ELSE .)
+    _if             reduce using rule 75 (IF_FINAL -> ELSE .)
+    _switch         reduce using rule 75 (IF_FINAL -> ELSE .)
+    _while          reduce using rule 75 (IF_FINAL -> ELSE .)
+    _do             reduce using rule 75 (IF_FINAL -> ELSE .)
+    _for            reduce using rule 75 (IF_FINAL -> ELSE .)
+    _printf         reduce using rule 75 (IF_FINAL -> ELSE .)
+    _int            reduce using rule 75 (IF_FINAL -> ELSE .)
+    _char           reduce using rule 75 (IF_FINAL -> ELSE .)
+    _double         reduce using rule 75 (IF_FINAL -> ELSE .)
+    _float          reduce using rule 75 (IF_FINAL -> ELSE .)
+    _void           reduce using rule 75 (IF_FINAL -> ELSE .)
+    _struct         reduce using rule 75 (IF_FINAL -> ELSE .)
+    llave_cierra    reduce using rule 75 (IF_FINAL -> ELSE .)
+    _case           reduce using rule 75 (IF_FINAL -> ELSE .)
+    _default        reduce using rule 75 (IF_FINAL -> ELSE .)
+
+
 state 262
 
-    (74) LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .
+    (77) ELSEIF -> _else . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (78) ELSE -> _else . llave_abre CUERPO_LOCAL llave_cierra
 
-    _elseif         reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _else           reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _continue       reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _break          reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _return         reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    identificador   reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _goto           reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _if             reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _switch         reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _while          reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _do             reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _for            reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _printf         reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _int            reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _char           reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _double         reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _float          reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _void           reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _struct         reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    llave_cierra    reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _case           reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
-    _default        reduce using rule 74 (LISTA_ELSEIF -> LISTA_ELSEIF ELSEIF .)
+    _if             shift and go to state 264
+    llave_abre      shift and go to state 263
 
 
 state 263
 
-    (76) ELSEIF -> _elseif parentesis_abre . EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (78) ELSE -> _else llave_abre . CUERPO_LOCAL llave_cierra
+    (22) CUERPO_LOCAL -> . LISTA_LOCAL
+    (23) CUERPO_LOCAL -> .
+    (24) LISTA_LOCAL -> . LISTA_LOCAL INSTRUCCION_LOCAL
+    (25) LISTA_LOCAL -> . INSTRUCCION_LOCAL
+    (26) INSTRUCCION_LOCAL -> . ETIQUETA
+    (27) INSTRUCCION_LOCAL -> . SALTO
+    (28) INSTRUCCION_LOCAL -> . DECLARACION punto_coma
+    (29) INSTRUCCION_LOCAL -> . ASIGNACION punto_coma
+    (30) INSTRUCCION_LOCAL -> . IF
+    (31) INSTRUCCION_LOCAL -> . SWITCH
+    (32) INSTRUCCION_LOCAL -> . WHILE
+    (33) INSTRUCCION_LOCAL -> . DO
+    (34) INSTRUCCION_LOCAL -> . FOR
+    (35) INSTRUCCION_LOCAL -> . PRINT punto_coma
+    (36) INSTRUCCION_LOCAL -> . METODO punto_coma
+    (38) INSTRUCCION_LOCAL -> . _continue punto_coma
+    (39) INSTRUCCION_LOCAL -> . _break punto_coma
+    (40) INSTRUCCION_LOCAL -> . _return EXPRESION punto_coma
+    (41) INSTRUCCION_LOCAL -> . _return punto_coma
+    (43) ETIQUETA -> . identificador dos_puntos
+    (44) SALTO -> . _goto identificador punto_coma
+    (45) DECLARACION -> . TIPO LISTA_DECLARACION
+    (56) ASIGNACION -> . identificador INDICES COMPUESTO EXPRESION
+    (57) ASIGNACION -> . identificador INDICES punto identificador COMPUESTO EXPRESION
+    (58) ASIGNACION -> . identificador aumento
+    (59) ASIGNACION -> . identificador decremento
+    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (72) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE
+    (73) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL
+    (79) SWITCH -> . _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
+    (87) WHILE -> . _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (88) DO -> . _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
+    (89) FOR -> . _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (37) PRINT -> . _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra
+    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
+    (133) TIPO -> . _int
+    (134) TIPO -> . _char
+    (135) TIPO -> . _double
+    (136) TIPO -> . _float
+    (137) TIPO -> . _void
+    (138) TIPO -> . _struct identificador
+
+    llave_cierra    reduce using rule 23 (CUERPO_LOCAL -> .)
+    _continue       shift and go to state 148
+    _break          shift and go to state 149
+    _return         shift and go to state 150
+    identificador   shift and go to state 133
+    _goto           shift and go to state 151
+    _if             shift and go to state 152
+    _switch         shift and go to state 153
+    _while          shift and go to state 154
+    _do             shift and go to state 155
+    _for            shift and go to state 156
+    _printf         shift and go to state 157
+    _int            shift and go to state 10
+    _char           shift and go to state 11
+    _double         shift and go to state 12
+    _float          shift and go to state 13
+    _void           shift and go to state 14
+    _struct         shift and go to state 35
+
+    CUERPO_LOCAL                   shift and go to state 270
+    LISTA_LOCAL                    shift and go to state 135
+    INSTRUCCION_LOCAL              shift and go to state 136
+    ETIQUETA                       shift and go to state 137
+    SALTO                          shift and go to state 138
+    DECLARACION                    shift and go to state 139
+    ASIGNACION                     shift and go to state 140
+    IF                             shift and go to state 141
+    SWITCH                         shift and go to state 142
+    WHILE                          shift and go to state 143
+    DO                             shift and go to state 144
+    FOR                            shift and go to state 145
+    PRINT                          shift and go to state 146
+    METODO                         shift and go to state 147
+    TIPO                           shift and go to state 58
+
+state 264
+
+    (77) ELSEIF -> _else _if . parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+
+    parentesis_abre shift and go to state 271
+
+
+state 265
+
+    (85) DEFAULT_CASE -> _default dos_puntos CUERPO_LOCAL .
+
+    llave_cierra    reduce using rule 85 (DEFAULT_CASE -> _default dos_puntos CUERPO_LOCAL .)
+
+
+state 266
+
+    (84) CASE -> _case EXPRESION dos_puntos CUERPO_LOCAL .
+
+    _case           reduce using rule 84 (CASE -> _case EXPRESION dos_puntos CUERPO_LOCAL .)
+    _default        reduce using rule 84 (CASE -> _case EXPRESION dos_puntos CUERPO_LOCAL .)
+    llave_cierra    reduce using rule 84 (CASE -> _case EXPRESION dos_puntos CUERPO_LOCAL .)
+
+
+state 267
+
+    (88) DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .
+
+    _continue       reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    _break          reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    _return         reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    identificador   reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    _goto           reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    _if             reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    _switch         reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    _while          reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    _do             reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    _for            reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    _printf         reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    _int            reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    _char           reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    _double         reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    _float          reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    _void           reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    _struct         reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    llave_cierra    reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    _case           reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    _default        reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+
+
+state 268
+
+    (89) FOR -> _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre . CUERPO_LOCAL llave_cierra
+    (22) CUERPO_LOCAL -> . LISTA_LOCAL
+    (23) CUERPO_LOCAL -> .
+    (24) LISTA_LOCAL -> . LISTA_LOCAL INSTRUCCION_LOCAL
+    (25) LISTA_LOCAL -> . INSTRUCCION_LOCAL
+    (26) INSTRUCCION_LOCAL -> . ETIQUETA
+    (27) INSTRUCCION_LOCAL -> . SALTO
+    (28) INSTRUCCION_LOCAL -> . DECLARACION punto_coma
+    (29) INSTRUCCION_LOCAL -> . ASIGNACION punto_coma
+    (30) INSTRUCCION_LOCAL -> . IF
+    (31) INSTRUCCION_LOCAL -> . SWITCH
+    (32) INSTRUCCION_LOCAL -> . WHILE
+    (33) INSTRUCCION_LOCAL -> . DO
+    (34) INSTRUCCION_LOCAL -> . FOR
+    (35) INSTRUCCION_LOCAL -> . PRINT punto_coma
+    (36) INSTRUCCION_LOCAL -> . METODO punto_coma
+    (38) INSTRUCCION_LOCAL -> . _continue punto_coma
+    (39) INSTRUCCION_LOCAL -> . _break punto_coma
+    (40) INSTRUCCION_LOCAL -> . _return EXPRESION punto_coma
+    (41) INSTRUCCION_LOCAL -> . _return punto_coma
+    (43) ETIQUETA -> . identificador dos_puntos
+    (44) SALTO -> . _goto identificador punto_coma
+    (45) DECLARACION -> . TIPO LISTA_DECLARACION
+    (56) ASIGNACION -> . identificador INDICES COMPUESTO EXPRESION
+    (57) ASIGNACION -> . identificador INDICES punto identificador COMPUESTO EXPRESION
+    (58) ASIGNACION -> . identificador aumento
+    (59) ASIGNACION -> . identificador decremento
+    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (72) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE
+    (73) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL
+    (79) SWITCH -> . _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
+    (87) WHILE -> . _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (88) DO -> . _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
+    (89) FOR -> . _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (37) PRINT -> . _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra
+    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
+    (133) TIPO -> . _int
+    (134) TIPO -> . _char
+    (135) TIPO -> . _double
+    (136) TIPO -> . _float
+    (137) TIPO -> . _void
+    (138) TIPO -> . _struct identificador
+
+    llave_cierra    reduce using rule 23 (CUERPO_LOCAL -> .)
+    _continue       shift and go to state 148
+    _break          shift and go to state 149
+    _return         shift and go to state 150
+    identificador   shift and go to state 133
+    _goto           shift and go to state 151
+    _if             shift and go to state 152
+    _switch         shift and go to state 153
+    _while          shift and go to state 154
+    _do             shift and go to state 155
+    _for            shift and go to state 156
+    _printf         shift and go to state 157
+    _int            shift and go to state 10
+    _char           shift and go to state 11
+    _double         shift and go to state 12
+    _float          shift and go to state 13
+    _void           shift and go to state 14
+    _struct         shift and go to state 35
+
+    ASIGNACION                     shift and go to state 140
+    CUERPO_LOCAL                   shift and go to state 272
+    LISTA_LOCAL                    shift and go to state 135
+    INSTRUCCION_LOCAL              shift and go to state 136
+    ETIQUETA                       shift and go to state 137
+    SALTO                          shift and go to state 138
+    DECLARACION                    shift and go to state 139
+    IF                             shift and go to state 141
+    SWITCH                         shift and go to state 142
+    WHILE                          shift and go to state 143
+    DO                             shift and go to state 144
+    FOR                            shift and go to state 145
+    PRINT                          shift and go to state 146
+    METODO                         shift and go to state 147
+    TIPO                           shift and go to state 58
+
+state 269
+
+    (74) IF_FINAL -> ELSEIF IF_FINAL .
+
+    _continue       reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    _break          reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    _return         reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    identificador   reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    _goto           reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    _if             reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    _switch         reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    _while          reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    _do             reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    _for            reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    _printf         reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    _int            reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    _char           reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    _double         reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    _float          reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    _void           reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    _struct         reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    llave_cierra    reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    _case           reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+    _default        reduce using rule 74 (IF_FINAL -> ELSEIF IF_FINAL .)
+
+
+state 270
+
+    (78) ELSE -> _else llave_abre CUERPO_LOCAL . llave_cierra
+
+    llave_cierra    shift and go to state 273
+
+
+state 271
+
+    (77) ELSEIF -> _else _if parentesis_abre . EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (92) EXPRESION -> . EXPRESION mas EXPRESION
     (93) EXPRESION -> . EXPRESION menos EXPRESION
     (94) EXPRESION -> . EXPRESION asterisco EXPRESION
@@ -8397,210 +8669,45 @@ state 263
     entero          shift and go to state 52
     decimal         shift and go to state 53
 
-    EXPRESION                      shift and go to state 269
+    EXPRESION                      shift and go to state 274
     METODO                         shift and go to state 45
 
-state 264
+state 272
 
-    (85) DEFAULT_CASE -> _default dos_puntos CUERPO_LOCAL .
+    (89) FOR -> _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL . llave_cierra
 
-    llave_cierra    reduce using rule 85 (DEFAULT_CASE -> _default dos_puntos CUERPO_LOCAL .)
-
-
-state 265
-
-    (84) CASE -> _case EXPRESION dos_puntos CUERPO_LOCAL .
-
-    _case           reduce using rule 84 (CASE -> _case EXPRESION dos_puntos CUERPO_LOCAL .)
-    _default        reduce using rule 84 (CASE -> _case EXPRESION dos_puntos CUERPO_LOCAL .)
-    llave_cierra    reduce using rule 84 (CASE -> _case EXPRESION dos_puntos CUERPO_LOCAL .)
+    llave_cierra    shift and go to state 275
 
 
-state 266
+state 273
 
-    (88) DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .
+    (78) ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .
 
-    _continue       reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    _break          reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    _return         reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    identificador   reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    _goto           reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    _if             reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    _switch         reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    _while          reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    _do             reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    _for            reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    _printf         reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    _int            reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    _char           reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    _double         reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    _float          reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    _void           reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    _struct         reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    llave_cierra    reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    _case           reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
-    _default        reduce using rule 88 (DO -> _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma .)
+    _continue       reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    _break          reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    _return         reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    identificador   reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    _goto           reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    _if             reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    _switch         reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    _while          reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    _do             reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    _for            reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    _printf         reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    _int            reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    _char           reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    _double         reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    _float          reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    _void           reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    _struct         reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    llave_cierra    reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    _case           reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    _default        reduce using rule 78 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
 
 
-state 267
+state 274
 
-    (89) FOR -> _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre . CUERPO_LOCAL llave_cierra
-    (22) CUERPO_LOCAL -> . LISTA_LOCAL
-    (23) CUERPO_LOCAL -> .
-    (24) LISTA_LOCAL -> . LISTA_LOCAL INSTRUCCION_LOCAL
-    (25) LISTA_LOCAL -> . INSTRUCCION_LOCAL
-    (26) INSTRUCCION_LOCAL -> . ETIQUETA
-    (27) INSTRUCCION_LOCAL -> . SALTO
-    (28) INSTRUCCION_LOCAL -> . DECLARACION punto_coma
-    (29) INSTRUCCION_LOCAL -> . ASIGNACION punto_coma
-    (30) INSTRUCCION_LOCAL -> . IF
-    (31) INSTRUCCION_LOCAL -> . SWITCH
-    (32) INSTRUCCION_LOCAL -> . WHILE
-    (33) INSTRUCCION_LOCAL -> . DO
-    (34) INSTRUCCION_LOCAL -> . FOR
-    (35) INSTRUCCION_LOCAL -> . METODO punto_coma
-    (36) INSTRUCCION_LOCAL -> . PRINT punto_coma
-    (38) INSTRUCCION_LOCAL -> . _continue punto_coma
-    (39) INSTRUCCION_LOCAL -> . _break punto_coma
-    (40) INSTRUCCION_LOCAL -> . _return EXPRESION punto_coma
-    (41) INSTRUCCION_LOCAL -> . _return punto_coma
-    (43) ETIQUETA -> . identificador dos_puntos
-    (44) SALTO -> . _goto identificador punto_coma
-    (45) DECLARACION -> . TIPO LISTA_DECLARACION
-    (56) ASIGNACION -> . identificador INDICES COMPUESTO EXPRESION
-    (57) ASIGNACION -> . identificador INDICES punto identificador COMPUESTO EXPRESION
-    (58) ASIGNACION -> . identificador aumento
-    (59) ASIGNACION -> . identificador decremento
-    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
-    (79) SWITCH -> . _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
-    (87) WHILE -> . _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
-    (88) DO -> . _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
-    (89) FOR -> . _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
-    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
-    (37) PRINT -> . _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra
-    (133) TIPO -> . _int
-    (134) TIPO -> . _char
-    (135) TIPO -> . _double
-    (136) TIPO -> . _float
-    (137) TIPO -> . _void
-    (138) TIPO -> . _struct identificador
-
-    llave_cierra    reduce using rule 23 (CUERPO_LOCAL -> .)
-    _continue       shift and go to state 148
-    _break          shift and go to state 149
-    _return         shift and go to state 150
-    identificador   shift and go to state 133
-    _goto           shift and go to state 151
-    _if             shift and go to state 152
-    _switch         shift and go to state 153
-    _while          shift and go to state 154
-    _do             shift and go to state 155
-    _for            shift and go to state 156
-    _printf         shift and go to state 157
-    _int            shift and go to state 10
-    _char           shift and go to state 11
-    _double         shift and go to state 12
-    _float          shift and go to state 13
-    _void           shift and go to state 14
-    _struct         shift and go to state 35
-
-    ASIGNACION                     shift and go to state 140
-    CUERPO_LOCAL                   shift and go to state 270
-    LISTA_LOCAL                    shift and go to state 135
-    INSTRUCCION_LOCAL              shift and go to state 136
-    ETIQUETA                       shift and go to state 137
-    SALTO                          shift and go to state 138
-    DECLARACION                    shift and go to state 139
-    IF                             shift and go to state 141
-    SWITCH                         shift and go to state 142
-    WHILE                          shift and go to state 143
-    DO                             shift and go to state 144
-    FOR                            shift and go to state 145
-    METODO                         shift and go to state 146
-    PRINT                          shift and go to state 147
-    TIPO                           shift and go to state 58
-
-state 268
-
-    (77) ELSE -> _else llave_abre . CUERPO_LOCAL llave_cierra
-    (22) CUERPO_LOCAL -> . LISTA_LOCAL
-    (23) CUERPO_LOCAL -> .
-    (24) LISTA_LOCAL -> . LISTA_LOCAL INSTRUCCION_LOCAL
-    (25) LISTA_LOCAL -> . INSTRUCCION_LOCAL
-    (26) INSTRUCCION_LOCAL -> . ETIQUETA
-    (27) INSTRUCCION_LOCAL -> . SALTO
-    (28) INSTRUCCION_LOCAL -> . DECLARACION punto_coma
-    (29) INSTRUCCION_LOCAL -> . ASIGNACION punto_coma
-    (30) INSTRUCCION_LOCAL -> . IF
-    (31) INSTRUCCION_LOCAL -> . SWITCH
-    (32) INSTRUCCION_LOCAL -> . WHILE
-    (33) INSTRUCCION_LOCAL -> . DO
-    (34) INSTRUCCION_LOCAL -> . FOR
-    (35) INSTRUCCION_LOCAL -> . METODO punto_coma
-    (36) INSTRUCCION_LOCAL -> . PRINT punto_coma
-    (38) INSTRUCCION_LOCAL -> . _continue punto_coma
-    (39) INSTRUCCION_LOCAL -> . _break punto_coma
-    (40) INSTRUCCION_LOCAL -> . _return EXPRESION punto_coma
-    (41) INSTRUCCION_LOCAL -> . _return punto_coma
-    (43) ETIQUETA -> . identificador dos_puntos
-    (44) SALTO -> . _goto identificador punto_coma
-    (45) DECLARACION -> . TIPO LISTA_DECLARACION
-    (56) ASIGNACION -> . identificador INDICES COMPUESTO EXPRESION
-    (57) ASIGNACION -> . identificador INDICES punto identificador COMPUESTO EXPRESION
-    (58) ASIGNACION -> . identificador aumento
-    (59) ASIGNACION -> . identificador decremento
-    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
-    (79) SWITCH -> . _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
-    (87) WHILE -> . _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
-    (88) DO -> . _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
-    (89) FOR -> . _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
-    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
-    (37) PRINT -> . _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra
-    (133) TIPO -> . _int
-    (134) TIPO -> . _char
-    (135) TIPO -> . _double
-    (136) TIPO -> . _float
-    (137) TIPO -> . _void
-    (138) TIPO -> . _struct identificador
-
-    llave_cierra    reduce using rule 23 (CUERPO_LOCAL -> .)
-    _continue       shift and go to state 148
-    _break          shift and go to state 149
-    _return         shift and go to state 150
-    identificador   shift and go to state 133
-    _goto           shift and go to state 151
-    _if             shift and go to state 152
-    _switch         shift and go to state 153
-    _while          shift and go to state 154
-    _do             shift and go to state 155
-    _for            shift and go to state 156
-    _printf         shift and go to state 157
-    _int            shift and go to state 10
-    _char           shift and go to state 11
-    _double         shift and go to state 12
-    _float          shift and go to state 13
-    _void           shift and go to state 14
-    _struct         shift and go to state 35
-
-    CUERPO_LOCAL                   shift and go to state 271
-    LISTA_LOCAL                    shift and go to state 135
-    INSTRUCCION_LOCAL              shift and go to state 136
-    ETIQUETA                       shift and go to state 137
-    SALTO                          shift and go to state 138
-    DECLARACION                    shift and go to state 139
-    ASIGNACION                     shift and go to state 140
-    IF                             shift and go to state 141
-    SWITCH                         shift and go to state 142
-    WHILE                          shift and go to state 143
-    DO                             shift and go to state 144
-    FOR                            shift and go to state 145
-    METODO                         shift and go to state 146
-    PRINT                          shift and go to state 147
-    TIPO                           shift and go to state 58
-
-state 269
-
-    (76) ELSEIF -> _elseif parentesis_abre EXPRESION . parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (77) ELSEIF -> _else _if parentesis_abre EXPRESION . parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (92) EXPRESION -> EXPRESION . mas EXPRESION
     (93) EXPRESION -> EXPRESION . menos EXPRESION
     (94) EXPRESION -> EXPRESION . asterisco EXPRESION
@@ -8621,7 +8728,7 @@ state 269
     (109) EXPRESION -> EXPRESION . elevado EXPRESION
     (110) EXPRESION -> EXPRESION . pregunta EXPRESION dos_puntos EXPRESION
 
-    parentesis_cierra shift and go to state 272
+    parentesis_cierra shift and go to state 276
     mas             shift and go to state 66
     menos           shift and go to state 67
     asterisco       shift and go to state 68
@@ -8643,28 +8750,7 @@ state 269
     pregunta        shift and go to state 84
 
 
-state 270
-
-    (89) FOR -> _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL . llave_cierra
-
-    llave_cierra    shift and go to state 273
-
-
-state 271
-
-    (77) ELSE -> _else llave_abre CUERPO_LOCAL . llave_cierra
-
-    llave_cierra    shift and go to state 274
-
-
-state 272
-
-    (76) ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra . llave_abre CUERPO_LOCAL llave_cierra
-
-    llave_abre      shift and go to state 275
-
-
-state 273
+state 275
 
     (89) FOR -> _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .
 
@@ -8690,35 +8776,16 @@ state 273
     _default        reduce using rule 89 (FOR -> _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
 
 
-state 274
+state 276
 
-    (77) ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .
+    (77) ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra . llave_abre CUERPO_LOCAL llave_cierra
 
-    _continue       reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    _break          reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    _return         reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    identificador   reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    _goto           reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    _if             reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    _switch         reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    _while          reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    _do             reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    _for            reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    _printf         reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    _int            reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    _char           reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    _double         reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    _float          reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    _void           reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    _struct         reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    llave_cierra    reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    _case           reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
-    _default        reduce using rule 77 (ELSE -> _else llave_abre CUERPO_LOCAL llave_cierra .)
+    llave_abre      shift and go to state 277
 
 
-state 275
+state 277
 
-    (76) ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre . CUERPO_LOCAL llave_cierra
+    (77) ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre . CUERPO_LOCAL llave_cierra
     (22) CUERPO_LOCAL -> . LISTA_LOCAL
     (23) CUERPO_LOCAL -> .
     (24) LISTA_LOCAL -> . LISTA_LOCAL INSTRUCCION_LOCAL
@@ -8732,8 +8799,8 @@ state 275
     (32) INSTRUCCION_LOCAL -> . WHILE
     (33) INSTRUCCION_LOCAL -> . DO
     (34) INSTRUCCION_LOCAL -> . FOR
-    (35) INSTRUCCION_LOCAL -> . METODO punto_coma
-    (36) INSTRUCCION_LOCAL -> . PRINT punto_coma
+    (35) INSTRUCCION_LOCAL -> . PRINT punto_coma
+    (36) INSTRUCCION_LOCAL -> . METODO punto_coma
     (38) INSTRUCCION_LOCAL -> . _continue punto_coma
     (39) INSTRUCCION_LOCAL -> . _break punto_coma
     (40) INSTRUCCION_LOCAL -> . _return EXPRESION punto_coma
@@ -8745,13 +8812,15 @@ state 275
     (57) ASIGNACION -> . identificador INDICES punto identificador COMPUESTO EXPRESION
     (58) ASIGNACION -> . identificador aumento
     (59) ASIGNACION -> . identificador decremento
-    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
+    (71) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    (72) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE
+    (73) IF -> . _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL
     (79) SWITCH -> . _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
     (87) WHILE -> . _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     (88) DO -> . _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
     (89) FOR -> . _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
-    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
     (37) PRINT -> . _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra
+    (42) METODO -> . identificador parentesis_abre EXPRESIONES parentesis_cierra
     (133) TIPO -> . _int
     (134) TIPO -> . _char
     (135) TIPO -> . _double
@@ -8778,7 +8847,7 @@ state 275
     _void           shift and go to state 14
     _struct         shift and go to state 35
 
-    CUERPO_LOCAL                   shift and go to state 276
+    CUERPO_LOCAL                   shift and go to state 278
     LISTA_LOCAL                    shift and go to state 135
     INSTRUCCION_LOCAL              shift and go to state 136
     ETIQUETA                       shift and go to state 137
@@ -8790,41 +8859,40 @@ state 275
     WHILE                          shift and go to state 143
     DO                             shift and go to state 144
     FOR                            shift and go to state 145
-    METODO                         shift and go to state 146
-    PRINT                          shift and go to state 147
+    PRINT                          shift and go to state 146
+    METODO                         shift and go to state 147
     TIPO                           shift and go to state 58
 
-state 276
+state 278
 
-    (76) ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL . llave_cierra
+    (77) ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL . llave_cierra
 
-    llave_cierra    shift and go to state 277
+    llave_cierra    shift and go to state 279
 
 
-state 277
+state 279
 
-    (76) ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .
+    (77) ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .
 
-    _elseif         reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _else           reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _continue       reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _break          reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _return         reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    identificador   reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _goto           reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _if             reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _switch         reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _while          reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _do             reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _for            reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _printf         reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _int            reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _char           reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _double         reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _float          reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _void           reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _struct         reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    llave_cierra    reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _case           reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
-    _default        reduce using rule 76 (ELSEIF -> _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _else           reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _continue       reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _break          reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _return         reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    identificador   reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _goto           reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _if             reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _switch         reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _while          reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _do             reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _for            reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _printf         reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _int            reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _char           reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _double         reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _float          reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _void           reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _struct         reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    llave_cierra    reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _case           reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
+    _default        reduce using rule 77 (ELSEIF -> _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra .)
 

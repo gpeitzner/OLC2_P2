@@ -9,7 +9,6 @@ palabras_reservadas = {
     'return': '_return',
     'goto': '_goto',
     'if': '_if',
-    'elseif': '_elseif',
     'else': '_else',
     'switch': '_switch',
     'case': '_case',
@@ -357,8 +356,9 @@ def p_instruccion_local(t):
                         |   WHILE
                         |   DO
                         |   FOR
-                        |   METODO punto_coma
                         |   PRINT punto_coma
+                        |   METODO punto_coma
+
     '''
     t[0] = t[1]
 
@@ -547,45 +547,57 @@ def p_compuesto(t):
 
 def p_if(t):
     '''
-    IF  :   _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIFS ELSE
+    IF  :   _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     '''
-    t[0] = clases._If(t[3], t[6], t[8], t[9], str(t.slice[1].lineno))
+    t[0] = clases._If(t[3], t[6], None, None, str(t.slice[1].lineno))
 
 
-def p_elseifs(t):
+def p_if_else(t):
     '''
-    ELSEIFS :   LISTA_ELSEIF
+    IF  :   _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE
     '''
-    t[0] = t[1]
+    t[0] = clases._If(t[3], t[6], None, t[8], str(t.slice[1].lineno))
 
 
-def p_elseifs_vacio(t):
+def p_if_elseif(t):
     '''
-    ELSEIFS :
+    IF  :   _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSEIF IF_FINAL
     '''
-    t[0] = None
+    _else = None
+    _elseifs = [t[8]]
+    if len(t[9]) > 0:
+        if isinstance(t[9][len(t[9])-1], clases._Else):
+            _else = t[9].pop()
+        _elseifs = _elseifs + t[9]
+    t[0] = clases._If(t[3], t[6], _elseifs, _else, str(t.slice[1].lineno))
 
 
-def p_lista_elseif_lista(t):
+def p_if_final_elseif(t):
     '''
-    LISTA_ELSEIF    :   LISTA_ELSEIF ELSEIF
+    IF_FINAL    :   ELSEIF  IF_FINAL
     '''
-    t[1].append(t[2])
-    t[0] = t[1]
+    t[0] = [t[1]] + t[2]
 
 
-def p_lista_elseif_elseif(t):
+def p_if_final_else(t):
     '''
-    LISTA_ELSEIF    :   ELSEIF
+    IF_FINAL    :   ELSE
     '''
     t[0] = [t[1]]
 
 
+def p_if_final_vacio(t):
+    '''
+    IF_FINAL    :   
+    '''
+    t[0] = []
+
+
 def p_elseif(t):
     '''
-    ELSEIF  :   _elseif parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
+    ELSEIF  :   _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     '''
-    t[0] = clases._ElseIf(t[3], t[6])
+    t[0] = clases._ElseIf(t[4], t[7])
 
 
 def p_else(t):
@@ -593,13 +605,6 @@ def p_else(t):
     ELSE    :   _else llave_abre CUERPO_LOCAL llave_cierra
     '''
     t[0] = clases._Else(t[3])
-
-
-def p_else_vacio(t):
-    '''
-    ELSE    :
-    '''
-    t[0] = None
 
 
 def p_switch(t):
