@@ -495,7 +495,7 @@ def p_acceso_vacio(t):
     '''
     ACCESO : corchete_abre corchete_cierra
     '''
-    t[0] = None
+    t[0] = []
 
 
 def p_asignacion_normal(t):

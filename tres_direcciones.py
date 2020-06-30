@@ -349,7 +349,8 @@ class TresDirecciones:
                 self.detener_ejecucion = True
             else:
                 if declaracion.indices:
-                    pass
+                    self.generar_codigo_declaracion_arreglo(
+                        tipo, identificador, declaracion)
                 else:
                     self.generar_codigo_declaracion_estandar(
                         tipo, identificador, declaracion)
@@ -372,6 +373,58 @@ class TresDirecciones:
         else:
             self.obtener_ambito().agregar_simbolo(
                 Simbolo(tipo, identificador, None))
+
+    def generar_codigo_declaracion_arreglo(self, tipo, identificador, declaracion):
+        if declaracion.expresion:
+            if isinstance(declaracion.expresion, clases.ExpresionElementos):
+                registro = self.obtener_registro_temporal()
+                self.codigo3d += registro + ' = array();\n'
+                self.obtener_ambito().agregar_simbolo(
+                    Simbolo(tipo, identificador, registro))
+                if isinstance(declaracion.expresion.expresiones[0], clases.ExpresionElementos):
+                    filas = 0
+                    columnas = 0
+                    for lista in declaracion.expresion.expresiones:
+                        for expresion in lista.expresiones:
+                            temporal = self.obtener_expresion(expresion)
+                            if temporal:
+                                self.codigo3d += registro + \
+                                    '['+str(filas)+']['+str(columnas) + \
+                                    ']'+' = '+temporal+';\n'
+                            else:
+                                self.mostrar_mensaje_consola(
+                                    'ERROR: Expresión no válida en línea: '+declaracion.linea+'.')
+                                self.detener_ejecucion = True
+                                break
+                            columnas += 1
+                        filas += 1
+                else:
+                    indice = 0
+                    for expresion in declaracion.expresion.expresiones:
+                        temporal = self.obtener_expresion(expresion)
+                        if temporal:
+                            self.codigo3d += registro + \
+                                '['+str(indice)+']'+' = '+temporal+';\n'
+                        else:
+                            self.mostrar_mensaje_consola(
+                                'ERROR: Expresión no válida en línea: '+declaracion.linea+'.')
+                            self.detener_ejecucion = True
+                            break
+                        indice += 1
+            elif isinstance(declaracion.expresion, clases.Cadena):
+                registro = self.obtener_registro_temporal()
+                self.codigo3d += registro + ' = "'+declaracion.expresion.valor+'";\n'
+                self.obtener_ambito().agregar_simbolo(
+                    Simbolo(tipo, identificador, registro))
+            else:
+                self.mostrar_mensaje_consola(
+                    'ERROR: Expresión no válida en línea: '+declaracion.linea+'.')
+                self.detener_ejecucion = True
+        else:
+            registro = self.obtener_registro_temporal()
+            self.codigo3d += registro + ' = array();\n'
+            self.obtener_ambito().agregar_simbolo(
+                Simbolo(tipo, identificador, registro))
 
     def generar_codigo_asignacion(self, instruccion):
         if isinstance(instruccion, clases.AsignacionNormal):
