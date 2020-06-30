@@ -488,7 +488,7 @@ def p_acceso(t):
     '''
     ACCESO  :   corchete_abre EXPRESION corchete_cierra 
     '''
-    t[0] = t[1]
+    t[0] = t[2]
 
 
 def p_acceso_vacio(t):

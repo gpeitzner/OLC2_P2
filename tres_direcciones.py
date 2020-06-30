@@ -149,6 +149,8 @@ class TresDirecciones:
             return self.obtener_temporal_variable(expresion.identificador)
         if isinstance(expresion, clases.ExpresionCasteo):
             return self.obtener_expresion_casteo(expresion)
+        if isinstance(expresion, clases.ExpresionIdentificadorArreglo):
+            return self.obtener_expresion_identificador_arreglo(expresion)
         if isinstance(expresion, clases.ExpresionScan):
             registro = self.obtener_registro_temporal()
             self.codigo3d += registro + ' = read();\n'
@@ -278,6 +280,22 @@ class TresDirecciones:
                 self.codigo3d += registro + \
                     ' = ('+expresion.tipo.valor+') '+operando+';\n'
                 return registro
+        return None
+
+    def obtener_expresion_identificador_arreglo(self, expresion):
+        temporal = self.obtener_temporal_variable(expresion.identificador)
+        if temporal:
+            temporales = []
+            for expresion_temporal in expresion.accesos:
+                acceso = self.obtener_expresion(expresion_temporal)
+                if acceso:
+                    temporales.append(acceso)
+                else:
+                    return None
+            respuesta = temporal
+            for temporal in temporales:
+                respuesta += '['+temporal+']'
+            return respuesta
         return None
 
     def obtener_registro_temporal(self):
@@ -438,7 +456,23 @@ class TresDirecciones:
         simbolo = self.existe_variable(instruccion.identificador)
         if simbolo:
             if instruccion.indices:
-                pass
+                registro = simbolo.temporal
+                for acceso in instruccion.indices:
+                    expresion_temporal = self.obtener_expresion(acceso)
+                    if expresion_temporal:
+                        registro += '['+expresion_temporal+']'
+                    else:
+                        self.mostrar_mensaje_consola(
+                            'ERROR: Expresión no válida en línea: '+instruccion.linea+'.')
+                        self.detener_ejecucion = True
+                if not self.detener_ejecucion:
+                    temporal = self.obtener_expresion(instruccion.expresion)
+                    if temporal:
+                        self.codigo3d += registro + ' = '+temporal+';\n'
+                    else:
+                        self.mostrar_mensaje_consola(
+                            'ERROR: Expresión no válida en línea: '+instruccion.linea+'.')
+                        self.detener_ejecucion = True
             else:
                 temporal = self.obtener_expresion(instruccion.expresion)
                 if temporal:
