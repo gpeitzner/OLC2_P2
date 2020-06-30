@@ -151,6 +151,8 @@ class TresDirecciones:
             return self.obtener_expresion_casteo(expresion)
         if isinstance(expresion, clases.ExpresionIdentificadorArreglo):
             return self.obtener_expresion_identificador_arreglo(expresion)
+        if isinstance(expresion, clases.ExpresionEstructura):
+            return self.obtener_expresion_estructura(expresion)
         if isinstance(expresion, clases.ExpresionScan):
             registro = self.obtener_registro_temporal()
             self.codigo3d += registro + ' = read();\n'
@@ -298,6 +300,27 @@ class TresDirecciones:
             return respuesta
         return None
 
+    def obtener_expresion_estructura(self, expresion):
+        temporal = self.obtener_temporal_variable(expresion.identificador)
+        if temporal:
+            if expresion.indices_primario:
+                for acceso in expresion.indices_primario:
+                    expresion_temporal = self.obtener_expresion(acceso)
+                    if expresion_temporal:
+                        temporal += '['+expresion_temporal+']'
+                    else:
+                        return None
+            temporal += '["'+expresion.atributo+'"]'
+            if expresion.indices_secundario:
+                for acceso in expresion.indices_secundario:
+                    expresion_temporal = self.obtener_expresion(acceso)
+                    if expresion_temporal:
+                        temporal += '['+expresion_temporal+']'
+                    else:
+                        return None
+            return temporal
+        return None
+
     def obtener_registro_temporal(self):
         registro_temporal = '$t' + str(self.contador_registros_temporales)
         self.contador_registros_temporales += 1
@@ -366,7 +389,12 @@ class TresDirecciones:
                     'ERROR: Variable repetida en línea: '+declaracion.linea+'.')
                 self.detener_ejecucion = True
             else:
-                if declaracion.indices:
+                if tipo == 'struct':
+                    registro = self.obtener_registro_temporal()
+                    self.codigo3d += registro + ' = array();\n'
+                    self.obtener_ambito().agregar_simbolo(
+                        Simbolo(tipo, identificador, registro))
+                elif declaracion.indices:
                     self.generar_codigo_declaracion_arreglo(
                         tipo, identificador, declaracion)
                 else:
@@ -401,8 +429,8 @@ class TresDirecciones:
                     Simbolo(tipo, identificador, registro))
                 if isinstance(declaracion.expresion.expresiones[0], clases.ExpresionElementos):
                     filas = 0
-                    columnas = 0
                     for lista in declaracion.expresion.expresiones:
+                        columnas = 0
                         for expresion in lista.expresiones:
                             temporal = self.obtener_expresion(expresion)
                             if temporal:
@@ -451,6 +479,8 @@ class TresDirecciones:
             self.generar_codigo_asignacion_aumento(instruccion)
         elif isinstance(instruccion, clases.AsignacionDecremento):
             self.generar_codigo_asignacion_decremento(instruccion)
+        elif isinstance(instruccion, clases.AsignacionEstructura):
+            self.generar_codigo_asignacion_estructura(instruccion)
 
     def generar_codigo_asignacion_normal(self, instruccion):
         simbolo = self.existe_variable(instruccion.identificador)
@@ -490,6 +520,44 @@ class TresDirecciones:
                     self.mostrar_mensaje_consola(
                         'ERROR: Expresión no válida en línea: '+instruccion.linea+'.')
                     self.detener_ejecucion = True
+        else:
+            self.mostrar_mensaje_consola(
+                'ERROR: No existe la variable en línea: '+instruccion.linea+'.')
+            self.detener_ejecucion = True
+
+    def generar_codigo_asignacion_estructura(self, instruccion):
+        simbolo = self.existe_variable(instruccion.identificador)
+        if simbolo:
+            temporal = self.obtener_expresion(instruccion.expresion)
+            if temporal:
+                registro = simbolo.temporal
+                if instruccion.indices_primario:
+                    for acceso in instruccion.indices_primario:
+                        expresion = self.obtener_expresion(acceso)
+                        if expresion:
+                            registro += '['+expresion+']'
+                        else:
+                            self.mostrar_mensaje_consola(
+                                'ERROR: Expresión no válida en línea: '+instruccion.linea+'.')
+                            self.detener_ejecucion = True
+                if not self.detener_ejecucion:
+                    registro += '["'+instruccion.atributo+'"]'
+                    if instruccion.indices_secundario:
+                        for acceso in instruccion.indices_secundario:
+                            expresion = self.obtener_expresion(acceso)
+                            if expresion:
+                                registro += '['+expresion+']'
+                            else:
+                                self.mostrar_mensaje_consola(
+                                    'ERROR: Expresión no válida en línea: '+instruccion.linea+'.')
+                                self.detener_ejecucion = True
+                    if not self.detener_ejecucion:
+                        self.generar_codigo_compuesto(
+                            instruccion, registro, temporal)
+            else:
+                self.mostrar_mensaje_consola(
+                    'ERROR: Expresión no válida en línea: '+instruccion.linea+'.')
+                self.detener_ejecucion = True
         else:
             self.mostrar_mensaje_consola(
                 'ERROR: No existe la variable en línea: '+instruccion.linea+'.')
@@ -857,14 +925,15 @@ class TresDirecciones:
             self.detener_ejecucion = True
 
     def generar_codigo_saltos_linea(self, cadena):
-        salida = cadena.split('\\n')
+        salida = (cadena.replace('\\t', '     ')).split('\\n')
         if len(salida) > 1:
             indice_salida = 0
             while indice_salida < len(salida):
                 if indice_salida > 0:
                     self.codigo3d += 'print("\\n");\n'
-                self.codigo3d += 'print("' + \
-                    salida[indice_salida]+'");\n'
+                if salida[indice_salida] != '':
+                    self.codigo3d += 'print("' + \
+                        salida[indice_salida]+'");\n'
                 indice_salida += 1
         else:
             self.codigo3d += 'print("'+salida[0]+'");\n'

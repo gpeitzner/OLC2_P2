@@ -508,10 +508,10 @@ def p_asignacion_normal(t):
 
 def p_asignacion_estructura(t):
     '''
-    ASIGNACION  :   identificador INDICES punto identificador COMPUESTO EXPRESION 
+    ASIGNACION  :   identificador INDICES punto identificador INDICES COMPUESTO EXPRESION 
     '''
     t[0] = clases.AsignacionEstructura(
-        t[1], t[2], t[4], t[5], t[6], str(t.slice[1].lineno))
+        t[1], t[2], t[4], t[5], t[6], t[7], str(t.slice[1].lineno))
 
 
 def p_asignacion_aumento(t):
@@ -774,9 +774,9 @@ def p_expresion_parentesis(t):
 
 def p_expresion_estructura(t):
     '''
-    EXPRESION   :   identificador punto identificador
+    EXPRESION   :   identificador INDICES punto identificador INDICES
     '''
-    t[0] = clases.ExpresionEstructura(t[1], t[3])
+    t[0] = clases.ExpresionEstructura(t[1], t[2], t[4], t[5])
 
 
 def p_expresion_identificador_arreglo(t):
@@ -784,13 +784,6 @@ def p_expresion_identificador_arreglo(t):
     EXPRESION   :   identificador ACCESOS
     '''
     t[0] = clases.ExpresionIdentificadorArreglo(t[1], t[2])
-
-
-def p_expresion_arreglo_estructura(t):
-    '''
-    EXPRESION   :   identificador ACCESOS punto identificador
-    '''
-    t[0] = clases.ExpresionArregloEstructura(t[1], t[2], t[4])
 
 
 def p_expresion_expresiones(t):

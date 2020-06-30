@@ -74,10 +74,11 @@ class AsignacionNormal(Asignacion):
 
 
 class AsignacionEstructura(Asignacion):
-    def __init__(self, identificador, indices, atributo, compuesto, expresion, linea):
+    def __init__(self, identificador, indices_primario, atributo, indices_secundario,compuesto, expresion, linea):
         self.identificador = identificador
-        self.indices = indices
+        self.indices_primario = indices_primario
         self.atributo = atributo
+        self.indices_secundario = indices_secundario
         self.compuesto = compuesto
         self.expresion = expresion
         self.linea = linea
@@ -203,22 +204,17 @@ class ExpresionUnaria(Expresion):
 
 
 class ExpresionEstructura(Expresion):
-    def __init__(self, identificador, atributo):
+    def __init__(self, identificador, indices_primario, atributo, indices_secundario):
         self.identificador = identificador
+        self.indices_primario = indices_primario
         self.atributo = atributo
+        self.indices_secundario = indices_secundario
 
 
 class ExpresionIdentificadorArreglo(Expresion):
     def __init__(self, identificador, accesos):
         self.identificador = identificador
         self.accesos = accesos
-
-
-class ExpresionArregloEstructura(Expresion):
-    def __init__(self, identificador, accesos, atributo):
-        self.identificador = identificador
-        self.accesos = accesos
-        self.atributo = atributo
 
 
 class ExpresionElementos(Expresion):
