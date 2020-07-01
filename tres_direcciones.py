@@ -79,6 +79,7 @@ class TresDirecciones:
         self.detener_ejecucion = False
         self.etiquetas_salida = []
         self.etiquetas_inicio = []
+        self.etiquetas_internas = []
 
     def generar_codigo(self):
         if self.obtener_funciones():
@@ -155,6 +156,8 @@ class TresDirecciones:
             return self.obtener_expresion_estructura(expresion)
         if isinstance(expresion, clases.ExpresionAumentoDecremento):
             return self.obtener_expresion_aumento_decremento(expresion)
+        if isinstance(expresion, clases._SizeOf):
+            return self.obtener_expresion_sizeof(expresion)
         if isinstance(expresion, clases.ExpresionScan):
             registro = self.obtener_registro_temporal()
             self.codigo3d += registro + ' = read();\n'
@@ -346,6 +349,21 @@ class TresDirecciones:
                     return temporal
         return None
 
+    def obtener_expresion_sizeof(self, expresion):
+        if expresion.tipo.valor == 'int':
+            return '4'
+        elif expresion.tipo.valor == 'char':
+            return '1'
+        elif expresion.tipo.valor == 'double':
+            return '8'
+        elif expresion.tipo.valor == 'float':
+            return '4'
+        elif expresion.tipo.valor == 'void':
+            return '1'
+        elif expresion.tipo.valor == 'struct':
+            return '16'
+        return None
+
     def obtener_registro_temporal(self):
         registro_temporal = '$t' + str(self.contador_registros_temporales)
         self.contador_registros_temporales += 1
@@ -400,10 +418,21 @@ class TresDirecciones:
                     break
 
     def generar_codigo_etiqueta(self, instruccion):
-        self.codigo3d += instruccion.identificador + ':\n'
+        if not instruccion.identificador in self.etiquetas_internas:
+            self.codigo3d += instruccion.identificador + ':\n'
+            self.etiquetas_internas.append(instruccion.identificador)
+        else:
+            self.mostrar_mensaje_consola(
+                'ERROR: Etiqueta repetida en línea: '+instruccion.linea+'.')
+            self.detener_ejecucion = True
 
     def generar_codigo_salto(self, instruccion):
-        self.codigo3d += 'goto '+instruccion.identificador+';\n'
+        if instruccion.identificador in self.etiquetas_internas:
+            self.codigo3d += 'goto '+instruccion.identificador+';\n'
+        else:
+            self.mostrar_mensaje_consola(
+                'ERROR: Etiqueta inexistente en línea: '+instruccion.linea+'.')
+            self.detener_ejecucion = True
 
     def generar_codigo_declaracion(self, instruccion):
         tipo = instruccion.tipo.valor
@@ -928,8 +957,9 @@ class TresDirecciones:
                         indice_temporales = 0
                         for salida_auxiliar in salida_temporal:
                             if indice_expresiones > 0:
-                                self.codigo3d += 'print(' + \
-                                    temporales[indice_temporales]+');\n'
+                                if temporales[indice_temporales] != '':
+                                    self.codigo3d += 'print(' + \
+                                        temporales[indice_temporales]+');\n'
                                 self.generar_codigo_saltos_linea(
                                     salida_auxiliar[1:])
                                 indice_temporales += 1
@@ -961,7 +991,8 @@ class TresDirecciones:
                         salida[indice_salida]+'");\n'
                 indice_salida += 1
         else:
-            self.codigo3d += 'print("'+salida[0]+'");\n'
+            if salida[0] != '':
+                self.codigo3d += 'print("'+salida[0]+'");\n'
 
     def agregar_ambito(self):
         self.ambitos.append(Ambito())
