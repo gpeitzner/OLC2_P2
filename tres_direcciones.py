@@ -147,7 +147,10 @@ class TresDirecciones:
         if isinstance(expresion, clases.Identificador):
             return self.obtener_temporal_variable(expresion.valor)
         if isinstance(expresion, clases.ExpresionReferencia):
-            return self.obtener_temporal_variable(expresion.identificador)
+            temporal = self.obtener_temporal_variable(expresion.identificador)
+            if temporal:
+                return '&'+str(temporal)
+            return None
         if isinstance(expresion, clases.ExpresionCasteo):
             return self.obtener_expresion_casteo(expresion)
         if isinstance(expresion, clases.ExpresionIdentificadorArreglo):

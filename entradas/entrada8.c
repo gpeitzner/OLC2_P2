@@ -24,6 +24,8 @@ int main(){
 			var += 1;
 		}
 	}
+	printf("VAR:%s VAR1:%s\n", var, var1);
 	metodo1(var, var1);
+	printf("VAR:%s VAR1:%s\n", var, var1);
 	var1 -= 1;
 }
