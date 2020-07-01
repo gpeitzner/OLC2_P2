@@ -153,6 +153,8 @@ class TresDirecciones:
             return self.obtener_expresion_identificador_arreglo(expresion)
         if isinstance(expresion, clases.ExpresionEstructura):
             return self.obtener_expresion_estructura(expresion)
+        if isinstance(expresion, clases.ExpresionAumentoDecremento):
+            return self.obtener_expresion_aumento_decremento(expresion)
         if isinstance(expresion, clases.ExpresionScan):
             registro = self.obtener_registro_temporal()
             self.codigo3d += registro + ' = read();\n'
@@ -319,6 +321,29 @@ class TresDirecciones:
                     else:
                         return None
             return temporal
+        return None
+
+    def obtener_expresion_aumento_decremento(self, expresion):
+        temporal = self.obtener_temporal_variable(expresion.identificador)
+        if temporal:
+            if expresion.operacion == '++':
+                if expresion.orden == 'post':
+                    registro = self.obtener_registro_temporal()
+                    self.codigo3d += registro + ' = '+temporal+';\n'
+                    self.codigo3d += temporal + ' = '+temporal+'+ 1;\n'
+                    return registro
+                elif expresion.orden == 'pre':
+                    self.codigo3d += temporal + ' = '+temporal+'+ 1;\n'
+                    return temporal
+            elif expresion.operacion == '--':
+                if expresion.orden == 'post':
+                    registro = self.obtener_registro_temporal()
+                    self.codigo3d += registro + ' = '+temporal+';\n'
+                    self.codigo3d += temporal + ' = '+temporal+'- 1;\n'
+                    return registro
+                elif expresion.orden == 'pre':
+                    self.codigo3d += temporal + ' = '+temporal+'- 1;\n'
+                    return temporal
         return None
 
     def obtener_registro_temporal(self):

@@ -514,18 +514,32 @@ def p_asignacion_estructura(t):
         t[1], t[2], t[4], t[5], t[6], t[7], str(t.slice[1].lineno))
 
 
-def p_asignacion_aumento(t):
+def p_asignacion_aumento_post(t):
     '''
     ASIGNACION  :   identificador aumento %prec NIVEL2
     '''
     t[0] = clases.AsignacionAumento(t[1], str(t.slice[1].lineno))
 
 
-def p_asignacion_decremento(t):
+def p_asignacion_aumento_pre(t):
+    '''
+    ASIGNACION  :   aumento identificador %prec NIVEL2
+    '''
+    t[0] = clases.AsignacionAumento(t[2], str(t.slice[1].lineno))
+
+
+def p_asignacion_decremento_post(t):
     '''
     ASIGNACION  :   identificador decremento %prec NIVEL2
     '''
     t[0] = clases.AsignacionDecremento(t[1], str(t.slice[1].lineno))
+
+
+def p_asignacion_decremento_pre(t):
+    '''
+    ASIGNACION  :   decremento identificador %prec NIVEL2
+    '''
+    t[0] = clases.AsignacionDecremento(t[2], str(t.slice[1].lineno))
 
 
 def p_compuesto(t):
@@ -798,6 +812,34 @@ def p_expresion_sizeof(t):
     EXPRESION   :   _sizeof parentesis_abre TIPO parentesis_cierra %prec NIVEL2
     '''
     t[0] = clases._SizeOf(t[3])
+
+
+def p_expresion_aumento_post(t):
+    '''
+    EXPRESION   :   identificador aumento %prec NIVEL2
+    '''
+    t[0] = clases.ExpresionAumentoDecremento(t[1], t[2], 'post')
+
+
+def p_expresion_aumento_pre(t):
+    '''
+    EXPRESION   :   aumento identificador %prec NIVEL2
+    '''
+    t[0] = clases.ExpresionAumentoDecremento(t[2], t[1], 'pre')
+
+
+def p_expresion_decremento_post(t):
+    '''
+    EXPRESION   :   identificador decremento %prec NIVEL2
+    '''
+    t[0] = clases.ExpresionAumentoDecremento(t[1], t[2], 'post')
+
+
+def p_expresion_decremento_pre(t):
+    '''
+    EXPRESION   :   decremento identificador %prec NIVEL2
+    '''
+    t[0] = clases.ExpresionAumentoDecremento(t[2], t[1], 'pre')
 
 
 def p_expresion_scanf(t):

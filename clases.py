@@ -74,7 +74,7 @@ class AsignacionNormal(Asignacion):
 
 
 class AsignacionEstructura(Asignacion):
-    def __init__(self, identificador, indices_primario, atributo, indices_secundario,compuesto, expresion, linea):
+    def __init__(self, identificador, indices_primario, atributo, indices_secundario, compuesto, expresion, linea):
         self.identificador = identificador
         self.indices_primario = indices_primario
         self.atributo = atributo
@@ -209,6 +209,13 @@ class ExpresionEstructura(Expresion):
         self.indices_primario = indices_primario
         self.atributo = atributo
         self.indices_secundario = indices_secundario
+
+
+class ExpresionAumentoDecremento:
+    def __init__(self, identificador, operacion, orden):
+        self.identificador = identificador
+        self.operacion = operacion
+        self.orden = orden
 
 
 class ExpresionIdentificadorArreglo(Expresion):
