@@ -91,6 +91,7 @@ class TresDirecciones:
                     self.generar_codigo_main()
                     if not self.detener_ejecucion:
                         self.consola.setPlainText(str(self.codigo3d))
+                        self.optimizar_codigo()
             else:
                 self.mostrar_mensaje_consola(
                     'ERROR: No existe la función main.')
@@ -163,7 +164,7 @@ class TresDirecciones:
             return self.obtener_expresion_sizeof(expresion)
         if isinstance(expresion, clases.ExpresionScan):
             registro = self.obtener_registro_temporal()
-            self.codigo3d += registro + ' = read();\n'
+            self.codigo3d += registro + '=read();\n'
             return registro
         return None
 
@@ -173,19 +174,19 @@ class TresDirecciones:
         if primero and segundo:
             registro = self.obtener_registro_temporal()
             if expresion.operacion == '+':
-                self.codigo3d += registro + ' = ' + primero + ' + ' + segundo + ';\n'
+                self.codigo3d += registro + '=' + primero + '+' + segundo + ';\n'
                 return registro
             elif expresion.operacion == '-':
-                self.codigo3d += registro + ' = ' + primero + ' - ' + segundo + ';\n'
+                self.codigo3d += registro + '=' + primero + '-' + segundo + ';\n'
                 return registro
             elif expresion.operacion == '*':
-                self.codigo3d += registro + ' = ' + primero + ' * ' + segundo + ';\n'
+                self.codigo3d += registro + '=' + primero + '*' + segundo + ';\n'
                 return registro
             elif expresion.operacion == '/':
-                self.codigo3d += registro + ' = ' + primero + ' / ' + segundo + ';\n'
+                self.codigo3d += registro + '=' + primero + '/' + segundo + ';\n'
                 return registro
             elif expresion.operacion == '%':
-                self.codigo3d += registro + ' = ' + primero + ' % ' + segundo + ';\n'
+                self.codigo3d += registro + '=' + primero + '%' + segundo + ';\n'
                 return registro
         return None
 
@@ -195,22 +196,22 @@ class TresDirecciones:
         if primero and segundo:
             registro = self.obtener_registro_temporal()
             if expresion.operacion == '==':
-                self.codigo3d += registro + ' = ' + primero + ' == ' + segundo + ';\n'
+                self.codigo3d += registro + '=' + primero + '==' + segundo + ';\n'
                 return registro
             elif expresion.operacion == '!=':
-                self.codigo3d += registro + ' = ' + primero + ' != ' + segundo + ';\n'
+                self.codigo3d += registro + '=' + primero + '!=' + segundo + ';\n'
                 return registro
             elif expresion.operacion == '>':
-                self.codigo3d += registro + ' = ' + primero + ' > ' + segundo + ';\n'
+                self.codigo3d += registro + '=' + primero + '>' + segundo + ';\n'
                 return registro
             elif expresion.operacion == '<':
-                self.codigo3d += registro + ' = ' + primero + ' < ' + segundo + ';\n'
+                self.codigo3d += registro + '=' + primero + '<' + segundo + ';\n'
                 return registro
             elif expresion.operacion == '>=':
-                self.codigo3d += registro + ' = ' + primero + ' >= ' + segundo + ";\n"
+                self.codigo3d += registro + '=' + primero + '>=' + segundo + ";\n"
                 return registro
             elif expresion.operacion == '<=':
-                self.codigo3d += registro + ' = ' + primero + ' <= ' + segundo + ';\n'
+                self.codigo3d += registro + '=' + primero + '<=' + segundo + ';\n'
                 return registro
         return None
 
@@ -220,10 +221,10 @@ class TresDirecciones:
         if primero and segundo:
             registro = self.obtener_registro_temporal()
             if expresion.operacion == '&&':
-                self.codigo3d += registro + ' = ' + primero + ' && ' + segundo + ';\n'
+                self.codigo3d += registro + '=' + primero + '&&' + segundo + ';\n'
                 return registro
             elif expresion.operacion == '||':
-                self.codigo3d += registro + ' = ' + primero + ' || ' + segundo + ';\n'
+                self.codigo3d += registro + '=' + primero + '||' + segundo + ';\n'
                 return registro
         return None
 
@@ -233,19 +234,19 @@ class TresDirecciones:
         if primero and segundo:
             registro = self.obtener_registro_temporal()
             if expresion.operacion == '<<':
-                self.codigo3d += registro + ' = ' + primero + ' << ' + segundo + ';\n'
+                self.codigo3d += registro + '=' + primero + '<<' + segundo + ';\n'
                 return registro
             elif expresion.operacion == '>>':
-                self.codigo3d += registro + ' = ' + primero + ' >> ' + segundo + ';\n'
+                self.codigo3d += registro + '=' + primero + '>>' + segundo + ';\n'
                 return registro
             elif expresion.operacion == '&':
-                self.codigo3d += registro + ' = ' + primero + ' & ' + segundo + ';\n'
+                self.codigo3d += registro + '=' + primero + '&' + segundo + ';\n'
                 return registro
             elif expresion.operacion == '|':
-                self.codigo3d += registro + ' = ' + primero + ' | ' + segundo + ';\n'
+                self.codigo3d += registro + '=' + primero + '|' + segundo + ';\n'
                 return registro
             elif expresion.operacion == '^':
-                self.codigo3d += registro + ' = ' + primero + ' ^ ' + segundo + ';\n'
+                self.codigo3d += registro + '=' + primero + '^' + segundo + ';\n'
                 return registro
         return None
 
@@ -254,13 +255,13 @@ class TresDirecciones:
         if operando:
             registro = self.obtener_registro_temporal()
             if expresion.operacion == '-':
-                self.codigo3d += registro + ' =  -' + operando + ';\n'
+                self.codigo3d += registro + '=-' + operando + ';\n'
                 return registro
             elif expresion.operacion == '!':
-                self.codigo3d += registro + ' =  !' + operando + ';\n'
+                self.codigo3d += registro + '=!' + operando + ';\n'
                 return registro
             elif expresion.operacion == '~':
-                self.codigo3d += registro + ' =  ~' + operando + ';\n'
+                self.codigo3d += registro + '=~' + operando + ';\n'
                 return registro
         return None
 
@@ -272,12 +273,12 @@ class TresDirecciones:
             registro = self.obtener_registro_temporal()
             etiqueta_verdadero = self.obtener_etiqueta_temporal()
             etiqueta_salida = self.obtener_etiqueta_temporal()
-            self.codigo3d += 'if('+expresion+') goto ' + \
+            self.codigo3d += 'if('+expresion+')goto ' + \
                 etiqueta_verdadero+';\n'
-            self.codigo3d += registro + ' = '+segundo+';\n'
+            self.codigo3d += registro + '='+segundo+';\n'
             self.codigo3d += 'goto '+etiqueta_salida+';\n'
             self.codigo3d += etiqueta_verdadero + ':\n'
-            self.codigo3d += registro + ' = '+primero+';\n'
+            self.codigo3d += registro + '='+primero+';\n'
             self.codigo3d += etiqueta_salida + ':\n'
             return registro
         return None
@@ -288,7 +289,7 @@ class TresDirecciones:
             if expresion.tipo.valor in ['int', 'float', 'char']:
                 registro = self.obtener_registro_temporal()
                 self.codigo3d += registro + \
-                    ' = ('+expresion.tipo.valor+') '+operando+';\n'
+                    '=('+expresion.tipo.valor+')'+operando+';\n'
                 return registro
         return None
 
@@ -335,20 +336,20 @@ class TresDirecciones:
             if expresion.operacion == '++':
                 if expresion.orden == 'post':
                     registro = self.obtener_registro_temporal()
-                    self.codigo3d += registro + ' = '+temporal+';\n'
-                    self.codigo3d += temporal + ' = '+temporal+'+ 1;\n'
+                    self.codigo3d += registro + '='+temporal+';\n'
+                    self.codigo3d += temporal + '='+temporal+'+1;\n'
                     return registro
                 elif expresion.orden == 'pre':
-                    self.codigo3d += temporal + ' = '+temporal+'+ 1;\n'
+                    self.codigo3d += temporal + '='+temporal+'+1;\n'
                     return temporal
             elif expresion.operacion == '--':
                 if expresion.orden == 'post':
                     registro = self.obtener_registro_temporal()
-                    self.codigo3d += registro + ' = '+temporal+';\n'
-                    self.codigo3d += temporal + ' = '+temporal+'- 1;\n'
+                    self.codigo3d += registro + '='+temporal+';\n'
+                    self.codigo3d += temporal + '='+temporal+'-1;\n'
                     return registro
                 elif expresion.orden == 'pre':
-                    self.codigo3d += temporal + ' = '+temporal+'- 1;\n'
+                    self.codigo3d += temporal + '='+temporal+'-1;\n'
                     return temporal
         return None
 
@@ -448,7 +449,7 @@ class TresDirecciones:
             else:
                 if tipo == 'struct':
                     registro = self.obtener_registro_temporal()
-                    self.codigo3d += registro + ' = array();\n'
+                    self.codigo3d += registro + '=array();\n'
                     self.obtener_ambito().agregar_simbolo(
                         Simbolo(tipo, identificador, registro))
                 elif declaracion.indices:
@@ -465,7 +466,7 @@ class TresDirecciones:
             if temporal:
                 if temporal[0] != '$':
                     registro = self.obtener_registro_temporal()
-                    self.codigo3d += registro + ' = '+temporal+';\n'
+                    self.codigo3d += registro + '='+temporal+';\n'
                     temporal = registro
                 self.obtener_ambito().agregar_simbolo(
                     Simbolo(tipo, identificador, temporal))
@@ -481,7 +482,7 @@ class TresDirecciones:
         if declaracion.expresion:
             if isinstance(declaracion.expresion, clases.ExpresionElementos):
                 registro = self.obtener_registro_temporal()
-                self.codigo3d += registro + ' = array();\n'
+                self.codigo3d += registro + ' =array();\n'
                 self.obtener_ambito().agregar_simbolo(
                     Simbolo(tipo, identificador, registro))
                 if isinstance(declaracion.expresion.expresiones[0], clases.ExpresionElementos):
@@ -493,7 +494,7 @@ class TresDirecciones:
                             if temporal:
                                 self.codigo3d += registro + \
                                     '['+str(filas)+']['+str(columnas) + \
-                                    ']'+' = '+temporal+';\n'
+                                    ']'+'='+temporal+';\n'
                             else:
                                 self.mostrar_mensaje_consola(
                                     'ERROR: Expresión no válida en línea: '+declaracion.linea+'.')
@@ -507,7 +508,7 @@ class TresDirecciones:
                         temporal = self.obtener_expresion(expresion)
                         if temporal:
                             self.codigo3d += registro + \
-                                '['+str(indice)+']'+' = '+temporal+';\n'
+                                '['+str(indice)+']'+'='+temporal+';\n'
                         else:
                             self.mostrar_mensaje_consola(
                                 'ERROR: Expresión no válida en línea: '+declaracion.linea+'.')
@@ -516,7 +517,7 @@ class TresDirecciones:
                         indice += 1
             elif isinstance(declaracion.expresion, clases.Cadena):
                 registro = self.obtener_registro_temporal()
-                self.codigo3d += registro + ' = "'+declaracion.expresion.valor+'";\n'
+                self.codigo3d += registro + '="'+declaracion.expresion.valor+'";\n'
                 self.obtener_ambito().agregar_simbolo(
                     Simbolo(tipo, identificador, registro))
             else:
@@ -525,7 +526,7 @@ class TresDirecciones:
                 self.detener_ejecucion = True
         else:
             registro = self.obtener_registro_temporal()
-            self.codigo3d += registro + ' = array();\n'
+            self.codigo3d += registro + '=array();\n'
             self.obtener_ambito().agregar_simbolo(
                 Simbolo(tipo, identificador, registro))
 
@@ -555,7 +556,7 @@ class TresDirecciones:
                 if not self.detener_ejecucion:
                     temporal = self.obtener_expresion(instruccion.expresion)
                     if temporal:
-                        self.codigo3d += registro + ' = '+temporal+';\n'
+                        self.codigo3d += registro + '='+temporal+';\n'
                     else:
                         self.mostrar_mensaje_consola(
                             'ERROR: Expresión no válida en línea: '+instruccion.linea+'.')
@@ -626,7 +627,7 @@ class TresDirecciones:
             registro = simbolo.temporal
             if not registro:
                 registro = self.obtener_registro_temporal()
-            self.codigo3d += registro + ' = '+registro+' + 1;\n'
+            self.codigo3d += registro + '='+registro+'+1;\n'
         else:
             self.mostrar_mensaje_consola(
                 'ERROR: No existe la variable en línea: '+instruccion.linea+'.')
@@ -638,7 +639,7 @@ class TresDirecciones:
             registro = simbolo.temporal
             if not registro:
                 registro = self.obtener_registro_temporal()
-            self.codigo3d += registro + ' = '+registro+' - 1;\n'
+            self.codigo3d += registro + '='+registro+'-1;\n'
         else:
             self.mostrar_mensaje_consola(
                 'ERROR: No existe la variable en línea: '+instruccion.linea+'.')
@@ -646,27 +647,27 @@ class TresDirecciones:
 
     def generar_codigo_compuesto(self, instruccion, registro, temporal):
         if instruccion.compuesto == '=':
-            self.codigo3d += registro + ' = '+temporal+';\n'
+            self.codigo3d += registro + '='+temporal+';\n'
         elif instruccion.compuesto == '+':
-            self.codigo3d += registro + ' = '+registro+' + '+temporal+';\n'
+            self.codigo3d += registro + '='+registro+'+'+temporal+';\n'
         elif instruccion.compuesto == '-':
-            self.codigo3d += registro + ' = '+registro+' - '+temporal+';\n'
+            self.codigo3d += registro + '='+registro+'-'+temporal+';\n'
         elif instruccion.compuesto == '*':
-            self.codigo3d += registro + ' = '+registro+' * '+temporal+';\n'
+            self.codigo3d += registro + '='+registro+'*'+temporal+';\n'
         elif instruccion.compuesto == '/':
-            self.codigo3d += registro + ' = '+registro+' / '+temporal+';\n'
+            self.codigo3d += registro + '='+registro+'/'+temporal+';\n'
         elif instruccion.compuesto == '%':
-            self.codigo3d += registro + ' = '+registro+' % '+temporal+';\n'
+            self.codigo3d += registro + '='+registro+'%'+temporal+';\n'
         elif instruccion.compuesto == '<<':
-            self.codigo3d += registro + ' = '+registro+' << '+temporal+';\n'
+            self.codigo3d += registro + '='+registro+'<<'+temporal+';\n'
         elif instruccion.compuesto == '>>':
-            self.codigo3d += registro + ' = '+registro+' >> '+temporal+';\n'
+            self.codigo3d += registro + '='+registro+'>>'+temporal+';\n'
         elif instruccion.compuesto == '&':
-            self.codigo3d += registro + ' = '+registro+' & '+temporal+';\n'
+            self.codigo3d += registro + '='+registro+'&'+temporal+';\n'
         elif instruccion.compuesto == '^':
-            self.codigo3d += registro + ' = '+registro+' ^ '+temporal+';\n'
+            self.codigo3d += registro + '='+registro+'^'+temporal+';\n'
         elif instruccion.compuesto == '|':
-            self.codigo3d += registro + ' = '+registro+' | '+temporal+';\n'
+            self.codigo3d += registro + '='+registro+'|'+temporal+';\n'
 
     def generar_codigo_if(self, instruccion):
         expresion_inicio = self.obtener_expresion(instruccion.expresion)
@@ -674,7 +675,7 @@ class TresDirecciones:
             etiqueta_inicio = self.obtener_etiqueta_temporal()
             etiqueta_salida = self.obtener_etiqueta_temporal()
             self.codigo3d += 'if('+expresion_inicio + \
-                ') goto '+etiqueta_inicio+';\n'
+                ')goto '+etiqueta_inicio+';\n'
             etiquetas_temporales = []
             if instruccion.elseifs:
                 for expresion_elseif in instruccion.elseifs:
@@ -684,7 +685,7 @@ class TresDirecciones:
                         etiqueta_temporal = self.obtener_etiqueta_temporal()
                         etiquetas_temporales.append(etiqueta_temporal)
                         self.codigo3d += 'if('+expresion_temporal + \
-                            ') goto '+etiqueta_temporal+';\n'
+                            ')goto '+etiqueta_temporal+';\n'
                     else:
                         self.mostrar_mensaje_consola(
                             'ERROR: Expresión no válida en línea: '+instruccion.linea+'.')
@@ -730,7 +731,7 @@ class TresDirecciones:
                         etiqueta_temporal = self.obtener_etiqueta_temporal()
                         etiquetas_temporales.append(etiqueta_temporal)
                         self.codigo3d += 'if('+expresion_inicio+'==' + \
-                            expresion_caso+') goto '+etiqueta_temporal+';\n'
+                            expresion_caso+')goto '+etiqueta_temporal+';\n'
                     else:
                         self.mostrar_mensaje_consola(
                             'ERROR: Expresión no válida en línea: '+instruccion.linea)
@@ -782,7 +783,7 @@ class TresDirecciones:
             etiqueta_fin = self.obtener_etiqueta_temporal()
             self.etiquetas_inicio.append(etiqueta_inicio)
             self.etiquetas_salida.append(etiqueta_fin)
-            self.codigo3d += 'if('+expresion+') goto '+etiqueta_verdadero+';\n'
+            self.codigo3d += 'if('+expresion+')goto '+etiqueta_verdadero+';\n'
             self.codigo3d += 'goto '+etiqueta_fin+';\n'
             self.codigo3d += etiqueta_verdadero + ':\n'
             self.obtener_ambito().agregar_tabla_simbolos()
@@ -812,7 +813,7 @@ class TresDirecciones:
         self.codigo3d += etiqueta_inicio_ciclo+':\n'
         expresion = self.obtener_expresion(instruccion.expresion)
         if expresion:
-            self.codigo3d += 'if('+expresion+') goto '+etiqueta_inicio+';\n'
+            self.codigo3d += 'if('+expresion+')goto '+etiqueta_inicio+';\n'
             self.codigo3d += etiqueta_fin+':\n'
         else:
             self.mostrar_mensaje_consola(
@@ -842,7 +843,7 @@ class TresDirecciones:
                 if expresion:
                     etiqueta_inicio_ciclo = self.obtener_etiqueta_temporal()
                     self.etiquetas_inicio.append(etiqueta_inicio_ciclo)
-                    self.codigo3d += 'if('+expresion+') goto ' + \
+                    self.codigo3d += 'if('+expresion+')goto ' + \
                         etiqueta_verdadero+';\n'
                     self.codigo3d += 'goto '+etiqueta_fin+';\n'
                     self.codigo3d += etiqueta_verdadero+':\n'
@@ -899,7 +900,7 @@ class TresDirecciones:
                                     else:
                                         temporal = self.obtener_registro_temporal()
                                         valor = temporales[indice_temporales]
-                                        self.codigo3d += temporal + ' = '+valor+';\n'
+                                        self.codigo3d += temporal + '='+valor+';\n'
                                         self.obtener_ambito().agregar_simbolo(
                                             Simbolo(parametro.tipo, parametro.identificador, temporal))
                                     indice_temporales += 1
@@ -1035,3 +1036,8 @@ class TresDirecciones:
             if registro:
                 return registro
         return None
+
+    def optimizar_codigo(self):
+        codigo_optimizado = self.codigo3d
+        codigo_optimizado = codigo_optimizado.split('=')
+        print(codigo_optimizado)
