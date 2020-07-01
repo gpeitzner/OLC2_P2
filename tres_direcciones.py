@@ -1,5 +1,13 @@
 import clases
+import re
 from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Optimizacion:
+    def __init__(self, regla, antes, despues):
+        self.regla = regla
+        self.antes = antes
+        self.despues = despues
 
 
 class Simbolo:
@@ -80,6 +88,7 @@ class TresDirecciones:
         self.etiquetas_salida = []
         self.etiquetas_inicio = []
         self.etiquetas_internas = []
+        self.optimizaciones = []
 
     def generar_codigo(self):
         if self.obtener_funciones():
@@ -464,19 +473,19 @@ class TresDirecciones:
             temporal = self.obtener_expresion(
                 declaracion.expresion)
             if temporal:
-                if temporal[0] != '$':
-                    registro = self.obtener_registro_temporal()
-                    self.codigo3d += registro + '='+temporal+';\n'
-                    temporal = registro
+                registro = self.obtener_registro_temporal()
+                self.codigo3d += registro + '='+temporal+';\n'
                 self.obtener_ambito().agregar_simbolo(
-                    Simbolo(tipo, identificador, temporal))
+                    Simbolo(tipo, identificador, registro))
             else:
                 self.mostrar_mensaje_consola(
                     'ERROR: Expresión no válida en línea: '+declaracion.linea+'.')
                 self.detener_ejecucion = True
         else:
+            registro = self.obtener_registro_temporal()
+            self.codigo3d += registro + '=0;\n'
             self.obtener_ambito().agregar_simbolo(
-                Simbolo(tipo, identificador, None))
+                Simbolo(tipo, identificador, registro))
 
     def generar_codigo_declaracion_arreglo(self, tipo, identificador, declaracion):
         if declaracion.expresion:
@@ -565,8 +574,6 @@ class TresDirecciones:
                 temporal = self.obtener_expresion(instruccion.expresion)
                 if temporal:
                     registro = simbolo.temporal
-                    if not registro:
-                        registro = self.obtener_registro_temporal()
                     if self.actualizar_temporal_variable(instruccion.identificador, registro):
                         self.generar_codigo_compuesto(
                             instruccion, registro, temporal)
@@ -1039,5 +1046,44 @@ class TresDirecciones:
 
     def optimizar_codigo(self):
         codigo_optimizado = self.codigo3d
-        codigo_optimizado = codigo_optimizado.split('=')
-        print(codigo_optimizado)
+        codigo_optimizado = codigo_optimizado.split('\n')
+        codigo_optimizado = self.optimizar_regla1(codigo_optimizado)
+        print(len(self.optimizaciones))
+
+    def optimizar_regla1(self, codigo_optimizado):
+        indice = 0
+        codigo_temporal = []
+        while indice < len(codigo_optimizado):
+            if codigo_optimizado[indice]:
+                if (indice + 1) < len(codigo_optimizado):
+                    instruccion_actual = codigo_optimizado[indice].replace(
+                        ';', '').split('=')
+                    instruccion_siguiente = codigo_optimizado[indice+1].replace(';', '').split(
+                        '=')
+                    if len(instruccion_actual) == 2 and len(instruccion_siguiente) == 2:
+                        if (instruccion_actual[0] == instruccion_siguiente[1] and
+                                instruccion_actual[1] == instruccion_siguiente[0]):
+                            if (re.search(r'\$t[0-9]+', instruccion_actual[0]) and
+                                    re.search(r'\$t[0-9]+', instruccion_actual[0])):
+                                self.optimizaciones.append(Optimizacion(
+                                    'Regla 1', codigo_optimizado[indice]+codigo_optimizado[indice+1], codigo_optimizado[indice]))
+                                codigo_temporal.append(
+                                    codigo_optimizado[indice])
+                                codigo_optimizado[indice+1] = None
+                                indice += 1
+                            else:
+                                codigo_temporal.append(
+                                    codigo_optimizado[indice])
+                                indice += 1
+                        else:
+                            codigo_temporal.append(codigo_optimizado[indice])
+                            indice += 1
+                    else:
+                        codigo_temporal.append(codigo_optimizado[indice])
+                        indice += 1
+                else:
+                    codigo_temporal.append(codigo_optimizado[indice])
+                    indice += 1
+            else:
+                indice += 1
+        return codigo_temporal
