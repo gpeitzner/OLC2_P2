@@ -1049,6 +1049,7 @@ class TresDirecciones:
         codigo_optimizado = codigo_optimizado.split('\n')
         codigo_optimizado = self.optimizar_regla1(codigo_optimizado)
         codigo_optimizado = self.optimizar_regla2(codigo_optimizado)
+        codigo_optimizado = self.optimizar_regla8_11(codigo_optimizado)
         for optimizacion in self.optimizaciones:
             print('REGLA: '+optimizacion.regla)
             print('ANTES: '+optimizacion.antes)
@@ -1138,4 +1139,54 @@ class TresDirecciones:
                     indice += 1
             else:
                 indice += 1
+        return codigo_temporal
+
+    def optimizar_regla8_11(self, codigo_optimizado):
+        indice = 0
+        codigo_temporal = []
+        while indice < len(codigo_optimizado):
+            if codigo_optimizado[indice]:
+                instruccion = codigo_optimizado[indice].replace(
+                    ';', '').split('=')
+                if len(instruccion) == 2:
+                    if re.search(r'\$t[0-9]+', instruccion[0]):
+                        regla8 = instruccion[1].split('+')
+                        regla9 = instruccion[1].split('-')
+                        regla10 = instruccion[1].split('*')
+                        regla11 = instruccion[1].split('/')
+                        if len(regla8) == 2:
+                            if regla8[0] == instruccion[0] and regla8[1] == '0':
+                                self.optimizaciones.append(Optimizacion(
+                                    'Regla 8', codigo_optimizado[indice], ''))
+                            else:
+                                codigo_temporal.append(
+                                    codigo_optimizado[indice])
+                        elif len(regla9) == 2:
+                            if regla9[0] == instruccion[0] and regla9[1] == '0':
+                                self.optimizaciones.append(Optimizacion(
+                                    'Regla 9', codigo_optimizado[indice], ''))
+                            else:
+                                codigo_temporal.append(
+                                    codigo_optimizado[indice])
+                        elif len(regla10) == 2:
+                            if regla10[0] == instruccion[0] and regla10[1] == '1':
+                                self.optimizaciones.append(Optimizacion(
+                                    'Regla 10', codigo_optimizado[indice], ''))
+                            else:
+                                codigo_temporal.append(
+                                    codigo_optimizado[indice])
+                        elif len(regla11) == 2:
+                            if regla11[0] == instruccion[0] and regla11[1] == '1':
+                                self.optimizaciones.append(Optimizacion(
+                                    'Regla 11', codigo_optimizado[indice], ''))
+                            else:
+                                codigo_temporal.append(
+                                    codigo_optimizado[indice])
+                        else:
+                            codigo_temporal.append(codigo_optimizado[indice])
+                    else:
+                        codigo_temporal.append(codigo_optimizado[indice])
+                else:
+                    codigo_temporal.append(codigo_optimizado[indice])
+            indice += 1
         return codigo_temporal
