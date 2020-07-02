@@ -1051,6 +1051,7 @@ class TresDirecciones:
         codigo_optimizado = self.optimizar_regla2(codigo_optimizado)
         codigo_optimizado = self.optimizar_regla8_11(codigo_optimizado)
         codigo_optimizado = self.optimizar_regla12_15(codigo_optimizado)
+        codigo_optimizado = self.optimizar_regla16_18(codigo_optimizado)
         for optimizacion in self.optimizaciones:
             print('REGLA: '+optimizacion.regla)
             print('ANTES: '+optimizacion.antes)
@@ -1238,6 +1239,49 @@ class TresDirecciones:
                                     'Regla 15', codigo_optimizado[indice], instruccion[0]+'='+regla15[0]+';'))
                                 codigo_temporal.append(
                                     instruccion[0]+'='+regla15[0]+';')
+                            else:
+                                codigo_temporal.append(
+                                    codigo_optimizado[indice])
+                        else:
+                            codigo_temporal.append(codigo_optimizado[indice])
+                    else:
+                        codigo_temporal.append(codigo_optimizado[indice])
+                else:
+                    codigo_temporal.append(codigo_optimizado[indice])
+            indice += 1
+        return codigo_temporal
+
+    def optimizar_regla16_18(self, codigo_optimizado):
+        indice = 0
+        codigo_temporal = []
+        while indice < len(codigo_optimizado):
+            if codigo_optimizado[indice]:
+                instruccion = codigo_optimizado[indice].replace(
+                    ';', '').split('=')
+                if len(instruccion) == 2:
+                    if re.search(r'\$t[0-9]+', instruccion[0]):
+                        regla16_17 = instruccion[1].split('*')
+                        regla18 = instruccion[1].split('/')
+                        if len(regla16_17) == 2:
+                            if regla16_17[0] != instruccion[0] and re.search(r'\$t[0-9]+', regla16_17[0]) and regla16_17[1] == '2':
+                                self.optimizaciones.append(Optimizacion(
+                                    'Regla 16', codigo_optimizado[indice], instruccion[0]+'='+regla16_17[0]+'+'+regla16_17[0]+';'))
+                                codigo_temporal.append(
+                                    instruccion[0]+'='+regla16_17[0]+'+'+regla16_17[0]+';')
+                            elif regla16_17[0] != instruccion[0] and re.search(r'\$t[0-9]+', regla16_17[0]) and regla16_17[1] == '0':
+                                self.optimizaciones.append(Optimizacion(
+                                    'Regla 17', codigo_optimizado[indice], instruccion[0]+'='+regla16_17[0]+';'))
+                                codigo_temporal.append(
+                                    instruccion[0]+'='+regla16_17[0]+';')
+                            else:
+                                codigo_temporal.append(
+                                    codigo_optimizado[indice])
+                        elif len(regla18) == 2:
+                            if regla18[1] != instruccion[0] and re.search(r'\$t[0-9]+', regla18[1]) and regla18[0] == '0':
+                                self.optimizaciones.append(Optimizacion(
+                                    'Regla 18', codigo_optimizado[indice], instruccion[0]+'=0;'))
+                                codigo_temporal.append(
+                                    instruccion[0]+'=0;')
                             else:
                                 codigo_temporal.append(
                                     codigo_optimizado[indice])
