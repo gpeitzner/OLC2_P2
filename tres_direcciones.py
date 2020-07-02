@@ -1048,7 +1048,13 @@ class TresDirecciones:
         codigo_optimizado = self.codigo3d
         codigo_optimizado = codigo_optimizado.split('\n')
         codigo_optimizado = self.optimizar_regla1(codigo_optimizado)
-        print(len(self.optimizaciones))
+        codigo_optimizado = self.optimizar_regla2(codigo_optimizado)
+        for optimizacion in self.optimizaciones:
+            print('REGLA: '+optimizacion.regla)
+            print('ANTES: '+optimizacion.antes)
+            print('DESPUES: '+optimizacion.despues)
+            print('')
+        print(''.join(codigo_optimizado))
 
     def optimizar_regla1(self, codigo_optimizado):
         indice = 0
@@ -1075,6 +1081,52 @@ class TresDirecciones:
                                 codigo_temporal.append(
                                     codigo_optimizado[indice])
                                 indice += 1
+                        else:
+                            codigo_temporal.append(codigo_optimizado[indice])
+                            indice += 1
+                    else:
+                        codigo_temporal.append(codigo_optimizado[indice])
+                        indice += 1
+                else:
+                    codigo_temporal.append(codigo_optimizado[indice])
+                    indice += 1
+            else:
+                indice += 1
+        return codigo_temporal
+
+    def optimizar_regla2(self, codigo_optimizado):
+        indice = 0
+        codigo_temporal = []
+        while indice < len(codigo_optimizado):
+            if codigo_optimizado[indice]:
+                instruccion = codigo_optimizado[indice].split(' ')
+                if len(instruccion) == 2:
+                    if instruccion[0] == 'goto':
+                        indice_busqueda = indice
+                        indice_busqueda += 1
+                        etiqueta_encontrada = False
+                        while indice_busqueda < len(codigo_optimizado):
+                            instruccion_temporal = codigo_optimizado[indice_busqueda]
+                            if re.search(r'[a-zA-Z_][a-zA-Z_0-9]*:', instruccion_temporal):
+                                instruccion_auxiliar = instruccion_temporal.split(
+                                    ':')
+                                instruccion_inicial = instruccion[1].split(';')
+                                if instruccion_auxiliar[0] == instruccion_inicial[0]:
+                                    etiqueta_encontrada = True
+                                    break
+                                else:
+                                    break
+                            indice_busqueda += 1
+                        if etiqueta_encontrada:
+                            codigo_eliminado = ''
+                            while indice <= indice_busqueda:
+                                codigo_eliminado += codigo_optimizado[indice]
+                                indice += 1
+                            indice -= 1
+                            self.optimizaciones.append(Optimizacion(
+                                'Regla 2', codigo_eliminado, codigo_optimizado[indice]))
+                            codigo_temporal.append(codigo_optimizado[indice])
+                            indice += 1
                         else:
                             codigo_temporal.append(codigo_optimizado[indice])
                             indice += 1
