@@ -1,0 +1,838 @@
+digraph G {
+	node [shape=box]
+	0 [label=INSTRUCCIONES]
+	1 [label=DECLARACION]
+	0 -> 1
+	2 [label=TIPO]
+	1 -> 2
+	3 [label=DECLARACIONES]
+	1 -> 3
+	4 [label="DECLARACION FINAL"]
+	3 -> 4
+	5 [label=var1]
+	4 -> 5
+	6 [label=EXPRESION]
+	4 -> 6
+	7 [label=DECLARACION]
+	0 -> 7
+	8 [label=TIPO]
+	7 -> 8
+	9 [label=DECLARACIONES]
+	7 -> 9
+	10 [label="DECLARACION FINAL"]
+	9 -> 10
+	11 [label=punteo]
+	10 -> 11
+	12 [label=EXPRESION]
+	10 -> 12
+	13 [label=FUNCION]
+	0 -> 13
+	14 [label=TIPO]
+	13 -> 14
+	15 [label=CUERPO]
+	13 -> 15
+	16 [label=DECLARACION]
+	15 -> 16
+	17 [label=TIPO]
+	16 -> 17
+	18 [label=DECLARACIONES]
+	16 -> 18
+	19 [label="DECLARACION FINAL"]
+	18 -> 19
+	20 [label=n4]
+	19 -> 20
+	21 [label=EXPRESION]
+	19 -> 21
+	22 [label=DECLARACION]
+	15 -> 22
+	23 [label=TIPO]
+	22 -> 23
+	24 [label=DECLARACIONES]
+	22 -> 24
+	25 [label="DECLARACION FINAL"]
+	24 -> 25
+	26 [label=str4]
+	25 -> 26
+	27 [label=INDICES]
+	25 -> 27
+	28 [label=EXPRESION]
+	25 -> 28
+	29 [label=DECLARACION]
+	15 -> 29
+	30 [label=TIPO]
+	29 -> 30
+	31 [label=DECLARACIONES]
+	29 -> 31
+	32 [label="DECLARACION FINAL"]
+	31 -> 32
+	33 [label=db4]
+	32 -> 33
+	34 [label=EXPRESION]
+	32 -> 34
+	35 [label=DECLARACION]
+	15 -> 35
+	36 [label=TIPO]
+	35 -> 36
+	37 [label=DECLARACIONES]
+	35 -> 37
+	38 [label="DECLARACION FINAL"]
+	37 -> 38
+	39 [label=db1]
+	38 -> 39
+	40 [label=EXPRESION]
+	38 -> 40
+	41 [label=DECLARACION]
+	15 -> 41
+	42 [label=TIPO]
+	41 -> 42
+	43 [label=DECLARACIONES]
+	41 -> 43
+	44 [label="DECLARACION FINAL"]
+	43 -> 44
+	45 [label=chr4]
+	44 -> 45
+	46 [label=EXPRESION]
+	44 -> 46
+	47 [label=IF]
+	15 -> 47
+	48 [label=EXPRESION]
+	47 -> 48
+	49 [label=CUERPO]
+	47 -> 49
+	50 [label=ASIGNACION]
+	49 -> 50
+	51 [label=punteo]
+	50 -> 51
+	52 [label="="]
+	50 -> 52
+	53 [label=EXPRESION]
+	50 -> 53
+	54 [label=ELSE]
+	47 -> 54
+	55 [label=FUNCION]
+	0 -> 55
+	56 [label=TIPO]
+	55 -> 56
+	57 [label=CUERPO]
+	55 -> 57
+	58 [label=DECLARACION]
+	57 -> 58
+	59 [label=TIPO]
+	58 -> 59
+	60 [label=DECLARACIONES]
+	58 -> 60
+	61 [label="DECLARACION FINAL"]
+	60 -> 61
+	62 [label=n1]
+	61 -> 62
+	63 [label=EXPRESION]
+	61 -> 63
+	64 [label=IF]
+	57 -> 64
+	65 [label=EXPRESION]
+	64 -> 65
+	66 [label=CUERPO]
+	64 -> 66
+	67 [label=ASIGNACION]
+	66 -> 67
+	68 [label=punteo]
+	67 -> 68
+	69 [label="="]
+	67 -> 69
+	70 [label=EXPRESION]
+	67 -> 70
+	71 [label=ELSE]
+	64 -> 71
+	72 [label=DECLARACION]
+	57 -> 72
+	73 [label=TIPO]
+	72 -> 73
+	74 [label=DECLARACIONES]
+	72 -> 74
+	75 [label="DECLARACION FINAL"]
+	74 -> 75
+	76 [label=n4]
+	75 -> 76
+	77 [label=EXPRESION]
+	75 -> 77
+	78 [label=DECLARACION]
+	57 -> 78
+	79 [label=TIPO]
+	78 -> 79
+	80 [label=DECLARACIONES]
+	78 -> 80
+	81 [label="DECLARACION FINAL"]
+	80 -> 81
+	82 [label=n3]
+	81 -> 82
+	83 [label=EXPRESION]
+	81 -> 83
+	84 [label=IF]
+	57 -> 84
+	85 [label=EXPRESION]
+	84 -> 85
+	86 [label=CUERPO]
+	84 -> 86
+	87 [label=ASIGNACION]
+	86 -> 87
+	88 [label=punteo]
+	87 -> 88
+	89 [label="="]
+	87 -> 89
+	90 [label=EXPRESION]
+	87 -> 90
+	91 [label=ELSE]
+	84 -> 91
+	92 [label=METODO]
+	57 -> 92
+	93 [label=operacionesBasicas]
+	92 -> 93
+	94 [label=METODO]
+	57 -> 94
+	95 [label=operacionesAvanzadas]
+	94 -> 95
+	96 [label=FUNCION]
+	0 -> 96
+	97 [label=TIPO]
+	96 -> 97
+	98 [label=CUERPO]
+	96 -> 98
+	99 [label=DECLARACION]
+	98 -> 99
+	100 [label=TIPO]
+	99 -> 100
+	101 [label=DECLARACIONES]
+	99 -> 101
+	102 [label="DECLARACION FINAL"]
+	101 -> 102
+	103 [label=a]
+	102 -> 103
+	104 [label=EXPRESION]
+	102 -> 104
+	105 [label=DECLARACION]
+	98 -> 105
+	106 [label=TIPO]
+	105 -> 106
+	107 [label=DECLARACIONES]
+	105 -> 107
+	108 [label="DECLARACION FINAL"]
+	107 -> 108
+	109 [label=a2]
+	108 -> 109
+	110 [label=EXPRESION]
+	108 -> 110
+	111 [label=DECLARACION]
+	98 -> 111
+	112 [label=TIPO]
+	111 -> 112
+	113 [label=DECLARACIONES]
+	111 -> 113
+	114 [label="DECLARACION FINAL"]
+	113 -> 114
+	115 [label=b]
+	114 -> 115
+	116 [label=EXPRESION]
+	114 -> 116
+	117 [label=DECLARACION]
+	98 -> 117
+	118 [label=TIPO]
+	117 -> 118
+	119 [label=DECLARACIONES]
+	117 -> 119
+	120 [label="DECLARACION FINAL"]
+	119 -> 120
+	121 [label=b2]
+	120 -> 121
+	122 [label=EXPRESION]
+	120 -> 122
+	123 [label=DECLARACION]
+	98 -> 123
+	124 [label=TIPO]
+	123 -> 124
+	125 [label=DECLARACIONES]
+	123 -> 125
+	126 [label="DECLARACION FINAL"]
+	125 -> 126
+	127 [label=c]
+	126 -> 127
+	128 [label=EXPRESION]
+	126 -> 128
+	129 [label=DECLARACION]
+	98 -> 129
+	130 [label=TIPO]
+	129 -> 130
+	131 [label=DECLARACIONES]
+	129 -> 131
+	132 [label="DECLARACION FINAL"]
+	131 -> 132
+	133 [label=c2]
+	132 -> 133
+	134 [label=EXPRESION]
+	132 -> 134
+	135 [label=IF]
+	98 -> 135
+	136 [label=EXPRESION]
+	135 -> 136
+	137 [label=CUERPO]
+	135 -> 137
+	138 [label=ASIGNACION]
+	137 -> 138
+	139 [label=punteo]
+	138 -> 139
+	140 [label="="]
+	138 -> 140
+	141 [label=EXPRESION]
+	138 -> 141
+	142 [label=ELSE]
+	135 -> 142
+	143 [label=FUNCION]
+	0 -> 143
+	144 [label=TIPO]
+	143 -> 144
+	145 [label=CUERPO]
+	143 -> 145
+	146 [label=DECLARACION]
+	145 -> 146
+	147 [label=TIPO]
+	146 -> 147
+	148 [label=DECLARACIONES]
+	146 -> 148
+	149 [label="DECLARACION FINAL"]
+	148 -> 149
+	150 [label=aritmetica1]
+	149 -> 150
+	151 [label=EXPRESION]
+	149 -> 151
+	152 [label=DECLARACION]
+	145 -> 152
+	153 [label=TIPO]
+	152 -> 153
+	154 [label=DECLARACIONES]
+	152 -> 154
+	155 [label="DECLARACION FINAL"]
+	154 -> 155
+	156 [label=aritmetica2]
+	155 -> 156
+	157 [label=EXPRESION]
+	155 -> 157
+	158 [label=DECLARACION]
+	145 -> 158
+	159 [label=TIPO]
+	158 -> 159
+	160 [label=DECLARACIONES]
+	158 -> 160
+	161 [label="DECLARACION FINAL"]
+	160 -> 161
+	162 [label=aritmetica3]
+	161 -> 162
+	163 [label=EXPRESION]
+	161 -> 163
+	164 [label=DECLARACION]
+	145 -> 164
+	165 [label=TIPO]
+	164 -> 165
+	166 [label=DECLARACIONES]
+	164 -> 166
+	167 [label="DECLARACION FINAL"]
+	166 -> 167
+	168 [label=aritmetica4]
+	167 -> 168
+	169 [label=EXPRESION]
+	167 -> 169
+	170 [label=IF]
+	145 -> 170
+	171 [label=EXPRESION]
+	170 -> 171
+	172 [label=CUERPO]
+	170 -> 172
+	173 [label=ASIGNACION]
+	172 -> 173
+	174 [label=punteo]
+	173 -> 174
+	175 [label="="]
+	173 -> 175
+	176 [label=EXPRESION]
+	173 -> 176
+	177 [label=ELSE]
+	170 -> 177
+	178 [label=FUNCION]
+	0 -> 178
+	179 [label=TIPO]
+	178 -> 179
+	180 [label=CUERPO]
+	178 -> 180
+	181 [label=IF]
+	180 -> 181
+	182 [label=EXPRESION]
+	181 -> 182
+	183 [label=CUERPO]
+	181 -> 183
+	184 [label=ASIGNACION]
+	183 -> 184
+	185 [label=punteo]
+	184 -> 185
+	186 [label="="]
+	184 -> 186
+	187 [label=EXPRESION]
+	184 -> 187
+	188 [label=ELSE]
+	181 -> 188
+	189 [label=IF]
+	180 -> 189
+	190 [label=EXPRESION]
+	189 -> 190
+	191 [label=CUERPO]
+	189 -> 191
+	192 [label=ASIGNACION]
+	191 -> 192
+	193 [label=punteo]
+	192 -> 193
+	194 [label="="]
+	192 -> 194
+	195 [label=EXPRESION]
+	192 -> 195
+	196 [label=ELSE]
+	189 -> 196
+	197 [label=METODO]
+	180 -> 197
+	198 [label=Logicas2]
+	197 -> 198
+	199 [label=METODO]
+	180 -> 199
+	200 [label=BitABit]
+	199 -> 200
+	201 [label=FUNCION]
+	0 -> 201
+	202 [label=TIPO]
+	201 -> 202
+	203 [label=CUERPO]
+	201 -> 203
+	204 [label=DECLARACION]
+	203 -> 204
+	205 [label=TIPO]
+	204 -> 205
+	206 [label=DECLARACIONES]
+	204 -> 206
+	207 [label="DECLARACION FINAL"]
+	206 -> 207
+	208 [label=n0]
+	207 -> 208
+	209 [label=EXPRESION]
+	207 -> 209
+	210 [label=IF]
+	203 -> 210
+	211 [label=EXPRESION]
+	210 -> 211
+	212 [label=CUERPO]
+	210 -> 212
+	213 [label=ASIGNACION]
+	212 -> 213
+	214 [label=punteo]
+	213 -> 214
+	215 [label="="]
+	213 -> 215
+	216 [label=EXPRESION]
+	213 -> 216
+	217 [label=ELSE]
+	210 -> 217
+	218 [label=DECLARACION]
+	203 -> 218
+	219 [label=TIPO]
+	218 -> 219
+	220 [label=DECLARACIONES]
+	218 -> 220
+	221 [label="DECLARACION FINAL"]
+	220 -> 221
+	222 [label=n1]
+	221 -> 222
+	223 [label=EXPRESION]
+	221 -> 223
+	224 [label=ASIGNACION]
+	203 -> 224
+	225 [label=n1]
+	224 -> 225
+	226 [label="="]
+	224 -> 226
+	227 [label=EXPRESION]
+	224 -> 227
+	228 [label=DECLARACION]
+	203 -> 228
+	229 [label=TIPO]
+	228 -> 229
+	230 [label=DECLARACIONES]
+	228 -> 230
+	231 [label="DECLARACION FINAL"]
+	230 -> 231
+	232 [label=condicion1]
+	231 -> 232
+	233 [label=EXPRESION]
+	231 -> 233
+	234 [label=DECLARACION]
+	203 -> 234
+	235 [label=TIPO]
+	234 -> 235
+	236 [label=DECLARACIONES]
+	234 -> 236
+	237 [label="DECLARACION FINAL"]
+	236 -> 237
+	238 [label=aritmetica1]
+	237 -> 238
+	239 [label=EXPRESION]
+	237 -> 239
+	240 [label=DECLARACION]
+	203 -> 240
+	241 [label=TIPO]
+	240 -> 241
+	242 [label=DECLARACIONES]
+	240 -> 242
+	243 [label="DECLARACION FINAL"]
+	242 -> 243
+	244 [label=condicion2]
+	243 -> 244
+	245 [label=EXPRESION]
+	243 -> 245
+	246 [label=DECLARACION]
+	203 -> 246
+	247 [label=TIPO]
+	246 -> 247
+	248 [label=DECLARACIONES]
+	246 -> 248
+	249 [label="DECLARACION FINAL"]
+	248 -> 249
+	250 [label=condicion3]
+	249 -> 250
+	251 [label=EXPRESION]
+	249 -> 251
+	252 [label=IF]
+	203 -> 252
+	253 [label=EXPRESION]
+	252 -> 253
+	254 [label=CUERPO]
+	252 -> 254
+	255 [label=ASIGNACION]
+	254 -> 255
+	256 [label=punteo]
+	255 -> 256
+	257 [label="="]
+	255 -> 257
+	258 [label=EXPRESION]
+	255 -> 258
+	259 [label=ELSE]
+	252 -> 259
+	260 [label=FUNCION]
+	0 -> 260
+	261 [label=TIPO]
+	260 -> 261
+	262 [label=CUERPO]
+	260 -> 262
+	263 [label=DECLARACION]
+	262 -> 263
+	264 [label=TIPO]
+	263 -> 264
+	265 [label=DECLARACIONES]
+	263 -> 265
+	266 [label="DECLARACION FINAL"]
+	265 -> 266
+	267 [label=n0]
+	266 -> 267
+	268 [label=EXPRESION]
+	266 -> 268
+	269 [label=DECLARACION]
+	262 -> 269
+	270 [label=TIPO]
+	269 -> 270
+	271 [label=DECLARACIONES]
+	269 -> 271
+	272 [label="DECLARACION FINAL"]
+	271 -> 272
+	273 [label=n1]
+	272 -> 273
+	274 [label=EXPRESION]
+	272 -> 274
+	275 [label=IF]
+	262 -> 275
+	276 [label=EXPRESION]
+	275 -> 276
+	277 [label=CUERPO]
+	275 -> 277
+	278 [label=ASIGNACION]
+	277 -> 278
+	279 [label=punteo]
+	278 -> 279
+	280 [label="="]
+	278 -> 280
+	281 [label=EXPRESION]
+	278 -> 281
+	282 [label=ELSE]
+	275 -> 282
+	283 [label=ASIGNACION]
+	262 -> 283
+	284 [label=n1]
+	283 -> 284
+	285 [label="="]
+	283 -> 285
+	286 [label=EXPRESION]
+	283 -> 286
+	287 [label=DECLARACION]
+	262 -> 287
+	288 [label=TIPO]
+	287 -> 288
+	289 [label=DECLARACIONES]
+	287 -> 289
+	290 [label="DECLARACION FINAL"]
+	289 -> 290
+	291 [label=n2]
+	290 -> 291
+	292 [label=EXPRESION]
+	290 -> 292
+	293 [label=IF]
+	262 -> 293
+	294 [label=EXPRESION]
+	293 -> 294
+	295 [label=CUERPO]
+	293 -> 295
+	296 [label=ASIGNACION]
+	295 -> 296
+	297 [label=punteo]
+	296 -> 297
+	298 [label="="]
+	296 -> 298
+	299 [label=EXPRESION]
+	296 -> 299
+	300 [label=ELSE]
+	293 -> 300
+	301 [label=FUNCION]
+	0 -> 301
+	302 [label=TIPO]
+	301 -> 302
+	303 [label=CUERPO]
+	301 -> 303
+	304 [label=DECLARACION]
+	303 -> 304
+	305 [label=TIPO]
+	304 -> 305
+	306 [label=DECLARACIONES]
+	304 -> 306
+	307 [label="DECLARACION FINAL"]
+	306 -> 307
+	308 [label=n0]
+	307 -> 308
+	309 [label=EXPRESION]
+	307 -> 309
+	310 [label=DECLARACION]
+	303 -> 310
+	311 [label=TIPO]
+	310 -> 311
+	312 [label=DECLARACIONES]
+	310 -> 312
+	313 [label="DECLARACION FINAL"]
+	312 -> 313
+	314 [label=n1]
+	313 -> 314
+	315 [label=EXPRESION]
+	313 -> 315
+	316 [label=METODO]
+	303 -> 316
+	317 [label=relaciones1]
+	316 -> 317
+	318 [label=EXPRESIONES]
+	316 -> 318
+	319 [label=METODO]
+	303 -> 319
+	320 [label=relaciones2]
+	319 -> 320
+	321 [label=EXPRESIONES]
+	319 -> 321
+	322 [label=FUNCION]
+	0 -> 322
+	323 [label=TIPO]
+	322 -> 323
+	324 [label=PARAMETROS]
+	322 -> 324
+	325 [label=PARAMETRO]
+	324 -> 325
+	326 [label=TIPO]
+	325 -> 326
+	327 [label=salida]
+	325 -> 327
+	328 [label=CUERPO]
+	322 -> 328
+	329 [label=DECLARACION]
+	328 -> 329
+	330 [label=TIPO]
+	329 -> 330
+	331 [label=DECLARACIONES]
+	329 -> 331
+	332 [label="DECLARACION FINAL"]
+	331 -> 332
+	333 [label=n0]
+	332 -> 333
+	334 [label=EXPRESION]
+	332 -> 334
+	335 [label=IF]
+	328 -> 335
+	336 [label=EXPRESION]
+	335 -> 336
+	337 [label=CUERPO]
+	335 -> 337
+	338 [label=ASIGNACION]
+	337 -> 338
+	339 [label=salida]
+	338 -> 339
+	340 [label="="]
+	338 -> 340
+	341 [label=EXPRESION]
+	338 -> 341
+	342 [label=IF]
+	337 -> 342
+	343 [label=EXPRESION]
+	342 -> 343
+	344 [label=CUERPO]
+	342 -> 344
+	345 [label=ASIGNACION]
+	344 -> 345
+	346 [label=salida]
+	345 -> 346
+	347 [label="="]
+	345 -> 347
+	348 [label=EXPRESION]
+	345 -> 348
+	349 [label=ELSE]
+	335 -> 349
+	350 [label=ASIGNACION]
+	349 -> 350
+	351 [label=salida]
+	350 -> 351
+	352 [label="="]
+	350 -> 352
+	353 [label=EXPRESION]
+	350 -> 353
+	354 [label=IF]
+	328 -> 354
+	355 [label=EXPRESION]
+	354 -> 355
+	356 [label=CUERPO]
+	354 -> 356
+	357 [label=IF]
+	356 -> 357
+	358 [label=EXPRESION]
+	357 -> 358
+	359 [label=CUERPO]
+	357 -> 359
+	360 [label=ASIGNACION]
+	359 -> 360
+	361 [label=punteo]
+	360 -> 361
+	362 [label="="]
+	360 -> 362
+	363 [label=EXPRESION]
+	360 -> 363
+	364 [label=ELSE]
+	357 -> 364
+	365 [label=ELSE]
+	354 -> 365
+	366 [label=FUNCION]
+	0 -> 366
+	367 [label=TIPO]
+	366 -> 367
+	368 [label=PARAMETROS]
+	366 -> 368
+	369 [label=PARAMETRO]
+	368 -> 369
+	370 [label=TIPO]
+	369 -> 370
+	371 [label=n0]
+	369 -> 371
+	372 [label=CUERPO]
+	366 -> 372
+	373 [label=IF]
+	372 -> 373
+	374 [label=EXPRESION]
+	373 -> 374
+	375 [label=CUERPO]
+	373 -> 375
+	376 [label=ELSE]
+	373 -> 376
+	377 [label=IF]
+	376 -> 377
+	378 [label=EXPRESION]
+	377 -> 378
+	379 [label=CUERPO]
+	377 -> 379
+	380 [label=IF]
+	379 -> 380
+	381 [label=EXPRESION]
+	380 -> 381
+	382 [label=CUERPO]
+	380 -> 382
+	383 [label=ASIGNACION]
+	382 -> 383
+	384 [label=punteo]
+	383 -> 384
+	385 [label="="]
+	383 -> 385
+	386 [label=EXPRESION]
+	383 -> 386
+	387 [label=ELSE]
+	380 -> 387
+	388 [label=ELSE]
+	377 -> 388
+	389 [label=IF]
+	388 -> 389
+	390 [label=EXPRESION]
+	389 -> 390
+	391 [label=CUERPO]
+	389 -> 391
+	392 [label=ELSE]
+	389 -> 392
+	393 [label=FUNCION]
+	0 -> 393
+	394 [label=TIPO]
+	393 -> 394
+	395 [label=CUERPO]
+	393 -> 395
+	396 [label=DECLARACION]
+	395 -> 396
+	397 [label=TIPO]
+	396 -> 397
+	398 [label=DECLARACIONES]
+	396 -> 398
+	399 [label="DECLARACION FINAL"]
+	398 -> 399
+	400 [label=var1]
+	399 -> 400
+	401 [label=EXPRESION]
+	399 -> 401
+	402 [label=IF]
+	395 -> 402
+	403 [label=EXPRESION]
+	402 -> 403
+	404 [label=CUERPO]
+	402 -> 404
+	405 [label=ELSE]
+	402 -> 405
+	406 [label=ASIGNACION]
+	405 -> 406
+	407 [label=punteo]
+	406 -> 407
+	408 [label="="]
+	406 -> 408
+	409 [label=EXPRESION]
+	406 -> 409
+	410 [label=METODO]
+	395 -> 410
+	411 [label=Declaracion]
+	410 -> 411
+	412 [label=METODO]
+	395 -> 412
+	413 [label=Aritmeticas]
+	412 -> 413
+	414 [label=METODO]
+	395 -> 414
+	415 [label=Logicas]
+	414 -> 415
+	416 [label=METODO]
+	395 -> 416
+	417 [label=Relacionales]
+	416 -> 417
+}

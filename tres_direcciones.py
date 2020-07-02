@@ -1,5 +1,6 @@
 import clases
 import re
+from graphviz import Digraph
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -89,6 +90,7 @@ class TresDirecciones:
         self.etiquetas_inicio = []
         self.etiquetas_internas = []
         self.optimizaciones = []
+        self.numero_nodo = 0
 
     def generar_codigo(self):
         if self.obtener_funciones():
@@ -1052,12 +1054,12 @@ class TresDirecciones:
         codigo_optimizado = self.optimizar_regla8_11(codigo_optimizado)
         codigo_optimizado = self.optimizar_regla12_15(codigo_optimizado)
         codigo_optimizado = self.optimizar_regla16_18(codigo_optimizado)
-        for optimizacion in self.optimizaciones:
-            print('REGLA: '+optimizacion.regla)
-            print('ANTES: '+optimizacion.antes)
-            print('DESPUES: '+optimizacion.despues)
-            print('')
-        print(''.join(codigo_optimizado))
+        # for optimizacion in self.optimizaciones:
+        #     print('REGLA: '+optimizacion.regla)
+        #     print('ANTES: '+optimizacion.antes)
+        #     print('DESPUES: '+optimizacion.despues)
+        #     print('')
+        # print(''.join(codigo_optimizado))
 
     def optimizar_regla1(self, codigo_optimizado):
         indice = 0
@@ -1293,3 +1295,307 @@ class TresDirecciones:
                     codigo_temporal.append(codigo_optimizado[indice])
             indice += 1
         return codigo_temporal
+
+    def graficar_ast(self, ast):
+        dot = Digraph('G', filename='ast', format='png')
+        dot.attr('node', shape='box')
+        self.numero_nodo = 0
+        nodo_padre = self.numero_nodo
+        dot.node(str(nodo_padre), 'INSTRUCCIONES')
+        for instruccion in ast:
+            self.recorrer_ast(dot, nodo_padre, instruccion)
+        dot.view()
+
+    def recorrer_ast(self, dot, numero_nodo, instruccion):
+        nodo_padre = numero_nodo
+        if isinstance(instruccion, clases.Declaracion):
+            self.numero_nodo += 1
+            nodo_declaracion = self.numero_nodo
+            dot.node(str(nodo_declaracion), 'DECLARACION')
+            dot.edge(str(nodo_padre), str(nodo_declaracion))
+            self.numero_nodo += 1
+            nodo_tipo = self.numero_nodo
+            dot.node(str(nodo_tipo), 'TIPO')
+            dot.edge(str(nodo_declaracion), str(nodo_tipo))
+            self.recorrer_ast(dot, nodo_tipo, instruccion.tipo)
+            self.numero_nodo += 1
+            nodo_declaraciones = self.numero_nodo
+            dot.node(str(nodo_declaraciones), 'DECLARACIONES')
+            dot.edge(str(nodo_declaracion), str(nodo_declaraciones))
+            for declaracion in instruccion.declaraciones:
+                self.recorrer_ast(dot, nodo_declaraciones, declaracion)
+        elif isinstance(instruccion, clases.DeclaracionFinal):
+            self.numero_nodo += 1
+            nodo_declaracion_final = self.numero_nodo
+            dot.node(str(nodo_declaracion_final), 'DECLARACION FINAL')
+            dot.edge(str(nodo_padre), str(nodo_declaracion_final))
+            self.numero_nodo += 1
+            nodo_identificador = self.numero_nodo
+            dot.node(str(nodo_identificador), str(instruccion.identificador))
+            dot.edge(str(nodo_declaracion_final), str(nodo_identificador))
+            if instruccion.indices:
+                self.numero_nodo += 1
+                nodo_indices = self.numero_nodo
+                dot.node(str(nodo_indices), 'INDICES')
+                dot.edge(str(nodo_declaracion_final), str(nodo_indices))
+                for indice in instruccion.indices:
+                    self.recorrer_ast(dot, nodo_indices, indice)
+            if instruccion.expresion:
+                self.numero_nodo += 1
+                nodo_expresion = self.numero_nodo
+                dot.node(str(nodo_expresion), 'EXPRESION')
+                dot.edge(str(nodo_declaracion_final), str(nodo_expresion))
+                self.recorrer_ast(dot, nodo_expresion, instruccion.expresion)
+        elif isinstance(instruccion, clases.Estructura):
+            self.numero_nodo += 1
+            nodo_estructura = self.numero_nodo
+            dot.node(str(nodo_estructura), 'ESTRUCTURA')
+            dot.edge(str(nodo_padre), str(nodo_estructura))
+            self.numero_nodo += 1
+            nodo_identificador = self.numero_nodo
+            dot.node(str(nodo_identificador), str(instruccion.identificador))
+            dot.edge(str(nodo_estructura), str(nodo_identificador))
+            if instruccion.caracteristicas:
+                self.numero_nodo += 1
+                nodo_caracteristicas = self.numero_nodo
+                dot.node(str(nodo_caracteristicas), 'CARACTERISTICAS')
+                dot.edge(str(nodo_estructura), str(nodo_caracteristicas))
+                for caracteristica in instruccion.caracteristicas:
+                    self.recorrer_ast(
+                        dot, nodo_caracteristicas, caracteristica)
+        elif isinstance(instruccion, clases.Funcion):
+            self.numero_nodo += 1
+            nodo_funcion = self.numero_nodo
+            dot.node(str(nodo_funcion), 'FUNCION')
+            dot.edge(str(nodo_padre), str(nodo_funcion))
+            self.numero_nodo += 1
+            nodo_tipo = self.numero_nodo
+            dot.node(str(nodo_tipo), 'TIPO')
+            dot.edge(str(nodo_funcion), str(nodo_tipo))
+            self.recorrer_ast(dot, nodo_tipo, instruccion.tipo)
+            if instruccion.parametros:
+                self.numero_nodo += 1
+                nodo_parametros = self.numero_nodo
+                dot.node(str(nodo_parametros), 'PARAMETROS')
+                dot.edge(str(nodo_funcion), str(nodo_parametros))
+                for parametro in instruccion.parametros:
+                    self.recorrer_ast(dot, nodo_parametros, parametro)
+            if instruccion.cuerpo:
+                self.numero_nodo += 1
+                nodo_cuerpo = self.numero_nodo
+                dot.node(str(nodo_cuerpo), 'CUERPO')
+                dot.edge(str(nodo_funcion), str(nodo_cuerpo))
+                for instruccion_local in instruccion.cuerpo:
+                    self.recorrer_ast(dot, nodo_cuerpo, instruccion_local)
+        elif isinstance(instruccion, clases.Parametro):
+            self.numero_nodo += 1
+            nodo_parametro = self.numero_nodo
+            dot.node(str(nodo_parametro), 'PARAMETRO')
+            dot.edge(str(nodo_padre), str(nodo_parametro))
+            self.numero_nodo += 1
+            nodo_tipo = self.numero_nodo
+            dot.node(str(nodo_tipo), 'TIPO')
+            dot.edge(str(nodo_parametro), str(nodo_tipo))
+            self.recorrer_ast(dot, nodo_tipo, instruccion.tipo)
+            self.numero_nodo += 1
+            nodo_identificador = self.numero_nodo
+            dot.node(str(nodo_identificador), str(instruccion.identificador))
+            dot.edge(str(nodo_parametro), str(nodo_identificador))
+        elif isinstance(instruccion, clases.Metodo):
+            self.numero_nodo += 1
+            nodo_metodo = self.numero_nodo
+            dot.node(str(nodo_metodo), 'METODO')
+            dot.edge(str(nodo_padre), str(nodo_metodo))
+            self.numero_nodo += 1
+            nodo_identificador = self.numero_nodo
+            dot.node(str(nodo_identificador), str(instruccion.identificador))
+            dot.edge(str(nodo_metodo), str(nodo_identificador))
+            if instruccion.expresiones:
+                self.numero_nodo += 1
+                nodo_expresiones = self.numero_nodo
+                dot.node(str(nodo_expresiones), 'EXPRESIONES')
+                dot.edge(str(nodo_metodo), str(nodo_expresiones))
+                for expresion in instruccion.expresiones:
+                    self.recorrer_ast(dot, nodo_expresiones, expresion)
+        elif isinstance(instruccion, clases.Etiqueta):
+            self.numero_nodo += 1
+            nodo_etiqueta = self.numero_nodo
+            dot.node(str(nodo_etiqueta), 'ETIQUETA')
+            dot.edge(str(nodo_padre), str(nodo_etiqueta))
+            self.numero_nodo += 1
+            nodo_identificador = self.numero_nodo
+            dot.node(str(nodo_identificador), str(instruccion.identificador))
+            dot.edge(str(nodo_etiqueta), str(nodo_identificador))
+        elif isinstance(instruccion, clases.Salto):
+            self.numero_nodo += 1
+            nodo_salto = self.numero_nodo
+            dot.node(str(nodo_salto), 'SALTO')
+            dot.edge(str(nodo_padre), str(nodo_salto))
+            self.numero_nodo += 1
+            nodo_identificador = self.numero_nodo
+            dot.node(str(nodo_identificador), str(instruccion.identificador))
+            dot.edge(str(nodo_salto), str(nodo_identificador))
+        elif isinstance(instruccion, clases.AsignacionNormal):
+            self.numero_nodo += 1
+            nodo_asignacion = self.numero_nodo
+            dot.node(str(nodo_asignacion), 'ASIGNACION')
+            dot.edge(str(nodo_padre), str(nodo_asignacion))
+            self.numero_nodo += 1
+            nodo_identificador = self.numero_nodo
+            dot.node(str(nodo_identificador), str(instruccion.identificador))
+            dot.edge(str(nodo_asignacion), str(nodo_identificador))
+            if instruccion.indices:
+                self.numero_nodo += 1
+                nodo_indices = self.numero_nodo
+                dot.node(str(nodo_indices), 'INDICES')
+                dot.edge(str(nodo_asignacion), str(nodo_indices))
+                for indice in instruccion.indices:
+                    self.recorrer_ast(dot, nodo_indices, indice)
+            self.numero_nodo += 1
+            nodo_compuesto = self.numero_nodo
+            dot.node(str(nodo_compuesto), str(instruccion.compuesto))
+            dot.edge(str(nodo_asignacion), str(nodo_compuesto))
+            self.numero_nodo += 1
+            nodo_expresion = self.numero_nodo
+            dot.node(str(nodo_expresion), 'EXPRESION')
+            dot.edge(str(nodo_asignacion), str(nodo_expresion))
+            self.recorrer_ast(dot, nodo_expresion, instruccion.expresion)
+        elif isinstance(instruccion, clases.AsignacionEstructura):
+            self.numero_nodo += 1
+            nodo_asignacion = self.numero_nodo
+            dot.node(str(nodo_asignacion), 'ASIGNACION')
+            dot.edge(str(nodo_padre), str(nodo_asignacion))
+            if instruccion.indices_primario:
+                self.numero_nodo += 1
+                nodo_indices_primario = self.numero_nodo
+                dot.node(str(nodo_indices_primario), 'INDICES')
+                dot.edge(str(nodo_asignacion), str(nodo_indices_primario))
+                for indice in instruccion.indices_primario:
+                    self.recorrer_ast(dot, nodo_indices_primario, indice)
+            self.numero_nodo += 1
+            nodo_atributo = self.numero_nodo
+            dot.node(str(nodo_atributo), str(instruccion.atributo))
+            dot.edge(str(nodo_asignacion), str(nodo_atributo))
+            if instruccion.indices_secundario:
+                self.numero_nodo += 1
+                nodo_indices_secundario = self.numero_nodo
+                dot.node(str(nodo_indices_secundario), 'INDICES')
+                dot.edge(str(nodo_asignacion), str(nodo_indices_secundario))
+                for indice in instruccion.indices_secundario:
+                    self.recorrer_ast(dot, nodo_indices_secundario, indice)
+            self.numero_nodo += 1
+            nodo_compuesto = self.numero_nodo
+            dot.node(str(nodo_compuesto), str(instruccion.compuesto))
+            dot.edge(str(nodo_asignacion), str(nodo_compuesto))
+            self.numero_nodo += 1
+            nodo_expresion = self.numero_nodo
+            dot.node(str(nodo_expresion), 'EXPRESION')
+            dot.edge(str(nodo_asignacion), str(nodo_expresion))
+            self.recorrer_ast(dot, nodo_expresion, instruccion.expresion)
+        elif isinstance(instruccion, clases.AsignacionAumento):
+            self.numero_nodo += 1
+            nodo_aumento = self.numero_nodo
+            dot.node(str(nodo_aumento), 'ASIGNACION AUMENTO')
+            dot.edge(str(nodo_padre), str(nodo_aumento))
+            self.numero_nodo += 1
+            nodo_identificador = self.numero_nodo
+            dot.node(str(nodo_identificador), str(instruccion.identificador))
+            dot.edge(str(nodo_aumento), str(nodo_identificador))
+        elif isinstance(instruccion, clases.AsignacionDecremento):
+            self.numero_nodo += 1
+            nodo_decremento = self.numero_nodo
+            dot.node(str(nodo_decremento), 'ASIGNACION DECREMENTO')
+            dot.edge(str(nodo_padre), str(nodo_decremento))
+            self.numero_nodo += 1
+            nodo_identificador = self.numero_nodo
+            dot.node(str(nodo_identificador), str(instruccion.identificador))
+            dot.edge(str(nodo_decremento), str(nodo_identificador))
+        elif isinstance(instruccion, clases._If):
+            self.numero_nodo += 1
+            nodo_if = self.numero_nodo
+            dot.node(str(nodo_if), 'IF')
+            dot.edge(str(nodo_padre), str(nodo_if))
+            self.numero_nodo += 1
+            nodo_expresion = self.numero_nodo
+            dot.node(str(nodo_expresion), 'EXPRESION')
+            dot.edge(str(nodo_if), str(nodo_expresion))
+            self.recorrer_ast(dot, nodo_expresion, instruccion.expresion)
+            if instruccion.cuerpo:
+                self.numero_nodo += 1
+                nodo_cuerpo = self.numero_nodo
+                dot.node(str(nodo_cuerpo), 'CUERPO')
+                dot.edge(str(nodo_if), str(nodo_cuerpo))
+                for instruccion_local in instruccion.cuerpo:
+                    self.recorrer_ast(dot, nodo_cuerpo, instruccion_local)
+            if instruccion.elseifs:
+                self.numero_nodo += 1
+                nodo_elseifs = self.numero_nodo
+                dot.node(str(nodo_elseifs), 'ELSEIFS')
+                dot.edge(str(nodo_if), str(nodo_elseifs))
+                for elseif in instruccion.elseifs:
+                    self.recorrer_ast(dot, nodo_elseifs, elseif)
+            if instruccion._else:
+                self.numero_nodo += 1
+                nodo_else = self.numero_nodo
+                dot.node(str(nodo_else), 'ELSE')
+                dot.edge(str(nodo_if), str(nodo_else))
+                for instruccion_local in instruccion._else.cuerpo:
+                    self.recorrer_ast(dot, nodo_else, instruccion_local)
+        elif isinstance(instruccion, clases._ElseIf):
+            self.numero_nodo += 1
+            nodo_elseif = self.numero_nodo
+            dot.node(str(nodo_elseif), 'ELSEIF')
+            dot.edge(str(nodo_padre), str(nodo_elseif))
+            self.numero_nodo += 1
+            nodo_expresion = self.numero_nodo
+            dot.node(str(nodo_expresion), 'EXPRESION')
+            dot.edge(str(nodo_elseif), str(nodo_expresion))
+            self.recorrer_ast(dot, nodo_expresion, instruccion.expresion)
+            if instruccion.cuerpo:
+                self.numero_nodo += 1
+                nodo_cuerpo = self.numero_nodo
+                dot.node(str(nodo_cuerpo), 'CUERPO')
+                dot.edge(str(nodo_elseif), str(nodo_cuerpo))
+                for instruccion_local in instruccion.cuerpo:
+                    self.recorrer_ast(dot, nodo_cuerpo, instruccion_local)
+        elif isinstance(instruccion, clases._Switch):
+            self.numero_nodo += 1
+            nodo_switch = self.numero_nodo
+            dot.node(str(nodo_switch), 'SWITCH')
+            dot.edge(str(nodo_padre), str(nodo_switch))
+            self.numero_nodo += 1
+            nodo_expresion = self.numero_nodo
+            dot.node(str(nodo_expresion), 'EXPRESION')
+            dot.edge(str(nodo_switch), str(nodo_expresion))
+            self.recorrer_ast(dot, nodo_expresion, instruccion.expresion)
+            if instruccion.cases:
+                self.numero_nodo += 1
+                nodo_cases = self.numero_nodo
+                dot.node(str(nodo_cases), 'CASES')
+                dot.edge(str(nodo_switch), str(nodo_cases))
+                for case in instruccion.cases:
+                    self.recorrer_ast(dot, nodo_cases, case)
+            if instruccion.defecto:
+                self.numero_nodo += 1
+                nodo_defecto = self.numero_nodo
+                dot.node(str(nodo_defecto), 'DEFAULT')
+                dot.edge(str(nodo_switch), str(nodo_defecto))
+                for instruccion_local in instruccion.defecto.cuerpo:
+                    self.recorrer_ast(dot, nodo_defecto, instruccion_local)
+        elif isinstance(instruccion, clases._Case):
+            self.numero_nodo += 1
+            nodo_case = self.numero_nodo
+            dot.node(str(nodo_case), 'CASE')
+            dot.edge(str(nodo_padre), str(nodo_case))
+            self.numero_nodo += 1
+            nodo_expresion = self.numero_nodo
+            dot.node(str(nodo_expresion), 'EXPRESION')
+            dot.edge(str(nodo_case), str(nodo_expresion))
+            self.recorrer_ast(dot, nodo_expresion, instruccion.expresion)
+            if instruccion.cuerpo:
+                self.numero_nodo += 1
+                nodo_cuerpo = self.numero_nodo
+                dot.node(str(nodo_cuerpo), 'CUERPO')
+                dot.edge(str(nodo_case), str(nodo_cuerpo))
+                for instruccion_local in instruccion.cuerpo:
+                    self.recorrer_ast(dot, nodo_cuerpo, instruccion_local)
