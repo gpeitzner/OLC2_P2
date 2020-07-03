@@ -1063,7 +1063,7 @@ class TresDirecciones:
         codigo_optimizado = self.optimizar_regla8_11(codigo_optimizado)
         codigo_optimizado = self.optimizar_regla12_15(codigo_optimizado)
         codigo_optimizado = self.optimizar_regla16_18(codigo_optimizado)
-        return codigo_optimizado
+        return (''.join(codigo_optimizado))
 
     def optimizar_regla1(self, codigo_optimizado):
         indice = 0

@@ -13,6 +13,7 @@ import webbrowser
 import tres_direcciones
 import sys
 import interprete
+import time
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -379,7 +380,8 @@ class Ui_MainWindow(object):
                                     self.plainTextEdit)
                                 interpretacion_augus.procesar(
                                     instrucciones_augus)
-                            except:
+                            except Exception as ex:
+                                print(ex)
                                 self.plainTextEdit.appendPlainText(
                                     "[AUGUS] ERROR: Error de ejecución.")
                 except Exception as ex:
@@ -486,7 +488,49 @@ class Ui_MainWindow(object):
                 "ERROR: Reporte no disponible.")
 
     def ejecutarOptimizaciones(self):
-        print("optimizaciones")
+        if self.generador:
+            try:
+                codigo_3d = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Codigo 3D</title></head><body>'
+                codigo_3d += '<p>'+self.generador.codigo3d+'</p>'
+                codigo_3d += '</body></html>'
+                f = open("codigo_3d.html", "w")
+                f.write(codigo_3d)
+                f.close()
+                webbrowser.open('file://'+os.path.realpath("codigo_3d.html"))
+                time.sleep(1)
+                codigo_optimizado = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Codigo Optimizado</title></head><body>'
+                codigo_optimizado += '<p>'+self.generador.optimizar_codigo()+'</p>'
+                codigo_optimizado += '</body></html>'
+                f = open("codigo_optimizado.html", "w")
+                f.write(codigo_optimizado)
+                f.close()
+                webbrowser.open(
+                    'file://'+os.path.realpath("codigo_optimizado.html"))
+                time.sleep(1)
+                if self.generador.optimizaciones:
+                    archivo = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Optimizaciones</title></head><body>'
+                    archivo += '<center><h1>Optimizaciones</h1>'
+                    archivo += '<table border="1"><tr><th>Regla</th><th>Antes</th><th>Despues</th></tr>'
+                    for optimizacion in self.generador.optimizaciones:
+                        archivo += '<tr>'
+                        archivo += '<td>'+str(optimizacion.regla)+'</td>'
+                        archivo += '<td>'+str(optimizacion.antes)+'</td>'
+                        archivo += '<td>'+str(optimizacion.despues)+'</td>'
+                        archivo += '</tr>'
+                    archivo += '</table><center>'
+                    archivo += '</body></html>'
+                    f = open("optimizaciones.html", "w")
+                    f.write(archivo)
+                    f.close()
+                    webbrowser.open(
+                        'file://'+os.path.realpath("optimizaciones.html"))
+            except Exception as ex:
+                print(ex)
+                self.plainTextEdit.appendPlainText(
+                    "ERROR: No se pudo generar el reporte.")
+        else:
+            self.plainTextEdit.appendPlainText(
+                "ERROR: Reporte no disponible.")
 
     def ayudaAcercaDe(self):
         self.plainTextEdit.appendPlainText(
