@@ -171,9 +171,6 @@ def p_init(t):
     gramaticalTemporal += gramatical
     gramaticalTemporal += '</table><center>'
     gramaticalTemporal += '</body></html>'
-    f = open("gramatical.html", "w")
-    f.write(gramaticalTemporal)
-    f.close()
 
 
 def p_cuerpo(t):

@@ -90,6 +90,7 @@ class TresDirecciones:
         self.etiquetas_inicio = []
         self.etiquetas_internas = []
         self.optimizaciones = []
+        self.simbolos = []
         self.numero_nodo = 0
 
     def generar_codigo(self):
@@ -460,6 +461,8 @@ class TresDirecciones:
                     self.codigo3d += registro + '=array();\n'
                     self.obtener_ambito().agregar_simbolo(
                         Simbolo(tipo, identificador, registro))
+                    self.simbolos.append(
+                        Simbolo(tipo, identificador, registro))
                 elif declaracion.indices:
                     self.generar_codigo_declaracion_arreglo(
                         tipo, identificador, declaracion)
@@ -476,6 +479,7 @@ class TresDirecciones:
                 self.codigo3d += registro + '='+temporal+';\n'
                 self.obtener_ambito().agregar_simbolo(
                     Simbolo(tipo, identificador, registro))
+                self.simbolos.append(Simbolo(tipo, identificador, registro))
             else:
                 self.mostrar_mensaje_consola(
                     'ERROR: Expresión no válida en línea: '+declaracion.linea+'.')
@@ -485,6 +489,7 @@ class TresDirecciones:
             self.codigo3d += registro + '=0;\n'
             self.obtener_ambito().agregar_simbolo(
                 Simbolo(tipo, identificador, registro))
+            self.simbolos.append(Simbolo(tipo, identificador, registro))
 
     def generar_codigo_declaracion_arreglo(self, tipo, identificador, declaracion):
         if declaracion.expresion:
@@ -493,6 +498,7 @@ class TresDirecciones:
                 self.codigo3d += registro + ' =array();\n'
                 self.obtener_ambito().agregar_simbolo(
                     Simbolo(tipo, identificador, registro))
+                self.simbolos.append(Simbolo(tipo, identificador, registro))
                 if isinstance(declaracion.expresion.expresiones[0], clases.ExpresionElementos):
                     filas = 0
                     for lista in declaracion.expresion.expresiones:
@@ -528,6 +534,7 @@ class TresDirecciones:
                 self.codigo3d += registro + '="'+declaracion.expresion.valor+'";\n'
                 self.obtener_ambito().agregar_simbolo(
                     Simbolo(tipo, identificador, registro))
+                self.simbolos.append(Simbolo(tipo, identificador, registro))
             else:
                 self.mostrar_mensaje_consola(
                     'ERROR: Expresión no válida en línea: '+declaracion.linea+'.')
@@ -537,6 +544,7 @@ class TresDirecciones:
             self.codigo3d += registro + '=array();\n'
             self.obtener_ambito().agregar_simbolo(
                 Simbolo(tipo, identificador, registro))
+            self.simbolos.append(Simbolo(tipo, identificador, registro))
 
     def generar_codigo_asignacion(self, instruccion):
         if isinstance(instruccion, clases.AsignacionNormal):
@@ -903,11 +911,15 @@ class TresDirecciones:
                                         referencia = temporales[indice_temporales]
                                         self.obtener_ambito().agregar_simbolo(
                                             Simbolo(parametro.tipo, parametro.identificador, referencia))
+                                        self.simbolos.append(
+                                            Simbolo(parametro.tipo, parametro.identificador, referencia))
                                     else:
                                         temporal = self.obtener_registro_temporal()
                                         valor = temporales[indice_temporales]
                                         self.codigo3d += temporal + '='+valor+';\n'
                                         self.obtener_ambito().agregar_simbolo(
+                                            Simbolo(parametro.tipo, parametro.identificador, temporal))
+                                        self.simbolos.append(
                                             Simbolo(parametro.tipo, parametro.identificador, temporal))
                                     indice_temporales += 1
                                 self.generar_codigo_instrucciones(
@@ -1051,12 +1063,7 @@ class TresDirecciones:
         codigo_optimizado = self.optimizar_regla8_11(codigo_optimizado)
         codigo_optimizado = self.optimizar_regla12_15(codigo_optimizado)
         codigo_optimizado = self.optimizar_regla16_18(codigo_optimizado)
-        # for optimizacion in self.optimizaciones:
-        #     print('REGLA: '+optimizacion.regla)
-        #     print('ANTES: '+optimizacion.antes)
-        #     print('DESPUES: '+optimizacion.despues)
-        #     print('')
-        # print(''.join(codigo_optimizado))
+        return codigo_optimizado
 
     def optimizar_regla1(self, codigo_optimizado):
         indice = 0

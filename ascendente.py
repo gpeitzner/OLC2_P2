@@ -188,7 +188,7 @@ def p_init(t):
     global gramatical
     gramaticalTemporal = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Gramatical</title></head><body>'
     gramaticalTemporal += '<center><h1>Gramatical</h1>'
-    gramaticalTemporal += '<table border="1"><tr><th>Produccion</th><th>Regla</th></th>'
+    gramaticalTemporal += '<table border="1"><tr><th>Produccion</th><th>Regla</th></tr>'
     gramatical += '<tr>'
     gramatical += '<td>INIT -> CUERPO_GLOBAL</td>'
     gramatical += '<td>INIT.VAL = CUERPO_GLOBAL.VAL;</td>'

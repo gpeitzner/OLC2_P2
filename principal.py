@@ -404,7 +404,7 @@ class Ui_MainWindow(object):
             archivo = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Errores</title></head><body>'
             if len(self.erroresLexicos) > 0:
                 archivo += '<center><h1>Lexicos</h1>'
-                archivo += '<table border="1"><tr><th>Token</th><th>Linea</th><th>Columna</th></th>'
+                archivo += '<table border="1"><tr><th>Token</th><th>Linea</th><th>Columna</th></tr>'
                 indiceLexico = 0
                 while indiceLexico < len(self.erroresLexicos):
                     archivo += '<tr>'
@@ -419,7 +419,7 @@ class Ui_MainWindow(object):
                 archivo += '</table></center>'
             if len(self.erroresSintacticos) > 0:
                 archivo += '<center><h1>Sintacticos</h1>'
-                archivo += '<table border="1"><tr><th>Token</th><th>Linea</th><th>Columna</th></th>'
+                archivo += '<table border="1"><tr><th>Token</th><th>Linea</th><th>Columna</th></tr>'
                 indiceSintactico = 0
                 while indiceSintactico < len(self.erroresSintacticos):
                     archivo += '<tr>'
@@ -442,7 +442,41 @@ class Ui_MainWindow(object):
                 "ERROR: Reporte no disponible.")
 
     def ejecutarSimbolos(self):
-        print("Simbolos")
+        if self.generador:
+            try:
+                archivo = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Simbolos</title></head><body>'
+                if self.generador.funciones:
+                    archivo += '<center><h1>Funciones</h1>'
+                    archivo += '<table border="1"><tr><th>Tipo</th><th>Identificador</th></tr>'
+                    for llave in self.generador.funciones.keys():
+                        funcion = self.generador.funciones[llave]
+                        archivo += '<tr>'
+                        archivo += '<td>'+str(funcion.tipo.valor)+'</td>'
+                        archivo += '<td>'+str(funcion.identificador)+'</td>'
+                        archivo += '</tr>'
+                    archivo += '</table><center>'
+                if self.generador.simbolos:
+                    archivo += '<center><h1>Simbolos</h1>'
+                    archivo += '<table border="1"><tr><th>Tipo</th><th>Identificador</th><th>Temporal</th></tr>'
+                    for simbolo in self.generador.simbolos:
+                        archivo += '<tr>'
+                        archivo += '<td>'+str(simbolo.tipo)+'</td>'
+                        archivo += '<td>'+str(simbolo.identificador)+'</td>'
+                        archivo += '<td>'+str(simbolo.temporal)+'</td>'
+                        archivo += '</tr>'
+                    archivo += '</table><center>'
+                archivo += '</body></html>'
+                f = open("simbolos.html", "w")
+                f.write(archivo)
+                f.close()
+                webbrowser.open('file://'+os.path.realpath("simbolos.html"))
+            except Exception as ex:
+                print(ex)
+                self.plainTextEdit.appendPlainText(
+                    "ERROR: No se pudo generar el reporte.")
+        else:
+            self.plainTextEdit.appendPlainText(
+                "ERROR: Reporte no disponible.")
 
     def ejecutarGramatical(self):
         if self.instrucciones:
