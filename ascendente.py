@@ -1468,6 +1468,7 @@ def mostar_error(mensaje):
 
 def parse(_entrada, _errores_lexicos, _errores_sintacticos, _consola):
     global lexer, parser, entrada, errores_lexicos, errores_sintacticos, consola, gramatical
+    gramatical = ''
     entrada = _entrada
     errores_lexicos = _errores_lexicos
     errores_sintacticos = _errores_sintacticos

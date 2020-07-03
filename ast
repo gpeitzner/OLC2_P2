@@ -1,7 +1,7 @@
 digraph G {
 	node [shape=box]
 	0 [label=INSTRUCCIONES]
-	1 [label=FUNCION]
+	1 [label=DECLARACION]
 	0 -> 1
 	2 [label=TIPO]
 	1 -> 2
@@ -9,274 +9,120 @@ digraph G {
 	2 -> 3
 	4 [label=int]
 	3 -> 4
-	5 [label=CUERPO]
+	5 [label=DECLARACIONES]
 	1 -> 5
-	6 [label=DECLARACION]
+	6 [label="DECLARACION FINAL"]
 	5 -> 6
-	7 [label=TIPO]
+	7 [label=var3]
 	6 -> 7
-	8 [label=TIPO]
-	7 -> 8
-	9 [label=int]
+	8 [label=EXPRESION]
+	6 -> 8
+	9 [label="EXPRESION BINARIA"]
 	8 -> 9
-	10 [label=DECLARACIONES]
-	6 -> 10
-	11 [label="DECLARACION FINAL"]
-	10 -> 11
-	12 [label=var1]
-	11 -> 12
-	13 [label=EXPRESION]
-	11 -> 13
-	14 [label=1]
+	10 [label=2]
+	9 -> 10
+	11 [label="*"]
+	9 -> 11
+	12 [label=2]
+	9 -> 12
+	13 [label=FUNCION]
+	0 -> 13
+	14 [label=TIPO]
 	13 -> 14
-	15 [label=DECLARACION]
-	5 -> 15
-	16 [label=TIPO]
+	15 [label=TIPO]
+	14 -> 15
+	16 [label=int]
 	15 -> 16
-	17 [label=TIPO]
-	16 -> 17
-	18 [label=int]
+	17 [label=CUERPO]
+	13 -> 17
+	18 [label=DECLARACION]
 	17 -> 18
-	19 [label=DECLARACIONES]
-	15 -> 19
-	20 [label="DECLARACION FINAL"]
+	19 [label=TIPO]
+	18 -> 19
+	20 [label=TIPO]
 	19 -> 20
-	21 [label=var2]
+	21 [label=int]
 	20 -> 21
-	22 [label=EXPRESION]
-	20 -> 22
-	23 [label=2]
+	22 [label=DECLARACIONES]
+	18 -> 22
+	23 [label="DECLARACION FINAL"]
 	22 -> 23
-	24 [label=ASIGNACION]
-	5 -> 24
-	25 [label=var1]
-	24 -> 25
-	26 [label="="]
-	24 -> 26
-	27 [label=EXPRESION]
-	24 -> 27
-	28 [label=var2]
+	24 [label=var1]
+	23 -> 24
+	25 [label=EXPRESION]
+	23 -> 25
+	26 [label="EXPRESION BINARIA"]
+	25 -> 26
+	27 [label="EXPRESION BINARIA"]
+	26 -> 27
+	28 [label=1]
 	27 -> 28
-	29 [label=ASIGNACION]
-	5 -> 29
-	30 [label=var2]
-	29 -> 30
-	31 [label="="]
-	29 -> 31
-	32 [label=EXPRESION]
-	29 -> 32
-	33 [label=var1]
-	32 -> 33
-	34 [label=ASIGNACION]
-	5 -> 34
-	35 [label=var1]
+	29 [label="*"]
+	27 -> 29
+	30 [label=2]
+	27 -> 30
+	31 [label="+"]
+	26 -> 31
+	32 [label=3]
+	26 -> 32
+	33 [label=DECLARACION]
+	17 -> 33
+	34 [label=TIPO]
+	33 -> 34
+	35 [label=TIPO]
 	34 -> 35
-	36 [label="+"]
-	34 -> 36
-	37 [label=EXPRESION]
-	34 -> 37
-	38 [label=0]
+	36 [label=int]
+	35 -> 36
+	37 [label=DECLARACIONES]
+	33 -> 37
+	38 [label="DECLARACION FINAL"]
 	37 -> 38
-	39 [label=ASIGNACION]
-	5 -> 39
-	40 [label=var2]
-	39 -> 40
-	41 [label="-"]
-	39 -> 41
-	42 [label=EXPRESION]
-	39 -> 42
-	43 [label=0]
-	42 -> 43
-	44 [label=ASIGNACION]
-	5 -> 44
-	45 [label=var1]
-	44 -> 45
-	46 [label="*"]
-	44 -> 46
-	47 [label=EXPRESION]
-	44 -> 47
-	48 [label=1]
-	47 -> 48
-	49 [label=ASIGNACION]
-	5 -> 49
-	50 [label=var2]
+	39 [label=var2]
+	38 -> 39
+	40 [label=EXPRESION]
+	38 -> 40
+	41 [label="EXPRESION BINARIA"]
+	40 -> 41
+	42 [label=var1]
+	41 -> 42
+	43 [label="+"]
+	41 -> 43
+	44 [label=3]
+	41 -> 44
+	45 [label=ASIGNACION]
+	17 -> 45
+	46 [label=var1]
+	45 -> 46
+	47 [label="="]
+	45 -> 47
+	48 [label=EXPRESION]
+	45 -> 48
+	49 [label="EXPRESION BINARIA"]
+	48 -> 49
+	50 [label=3]
 	49 -> 50
-	51 [label="/"]
+	51 [label="*"]
 	49 -> 51
-	52 [label=EXPRESION]
+	52 [label=3]
 	49 -> 52
-	53 [label=1]
-	52 -> 53
-	54 [label=ASIGNACION]
-	5 -> 54
-	55 [label=var1]
-	54 -> 55
-	56 [label="="]
-	54 -> 56
-	57 [label=EXPRESION]
-	54 -> 57
-	58 [label=1]
-	57 -> 58
-	59 [label=ASIGNACION]
-	5 -> 59
-	60 [label=var2]
-	59 -> 60
-	61 [label="="]
-	59 -> 61
-	62 [label=EXPRESION]
-	59 -> 62
-	63 [label=2]
-	62 -> 63
-	64 [label=ASIGNACION]
-	5 -> 64
-	65 [label=var1]
-	64 -> 65
-	66 [label="="]
-	64 -> 66
-	67 [label=EXPRESION]
-	64 -> 67
-	68 [label="EXPRESION BINARIA"]
-	67 -> 68
-	69 [label=var2]
-	68 -> 69
-	70 [label="+"]
-	68 -> 70
-	71 [label=0]
-	68 -> 71
-	72 [label=ASIGNACION]
-	5 -> 72
-	73 [label=var2]
-	72 -> 73
-	74 [label="="]
-	72 -> 74
-	75 [label=EXPRESION]
-	72 -> 75
-	76 [label="EXPRESION BINARIA"]
-	75 -> 76
-	77 [label=var1]
-	76 -> 77
-	78 [label="-"]
-	76 -> 78
-	79 [label=0]
-	76 -> 79
-	80 [label=ASIGNACION]
-	5 -> 80
-	81 [label=var1]
-	80 -> 81
-	82 [label="="]
-	80 -> 82
-	83 [label=EXPRESION]
-	80 -> 83
-	84 [label="EXPRESION BINARIA"]
-	83 -> 84
-	85 [label=var2]
-	84 -> 85
-	86 [label="*"]
-	84 -> 86
-	87 [label=1]
-	84 -> 87
-	88 [label=ASIGNACION]
-	5 -> 88
-	89 [label=var2]
-	88 -> 89
-	90 [label="="]
-	88 -> 90
-	91 [label=EXPRESION]
-	88 -> 91
-	92 [label="EXPRESION BINARIA"]
-	91 -> 92
-	93 [label=var1]
-	92 -> 93
-	94 [label="/"]
-	92 -> 94
-	95 [label=1]
-	92 -> 95
-	96 [label=ASIGNACION]
-	5 -> 96
-	97 [label=var1]
-	96 -> 97
-	98 [label="="]
-	96 -> 98
-	99 [label=EXPRESION]
-	96 -> 99
-	100 [label=1]
-	99 -> 100
-	101 [label=ASIGNACION]
-	5 -> 101
-	102 [label=var2]
-	101 -> 102
-	103 [label="="]
-	101 -> 103
-	104 [label=EXPRESION]
-	101 -> 104
-	105 [label=2]
-	104 -> 105
-	106 [label=ASIGNACION]
-	5 -> 106
-	107 [label=var1]
-	106 -> 107
-	108 [label="="]
-	106 -> 108
-	109 [label=EXPRESION]
-	106 -> 109
-	110 [label="EXPRESION BINARIA"]
-	109 -> 110
-	111 [label=var2]
-	110 -> 111
-	112 [label="*"]
-	110 -> 112
-	113 [label=2]
-	110 -> 113
-	114 [label=ASIGNACION]
-	5 -> 114
-	115 [label=var2]
-	114 -> 115
-	116 [label="="]
-	114 -> 116
-	117 [label=EXPRESION]
-	114 -> 117
-	118 [label="EXPRESION BINARIA"]
-	117 -> 118
-	119 [label=var1]
-	118 -> 119
-	120 [label="*"]
-	118 -> 120
-	121 [label=0]
-	118 -> 121
-	122 [label=ASIGNACION]
-	5 -> 122
-	123 [label=var1]
-	122 -> 123
-	124 [label="="]
-	122 -> 124
-	125 [label=EXPRESION]
-	122 -> 125
-	126 [label=1]
-	125 -> 126
-	127 [label=ASIGNACION]
-	5 -> 127
-	128 [label=var2]
-	127 -> 128
-	129 [label="="]
-	127 -> 129
-	130 [label=EXPRESION]
-	127 -> 130
-	131 [label=2]
-	130 -> 131
-	132 [label=ASIGNACION]
-	5 -> 132
-	133 [label=var1]
-	132 -> 133
-	134 [label="="]
-	132 -> 134
-	135 [label=EXPRESION]
-	132 -> 135
-	136 [label="EXPRESION BINARIA"]
-	135 -> 136
-	137 [label=0]
-	136 -> 137
-	138 [label="/"]
-	136 -> 138
-	139 [label=var2]
-	136 -> 139
+	53 [label=ASIGNACION]
+	17 -> 53
+	54 [label=var2]
+	53 -> 54
+	55 [label="="]
+	53 -> 55
+	56 [label=EXPRESION]
+	53 -> 56
+	57 [label=var1]
+	56 -> 57
+	58 [label=ASIGNACION]
+	17 -> 58
+	59 [label=var1]
+	58 -> 59
+	60 [label="="]
+	58 -> 60
+	61 [label=EXPRESION]
+	58 -> 61
+	62 [label=var3]
+	61 -> 62
 }
