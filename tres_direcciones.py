@@ -100,9 +100,6 @@ class TresDirecciones:
                 self.cargar_variables_globales()
                 if not self.detener_ejecucion:
                     self.generar_codigo_main()
-                    if not self.detener_ejecucion:
-                        self.consola.setPlainText(str(self.codigo3d))
-                        self.optimizar_codigo()
             else:
                 self.mostrar_mensaje_consola(
                     'ERROR: No existe la función main.')

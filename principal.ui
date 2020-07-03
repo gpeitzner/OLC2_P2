@@ -168,6 +168,7 @@ QMenu::item { color: rgb(223, 223, 223); background-color: rgb(37, 37, 38);selec
     <addaction name="actionErrores"/>
     <addaction name="actionSimbolos"/>
     <addaction name="actionGramatical"/>
+    <addaction name="actionOptimizaciones"/>
    </widget>
    <widget class="QMenu" name="menuAyuda">
     <property name="styleSheet">
@@ -359,6 +360,17 @@ background-color: rgb(0, 122, 204);
    </property>
    <property name="shortcut">
     <string>F5</string>
+   </property>
+  </action>
+  <action name="actionOptimizaciones">
+   <property name="text">
+    <string>Optimizaciones</string>
+   </property>
+   <property name="statusTip">
+    <string>Reporte de optimizaciones</string>
+   </property>
+   <property name="shortcut">
+    <string>F9</string>
    </property>
   </action>
  </widget>

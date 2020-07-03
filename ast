@@ -1,2350 +1,804 @@
 digraph G {
 	node [shape=box]
 	0 [label=INSTRUCCIONES]
-	1 [label=DECLARACION]
+	1 [label=ESTRUCTURA]
 	0 -> 1
-	2 [label=TIPO]
+	2 [label=contacto]
 	1 -> 2
-	3 [label=TIPO]
-	2 -> 3
-	4 [label=int]
+	3 [label=CARACTERISTICAS]
+	1 -> 3
+	4 [label=DECLARACION]
 	3 -> 4
-	5 [label=DECLARACIONES]
-	1 -> 5
-	6 [label="DECLARACION FINAL"]
+	5 [label=TIPO]
+	4 -> 5
+	6 [label=TIPO]
 	5 -> 6
-	7 [label=var1]
+	7 [label=int]
 	6 -> 7
-	8 [label=EXPRESION]
-	6 -> 8
-	9 [label=1]
+	8 [label=DECLARACIONES]
+	4 -> 8
+	9 [label="DECLARACION FINAL"]
 	8 -> 9
-	10 [label=DECLARACION]
-	0 -> 10
-	11 [label=TIPO]
-	10 -> 11
-	12 [label=TIPO]
+	10 [label=telefono]
+	9 -> 10
+	11 [label="DECLARACION FINAL"]
+	8 -> 11
+	12 [label=edad]
 	11 -> 12
-	13 [label=int]
-	12 -> 13
-	14 [label=DECLARACIONES]
-	10 -> 14
-	15 [label="DECLARACION FINAL"]
+	13 [label=DECLARACION]
+	3 -> 13
+	14 [label=TIPO]
+	13 -> 14
+	15 [label=TIPO]
 	14 -> 15
-	16 [label=punteo]
+	16 [label=char]
 	15 -> 16
-	17 [label=EXPRESION]
-	15 -> 17
-	18 [label=0]
+	17 [label=DECLARACIONES]
+	13 -> 17
+	18 [label="DECLARACION FINAL"]
 	17 -> 18
-	19 [label=FUNCION]
-	0 -> 19
-	20 [label=TIPO]
-	19 -> 20
-	21 [label=TIPO]
-	20 -> 21
-	22 [label=void]
+	19 [label=nombre]
+	18 -> 19
+	20 [label=INDICES]
+	18 -> 20
+	21 [label="DECLARACION FINAL"]
+	17 -> 21
+	22 [label=apellido]
 	21 -> 22
-	23 [label=CUERPO]
-	19 -> 23
-	24 [label=PRINTF]
-	23 -> 24
-	25 [label="========= Metodo Declaracion =========\n"]
+	23 [label=INDICES]
+	21 -> 23
+	24 [label=DECLARACION]
+	3 -> 24
+	25 [label=TIPO]
 	24 -> 25
-	26 [label=DECLARACION]
-	23 -> 26
-	27 [label=TIPO]
+	26 [label=TIPO]
+	25 -> 26
+	27 [label=char]
 	26 -> 27
-	28 [label=TIPO]
-	27 -> 28
-	29 [label=int]
+	28 [label=DECLARACIONES]
+	24 -> 28
+	29 [label="DECLARACION FINAL"]
 	28 -> 29
-	30 [label=DECLARACIONES]
-	26 -> 30
-	31 [label="DECLARACION FINAL"]
-	30 -> 31
-	32 [label=n4]
+	30 [label=sexo]
+	29 -> 30
+	31 [label=FUNCION]
+	0 -> 31
+	32 [label=TIPO]
 	31 -> 32
-	33 [label=EXPRESION]
-	31 -> 33
-	34 [label=2]
+	33 [label=TIPO]
+	32 -> 33
+	34 [label=int]
 	33 -> 34
-	35 [label=DECLARACION]
-	23 -> 35
-	36 [label=TIPO]
+	35 [label=CUERPO]
+	31 -> 35
+	36 [label=DECLARACION]
 	35 -> 36
 	37 [label=TIPO]
 	36 -> 37
-	38 [label=char]
+	38 [label=TIPO]
 	37 -> 38
-	39 [label=DECLARACIONES]
-	35 -> 39
-	40 [label="DECLARACION FINAL"]
-	39 -> 40
-	41 [label=str4]
-	40 -> 41
-	42 [label=INDICES]
-	40 -> 42
-	43 [label=EXPRESION]
-	40 -> 43
-	44 [label="Voy a ganar Compiladore"]
-	43 -> 44
-	45 [label=DECLARACION]
-	23 -> 45
-	46 [label=TIPO]
-	45 -> 46
-	47 [label=TIPO]
+	39 [label=struct]
+	38 -> 39
+	40 [label=contacto]
+	38 -> 40
+	41 [label=DECLARACIONES]
+	36 -> 41
+	42 [label="DECLARACION FINAL"]
+	41 -> 42
+	43 [label=directorio]
+	42 -> 43
+	44 [label=INDICES]
+	42 -> 44
+	45 [label=5]
+	44 -> 45
+	46 [label=ASIGNACION]
+	35 -> 46
+	47 [label=directorio]
 	46 -> 47
-	48 [label=double]
-	47 -> 48
-	49 [label=DECLARACIONES]
-	45 -> 49
-	50 [label="DECLARACION FINAL"]
-	49 -> 50
-	51 [label=db4]
-	50 -> 51
+	48 [label=INDICES]
+	46 -> 48
+	49 [label=0]
+	48 -> 49
+	50 [label=nombre]
+	46 -> 50
+	51 [label="="]
+	46 -> 51
 	52 [label=EXPRESION]
-	50 -> 52
-	53 [label=0.0]
+	46 -> 52
+	53 [label=Luis]
 	52 -> 53
-	54 [label=DECLARACION]
-	23 -> 54
-	55 [label=TIPO]
+	54 [label=ASIGNACION]
+	35 -> 54
+	55 [label=directorio]
 	54 -> 55
-	56 [label=TIPO]
-	55 -> 56
-	57 [label=double]
+	56 [label=INDICES]
+	54 -> 56
+	57 [label=0]
 	56 -> 57
-	58 [label=DECLARACIONES]
+	58 [label=apellido]
 	54 -> 58
-	59 [label="DECLARACION FINAL"]
-	58 -> 59
-	60 [label=db1]
-	59 -> 60
-	61 [label=EXPRESION]
-	59 -> 61
-	62 [label=db4]
-	61 -> 62
-	63 [label=DECLARACION]
-	23 -> 63
-	64 [label=TIPO]
-	63 -> 64
-	65 [label=TIPO]
+	59 [label="="]
+	54 -> 59
+	60 [label=EXPRESION]
+	54 -> 60
+	61 [label=Espino]
+	60 -> 61
+	62 [label=ASIGNACION]
+	35 -> 62
+	63 [label=directorio]
+	62 -> 63
+	64 [label=INDICES]
+	62 -> 64
+	65 [label=0]
 	64 -> 65
-	66 [label=char]
-	65 -> 66
-	67 [label=DECLARACIONES]
-	63 -> 67
-	68 [label="DECLARACION FINAL"]
-	67 -> 68
-	69 [label=chr4]
+	66 [label=sexo]
+	62 -> 66
+	67 [label="="]
+	62 -> 67
+	68 [label=EXPRESION]
+	62 -> 68
+	69 [label=m]
 	68 -> 69
-	70 [label=EXPRESION]
-	68 -> 70
-	71 [label=s]
+	70 [label=ASIGNACION]
+	35 -> 70
+	71 [label=directorio]
 	70 -> 71
-	72 [label=IF]
-	23 -> 72
-	73 [label=EXPRESION]
+	72 [label=INDICES]
+	70 -> 72
+	73 [label=0]
 	72 -> 73
-	74 [label="EXPRESION BINARIA"]
-	73 -> 74
-	75 [label=db1]
-	74 -> 75
-	76 [label="=="]
-	74 -> 76
-	77 [label=db4]
-	74 -> 77
-	78 [label=CUERPO]
-	72 -> 78
-	79 [label=PRINTF]
+	74 [label=telefono]
+	70 -> 74
+	75 [label="="]
+	70 -> 75
+	76 [label=EXPRESION]
+	70 -> 76
+	77 [label=54682145]
+	76 -> 77
+	78 [label=ASIGNACION]
+	35 -> 78
+	79 [label=directorio]
 	78 -> 79
-	80 [label="%s%c %d :D\n"]
-	79 -> 80
-	81 [label=str4]
-	79 -> 81
-	82 [label=chr4]
-	79 -> 82
-	83 [label=n4]
-	79 -> 83
-	84 [label=ASIGNACION]
+	80 [label=INDICES]
+	78 -> 80
+	81 [label=0]
+	80 -> 81
+	82 [label=edad]
+	78 -> 82
+	83 [label="="]
+	78 -> 83
+	84 [label=EXPRESION]
 	78 -> 84
-	85 [label=punteo]
+	85 [label=40]
 	84 -> 85
-	86 [label="="]
-	84 -> 86
-	87 [label=EXPRESION]
-	84 -> 87
-	88 [label="EXPRESION BINARIA"]
-	87 -> 88
-	89 [label=punteo]
+	86 [label=ASIGNACION]
+	35 -> 86
+	87 [label=directorio]
+	86 -> 87
+	88 [label=INDICES]
+	86 -> 88
+	89 [label=1]
 	88 -> 89
-	90 [label="+"]
-	88 -> 90
-	91 [label=5]
-	88 -> 91
-	92 [label=ELSE]
-	72 -> 92
-	93 [label=PRINTF]
+	90 [label=nombre]
+	86 -> 90
+	91 [label="="]
+	86 -> 91
+	92 [label=EXPRESION]
+	86 -> 92
+	93 [label=Juan]
 	92 -> 93
-	94 [label="Problemas en el metodo declaracion :(\n"]
-	93 -> 94
-	95 [label=PRINTF]
-	23 -> 95
-	96 [label="======================================\n"]
-	95 -> 96
-	97 [label=FUNCION]
-	0 -> 97
-	98 [label=TIPO]
-	97 -> 98
-	99 [label=TIPO]
-	98 -> 99
-	100 [label=void]
-	99 -> 100
-	101 [label=CUERPO]
-	97 -> 101
-	102 [label=PRINTF]
-	101 -> 102
-	103 [label="==============Aritmeticas=============\n"]
+	94 [label=ASIGNACION]
+	35 -> 94
+	95 [label=directorio]
+	94 -> 95
+	96 [label=INDICES]
+	94 -> 96
+	97 [label=1]
+	96 -> 97
+	98 [label=apellido]
+	94 -> 98
+	99 [label="="]
+	94 -> 99
+	100 [label=EXPRESION]
+	94 -> 100
+	101 [label=Maeda]
+	100 -> 101
+	102 [label=ASIGNACION]
+	35 -> 102
+	103 [label=directorio]
 	102 -> 103
-	104 [label=DECLARACION]
-	101 -> 104
-	105 [label=TIPO]
+	104 [label=INDICES]
+	102 -> 104
+	105 [label=1]
 	104 -> 105
-	106 [label=TIPO]
-	105 -> 106
-	107 [label=double]
-	106 -> 107
-	108 [label=DECLARACIONES]
-	104 -> 108
-	109 [label="DECLARACION FINAL"]
+	106 [label=sexo]
+	102 -> 106
+	107 [label="="]
+	102 -> 107
+	108 [label=EXPRESION]
+	102 -> 108
+	109 [label=m]
 	108 -> 109
-	110 [label=n1]
-	109 -> 110
-	111 [label=EXPRESION]
-	109 -> 111
-	112 [label="EXPRESION BINARIA"]
-	111 -> 112
-	113 [label="EXPRESION BINARIA"]
+	110 [label=ASIGNACION]
+	35 -> 110
+	111 [label=directorio]
+	110 -> 111
+	112 [label=INDICES]
+	110 -> 112
+	113 [label=1]
 	112 -> 113
-	114 [label="EXPRESION BINARIA"]
-	113 -> 114
-	115 [label="EXPRESION BINARIA"]
-	114 -> 115
-	116 [label="EXPRESION BINARIA"]
-	115 -> 116
-	117 [label=0.0]
+	114 [label=telefono]
+	110 -> 114
+	115 [label="="]
+	110 -> 115
+	116 [label=EXPRESION]
+	110 -> 116
+	117 [label=34586245]
 	116 -> 117
-	118 [label="+"]
-	116 -> 118
-	119 [label=1]
-	116 -> 119
-	120 [label="+"]
-	115 -> 120
+	118 [label=ASIGNACION]
+	35 -> 118
+	119 [label=directorio]
+	118 -> 119
+	120 [label=INDICES]
+	118 -> 120
 	121 [label=1]
-	115 -> 121
-	122 [label="+"]
-	114 -> 122
-	123 [label=1]
-	114 -> 123
-	124 [label="+"]
-	113 -> 124
-	125 [label=0.1]
-	113 -> 125
-	126 [label="+"]
-	112 -> 126
-	127 [label=49]
-	112 -> 127
-	128 [label=PRINTF]
-	101 -> 128
-	129 [label="El valor de  n1 = %f\n"]
+	120 -> 121
+	122 [label=edad]
+	118 -> 122
+	123 [label="="]
+	118 -> 123
+	124 [label=EXPRESION]
+	118 -> 124
+	125 [label=24]
+	124 -> 125
+	126 [label=ASIGNACION]
+	35 -> 126
+	127 [label=directorio]
+	126 -> 127
+	128 [label=INDICES]
+	126 -> 128
+	129 [label=2]
 	128 -> 129
-	130 [label=n1]
-	128 -> 130
-	131 [label=IF]
-	101 -> 131
+	130 [label=nombre]
+	126 -> 130
+	131 [label="="]
+	126 -> 131
 	132 [label=EXPRESION]
-	131 -> 132
-	133 [label="EXPRESION BINARIA"]
+	126 -> 132
+	133 [label=Pavel]
 	132 -> 133
-	134 [label=n1]
-	133 -> 134
-	135 [label="=="]
-	133 -> 135
-	136 [label=52.1]
-	133 -> 136
-	137 [label=CUERPO]
-	131 -> 137
-	138 [label=ASIGNACION]
-	137 -> 138
-	139 [label=punteo]
-	138 -> 139
-	140 [label="="]
-	138 -> 140
-	141 [label=EXPRESION]
-	138 -> 141
-	142 [label="EXPRESION BINARIA"]
-	141 -> 142
-	143 [label=punteo]
+	134 [label=ASIGNACION]
+	35 -> 134
+	135 [label=directorio]
+	134 -> 135
+	136 [label=INDICES]
+	134 -> 136
+	137 [label=2]
+	136 -> 137
+	138 [label=apellido]
+	134 -> 138
+	139 [label="="]
+	134 -> 139
+	140 [label=EXPRESION]
+	134 -> 140
+	141 [label=Vasquez]
+	140 -> 141
+	142 [label=ASIGNACION]
+	35 -> 142
+	143 [label=directorio]
 	142 -> 143
-	144 [label="+"]
+	144 [label=INDICES]
 	142 -> 144
-	145 [label=5]
-	142 -> 145
-	146 [label=ELSE]
-	131 -> 146
-	147 [label=PRINTF]
-	146 -> 147
-	148 [label="Perdiste 5 puntos en suma de enteros y decimales :c\n"]
-	147 -> 148
-	149 [label=DECLARACION]
-	101 -> 149
-	150 [label=TIPO]
-	149 -> 150
-	151 [label=TIPO]
+	145 [label=2]
+	144 -> 145
+	146 [label=sexo]
+	142 -> 146
+	147 [label="="]
+	142 -> 147
+	148 [label=EXPRESION]
+	142 -> 148
+	149 [label=m]
+	148 -> 149
+	150 [label=ASIGNACION]
+	35 -> 150
+	151 [label=directorio]
 	150 -> 151
-	152 [label=double]
-	151 -> 152
-	153 [label=DECLARACIONES]
-	149 -> 153
-	154 [label="DECLARACION FINAL"]
-	153 -> 154
-	155 [label=n4]
-	154 -> 155
+	152 [label=INDICES]
+	150 -> 152
+	153 [label=2]
+	152 -> 153
+	154 [label=telefono]
+	150 -> 154
+	155 [label="="]
+	150 -> 155
 	156 [label=EXPRESION]
-	154 -> 156
-	157 [label="EXPRESION BINARIA"]
+	150 -> 156
+	157 [label=95862451]
 	156 -> 157
-	158 [label="EXPRESION BINARIA"]
-	157 -> 158
-	159 [label="EXPRESION BINARIA"]
+	158 [label=ASIGNACION]
+	35 -> 158
+	159 [label=directorio]
 	158 -> 159
-	160 [label=5750]
-	159 -> 160
-	161 [label="*"]
-	159 -> 161
-	162 [label=2]
-	159 -> 162
-	163 [label="-"]
+	160 [label=INDICES]
+	158 -> 160
+	161 [label=2]
+	160 -> 161
+	162 [label=edad]
+	158 -> 162
+	163 [label="="]
 	158 -> 163
-	164 [label=11800]
+	164 [label=EXPRESION]
 	158 -> 164
-	165 [label="+"]
-	157 -> 165
-	166 [label=1.0]
-	157 -> 166
-	167 [label=DECLARACION]
-	101 -> 167
-	168 [label=TIPO]
-	167 -> 168
-	169 [label=TIPO]
+	165 [label=23]
+	164 -> 165
+	166 [label=ASIGNACION]
+	35 -> 166
+	167 [label=directorio]
+	166 -> 167
+	168 [label=INDICES]
+	166 -> 168
+	169 [label=3]
 	168 -> 169
-	170 [label=double]
-	169 -> 170
-	171 [label=DECLARACIONES]
-	167 -> 171
-	172 [label="DECLARACION FINAL"]
-	171 -> 172
-	173 [label=n3]
+	170 [label=nombre]
+	166 -> 170
+	171 [label="="]
+	166 -> 171
+	172 [label=EXPRESION]
+	166 -> 172
+	173 [label=Maria]
 	172 -> 173
-	174 [label=EXPRESION]
-	172 -> 174
-	175 [label="EXPRESION BINARIA"]
+	174 [label=ASIGNACION]
+	35 -> 174
+	175 [label=directorio]
 	174 -> 175
-	176 [label="EXPRESION BINARIA"]
-	175 -> 176
-	177 [label="EXPRESION BINARIA"]
+	176 [label=INDICES]
+	174 -> 176
+	177 [label=3]
 	176 -> 177
-	178 [label="EXPRESION BINARIA"]
-	177 -> 178
-	179 [label="EXPRESION BINARIA"]
-	178 -> 179
-	180 [label="EXPRESION BINARIA"]
-	179 -> 180
-	181 [label="EXPRESION BINARIA"]
+	178 [label=apellido]
+	174 -> 178
+	179 [label="="]
+	174 -> 179
+	180 [label=EXPRESION]
+	174 -> 180
+	181 [label=Ramirez]
 	180 -> 181
-	182 [label="EXPRESION BINARIA"]
-	181 -> 182
-	183 [label=3]
+	182 [label=ASIGNACION]
+	35 -> 182
+	183 [label=directorio]
 	182 -> 183
-	184 [label="*"]
+	184 [label=INDICES]
 	182 -> 184
 	185 [label=3]
-	182 -> 185
-	186 [label="+"]
-	181 -> 186
-	187 [label=4]
-	181 -> 187
-	188 [label="-"]
-	180 -> 188
-	189 [label=80]
-	180 -> 189
-	190 [label="+"]
-	179 -> 190
-	191 [label="EXPRESION BINARIA"]
-	179 -> 191
-	192 [label=40.0]
-	191 -> 192
-	193 [label="*"]
-	191 -> 193
-	194 [label=2]
-	191 -> 194
-	195 [label="+"]
-	178 -> 195
-	196 [label=358.5]
-	178 -> 196
-	197 [label="-"]
-	177 -> 197
-	198 [label="EXPRESION BINARIA"]
-	177 -> 198
-	199 [label=29]
+	184 -> 185
+	186 [label=sexo]
+	182 -> 186
+	187 [label="="]
+	182 -> 187
+	188 [label=EXPRESION]
+	182 -> 188
+	189 [label=f]
+	188 -> 189
+	190 [label=ASIGNACION]
+	35 -> 190
+	191 [label=directorio]
+	190 -> 191
+	192 [label=INDICES]
+	190 -> 192
+	193 [label=3]
+	192 -> 193
+	194 [label=telefono]
+	190 -> 194
+	195 [label="="]
+	190 -> 195
+	196 [label=EXPRESION]
+	190 -> 196
+	197 [label=56145233]
+	196 -> 197
+	198 [label=ASIGNACION]
+	35 -> 198
+	199 [label=directorio]
 	198 -> 199
-	200 [label="/"]
+	200 [label=INDICES]
 	198 -> 200
-	201 [label=14.5]
-	198 -> 201
-	202 [label="-"]
-	176 -> 202
-	203 [label=0.5]
-	176 -> 203
-	204 [label="+"]
-	175 -> 204
-	205 [label=n4]
-	175 -> 205
-	206 [label=PRINTF]
-	101 -> 206
-	207 [label="El valor de n3 = %f\n"]
+	201 [label=3]
+	200 -> 201
+	202 [label=edad]
+	198 -> 202
+	203 [label="="]
+	198 -> 203
+	204 [label=EXPRESION]
+	198 -> 204
+	205 [label=30]
+	204 -> 205
+	206 [label=ASIGNACION]
+	35 -> 206
+	207 [label=directorio]
 	206 -> 207
-	208 [label=n3]
+	208 [label=INDICES]
 	206 -> 208
-	209 [label=IF]
-	101 -> 209
-	210 [label=EXPRESION]
-	209 -> 210
-	211 [label="EXPRESION BINARIA"]
-	210 -> 211
-	212 [label=n3]
-	211 -> 212
-	213 [label="=="]
-	211 -> 213
-	214 [label=70]
-	211 -> 214
-	215 [label=CUERPO]
-	209 -> 215
-	216 [label=ASIGNACION]
-	215 -> 216
-	217 [label=punteo]
+	209 [label=4]
+	208 -> 209
+	210 [label=nombre]
+	206 -> 210
+	211 [label="="]
+	206 -> 211
+	212 [label=EXPRESION]
+	206 -> 212
+	213 [label=Pablo]
+	212 -> 213
+	214 [label=ASIGNACION]
+	35 -> 214
+	215 [label=directorio]
+	214 -> 215
+	216 [label=INDICES]
+	214 -> 216
+	217 [label=4]
 	216 -> 217
-	218 [label="="]
-	216 -> 218
-	219 [label=EXPRESION]
-	216 -> 219
-	220 [label="EXPRESION BINARIA"]
-	219 -> 220
-	221 [label=punteo]
+	218 [label=apellido]
+	214 -> 218
+	219 [label="="]
+	214 -> 219
+	220 [label=EXPRESION]
+	214 -> 220
+	221 [label=Escobar]
 	220 -> 221
-	222 [label="+"]
-	220 -> 222
-	223 [label=3]
-	220 -> 223
-	224 [label=ELSE]
-	209 -> 224
-	225 [label=PRINTF]
+	222 [label=ASIGNACION]
+	35 -> 222
+	223 [label=directorio]
+	222 -> 223
+	224 [label=INDICES]
+	222 -> 224
+	225 [label=4]
 	224 -> 225
-	226 [label="Perdiste 3 puntos :c\n"]
-	225 -> 226
-	227 [label=METODO]
-	101 -> 227
-	228 [label=operacionesBasicas]
-	227 -> 228
-	229 [label=METODO]
-	101 -> 229
-	230 [label=operacionesAvanzadas]
-	229 -> 230
-	231 [label=PRINTF]
-	101 -> 231
-	232 [label="======================================\n"]
-	231 -> 232
-	233 [label=FUNCION]
-	0 -> 233
-	234 [label=TIPO]
-	233 -> 234
-	235 [label=TIPO]
-	234 -> 235
-	236 [label=void]
-	235 -> 236
-	237 [label=CUERPO]
-	233 -> 237
-	238 [label=PRINTF]
-	237 -> 238
-	239 [label="Operaciones Aritmeticas 1: valor esperado:  \na)62   \nb)0   \nc)-19   \nd)256   \nresultados:\n"]
+	226 [label=sexo]
+	222 -> 226
+	227 [label="="]
+	222 -> 227
+	228 [label=EXPRESION]
+	222 -> 228
+	229 [label=m]
+	228 -> 229
+	230 [label=ASIGNACION]
+	35 -> 230
+	231 [label=directorio]
+	230 -> 231
+	232 [label=INDICES]
+	230 -> 232
+	233 [label=4]
+	232 -> 233
+	234 [label=telefono]
+	230 -> 234
+	235 [label="="]
+	230 -> 235
+	236 [label=EXPRESION]
+	230 -> 236
+	237 [label=85462592]
+	236 -> 237
+	238 [label=ASIGNACION]
+	35 -> 238
+	239 [label=directorio]
 	238 -> 239
-	240 [label=DECLARACION]
-	237 -> 240
-	241 [label=TIPO]
+	240 [label=INDICES]
+	238 -> 240
+	241 [label=4]
 	240 -> 241
-	242 [label=TIPO]
-	241 -> 242
-	243 [label=double]
-	242 -> 243
-	244 [label=DECLARACIONES]
-	240 -> 244
-	245 [label="DECLARACION FINAL"]
+	242 [label=edad]
+	238 -> 242
+	243 [label="="]
+	238 -> 243
+	244 [label=EXPRESION]
+	238 -> 244
+	245 [label=60]
 	244 -> 245
-	246 [label=a]
-	245 -> 246
-	247 [label=EXPRESION]
-	245 -> 247
-	248 [label="EXPRESION BINARIA"]
+	246 [label=FOR]
+	35 -> 246
+	247 [label=INICIO]
+	246 -> 247
+	248 [label=DECLARACION]
 	247 -> 248
-	249 [label="EXPRESION BINARIA"]
+	249 [label=TIPO]
 	248 -> 249
-	250 [label="EXPRESION BINARIA"]
+	250 [label=TIPO]
 	249 -> 250
-	251 [label="EXPRESION BINARIA"]
+	251 [label=int]
 	250 -> 251
-	252 [label="EXPRESION BINARIA"]
-	251 -> 252
-	253 [label="EXPRESION BINARIA"]
+	252 [label=DECLARACIONES]
+	248 -> 252
+	253 [label="DECLARACION FINAL"]
 	252 -> 253
-	254 [label=20]
+	254 [label=i]
 	253 -> 254
-	255 [label="-"]
+	255 [label=EXPRESION]
 	253 -> 255
-	256 [label=10]
-	253 -> 256
-	257 [label="+"]
-	252 -> 257
+	256 [label=0]
+	255 -> 256
+	257 [label=EXPRESION]
+	246 -> 257
 	258 [label="EXPRESION BINARIA"]
-	252 -> 258
-	259 [label="EXPRESION BINARIA"]
+	257 -> 258
+	259 [label=i]
 	258 -> 259
-	260 [label=8]
-	259 -> 260
-	261 [label="/"]
-	259 -> 261
-	262 [label=2]
-	259 -> 262
-	263 [label="*"]
-	258 -> 263
-	264 [label=3]
-	258 -> 264
-	265 [label="+"]
-	251 -> 265
-	266 [label=10]
-	251 -> 266
-	267 [label="-"]
-	250 -> 267
-	268 [label=10]
-	250 -> 268
-	269 [label="-"]
-	249 -> 269
-	270 [label=10]
-	249 -> 270
-	271 [label="+"]
-	248 -> 271
-	272 [label=50]
-	248 -> 272
-	273 [label=DECLARACION]
-	237 -> 273
-	274 [label=TIPO]
-	273 -> 274
-	275 [label=TIPO]
+	260 [label="<"]
+	258 -> 260
+	261 [label=5]
+	258 -> 261
+	262 [label=ASIGNACION]
+	246 -> 262
+	263 [label="ASIGNACION AUMENTO"]
+	262 -> 263
+	264 [label=i]
+	263 -> 264
+	265 [label=CUERPO]
+	246 -> 265
+	266 [label=PRINTF]
+	265 -> 266
+	267 [label="Datos del contacto numero %i:\n"]
+	266 -> 267
+	268 [label="EXPRESION BINARIA"]
+	266 -> 268
+	269 [label=i]
+	268 -> 269
+	270 [label="+"]
+	268 -> 270
+	271 [label=1]
+	268 -> 271
+	272 [label=PRINTF]
+	265 -> 272
+	273 [label="\tNombre: %s\n"]
+	272 -> 273
+	274 [label="EXPRESION ESTRUCTURA"]
+	272 -> 274
+	275 [label=directorio]
 	274 -> 275
-	276 [label=int]
-	275 -> 276
-	277 [label=DECLARACIONES]
-	273 -> 277
-	278 [label="DECLARACION FINAL"]
-	277 -> 278
-	279 [label=a2]
-	278 -> 279
-	280 [label=EXPRESION]
-	278 -> 280
-	281 [label="EXPRESION CASTEO"]
-	280 -> 281
-	282 [label=TIPO]
+	276 [label=INDICES]
+	274 -> 276
+	277 [label=i]
+	276 -> 277
+	278 [label=nombre]
+	274 -> 278
+	279 [label=PRINTF]
+	265 -> 279
+	280 [label="\tApellido: %s\n"]
+	279 -> 280
+	281 [label="EXPRESION ESTRUCTURA"]
+	279 -> 281
+	282 [label=directorio]
 	281 -> 282
-	283 [label=TIPO]
-	282 -> 283
-	284 [label=int]
+	283 [label=INDICES]
+	281 -> 283
+	284 [label=i]
 	283 -> 284
-	285 [label=a]
+	285 [label=apellido]
 	281 -> 285
-	286 [label=DECLARACION]
-	237 -> 286
-	287 [label=TIPO]
+	286 [label=PRINTF]
+	265 -> 286
+	287 [label="\tSexo: %c\n"]
 	286 -> 287
-	288 [label=TIPO]
-	287 -> 288
-	289 [label=double]
+	288 [label="EXPRESION ESTRUCTURA"]
+	286 -> 288
+	289 [label=directorio]
 	288 -> 289
-	290 [label=DECLARACIONES]
-	286 -> 290
-	291 [label="DECLARACION FINAL"]
+	290 [label=INDICES]
+	288 -> 290
+	291 [label=i]
 	290 -> 291
-	292 [label=b]
-	291 -> 292
-	293 [label=EXPRESION]
-	291 -> 293
-	294 [label="EXPRESION BINARIA"]
+	292 [label=sexo]
+	288 -> 292
+	293 [label=PRINTF]
+	265 -> 293
+	294 [label="\tTelefono: %d\n"]
 	293 -> 294
-	295 [label="EXPRESION BINARIA"]
-	294 -> 295
-	296 [label="EXPRESION BINARIA"]
+	295 [label="EXPRESION ESTRUCTURA"]
+	293 -> 295
+	296 [label=directorio]
 	295 -> 296
-	297 [label="EXPRESION BINARIA"]
-	296 -> 297
-	298 [label="EXPRESION BINARIA"]
+	297 [label=INDICES]
+	295 -> 297
+	298 [label=i]
 	297 -> 298
-	299 [label="EXPRESION BINARIA"]
-	298 -> 299
-	300 [label=50]
-	299 -> 300
-	301 [label="/"]
-	299 -> 301
-	302 [label=50]
-	299 -> 302
-	303 [label="*"]
-	298 -> 303
-	304 [label=50]
-	298 -> 304
-	305 [label="+"]
-	297 -> 305
-	306 [label=50]
-	297 -> 306
-	307 [label="-"]
-	296 -> 307
-	308 [label=100]
-	296 -> 308
-	309 [label="+"]
-	295 -> 309
-	310 [label=100]
-	295 -> 310
-	311 [label="-"]
-	294 -> 311
-	312 [label=100]
-	294 -> 312
-	313 [label=DECLARACION]
-	237 -> 313
-	314 [label=TIPO]
+	299 [label=telefono]
+	295 -> 299
+	300 [label=PRINTF]
+	265 -> 300
+	301 [label="\tEdad: %i\n"]
+	300 -> 301
+	302 [label="EXPRESION ESTRUCTURA"]
+	300 -> 302
+	303 [label=directorio]
+	302 -> 303
+	304 [label=INDICES]
+	302 -> 304
+	305 [label=i]
+	304 -> 305
+	306 [label=edad]
+	302 -> 306
+	307 [label=PRINTF]
+	35 -> 307
+	308 [label="------------------------------\n"]
+	307 -> 308
+	309 [label=DECLARACION]
+	35 -> 309
+	310 [label=TIPO]
+	309 -> 310
+	311 [label=TIPO]
+	310 -> 311
+	312 [label=int]
+	311 -> 312
+	313 [label=DECLARACIONES]
+	309 -> 313
+	314 [label="DECLARACION FINAL"]
 	313 -> 314
-	315 [label=TIPO]
+	315 [label=matriz]
 	314 -> 315
-	316 [label=int]
-	315 -> 316
-	317 [label=DECLARACIONES]
-	313 -> 317
-	318 [label="DECLARACION FINAL"]
-	317 -> 318
-	319 [label=b2]
-	318 -> 319
-	320 [label=EXPRESION]
-	318 -> 320
-	321 [label="EXPRESION CASTEO"]
+	316 [label=INDICES]
+	314 -> 316
+	317 [label=5]
+	316 -> 317
+	318 [label=5]
+	316 -> 318
+	319 [label=EXPRESION]
+	314 -> 319
+	320 [label=EXPRESIONES]
+	319 -> 320
+	321 [label=EXPRESIONES]
 	320 -> 321
-	322 [label=TIPO]
+	322 [label=0]
 	321 -> 322
-	323 [label=TIPO]
-	322 -> 323
-	324 [label=int]
-	323 -> 324
-	325 [label=b]
+	323 [label=1]
+	321 -> 323
+	324 [label=2]
+	321 -> 324
+	325 [label=3]
 	321 -> 325
-	326 [label=DECLARACION]
-	237 -> 326
-	327 [label=TIPO]
-	326 -> 327
-	328 [label=TIPO]
+	326 [label=4]
+	321 -> 326
+	327 [label=EXPRESIONES]
+	320 -> 327
+	328 [label=5]
 	327 -> 328
-	329 [label=double]
-	328 -> 329
-	330 [label=DECLARACIONES]
-	326 -> 330
-	331 [label="DECLARACION FINAL"]
-	330 -> 331
-	332 [label=c]
-	331 -> 332
-	333 [label=EXPRESION]
-	331 -> 333
-	334 [label="EXPRESION BINARIA"]
+	329 [label=6]
+	327 -> 329
+	330 [label=7]
+	327 -> 330
+	331 [label=8]
+	327 -> 331
+	332 [label=9]
+	327 -> 332
+	333 [label=EXPRESIONES]
+	320 -> 333
+	334 [label=10]
 	333 -> 334
-	335 [label="EXPRESION BINARIA"]
-	334 -> 335
-	336 [label="EXPRESION BINARIA"]
-	335 -> 336
-	337 [label="EXPRESION BINARIA"]
-	336 -> 337
-	338 [label="EXPRESION BINARIA"]
-	337 -> 338
-	339 [label="EXPRESION BINARIA"]
-	338 -> 339
-	340 [label="EXPRESION BINARIA"]
+	335 [label=11]
+	333 -> 335
+	336 [label=12]
+	333 -> 336
+	337 [label=13]
+	333 -> 337
+	338 [label=14]
+	333 -> 338
+	339 [label=EXPRESIONES]
+	320 -> 339
+	340 [label=15]
 	339 -> 340
-	341 [label="EXPRESION BINARIA"]
-	340 -> 341
-	342 [label=100]
-	341 -> 342
-	343 [label="/"]
-	341 -> 343
-	344 [label=20]
-	341 -> 344
-	345 [label="*"]
-	340 -> 345
-	346 [label=9]
-	340 -> 346
-	347 [label="-"]
-	339 -> 347
-	348 [label=78]
-	339 -> 348
-	349 [label="+"]
-	338 -> 349
-	350 [label=6]
-	338 -> 350
-	351 [label="-"]
-	337 -> 351
-	352 [label=7]
-	337 -> 352
-	353 [label="+"]
-	336 -> 353
-	354 [label=8]
-	336 -> 354
-	355 [label="-"]
-	335 -> 355
-	356 [label=7]
-	335 -> 356
-	357 [label="+"]
-	334 -> 357
-	358 [label="EXPRESION BINARIA"]
-	334 -> 358
-	359 [label="EXPRESION BINARIA"]
+	341 [label=16]
+	339 -> 341
+	342 [label=17]
+	339 -> 342
+	343 [label=18]
+	339 -> 343
+	344 [label=19]
+	339 -> 344
+	345 [label=EXPRESIONES]
+	320 -> 345
+	346 [label=20]
+	345 -> 346
+	347 [label=21]
+	345 -> 347
+	348 [label=22]
+	345 -> 348
+	349 [label=23]
+	345 -> 349
+	350 [label=24]
+	345 -> 350
+	351 [label=FOR]
+	35 -> 351
+	352 [label=INICIO]
+	351 -> 352
+	353 [label=DECLARACION]
+	352 -> 353
+	354 [label=TIPO]
+	353 -> 354
+	355 [label=TIPO]
+	354 -> 355
+	356 [label=int]
+	355 -> 356
+	357 [label=DECLARACIONES]
+	353 -> 357
+	358 [label="DECLARACION FINAL"]
+	357 -> 358
+	359 [label=i]
 	358 -> 359
-	360 [label="EXPRESION BINARIA"]
-	359 -> 360
-	361 [label="EXPRESION BINARIA"]
+	360 [label=EXPRESION]
+	358 -> 360
+	361 [label=0]
 	360 -> 361
-	362 [label=7]
-	361 -> 362
-	363 [label="*"]
-	361 -> 363
-	364 [label=1]
-	361 -> 364
-	365 [label="*"]
-	360 -> 365
-	366 [label=2]
-	360 -> 366
-	367 [label="*"]
-	359 -> 367
-	368 [label=3]
-	359 -> 368
-	369 [label="/"]
-	358 -> 369
-	370 [label=3]
-	358 -> 370
-	371 [label=DECLARACION]
-	237 -> 371
-	372 [label=TIPO]
+	362 [label=EXPRESION]
+	351 -> 362
+	363 [label="EXPRESION BINARIA"]
+	362 -> 363
+	364 [label=i]
+	363 -> 364
+	365 [label="<"]
+	363 -> 365
+	366 [label=5]
+	363 -> 366
+	367 [label=ASIGNACION]
+	351 -> 367
+	368 [label="ASIGNACION AUMENTO"]
+	367 -> 368
+	369 [label=i]
+	368 -> 369
+	370 [label=CUERPO]
+	351 -> 370
+	371 [label=FOR]
+	370 -> 371
+	372 [label=INICIO]
 	371 -> 372
-	373 [label=TIPO]
+	373 [label=DECLARACION]
 	372 -> 373
-	374 [label=int]
+	374 [label=TIPO]
 	373 -> 374
-	375 [label=DECLARACIONES]
-	371 -> 375
-	376 [label="DECLARACION FINAL"]
+	375 [label=TIPO]
+	374 -> 375
+	376 [label=int]
 	375 -> 376
-	377 [label=c2]
-	376 -> 377
-	378 [label=EXPRESION]
-	376 -> 378
-	379 [label="EXPRESION CASTEO"]
+	377 [label=DECLARACIONES]
+	373 -> 377
+	378 [label="DECLARACION FINAL"]
+	377 -> 378
+	379 [label=j]
 	378 -> 379
-	380 [label=TIPO]
-	379 -> 380
-	381 [label=TIPO]
+	380 [label=EXPRESION]
+	378 -> 380
+	381 [label=0]
 	380 -> 381
-	382 [label=int]
-	381 -> 382
-	383 [label=c]
-	379 -> 383
-	384 [label=PRINTF]
-	237 -> 384
-	385 [label="a) %d\n"]
-	384 -> 385
-	386 [label=a2]
-	384 -> 386
-	387 [label=PRINTF]
-	237 -> 387
-	388 [label="b) %d\n"]
+	382 [label=EXPRESION]
+	371 -> 382
+	383 [label="EXPRESION BINARIA"]
+	382 -> 383
+	384 [label=j]
+	383 -> 384
+	385 [label="<"]
+	383 -> 385
+	386 [label=5]
+	383 -> 386
+	387 [label=ASIGNACION]
+	371 -> 387
+	388 [label="ASIGNACION AUMENTO"]
 	387 -> 388
-	389 [label=b2]
-	387 -> 389
-	390 [label=PRINTF]
-	237 -> 390
-	391 [label="c) %d\n"]
+	389 [label=j]
+	388 -> 389
+	390 [label=CUERPO]
+	371 -> 390
+	391 [label=PRINTF]
 	390 -> 391
-	392 [label=c2]
-	390 -> 392
-	393 [label=IF]
-	237 -> 393
-	394 [label=EXPRESION]
-	393 -> 394
-	395 [label="EXPRESION BINARIA"]
-	394 -> 395
-	396 [label="EXPRESION BINARIA"]
+	392 [label="Posicion [%d][%d] = %d\n"]
+	391 -> 392
+	393 [label=i]
+	391 -> 393
+	394 [label=j]
+	391 -> 394
+	395 [label="EXPRESION ARREGLO"]
+	391 -> 395
+	396 [label=matriz]
 	395 -> 396
-	397 [label="EXPRESION BINARIA"]
-	396 -> 397
-	398 [label=a2]
+	397 [label=ACCESOS]
+	395 -> 397
+	398 [label=i]
 	397 -> 398
-	399 [label="=="]
+	399 [label=j]
 	397 -> 399
-	400 [label=62]
-	397 -> 400
-	401 [label="&&"]
-	396 -> 401
-	402 [label="EXPRESION BINARIA"]
-	396 -> 402
-	403 [label=b2]
-	402 -> 403
-	404 [label="=="]
-	402 -> 404
-	405 [label=0]
-	402 -> 405
-	406 [label="&&"]
-	395 -> 406
-	407 [label="EXPRESION BINARIA"]
-	395 -> 407
-	408 [label=c2]
-	407 -> 408
-	409 [label="=="]
-	407 -> 409
-	410 [label="EXPRESION UNARIA"]
-	407 -> 410
-	411 [label="-"]
-	410 -> 411
-	412 [label=19]
-	410 -> 412
-	413 [label=CUERPO]
-	393 -> 413
-	414 [label=PRINTF]
-	413 -> 414
-	415 [label="Operaciones aritmeticas 1 bien :D\n"]
-	414 -> 415
-	416 [label=ASIGNACION]
-	413 -> 416
-	417 [label=punteo]
-	416 -> 417
-	418 [label="="]
-	416 -> 418
-	419 [label=EXPRESION]
-	416 -> 419
-	420 [label="EXPRESION BINARIA"]
-	419 -> 420
-	421 [label=punteo]
-	420 -> 421
-	422 [label="+"]
-	420 -> 422
-	423 [label=5]
-	420 -> 423
-	424 [label=ELSE]
-	393 -> 424
-	425 [label=PRINTF]
-	424 -> 425
-	426 [label="Error en las operaciones basicas :(\n"]
-	425 -> 426
-	427 [label=FUNCION]
-	0 -> 427
-	428 [label=TIPO]
-	427 -> 428
-	429 [label=TIPO]
-	428 -> 429
-	430 [label=void]
-	429 -> 430
-	431 [label=CUERPO]
-	427 -> 431
-	432 [label=DECLARACION]
-	431 -> 432
-	433 [label=TIPO]
-	432 -> 433
-	434 [label=TIPO]
-	433 -> 434
-	435 [label=int]
-	434 -> 435
-	436 [label=DECLARACIONES]
-	432 -> 436
-	437 [label="DECLARACION FINAL"]
-	436 -> 437
-	438 [label=aritmetica1]
-	437 -> 438
-	439 [label=EXPRESION]
-	437 -> 439
-	440 [label=2]
-	439 -> 440
-	441 [label=DECLARACION]
-	431 -> 441
-	442 [label=TIPO]
-	441 -> 442
-	443 [label=TIPO]
-	442 -> 443
-	444 [label=int]
-	443 -> 444
-	445 [label=DECLARACIONES]
-	441 -> 445
-	446 [label="DECLARACION FINAL"]
-	445 -> 446
-	447 [label=aritmetica2]
-	446 -> 447
-	448 [label=EXPRESION]
-	446 -> 448
-	449 [label="EXPRESION UNARIA"]
-	448 -> 449
-	450 [label="-"]
-	449 -> 450
-	451 [label=10]
-	449 -> 451
-	452 [label=PRINTF]
-	431 -> 452
-	453 [label="Operaciones Aritmeticas 2:\n valor esperado:\n -20  2.0\n resultado:\n"]
-	452 -> 453
-	454 [label=DECLARACION]
-	431 -> 454
-	455 [label=TIPO]
-	454 -> 455
-	456 [label=TIPO]
-	455 -> 456
-	457 [label=int]
-	456 -> 457
-	458 [label=DECLARACIONES]
-	454 -> 458
-	459 [label="DECLARACION FINAL"]
-	458 -> 459
-	460 [label=aritmetica3]
-	459 -> 460
-	461 [label=EXPRESION]
-	459 -> 461
-	462 [label="EXPRESION BINARIA"]
-	461 -> 462
-	463 [label=aritmetica2]
-	462 -> 463
-	464 [label="*"]
-	462 -> 464
-	465 [label=aritmetica1]
-	462 -> 465
-	466 [label=PRINTF]
-	431 -> 466
-	467 [label="%d  "]
-	466 -> 467
-	468 [label=aritmetica3]
-	466 -> 468
-	469 [label=DECLARACION]
-	431 -> 469
-	470 [label=TIPO]
-	469 -> 470
-	471 [label=TIPO]
-	470 -> 471
-	472 [label=double]
-	471 -> 472
-	473 [label=DECLARACIONES]
-	469 -> 473
-	474 [label="DECLARACION FINAL"]
-	473 -> 474
-	475 [label=aritmetica4]
-	474 -> 475
-	476 [label=EXPRESION]
-	474 -> 476
-	477 [label="EXPRESION BINARIA"]
-	476 -> 477
-	478 [label="EXPRESION BINARIA"]
-	477 -> 478
-	479 [label="EXPRESION BINARIA"]
-	478 -> 479
-	480 [label="EXPRESION BINARIA"]
-	479 -> 480
-	481 [label="EXPRESION BINARIA"]
-	480 -> 481
-	482 [label="EXPRESION BINARIA"]
-	481 -> 482
-	483 [label=aritmetica3]
-	482 -> 483
-	484 [label="/"]
-	482 -> 484
-	485 [label=aritmetica1]
-	482 -> 485
-	486 [label="+"]
-	481 -> 486
-	487 [label="EXPRESION BINARIA"]
-	481 -> 487
-	488 [label=50]
-	487 -> 488
-	489 [label="/"]
-	487 -> 489
-	490 [label=50]
-	487 -> 490
-	491 [label="+"]
-	480 -> 491
-	492 [label="EXPRESION BINARIA"]
-	480 -> 492
-	493 [label=50]
-	492 -> 493
-	494 [label="*"]
-	492 -> 494
-	495 [label=2]
-	492 -> 495
-	496 [label="-"]
-	479 -> 496
-	497 [label=100]
-	479 -> 497
-	498 [label="+"]
-	478 -> 498
-	499 [label="EXPRESION BINARIA"]
-	478 -> 499
-	500 [label=100]
-	499 -> 500
-	501 [label="/"]
-	499 -> 501
-	502 [label=100]
-	499 -> 502
-	503 [label="-"]
-	477 -> 503
-	504 [label=0]
-	477 -> 504
-	505 [label=PRINTF]
-	431 -> 505
-	506 [label="%f\n"]
-	505 -> 506
-	507 [label=aritmetica4]
-	505 -> 507
-	508 [label=IF]
-	431 -> 508
-	509 [label=EXPRESION]
-	508 -> 509
-	510 [label="EXPRESION BINARIA"]
-	509 -> 510
-	511 [label="EXPRESION BINARIA"]
-	510 -> 511
-	512 [label=aritmetica3]
-	511 -> 512
-	513 [label="=="]
-	511 -> 513
-	514 [label="EXPRESION UNARIA"]
-	511 -> 514
-	515 [label="-"]
-	514 -> 515
-	516 [label=20]
-	514 -> 516
-	517 [label="&&"]
-	510 -> 517
-	518 [label="EXPRESION BINARIA"]
-	510 -> 518
-	519 [label=aritmetica4]
-	518 -> 519
-	520 [label="=="]
-	518 -> 520
-	521 [label="EXPRESION UNARIA"]
-	518 -> 521
-	522 [label="-"]
-	521 -> 522
-	523 [label=8.0]
-	521 -> 523
-	524 [label=CUERPO]
-	508 -> 524
-	525 [label=PRINTF]
-	524 -> 525
-	526 [label="Operaciones aritmeticas 2 bien :D\n"]
-	525 -> 526
-	527 [label=ASIGNACION]
-	524 -> 527
-	528 [label=punteo]
-	527 -> 528
-	529 [label="="]
-	527 -> 529
-	530 [label=EXPRESION]
-	527 -> 530
-	531 [label="EXPRESION BINARIA"]
-	530 -> 531
-	532 [label=punteo]
-	531 -> 532
-	533 [label="+"]
-	531 -> 533
-	534 [label=5]
-	531 -> 534
-	535 [label=ELSE]
-	508 -> 535
-	536 [label=PRINTF]
-	535 -> 536
-	537 [label="Error Operaciones Aritmeticas :c\n"]
-	536 -> 537
-	538 [label=FUNCION]
-	0 -> 538
-	539 [label=TIPO]
-	538 -> 539
-	540 [label=TIPO]
-	539 -> 540
-	541 [label=void]
-	540 -> 541
-	542 [label=CUERPO]
-	538 -> 542
-	543 [label=PRINTF]
-	542 -> 543
-	544 [label="==============Logicas1=============\n"]
-	543 -> 544
-	545 [label=IF]
-	542 -> 545
-	546 [label=EXPRESION]
-	545 -> 546
-	547 [label="EXPRESION UNARIA"]
-	546 -> 547
-	548 [label="!"]
-	547 -> 548
-	549 [label="EXPRESION UNARIA"]
-	547 -> 549
-	550 [label="!"]
-	549 -> 550
-	551 [label="EXPRESION UNARIA"]
-	549 -> 551
-	552 [label="!"]
-	551 -> 552
-	553 [label="EXPRESION UNARIA"]
-	551 -> 553
-	554 [label="!"]
-	553 -> 554
-	555 [label="EXPRESION UNARIA"]
-	553 -> 555
-	556 [label="!"]
-	555 -> 556
-	557 [label="EXPRESION UNARIA"]
-	555 -> 557
-	558 [label="!"]
-	557 -> 558
-	559 [label="EXPRESION UNARIA"]
-	557 -> 559
-	560 [label="!"]
-	559 -> 560
-	561 [label="EXPRESION UNARIA"]
-	559 -> 561
-	562 [label="!"]
-	561 -> 562
-	563 [label="EXPRESION UNARIA"]
-	561 -> 563
-	564 [label="!"]
-	563 -> 564
-	565 [label="EXPRESION UNARIA"]
-	563 -> 565
-	566 [label="!"]
-	565 -> 566
-	567 [label="EXPRESION UNARIA"]
-	565 -> 567
-	568 [label="!"]
-	567 -> 568
-	569 [label="EXPRESION UNARIA"]
-	567 -> 569
-	570 [label="!"]
-	569 -> 570
-	571 [label="EXPRESION UNARIA"]
-	569 -> 571
-	572 [label="!"]
-	571 -> 572
-	573 [label="EXPRESION UNARIA"]
-	571 -> 573
-	574 [label="!"]
-	573 -> 574
-	575 [label="EXPRESION UNARIA"]
-	573 -> 575
-	576 [label="!"]
-	575 -> 576
-	577 [label="EXPRESION UNARIA"]
-	575 -> 577
-	578 [label="!"]
-	577 -> 578
-	579 [label="EXPRESION UNARIA"]
-	577 -> 579
-	580 [label="!"]
-	579 -> 580
-	581 [label="EXPRESION UNARIA"]
-	579 -> 581
-	582 [label="!"]
-	581 -> 582
-	583 [label="EXPRESION UNARIA"]
-	581 -> 583
-	584 [label="!"]
-	583 -> 584
-	585 [label="EXPRESION UNARIA"]
-	583 -> 585
-	586 [label="!"]
-	585 -> 586
-	587 [label="EXPRESION UNARIA"]
-	585 -> 587
-	588 [label="!"]
-	587 -> 588
-	589 [label="EXPRESION UNARIA"]
-	587 -> 589
-	590 [label="!"]
-	589 -> 590
-	591 [label=1]
-	589 -> 591
-	592 [label=CUERPO]
-	545 -> 592
-	593 [label=ASIGNACION]
-	592 -> 593
-	594 [label=punteo]
-	593 -> 594
-	595 [label="="]
-	593 -> 595
-	596 [label=EXPRESION]
-	593 -> 596
-	597 [label="EXPRESION BINARIA"]
-	596 -> 597
-	598 [label=punteo]
-	597 -> 598
-	599 [label="+"]
-	597 -> 599
-	600 [label=1]
-	597 -> 600
-	601 [label=PRINTF]
-	592 -> 601
-	602 [label="Bien primera condicion :)\n"]
-	601 -> 602
-	603 [label=ELSE]
-	545 -> 603
-	604 [label=PRINTF]
-	603 -> 604
-	605 [label="Perdiste 1 punto :c\n"]
-	604 -> 605
-	606 [label=IF]
-	542 -> 606
-	607 [label=EXPRESION]
-	606 -> 607
-	608 [label="EXPRESION BINARIA"]
-	607 -> 608
-	609 [label="EXPRESION BINARIA"]
-	608 -> 609
-	610 [label="EXPRESION BINARIA"]
-	609 -> 610
-	611 [label=1]
-	610 -> 611
-	612 [label="&&"]
-	610 -> 612
-	613 [label=1]
-	610 -> 613
-	614 [label="||"]
-	609 -> 614
-	615 [label="EXPRESION BINARIA"]
-	609 -> 615
-	616 [label="EXPRESION BINARIA"]
-	615 -> 616
-	617 [label=0]
-	616 -> 617
-	618 [label="&&"]
-	616 -> 618
-	619 [label=0]
-	616 -> 619
-	620 [label="&&"]
-	615 -> 620
-	621 [label=0]
-	615 -> 621
-	622 [label="||"]
-	608 -> 622
-	623 [label="EXPRESION UNARIA"]
-	608 -> 623
-	624 [label="!"]
-	623 -> 624
-	625 [label=1]
-	623 -> 625
-	626 [label=CUERPO]
-	606 -> 626
-	627 [label=ASIGNACION]
-	626 -> 627
-	628 [label=punteo]
-	627 -> 628
-	629 [label="="]
-	627 -> 629
-	630 [label=EXPRESION]
-	627 -> 630
-	631 [label="EXPRESION BINARIA"]
-	630 -> 631
-	632 [label=punteo]
-	631 -> 632
-	633 [label="+"]
-	631 -> 633
-	634 [label=1]
-	631 -> 634
-	635 [label=PRINTF]
-	626 -> 635
-	636 [label="Bien segunda condicion :)\n"]
-	635 -> 636
-	637 [label=ELSE]
-	606 -> 637
-	638 [label=PRINTF]
-	637 -> 638
-	639 [label="Mal segunda condicion :c\n"]
-	638 -> 639
-	640 [label=PRINTF]
-	542 -> 640
-	641 [label="======================================\n"]
-	640 -> 641
-	642 [label=METODO]
-	542 -> 642
-	643 [label=Logicas2]
-	642 -> 643
-	644 [label=METODO]
-	542 -> 644
-	645 [label=BitABit]
-	644 -> 645
-	646 [label=FUNCION]
-	0 -> 646
-	647 [label=TIPO]
-	646 -> 647
-	648 [label=TIPO]
-	647 -> 648
-	649 [label=void]
-	648 -> 649
-	650 [label=CUERPO]
-	646 -> 650
-	651 [label=DECLARACION]
-	650 -> 651
-	652 [label=TIPO]
-	651 -> 652
-	653 [label=TIPO]
-	652 -> 653
-	654 [label=int]
-	653 -> 654
-	655 [label=DECLARACIONES]
-	651 -> 655
-	656 [label="DECLARACION FINAL"]
-	655 -> 656
-	657 [label=n0]
-	656 -> 657
-	658 [label=EXPRESION]
-	656 -> 658
-	659 [label=16]
-	658 -> 659
-	660 [label=PRINTF]
-	650 -> 660
-	661 [label="==============Logicas2=============\n"]
-	660 -> 661
-	662 [label=IF]
-	650 -> 662
-	663 [label=EXPRESION]
-	662 -> 663
-	664 [label="EXPRESION UNARIA"]
-	663 -> 664
-	665 [label="!"]
-	664 -> 665
-	666 [label="EXPRESION BINARIA"]
-	664 -> 666
-	667 [label="EXPRESION UNARIA"]
-	666 -> 667
-	668 [label="!"]
-	667 -> 668
-	669 [label="EXPRESION BINARIA"]
-	667 -> 669
-	670 [label="EXPRESION BINARIA"]
-	669 -> 670
-	671 [label=n0]
-	670 -> 671
-	672 [label="=="]
-	670 -> 672
-	673 [label=16]
-	670 -> 673
-	674 [label="&&"]
-	669 -> 674
-	675 [label="EXPRESION BINARIA"]
-	669 -> 675
-	676 [label=0]
-	675 -> 676
-	677 [label="=="]
-	675 -> 677
-	678 [label=1]
-	675 -> 678
-	679 [label="&&"]
-	666 -> 679
-	680 [label="EXPRESION UNARIA"]
-	666 -> 680
-	681 [label="!"]
-	680 -> 681
-	682 [label=1]
-	680 -> 682
-	683 [label=CUERPO]
-	662 -> 683
-	684 [label=PRINTF]
-	683 -> 684
-	685 [label="Not y Ands Correctos\n"]
-	684 -> 685
-	686 [label=ASIGNACION]
-	683 -> 686
-	687 [label=punteo]
-	686 -> 687
-	688 [label="="]
-	686 -> 688
-	689 [label=EXPRESION]
-	686 -> 689
-	690 [label="EXPRESION BINARIA"]
-	689 -> 690
-	691 [label=punteo]
-	690 -> 691
-	692 [label="+"]
-	690 -> 692
-	693 [label=3]
-	690 -> 693
-	694 [label=ELSE]
-	662 -> 694
-	695 [label=PRINTF]
-	694 -> 695
-	696 [label="No funcionan nots y ands :(\n"]
-	695 -> 696
-	697 [label=DECLARACION]
-	650 -> 697
-	698 [label=TIPO]
-	697 -> 698
-	699 [label=TIPO]
-	698 -> 699
-	700 [label=double]
-	699 -> 700
-	701 [label=DECLARACIONES]
-	697 -> 701
-	702 [label="DECLARACION FINAL"]
-	701 -> 702
-	703 [label=n1]
-	702 -> 703
-	704 [label=EXPRESION]
-	702 -> 704
-	705 [label="EXPRESION BINARIA"]
-	704 -> 705
-	706 [label=n0]
-	705 -> 706
-	707 [label="/"]
-	705 -> 707
-	708 [label=16]
-	705 -> 708
-	709 [label=ASIGNACION]
-	650 -> 709
-	710 [label=n1]
-	709 -> 710
-	711 [label="="]
-	709 -> 711
-	712 [label=EXPRESION]
-	709 -> 712
-	713 [label="EXPRESION BINARIA"]
-	712 -> 713
-	714 [label=n1]
-	713 -> 714
-	715 [label="+"]
-	713 -> 715
-	716 [label=1]
-	713 -> 716
-	717 [label=DECLARACION]
-	650 -> 717
-	718 [label=TIPO]
-	717 -> 718
-	719 [label=TIPO]
-	718 -> 719
-	720 [label=int]
-	719 -> 720
-	721 [label=DECLARACIONES]
-	717 -> 721
-	722 [label="DECLARACION FINAL"]
-	721 -> 722
-	723 [label=condicion1]
-	722 -> 723
-	724 [label=EXPRESION]
-	722 -> 724
-	725 [label="EXPRESION BINARIA"]
-	724 -> 725
-	726 [label=n1]
-	725 -> 726
-	727 [label="!="]
-	725 -> 727
-	728 [label=2]
-	725 -> 728
-	729 [label=DECLARACION]
-	650 -> 729
-	730 [label=TIPO]
-	729 -> 730
-	731 [label=TIPO]
-	730 -> 731
-	732 [label=double]
-	731 -> 732
-	733 [label=DECLARACIONES]
-	729 -> 733
-	734 [label="DECLARACION FINAL"]
-	733 -> 734
-	735 [label=aritmetica1]
-	734 -> 735
-	736 [label=EXPRESION]
-	734 -> 736
-	737 [label="EXPRESION BINARIA"]
-	736 -> 737
-	738 [label="EXPRESION BINARIA"]
-	737 -> 738
-	739 [label=n0]
-	738 -> 739
-	740 [label="/"]
-	738 -> 740
-	741 [label=16]
-	738 -> 741
-	742 [label="+"]
-	737 -> 742
-	743 [label=0]
-	737 -> 743
-	744 [label=DECLARACION]
-	650 -> 744
-	745 [label=TIPO]
-	744 -> 745
-	746 [label=TIPO]
-	745 -> 746
-	747 [label=int]
-	746 -> 747
-	748 [label=DECLARACIONES]
-	744 -> 748
-	749 [label="DECLARACION FINAL"]
-	748 -> 749
-	750 [label=condicion2]
-	749 -> 750
-	751 [label=EXPRESION]
-	749 -> 751
-	752 [label="EXPRESION BINARIA"]
-	751 -> 752
-	753 [label=aritmetica1]
-	752 -> 753
-	754 [label="=="]
-	752 -> 754
-	755 [label=n1]
-	752 -> 755
-	756 [label=DECLARACION]
-	650 -> 756
-	757 [label=TIPO]
-	756 -> 757
-	758 [label=TIPO]
-	757 -> 758
-	759 [label=int]
-	758 -> 759
-	760 [label=DECLARACIONES]
-	756 -> 760
-	761 [label="DECLARACION FINAL"]
-	760 -> 761
-	762 [label=condicion3]
-	761 -> 762
-	763 [label=EXPRESION]
-	761 -> 763
-	764 [label="EXPRESION UNARIA"]
-	763 -> 764
-	765 [label="!"]
-	764 -> 765
-	766 [label=1]
-	764 -> 766
-	767 [label=IF]
-	650 -> 767
-	768 [label=EXPRESION]
-	767 -> 768
-	769 [label="EXPRESION UNARIA"]
-	768 -> 769
-	770 [label="!"]
-	769 -> 770
-	771 [label="EXPRESION UNARIA"]
-	769 -> 771
-	772 [label="!"]
-	771 -> 772
-	773 [label="EXPRESION BINARIA"]
-	771 -> 773
-	774 [label="EXPRESION UNARIA"]
-	773 -> 774
-	775 [label="!"]
-	774 -> 775
-	776 [label="EXPRESION BINARIA"]
-	774 -> 776
-	777 [label=condicion1]
-	776 -> 777
-	778 [label="||"]
-	776 -> 778
-	779 [label=condicion2]
-	776 -> 779
-	780 [label="||"]
-	773 -> 780
-	781 [label=condicion3]
-	773 -> 781
-	782 [label=CUERPO]
-	767 -> 782
-	783 [label=PRINTF]
-	782 -> 783
-	784 [label="Nots y Ors correctos\n"]
-	783 -> 784
-	785 [label=ASIGNACION]
-	782 -> 785
-	786 [label=punteo]
-	785 -> 786
-	787 [label="="]
-	785 -> 787
-	788 [label=EXPRESION]
-	785 -> 788
-	789 [label="EXPRESION BINARIA"]
-	788 -> 789
-	790 [label=punteo]
-	789 -> 790
-	791 [label="+"]
-	789 -> 791
-	792 [label=3]
-	789 -> 792
-	793 [label=ELSE]
-	767 -> 793
-	794 [label=PRINTF]
-	793 -> 794
-	795 [label="No Funciona nots y ands :(\n"]
-	794 -> 795
-	796 [label=PRINTF]
-	650 -> 796
-	797 [label="======================================\n"]
-	796 -> 797
-	798 [label=FUNCION]
-	0 -> 798
-	799 [label=TIPO]
-	798 -> 799
-	800 [label=TIPO]
-	799 -> 800
-	801 [label=void]
-	800 -> 801
-	802 [label=CUERPO]
-	798 -> 802
-	803 [label=DECLARACION]
-	802 -> 803
-	804 [label=TIPO]
-	803 -> 804
-	805 [label=TIPO]
-	804 -> 805
-	806 [label=int]
-	805 -> 806
-	807 [label=DECLARACIONES]
-	803 -> 807
-	808 [label="DECLARACION FINAL"]
-	807 -> 808
-	809 [label=n0]
-	808 -> 809
-	810 [label=EXPRESION]
-	808 -> 810
-	811 [label=16]
-	810 -> 811
-	812 [label=PRINTF]
-	802 -> 812
-	813 [label="==============Bit a Bit=============\n"]
-	812 -> 813
-	814 [label=DECLARACION]
-	802 -> 814
-	815 [label=TIPO]
-	814 -> 815
-	816 [label=TIPO]
-	815 -> 816
-	817 [label=int]
-	816 -> 817
-	818 [label=DECLARACIONES]
-	814 -> 818
-	819 [label="DECLARACION FINAL"]
-	818 -> 819
-	820 [label=n1]
-	819 -> 820
-	821 [label=EXPRESION]
-	819 -> 821
-	822 [label="EXPRESION BINARIA"]
-	821 -> 822
-	823 [label=n0]
-	822 -> 823
-	824 [label="&"]
-	822 -> 824
-	825 [label=n0]
-	822 -> 825
-	826 [label=IF]
-	802 -> 826
-	827 [label=EXPRESION]
-	826 -> 827
-	828 [label="EXPRESION BINARIA"]
-	827 -> 828
-	829 [label=n1]
-	828 -> 829
-	830 [label="=="]
-	828 -> 830
-	831 [label=16]
-	828 -> 831
-	832 [label=CUERPO]
-	826 -> 832
-	833 [label=PRINTF]
-	832 -> 833
-	834 [label="AND Bit a Bit bien\n"]
-	833 -> 834
-	835 [label=ASIGNACION]
-	832 -> 835
-	836 [label=punteo]
-	835 -> 836
-	837 [label="="]
-	835 -> 837
-	838 [label=EXPRESION]
-	835 -> 838
-	839 [label="EXPRESION BINARIA"]
-	838 -> 839
-	840 [label=punteo]
-	839 -> 840
-	841 [label="+"]
-	839 -> 841
-	842 [label=1]
-	839 -> 842
-	843 [label=ELSE]
-	826 -> 843
-	844 [label=PRINTF]
-	843 -> 844
-	845 [label="AND Bit a Bit mal\n"]
-	844 -> 845
-	846 [label=ASIGNACION]
-	802 -> 846
-	847 [label=n1]
-	846 -> 847
-	848 [label="="]
-	846 -> 848
-	849 [label=EXPRESION]
-	846 -> 849
-	850 [label="EXPRESION BINARIA"]
-	849 -> 850
-	851 [label=51]
-	850 -> 851
-	852 [label="|"]
-	850 -> 852
-	853 [label="EXPRESION UNARIA"]
-	850 -> 853
-	854 [label="~"]
-	853 -> 854
-	855 [label=30]
-	853 -> 855
-	856 [label=DECLARACION]
-	802 -> 856
-	857 [label=TIPO]
-	856 -> 857
-	858 [label=TIPO]
-	857 -> 858
-	859 [label=int]
-	858 -> 859
-	860 [label=DECLARACIONES]
-	856 -> 860
-	861 [label="DECLARACION FINAL"]
-	860 -> 861
-	862 [label=n2]
-	861 -> 862
-	863 [label=EXPRESION]
-	861 -> 863
-	864 [label="EXPRESION BINARIA"]
-	863 -> 864
-	865 [label="EXPRESION BINARIA"]
-	864 -> 865
-	866 [label="EXPRESION BINARIA"]
-	865 -> 866
-	867 [label=n1]
-	866 -> 867
-	868 [label="^"]
-	866 -> 868
-	869 [label=60]
-	866 -> 869
-	870 [label="^"]
-	865 -> 870
-	871 [label=70]
-	865 -> 871
-	872 [label="^"]
-	864 -> 872
-	873 [label=32]
-	864 -> 873
-	874 [label=IF]
-	802 -> 874
-	875 [label=EXPRESION]
-	874 -> 875
-	876 [label="EXPRESION BINARIA"]
-	875 -> 876
-	877 [label=n2]
-	876 -> 877
-	878 [label="=="]
-	876 -> 878
-	879 [label="EXPRESION UNARIA"]
-	876 -> 879
-	880 [label="-"]
-	879 -> 880
-	881 [label=87]
-	879 -> 881
-	882 [label=CUERPO]
-	874 -> 882
-	883 [label=PRINTF]
-	882 -> 883
-	884 [label="OR, NOT, XOR Bit a Bit bien\n"]
-	883 -> 884
-	885 [label=ASIGNACION]
-	882 -> 885
-	886 [label=punteo]
-	885 -> 886
-	887 [label="="]
-	885 -> 887
-	888 [label=EXPRESION]
-	885 -> 888
-	889 [label="EXPRESION BINARIA"]
-	888 -> 889
-	890 [label=punteo]
-	889 -> 890
-	891 [label="+"]
-	889 -> 891
-	892 [label=3]
-	889 -> 892
-	893 [label=ELSE]
-	874 -> 893
-	894 [label=PRINTF]
-	893 -> 894
-	895 [label="OR, NOT, XOR Bit a Bit mal\n"]
-	894 -> 895
-	896 [label=PRINTF]
-	802 -> 896
-	897 [label="======================================\n"]
-	896 -> 897
-	898 [label=FUNCION]
-	0 -> 898
-	899 [label=TIPO]
-	898 -> 899
-	900 [label=TIPO]
-	899 -> 900
-	901 [label=void]
-	900 -> 901
-	902 [label=CUERPO]
-	898 -> 902
-	903 [label=DECLARACION]
-	902 -> 903
-	904 [label=TIPO]
-	903 -> 904
-	905 [label=TIPO]
-	904 -> 905
-	906 [label=int]
-	905 -> 906
-	907 [label=DECLARACIONES]
-	903 -> 907
-	908 [label="DECLARACION FINAL"]
-	907 -> 908
-	909 [label=n0]
-	908 -> 909
-	910 [label=EXPRESION]
-	908 -> 910
-	911 [label=34]
-	910 -> 911
-	912 [label=DECLARACION]
-	902 -> 912
-	913 [label=TIPO]
-	912 -> 913
-	914 [label=TIPO]
-	913 -> 914
-	915 [label=int]
-	914 -> 915
-	916 [label=DECLARACIONES]
-	912 -> 916
-	917 [label="DECLARACION FINAL"]
-	916 -> 917
-	918 [label=n1]
-	917 -> 918
-	919 [label=EXPRESION]
-	917 -> 919
-	920 [label=16]
-	919 -> 920
-	921 [label=METODO]
-	902 -> 921
-	922 [label=relaciones1]
-	921 -> 922
-	923 [label=EXPRESIONES]
-	921 -> 923
-	924 [label=n0]
-	923 -> 924
-	925 [label=METODO]
-	902 -> 925
-	926 [label=relaciones2]
-	925 -> 926
-	927 [label=EXPRESIONES]
-	925 -> 927
-	928 [label=n1]
-	927 -> 928
-	929 [label=FUNCION]
-	0 -> 929
-	930 [label=TIPO]
-	929 -> 930
-	931 [label=TIPO]
-	930 -> 931
-	932 [label=void]
-	931 -> 932
-	933 [label=PARAMETROS]
-	929 -> 933
-	934 [label=PARAMETRO]
-	933 -> 934
-	935 [label=TIPO]
-	934 -> 935
-	936 [label=TIPO]
-	935 -> 936
-	937 [label=int]
-	936 -> 937
-	938 [label=salida]
-	934 -> 938
-	939 [label=CUERPO]
-	929 -> 939
-	940 [label=PRINTF]
-	939 -> 940
-	941 [label="==============relacionales1=============\n"]
-	940 -> 941
-	942 [label=DECLARACION]
-	939 -> 942
-	943 [label=TIPO]
-	942 -> 943
-	944 [label=TIPO]
-	943 -> 944
-	945 [label=double]
-	944 -> 945
-	946 [label=DECLARACIONES]
-	942 -> 946
-	947 [label="DECLARACION FINAL"]
-	946 -> 947
-	948 [label=n0]
-	947 -> 948
-	949 [label=EXPRESION]
-	947 -> 949
-	950 [label="EXPRESION BINARIA"]
-	949 -> 950
-	951 [label=salida]
-	950 -> 951
-	952 [label="+"]
-	950 -> 952
-	953 [label=0.0]
-	950 -> 953
-	954 [label=IF]
-	939 -> 954
-	955 [label=EXPRESION]
-	954 -> 955
-	956 [label="EXPRESION BINARIA"]
-	955 -> 956
-	957 [label=n0]
-	956 -> 957
-	958 [label="<"]
-	956 -> 958
-	959 [label=34.44]
-	956 -> 959
-	960 [label=CUERPO]
-	954 -> 960
-	961 [label=ASIGNACION]
-	960 -> 961
-	962 [label=salida]
-	961 -> 962
-	963 [label="="]
-	961 -> 963
-	964 [label=EXPRESION]
-	961 -> 964
-	965 [label="EXPRESION BINARIA"]
-	964 -> 965
-	966 [label=salida]
-	965 -> 966
-	967 [label="+"]
-	965 -> 967
-	968 [label=15]
-	965 -> 968
-	969 [label=IF]
-	960 -> 969
-	970 [label=EXPRESION]
-	969 -> 970
-	971 [label="EXPRESION BINARIA"]
-	970 -> 971
-	972 [label=salida]
-	971 -> 972
-	973 [label=">"]
-	971 -> 973
-	974 [label=44]
-	971 -> 974
-	975 [label=CUERPO]
-	969 -> 975
-	976 [label=ASIGNACION]
-	975 -> 976
-	977 [label=salida]
-	976 -> 977
-	978 [label="="]
-	976 -> 978
-	979 [label=EXPRESION]
-	976 -> 979
-	980 [label="EXPRESION BINARIA"]
-	979 -> 980
-	981 [label=salida]
-	980 -> 981
-	982 [label="+"]
-	980 -> 982
-	983 [label=1]
-	980 -> 983
-	984 [label=ELSE]
-	954 -> 984
-	985 [label=ASIGNACION]
-	984 -> 985
-	986 [label=salida]
-	985 -> 986
-	987 [label="="]
-	985 -> 987
-	988 [label=EXPRESION]
-	985 -> 988
-	989 [label=1]
-	988 -> 989
-	990 [label=IF]
-	939 -> 990
-	991 [label=EXPRESION]
-	990 -> 991
-	992 [label="EXPRESION BINARIA"]
-	991 -> 992
-	993 [label=salida]
-	992 -> 993
-	994 [label="!="]
-	992 -> 994
-	995 [label=1]
-	992 -> 995
-	996 [label=CUERPO]
-	990 -> 996
-	997 [label=IF]
-	996 -> 997
-	998 [label=EXPRESION]
-	997 -> 998
-	999 [label="EXPRESION BINARIA"]
-	998 -> 999
-	1000 [label=salida]
-	999 -> 1000
-	1001 [label="=="]
-	999 -> 1001
-	1002 [label=50]
-	999 -> 1002
-	1003 [label=CUERPO]
-	997 -> 1003
-	1004 [label=PRINTF]
-	1003 -> 1004
-	1005 [label="salida Correcta Relacionales 1!\n"]
-	1004 -> 1005
-	1006 [label=ASIGNACION]
-	1003 -> 1006
-	1007 [label=punteo]
-	1006 -> 1007
-	1008 [label="="]
-	1006 -> 1008
-	1009 [label=EXPRESION]
-	1006 -> 1009
-	1010 [label="EXPRESION BINARIA"]
-	1009 -> 1010
-	1011 [label=punteo]
-	1010 -> 1011
-	1012 [label="+"]
-	1010 -> 1012
-	1013 [label=5]
-	1010 -> 1013
-	1014 [label=ELSE]
-	997 -> 1014
-	1015 [label=PRINTF]
-	1014 -> 1015
-	1016 [label="salida incorrecta!!\n"]
-	1015 -> 1016
-	1017 [label=ELSE]
-	990 -> 1017
-	1018 [label=PRINTF]
-	1017 -> 1018
-	1019 [label="salida incorrecta!!\n"]
-	1018 -> 1019
-	1020 [label=PRINTF]
-	939 -> 1020
-	1021 [label="======================================\n"]
-	1020 -> 1021
-	1022 [label=FUNCION]
-	0 -> 1022
-	1023 [label=TIPO]
-	1022 -> 1023
-	1024 [label=TIPO]
-	1023 -> 1024
-	1025 [label=void]
-	1024 -> 1025
-	1026 [label=PARAMETROS]
-	1022 -> 1026
-	1027 [label=PARAMETRO]
-	1026 -> 1027
-	1028 [label=TIPO]
-	1027 -> 1028
-	1029 [label=TIPO]
-	1028 -> 1029
-	1030 [label=int]
-	1029 -> 1030
-	1031 [label=n0]
-	1027 -> 1031
-	1032 [label=CUERPO]
-	1022 -> 1032
-	1033 [label=PRINTF]
-	1032 -> 1033
-	1034 [label="============Relacionales2=============\n"]
-	1033 -> 1034
-	1035 [label=IF]
-	1032 -> 1035
-	1036 [label=EXPRESION]
-	1035 -> 1036
-	1037 [label="EXPRESION BINARIA"]
-	1036 -> 1037
-	1038 [label="EXPRESION BINARIA"]
-	1037 -> 1038
-	1039 [label="EXPRESION BINARIA"]
-	1038 -> 1039
-	1040 [label=10]
-	1039 -> 1040
-	1041 [label="-"]
-	1039 -> 1041
-	1042 [label=15]
-	1039 -> 1042
-	1043 [label=">="]
-	1038 -> 1043
-	1044 [label=0]
-	1038 -> 1044
-	1045 [label="&&"]
-	1037 -> 1045
-	1046 [label="EXPRESION BINARIA"]
-	1037 -> 1046
-	1047 [label=44.44]
-	1046 -> 1047
-	1048 [label="=="]
-	1046 -> 1048
-	1049 [label=44.44]
-	1046 -> 1049
-	1050 [label=CUERPO]
-	1035 -> 1050
-	1051 [label=PRINTF]
-	1050 -> 1051
-	1052 [label="salida incorrecta primer if relacionales2!!\n"]
-	1051 -> 1052
-	1053 [label=ELSE]
-	1035 -> 1053
-	1054 [label=IF]
-	1053 -> 1054
-	1055 [label=EXPRESION]
-	1054 -> 1055
-	1056 [label="EXPRESION BINARIA"]
-	1055 -> 1056
-	1057 [label="EXPRESION BINARIA"]
-	1056 -> 1057
-	1058 [label="EXPRESION BINARIA"]
-	1057 -> 1058
-	1059 [label=15]
-	1058 -> 1059
-	1060 [label="+"]
-	1058 -> 1060
-	1061 [label=8]
-	1058 -> 1061
-	1062 [label="=="]
-	1057 -> 1062
-	1063 [label="EXPRESION BINARIA"]
-	1057 -> 1063
-	1064 [label="EXPRESION BINARIA"]
-	1063 -> 1064
-	1065 [label="EXPRESION BINARIA"]
-	1064 -> 1065
-	1066 [label=22]
-	1065 -> 1066
-	1067 [label="-"]
-	1065 -> 1067
-	1068 [label=10]
-	1065 -> 1068
-	1069 [label="+"]
-	1064 -> 1069
-	1070 [label="EXPRESION BINARIA"]
-	1064 -> 1070
-	1071 [label=5]
-	1070 -> 1071
-	1072 [label="*"]
-	1070 -> 1072
-	1073 [label=3]
-	1070 -> 1073
-	1074 [label="-"]
-	1063 -> 1074
-	1075 [label=4]
-	1063 -> 1075
-	1076 [label="&&"]
-	1056 -> 1076
-	1077 [label="EXPRESION BINARIA"]
-	1056 -> 1077
-	1078 [label="EXPRESION BINARIA"]
-	1077 -> 1078
-	1079 [label=13]
-	1078 -> 1079
-	1080 [label="*"]
-	1078 -> 1080
-	1081 [label=0]
-	1078 -> 1081
-	1082 [label=">"]
-	1077 -> 1082
-	1083 [label="EXPRESION UNARIA"]
-	1077 -> 1083
-	1084 [label="-"]
-	1083 -> 1084
-	1085 [label=1]
-	1083 -> 1085
-	1086 [label=CUERPO]
-	1054 -> 1086
-	1087 [label=IF]
-	1086 -> 1087
-	1088 [label=EXPRESION]
-	1087 -> 1088
-	1089 [label="EXPRESION BINARIA"]
-	1088 -> 1089
-	1090 [label=10.0]
-	1089 -> 1090
-	1091 [label="!="]
-	1089 -> 1091
-	1092 [label="EXPRESION BINARIA"]
-	1089 -> 1092
-	1093 [label=11.0]
-	1092 -> 1093
-	1094 [label="-"]
-	1092 -> 1094
-	1095 [label=1.01]
-	1092 -> 1095
-	1096 [label=CUERPO]
-	1087 -> 1096
-	1097 [label=PRINTF]
-	1096 -> 1097
-	1098 [label="salida CORRECTA en relacionales2!!\n"]
-	1097 -> 1098
-	1099 [label=ASIGNACION]
-	1096 -> 1099
-	1100 [label=punteo]
-	1099 -> 1100
-	1101 [label="="]
-	1099 -> 1101
-	1102 [label=EXPRESION]
-	1099 -> 1102
-	1103 [label="EXPRESION BINARIA"]
-	1102 -> 1103
-	1104 [label=punteo]
-	1103 -> 1104
-	1105 [label="+"]
-	1103 -> 1105
-	1106 [label=5]
-	1103 -> 1106
-	1107 [label=ELSE]
-	1087 -> 1107
-	1108 [label=PRINTF]
-	1107 -> 1108
-	1109 [label="salida incorrecta segundo if relacionales 2!!\n"]
-	1108 -> 1109
-	1110 [label=ELSE]
-	1054 -> 1110
-	1111 [label=IF]
-	1110 -> 1111
-	1112 [label=EXPRESION]
-	1111 -> 1112
-	1113 [label="EXPRESION BINARIA"]
-	1112 -> 1113
-	1114 [label=1]
-	1113 -> 1114
-	1115 [label="=="]
-	1113 -> 1115
-	1116 [label=1]
-	1113 -> 1116
-	1117 [label=CUERPO]
-	1111 -> 1117
-	1118 [label=PRINTF]
-	1117 -> 1118
-	1119 [label="salida incorrecta relacionales 2 3er if !!\n"]
-	1118 -> 1119
-	1120 [label=ELSE]
-	1111 -> 1120
-	1121 [label=PRINTF]
-	1120 -> 1121
-	1122 [label="salida incorrecta relacionales 2 Sino3er if !!\n"]
-	1121 -> 1122
-	1123 [label=PRINTF]
-	1032 -> 1123
-	1124 [label="======================================\n"]
-	1123 -> 1124
-	1125 [label=FUNCION]
-	0 -> 1125
-	1126 [label=TIPO]
-	1125 -> 1126
-	1127 [label=TIPO]
-	1126 -> 1127
-	1128 [label=int]
-	1127 -> 1128
-	1129 [label=CUERPO]
-	1125 -> 1129
-	1130 [label=DECLARACION]
-	1129 -> 1130
-	1131 [label=TIPO]
-	1130 -> 1131
-	1132 [label=TIPO]
-	1131 -> 1132
-	1133 [label=int]
-	1132 -> 1133
-	1134 [label=DECLARACIONES]
-	1130 -> 1134
-	1135 [label="DECLARACION FINAL"]
-	1134 -> 1135
-	1136 [label=var1]
-	1135 -> 1136
-	1137 [label=EXPRESION]
-	1135 -> 1137
-	1138 [label=0]
-	1137 -> 1138
-	1139 [label=PRINTF]
-	1129 -> 1139
-	1140 [label="-----------------CALIFICACION-----------------\n"]
-	1139 -> 1140
-	1141 [label=IF]
-	1129 -> 1141
-	1142 [label=EXPRESION]
-	1141 -> 1142
-	1143 [label="EXPRESION BINARIA"]
-	1142 -> 1143
-	1144 [label=var1]
-	1143 -> 1144
-	1145 [label="!="]
-	1143 -> 1145
-	1146 [label=0]
-	1143 -> 1146
-	1147 [label=CUERPO]
-	1141 -> 1147
-	1148 [label=PRINTF]
-	1147 -> 1148
-	1149 [label="No se toma con prioridad la variable local ante la global\n"]
-	1148 -> 1149
-	1150 [label=PRINTF]
-	1147 -> 1150
-	1151 [label="Perdiste 5 puntos :c\n"]
-	1150 -> 1151
-	1152 [label=ELSE]
-	1141 -> 1152
-	1153 [label=ASIGNACION]
-	1152 -> 1153
-	1154 [label=punteo]
-	1153 -> 1154
-	1155 [label="="]
-	1153 -> 1155
-	1156 [label=EXPRESION]
-	1153 -> 1156
-	1157 [label="EXPRESION BINARIA"]
-	1156 -> 1157
-	1158 [label=punteo]
-	1157 -> 1158
-	1159 [label="+"]
-	1157 -> 1159
-	1160 [label=5]
-	1157 -> 1160
-	1161 [label=METODO]
-	1129 -> 1161
-	1162 [label=Declaracion]
-	1161 -> 1162
-	1163 [label=METODO]
-	1129 -> 1163
-	1164 [label=Aritmeticas]
-	1163 -> 1164
-	1165 [label=METODO]
-	1129 -> 1165
-	1166 [label=Logicas]
-	1165 -> 1166
-	1167 [label=METODO]
-	1129 -> 1167
-	1168 [label=Relacionales]
-	1167 -> 1168
-	1169 [label=PRINTF]
-	1129 -> 1169
-	1170 [label="punteo Final: %d\n"]
-	1169 -> 1170
-	1171 [label=punteo]
-	1169 -> 1171
-	1172 [label=PRINTF]
-	1129 -> 1172
-	1173 [label="FINNNNNNNN\n"]
-	1172 -> 1173
+	400 [label=RETURN]
+	35 -> 400
 }

@@ -6,12 +6,12 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-
 import recursos
 import os
 import pyperclip
 import webbrowser
 import tres_direcciones
+import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -43,7 +43,7 @@ class Ui_MainWindow(object):
     rutaArchivo = None
     errores_lexicos = []
     errores_sintacticos = []
-    interpretacion = None
+    generador = None
     instrucciones = None
 
     def setupUi(self, MainWindow):
@@ -144,6 +144,8 @@ class Ui_MainWindow(object):
         self.actionAcerca_de.setObjectName("actionAcerca_de")
         self.actionAST = QtWidgets.QAction(MainWindow)
         self.actionAST.setObjectName("actionAST")
+        self.actionOptimizaciones = QtWidgets.QAction(MainWindow)
+        self.actionOptimizaciones.setObjectName("actionOptimizaciones")
         self.menuArchivo.addAction(self.actionNuevo)
         self.menuArchivo.addAction(self.actionAbrir)
         self.menuArchivo.addSeparator()
@@ -161,6 +163,7 @@ class Ui_MainWindow(object):
         self.menuEjecutar.addAction(self.actionErrores)
         self.menuEjecutar.addAction(self.actionSimbolos)
         self.menuEjecutar.addAction(self.actionGramatical)
+        self.menuEjecutar.addAction(self.actionOptimizaciones)
         self.menuAyuda.addAction(self.actionAcerca_de)
         self.menubar.addAction(self.menuArchivo.menuAction())
         self.menubar.addAction(self.menuEditar.menuAction())
@@ -185,6 +188,8 @@ class Ui_MainWindow(object):
         self.actionAST.triggered.connect(lambda: self.ejecutarAST())
         self.actionErrores.triggered.connect(lambda: self.ejecutarErrores())
         self.actionSimbolos.triggered.connect(lambda: self.ejecutarSimbolos())
+        self.actionOptimizaciones.triggered.connect(
+            lambda: self.ejecutarOptimizaciones())
         self.actionGramatical.triggered.connect(
             lambda: self.ejecutarGramatical())
         self.actionAcerca_de.triggered.connect(lambda: self.ayudaAcercaDe())
@@ -263,15 +268,29 @@ class Ui_MainWindow(object):
         self.actionAST.setText(_translate("MainWindow", "AST"))
         self.actionAST.setStatusTip(_translate("MainWindow", "Reporte de AST"))
         self.actionAST.setShortcut(_translate("MainWindow", "F5"))
+        self.actionOptimizaciones.setText(
+            _translate("MainWindow", "Optimizaciones"))
+        self.actionOptimizaciones.setStatusTip(
+            _translate("MainWindow", "Reporte de optimizaciones"))
+        self.actionOptimizaciones.setShortcut(_translate("MainWindow", "F9"))
 
     def archivoNuevo(self):
         self.rutaArchivo = None
+        self.errores_lexicos = []
+        self.errores_sintacticos = []
+        self.generador = None
+        self.instrucciones = None
         self.textEdit.setText("")
         self.label.setText("Untitled-1")
         self.plainTextEdit.setPlainText(
             "MinorC IDE\nCopyright (C) Guillermo Peitzner, Todos los derechos reservados.\n")
 
     def archivoAbrir(self):
+        self.rutaArchivo = None
+        self.errores_lexicos = []
+        self.errores_sintacticos = []
+        self.generador = None
+        self.instrucciones = None
         rutaArchivo = QtWidgets.QFileDialog.getOpenFileName()
         if(rutaArchivo[0]):
             with open(rutaArchivo[0], "r") as archivo:
@@ -312,11 +331,15 @@ class Ui_MainWindow(object):
 
     def archivoCerrar(self):
         self.rutaArchivo = None
+        self.errores_lexicos = []
+        self.errores_sintacticos = []
+        self.generador = None
+        self.instrucciones = None
         self.textEdit.setText("")
         self.label.setText("Untitled-1")
 
     def archivoSalir(self):
-        quit()
+        sys.exit()
 
     def editarCopiar(self):
         pyperclip.copy(str(self.textEdit.toPlainText()))
@@ -331,32 +354,37 @@ class Ui_MainWindow(object):
     def ejecutarAscendente(self):
         self.erroresLexicos = []
         self.erroresSintacticos = []
-        self.interpretacion = None
+        self.generador = None
         self.instrucciones = None
         if self.textEdit.toPlainText():
             self.plainTextEdit.appendPlainText(
-                "\nascendente.py "+self.label.text())
+                "\nMINOR.C ascendente.py "+self.label.text())
             import ascendente as ascendente
-            instrucciones = ascendente.parse(self.textEdit.toPlainText(
+            self.instrucciones = ascendente.parse(self.textEdit.toPlainText(
             ), self.erroresLexicos, self.erroresSintacticos, self.plainTextEdit)
-            if instrucciones:
+            if self.instrucciones:
                 self.plainTextEdit.appendPlainText(
-                    "interprete.py ascendente.out\n")
-                generador = tres_direcciones.TresDirecciones(
-                        self.plainTextEdit, instrucciones)
-                generador.generar_codigo()
-                #generador.graficar_ast(instrucciones)
-                # try:
-                #     generador = tres_direcciones.TresDirecciones(
-                #         self.plainTextEdit, instrucciones)
-                #     generador.generar_codigo()
-                # except Exception as ex:
-                #     print(ex)
-                #     self.plainTextEdit.appendPlainText(
-                #         "ERROR: Error de ejecución.")
+                    "MINOR.C tres_direcciones.py ascendente.out\n")
+                try:
+                    self.generador = tres_direcciones.TresDirecciones(
+                        self.plainTextEdit, self.instrucciones)
+                    self.generador.generar_codigo()
+                except Exception as ex:
+                    print(ex)
+                    self.plainTextEdit.appendPlainText(
+                        "ERROR: Error de ejecución.")
 
     def ejecutarAST(self):
-        print("AST")
+        if self.generador:
+            try:
+                self.generador.graficar_ast(self.instrucciones)
+            except Exception as ex:
+                print(ex)
+                self.plainTextEdit.appendPlainText(
+                    "ERROR: No se pudo generar el reporte.")
+        else:
+            self.plainTextEdit.appendPlainText(
+                "ERROR: Reporte no disponible.")
 
     def ejecutarErrores(self):
         if len(self.erroresLexicos) > 0 or len(self.erroresSintacticos) > 0:
@@ -404,7 +432,14 @@ class Ui_MainWindow(object):
         print("Simbolos")
 
     def ejecutarGramatical(self):
-        print("Gramatical")
+        if self.instrucciones:
+            webbrowser.open('file://'+os.path.realpath("gramatical.html"))
+        else:
+            self.plainTextEdit.appendPlainText(
+                "ERROR: Reporte no disponible.")
+
+    def ejecutarOptimizaciones(self):
+        print("optimizaciones")
 
     def ayudaAcercaDe(self):
         self.plainTextEdit.appendPlainText(
