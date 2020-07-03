@@ -186,10 +186,19 @@ def p_init(t):
     '''
     t[0] = t[1]
     global gramatical
+    gramaticalTemporal = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Gramatical</title></head><body>'
+    gramaticalTemporal += '<center><h1>Gramatical</h1>'
+    gramaticalTemporal += '<table border="1"><tr><th>Produccion</th><th>Regla</th></th>'
     gramatical += '<tr>'
     gramatical += '<td>INIT -> CUERPO_GLOBAL</td>'
     gramatical += '<td>INIT.VAL = CUERPO_GLOBAL.VAL;</td>'
     gramatical += '</tr>'
+    gramaticalTemporal += gramatical
+    gramaticalTemporal += '</table><center>'
+    gramaticalTemporal += '</body></html>'
+    f = open("gramatical.html", "w")
+    f.write(gramaticalTemporal)
+    f.close()
 
 
 def p_cuerpo_global(t):
@@ -493,7 +502,7 @@ def p_instruccion_local_print(t):
     global gramatical
     gramatical += '<tr>'
     gramatical += '<td>PRINT -> printf ( LISTA_EXPRESIONES )</td>'
-    gramatical += '<td>PRINT.VAL = PrintF(LISTA_EXPRESIONES.VAL, lineno)</td>'
+    gramatical += '<td>PRINT.VAL = PrintF(LISTA_EXPRESIONES.VAL, lineno);</td>'
     gramatical += '</tr>'
 
 
@@ -1128,8 +1137,8 @@ def p_expresion_ternaria(t):
     t[0] = clases.ExpresionTernaria(t[1], t[3], t[5])
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> EXPRESION1 ? EXPRESION2 : EXPRESION3</td>'
+    gramatical += '<td>EXPRESION.VAL = ExpresionTernaria(EXPRESION1, EXPRESION2, EXPRESION3);</td>'
     gramatical += '</tr>'
 
 
@@ -1142,8 +1151,8 @@ def p_expresion_unaria(t):
     t[0] = clases.ExpresionUnaria(t[1], t[2])
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> [-|!|~] EXPRESION1</td>'
+    gramatical += '<td>EXPRESION.VAL = ExpresionUnaria([-|!|~], EXPRESION1);</td>'
     gramatical += '</tr>'
 
 
@@ -1154,8 +1163,8 @@ def p_expresion_referencia(t):
     t[0] = clases.ExpresionReferencia(t[2])
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> & identificador</td>'
+    gramatical += '<td>EXPRESION.VAL = ExpresionReferencia(identificador);</td>'
     gramatical += '</tr>'
 
 
@@ -1166,8 +1175,8 @@ def p_expresion_metodo(t):
     t[0] = t[1]
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> METODO</td>'
+    gramatical += '<td>EXPRESION.VAL = METODO.VAL;</td>'
     gramatical += '</tr>'
 
 
@@ -1178,8 +1187,8 @@ def p_expresion_parentesis(t):
     t[0] = t[2]
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> ( EXPRESION1 )</td>'
+    gramatical += '<td>EXPRESION.VAL = EXPRESION1.VAL;</td>'
     gramatical += '</tr>'
 
 
@@ -1190,8 +1199,8 @@ def p_expresion_estructura(t):
     t[0] = clases.ExpresionEstructura(t[1], t[2], t[4], t[5])
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> identificador INDICES . identificador INDICES</td>'
+    gramatical += '<td>EXPRESION.VAL = ExpresionEstructura(identificador, INDICES.VAL, identificador, INDICES.VAL);</td>'
     gramatical += '</tr>'
 
 
@@ -1202,8 +1211,8 @@ def p_expresion_identificador_arreglo(t):
     t[0] = clases.ExpresionIdentificadorArreglo(t[1], t[2])
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> identificador ACCESOS</td>'
+    gramatical += '<td>EXPRESION.VAL = ExpresionIdentificadorArreglo(identificador, ACCESOS);</td>'
     gramatical += '</tr>'
 
 
@@ -1214,8 +1223,8 @@ def p_expresion_expresiones(t):
     t[0] = clases.ExpresionElementos(t[2])
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> { EXPRESIONES }</td>'
+    gramatical += '<td>EXPRESION.VAL = ExpresionElementos(EXPRESIONES.VAL);</td>'
     gramatical += '</tr>'
 
 
@@ -1226,8 +1235,8 @@ def p_expresion_sizeof(t):
     t[0] = clases._SizeOf(t[3])
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> sizeof ( TIPO ) </td>'
+    gramatical += '<td>EXPRESION.VAL = SizeOf(TIPO.VAL);</td>'
     gramatical += '</tr>'
 
 
@@ -1238,8 +1247,8 @@ def p_expresion_aumento_post(t):
     t[0] = clases.ExpresionAumentoDecremento(t[1], t[2], 'post')
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> identificador ++</td>'
+    gramatical += '<td>EXPRESION.VAL = ExpresionAumentoDecremento(identificador, ++, post);</td>'
     gramatical += '</tr>'
 
 
@@ -1250,8 +1259,8 @@ def p_expresion_aumento_pre(t):
     t[0] = clases.ExpresionAumentoDecremento(t[2], t[1], 'pre')
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> ++ identificador</td>'
+    gramatical += '<td>EXPRESION.VAL = ExpresionAumentoDecremento(identificador, ++, pre);</td>'
     gramatical += '</tr>'
 
 
@@ -1262,8 +1271,8 @@ def p_expresion_decremento_post(t):
     t[0] = clases.ExpresionAumentoDecremento(t[1], t[2], 'post')
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> identificador --</td>'
+    gramatical += '<td>EXPRESION.VAL = ExpresionAumentoDecremento(identificador, --, post);</td>'
     gramatical += '</tr>'
 
 
@@ -1274,8 +1283,8 @@ def p_expresion_decremento_pre(t):
     t[0] = clases.ExpresionAumentoDecremento(t[2], t[1], 'pre')
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> -- identificador</td>'
+    gramatical += '<td>EXPRESION.VAL = ExpresionAumentoDecremento(identificador, --, pre);</td>'
     gramatical += '</tr>'
 
 
@@ -1286,8 +1295,8 @@ def p_expresion_scanf(t):
     t[0] = clases.ExpresionScan()
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> scanf ( )</td>'
+    gramatical += '<td>EXPRESION.VAL = ExpresionScan();</td>'
     gramatical += '</tr>'
 
 
@@ -1298,8 +1307,8 @@ def p_expresion_casteo(t):
     t[0] = clases.ExpresionCasteo(t[2], t[4])
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> ( TIPO ) EXPRESION</td>'
+    gramatical += '<td>EXPRESION.VAL = ExpresionCasteo(TIPO.VAL, EXPRESION.VAL);</td>'
     gramatical += '</tr>'
 
 
@@ -1308,8 +1317,8 @@ def p_expresion_caracter(t):
     t[0] = clases.Caracter(t[1])
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> caracter</td>'
+    gramatical += '<td>EXPRESION.VAL = caracter;</td>'
     gramatical += '</tr>'
 
 
@@ -1318,8 +1327,8 @@ def p_expresion_cadena(t):
     t[0] = clases.Cadena(t[1])
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> cadena</td>'
+    gramatical += '<td>EXPRESION.VAL = cadena;</td>'
     gramatical += '</tr>'
 
 
@@ -1328,8 +1337,8 @@ def p_expresion_entero(t):
     t[0] = clases.Entero(t[1])
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> entero</td>'
+    gramatical += '<td>EXPRESION.VAL = entero;</td>'
     gramatical += '</tr>'
 
 
@@ -1338,8 +1347,8 @@ def p_expresion_decimal(t):
     t[0] = clases.Decimal(t[1])
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> decimal</td>'
+    gramatical += '<td>EXPRESION.VAL = decimal;</td>'
     gramatical += '</tr>'
 
 
@@ -1348,8 +1357,8 @@ def p_expresion_identificador(t):
     t[0] = clases.Identificador(t[1])
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESION -> identificador</td>'
+    gramatical += '<td>EXPRESION.VAL = identificador;</td>'
     gramatical += '</tr>'
 
 
@@ -1360,8 +1369,8 @@ def p_expresiones(t):
     t[0] = t[1]
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESIONES -> LISTA_EXPRESIONES</td>'
+    gramatical += '<td>EXPRESIONES.VAL = LISTA_EXPRESIONES.VAL</td>'
     gramatical += '</tr>'
 
 
@@ -1372,8 +1381,8 @@ def p_expresiones_vacio(t):
     t[0] = None
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>EXPRESIONES -> </td>'
+    gramatical += '<td>EXPRESIONES.VAL = NONE;</td>'
     gramatical += '</tr>'
 
 
@@ -1385,8 +1394,8 @@ def p_lista_expresiones_lista(t):
     t[0] = t[1]
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>LISTA_EXPRESIONES -> LISTA_EXPRESIONES1 , EXPRESION</td>'
+    gramatical += '<td>LISTA_EXPRESIONES1.ADD(EXPRESION.VAL); LISTA_EXPRESIONES.VAL = LISTA_EXPRESIONES1.VAL;</td>'
     gramatical += '</tr>'
 
 
@@ -1397,8 +1406,8 @@ def p_lista_expresiones_expresion(t):
     t[0] = [t[1]]
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>LISTA_EXPRESIONES -> EXPRESION</td>'
+    gramatical += '<td>LISTA_EXPRESIONES.VAL = Lista(EXPRESION.VAL);</td>'
     gramatical += '</tr>'
 
 
@@ -1413,8 +1422,8 @@ def p_tipo(t):
     t[0] = clases.Tipo(t[1], None)
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>TIPO -> int | char | double | float | void</td>'
+    gramatical += '<td>TIPO.VAL = Tipo([int|char|double|float|void], None);</td>'
     gramatical += '</tr>'
 
 
@@ -1425,8 +1434,8 @@ def p_tipo_struct(t):
     t[0] = clases.Tipo(t[1], t[2])
     global gramatical
     gramatical += '<tr>'
-    gramatical += '<td>'+'</td>'
-    gramatical += '<td>'+'</td>'
+    gramatical += '<td>TIPO -> struct identificador</td>'
+    gramatical += '<td>TIPO.VAL = Tipo(struct, identificador);</td>'
     gramatical += '</tr>'
 
 
