@@ -12,6 +12,7 @@ import pyperclip
 import webbrowser
 import tres_direcciones
 import sys
+import interprete
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -286,11 +287,6 @@ class Ui_MainWindow(object):
             "MinorC IDE\nCopyright (C) Guillermo Peitzner, Todos los derechos reservados.\n")
 
     def archivoAbrir(self):
-        self.rutaArchivo = None
-        self.errores_lexicos = []
-        self.errores_sintacticos = []
-        self.generador = None
-        self.instrucciones = None
         rutaArchivo = QtWidgets.QFileDialog.getOpenFileName()
         if(rutaArchivo[0]):
             with open(rutaArchivo[0], "r") as archivo:
@@ -358,21 +354,38 @@ class Ui_MainWindow(object):
         self.instrucciones = None
         if self.textEdit.toPlainText():
             self.plainTextEdit.appendPlainText(
-                "\nMINOR.C ascendente.py "+self.label.text())
+                "\n[MINOR.C] ascendente.py "+self.label.text())
             import ascendente as ascendente
             self.instrucciones = ascendente.parse(self.textEdit.toPlainText(
             ), self.erroresLexicos, self.erroresSintacticos, self.plainTextEdit)
             if self.instrucciones:
                 self.plainTextEdit.appendPlainText(
-                    "MINOR.C tres_direcciones.py ascendente.out\n")
+                    "[MINOR.C] tres_direcciones.py ascendente.out")
                 try:
                     self.generador = tres_direcciones.TresDirecciones(
                         self.plainTextEdit, self.instrucciones)
                     self.generador.generar_codigo()
+                    if not self.generador.detener_ejecucion:
+                        self.plainTextEdit.appendPlainText(
+                            "[AUGUS] ascendente_augus.py tres_direcciones.out")
+                        import ascendente_augus as ascendente_augus
+                        instrucciones_augus = ascendente_augus.parse(
+                            self.generador.codigo3d, [], [], self.plainTextEdit)
+                        if instrucciones_augus:
+                            self.plainTextEdit.appendPlainText(
+                                "[AUGUS] interprete.py ascendente_augus.out\n\n")
+                            try:
+                                interpretacion_augus = interprete.Interprete(
+                                    self.plainTextEdit)
+                                interpretacion_augus.procesar(
+                                    instrucciones_augus)
+                            except:
+                                self.plainTextEdit.appendPlainText(
+                                    "[AUGUS] ERROR: Error de ejecución.")
                 except Exception as ex:
                     print(ex)
                     self.plainTextEdit.appendPlainText(
-                        "ERROR: Error de ejecución.")
+                        "[MINOR.C] ERROR: Error de ejecución.")
 
     def ejecutarAST(self):
         if self.generador:
