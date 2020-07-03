@@ -177,12 +177,19 @@ precedence = (('left', 'coma'), ('right', 'NIVEL14'), ('right', 'NIVEL13'),
               ('left', 'asterisco', 'division', 'porcentaje'), ('right', 'NIVEL2'),
               ('left', 'parentesis_abre', 'parentesis_cierra', 'corchete_abre', 'corchete_cierra'))
 
+gramatical = ''
+
 
 def p_init(t):
     '''
     INIT   :   CUERPO_GLOBAL
     '''
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>INIT -> CUERPO_GLOBAL</td>'
+    gramatical += '<td>INIT.VAL = CUERPO_GLOBAL.VAL;</td>'
+    gramatical += '</tr>'
 
 
 def p_cuerpo_global(t):
@@ -190,6 +197,11 @@ def p_cuerpo_global(t):
     CUERPO_GLOBAL   :   LISTA_GLOBAL
     '''
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>CUERPO_GLOBAL -> LISTA_GLOBAL</td>'
+    gramatical += '<td>CUERPO_GLOBAL.VAL = LISTA_GLOBAL.VAL;</td>'
+    gramatical += '</tr>'
 
 
 def p_cuerpo_global_vacio(t):
@@ -197,6 +209,11 @@ def p_cuerpo_global_vacio(t):
     CUERPO_GLOBAL   :
     '''
     t[0] = None
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>CUERPO_GLOBAL -> </td>'
+    gramatical += '<td>CUERPO_GLOBAL.VAL = NONE;</td>'
+    gramatical += '</tr>'
 
 
 def p_lista_global_lista(t):
@@ -205,6 +222,11 @@ def p_lista_global_lista(t):
     '''
     t[1].append(t[2])
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>LISTA_GLOBAL -> LISTA_GLOBAL1 INSTRUCCION_GLOBAL</td>'
+    gramatical += '<td>LISTA_GLOBAL1.ADD(INSTRUCCION_GLOBAL); LISTA_GLOBAL.VAL = LISTA_GLOBAL1.VAL;</td>'
+    gramatical += '</tr>'
 
 
 def p_lista_global_instruccion(t):
@@ -212,6 +234,11 @@ def p_lista_global_instruccion(t):
     LISTA_GLOBAL    :   INSTRUCCION_GLOBAL
     '''
     t[0] = [t[1]]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>LISTA_GLOBAL -> INSTRUCCION_GLOBAL</td>'
+    gramatical += '<td>LISTA_GLOBAL.VAL = Lista(INSTRUCCION_GLOBAL.VAL);</td>'
+    gramatical += '</tr>'
 
 
 def p_instruccion_global(t):
@@ -221,6 +248,11 @@ def p_instruccion_global(t):
                         |   FUNCION
     '''
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>INSTRUCCION_GLOBAL -> DECLARACION; | ESTRUCTURA ; | FUNCION</td>'
+    gramatical += '<td>INSTRUCCION_GLOBAL.VAL = DECLARACION.VAL | ESTRUCTURA.VAL | FUNCION.VAL;</td>'
+    gramatical += '</tr>'
 
 
 def p_estructura(t):
@@ -228,6 +260,11 @@ def p_estructura(t):
     ESTRUCTURA  :   _struct identificador llave_abre CARACTERISTICAS llave_cierra
     '''
     t[0] = clases.Estructura(t[2], t[4], str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>ESTRUCTURA -> struct identificador { CARACTERISTICAS }</td>'
+    gramatical += '<td>ESTRUCTURA.VAL = Estructura(identificador, CARACTERISTICAS.VAL, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_caracteristicas(t):
@@ -235,6 +272,11 @@ def p_caracteristicas(t):
     CARACTERISTICAS :   LISTA_CARACTERISTICAS
     '''
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>CARACTERISTICAS -> LISTA_CARACTERISTICAS</td>'
+    gramatical += '<td>CARACTERTISCIAS.VAL = LISTA_CARACTERISTICAS.VAL;</td>'
+    gramatical += '</tr>'
 
 
 def p_caracteristicas_vacio(t):
@@ -242,6 +284,11 @@ def p_caracteristicas_vacio(t):
     CARACTERISTICAS :
     '''
     t[0] = None
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>CARACTERISTICAS -> </td>'
+    gramatical += '<td>CARACTERTISICAS.VAL = NONE;</td>'
+    gramatical += '</tr>'
 
 
 def p_lista_caracteristicas_lista(t):
@@ -250,6 +297,11 @@ def p_lista_caracteristicas_lista(t):
     '''
     t[1].append(t[2])
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>LISTA_CARACTERISTICAS -> LISTA_CARACTERISTICAS CARACTERISTICA</td>'
+    gramatical += '<td>LISTA_CARACTERISTICAS1.APPEND(CARACTERISTICA.VAL); LISTA_CARACTERISTICAS.VAL = LISTA_CARACTERISTICAS1.VAL;</td>'
+    gramatical += '</tr>'
 
 
 def p_lista_caracteristicas_caracteristica(t):
@@ -257,6 +309,11 @@ def p_lista_caracteristicas_caracteristica(t):
     LISTA_CARACTERISTICAS : CARACTERISTICA
     '''
     t[0] = [t[1]]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>LISTA_CARACTERITISCAS -> CARACTERISTICA</td>'
+    gramatical += '<td>LISTA_CARACTERISTICAS.VAL = Lista(CARACTERISTICA.VAL);</td>'
+    gramatical += '</tr>'
 
 
 def p_caracteristica(t):
@@ -264,6 +321,11 @@ def p_caracteristica(t):
     CARACTERISTICA  :   DECLARACION punto_coma
     '''
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>CARACTERISTICA -> DECLARACION;</td>'
+    gramatical += '<td>CARACTERISTICA.VAL = DECLARACION.VAL;</td>'
+    gramatical += '</tr>'
 
 
 def p_funcion(t):
@@ -271,6 +333,11 @@ def p_funcion(t):
     FUNCION    :   TIPO identificador parentesis_abre PARAMETROS parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     '''
     t[0] = clases.Funcion(t[1], t[2], t[4], t[7])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>FUNCION -> TIPO identificador ( PARAMETROS ) { CUERPO_LOCAL }</td>'
+    gramatical += '<td>FUNCION.VAL = Funcion(TIPO.VAL, identificador, PARAMETROS.VAL, CUERPO.VAL);</td>'
+    gramatical += '</tr>'
 
 
 def p_parametros(t):
@@ -278,6 +345,11 @@ def p_parametros(t):
     PARAMETROS  :   LISTA_PARAMETROS
     '''
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>PARAMETROS -> LISTA_PARAMETROS</td>'
+    gramatical += '<td>PARAMETROS.VAL = LISTA_PARAMETROS.VAL</td>'
+    gramatical += '</tr>'
 
 
 def p_parametros_vacio(t):
@@ -285,6 +357,11 @@ def p_parametros_vacio(t):
     PARAMETROS  :
     '''
     t[0] = None
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>PARAMETROS -> </td>'
+    gramatical += '<td>PARAMETROS.VAL = NONE;</td>'
+    gramatical += '</tr>'
 
 
 def p_lista_parametros_lista(t):
@@ -293,6 +370,11 @@ def p_lista_parametros_lista(t):
     '''
     t[1].append(t[3])
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>LISTA_PARAMETROS -> LISTA_PARAMETROS1 , PARAMETRO</td>'
+    gramatical += '<td>LISTA_PARAMETROS1.ADD(PARAMETRO.VAL); LISTA_PARAMETROS.VAL = LISTA_PARAMETROS1.VAL;</td>'
+    gramatical += '</tr>'
 
 
 def p_lista_parametros_parametro(t):
@@ -300,6 +382,11 @@ def p_lista_parametros_parametro(t):
     LISTA_PARAMETROS    :   PARAMETRO
     '''
     t[0] = [t[1]]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>LISTA_PARAMETROS -> PARAMETRO</td>'
+    gramatical += '<td>LISTA_PARAMETROS.VAL = Lista(PARAMETRO.VAL);</td>'
+    gramatical += '</tr>'
 
 
 def p_parametro(t):
@@ -307,6 +394,11 @@ def p_parametro(t):
     PARAMETRO   :   TIPO identificador
     '''
     t[0] = clases.Parametro(t[1], False, t[2])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>PARAMETRO -> TIPO identificador</td>'
+    gramatical += '<td>PARAMETRO.VAL = Parametro(TIPO.VAL, false, identificador);</td>'
+    gramatical += '</tr>'
 
 
 def p_parametro_apuntador(t):
@@ -314,6 +406,11 @@ def p_parametro_apuntador(t):
     PARAMETRO   :   TIPO et identificador
     '''
     t[0] = clases.Parametro(t[1], True, t[3])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>PARAMETRO -> TIPO & identificador</td>'
+    gramatical += '<td>PARAMETRO.VAL = Parametro(TIPO.VAL, true, identificador);</td>'
+    gramatical += '</tr>'
 
 
 def p_cuerpo_local(t):
@@ -321,6 +418,11 @@ def p_cuerpo_local(t):
     CUERPO_LOCAL    :   LISTA_LOCAL
     '''
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>CUERPO_LOCAL -> LISTA_LOCAL</td>'
+    gramatical += '<td>CUERPO_LOCAL.VAL = LISTA_LOCAL.VAL;</td>'
+    gramatical += '</tr>'
 
 
 def p_cuerpo_local_vacio(t):
@@ -328,6 +430,11 @@ def p_cuerpo_local_vacio(t):
     CUERPO_LOCAL    :
     '''
     t[0] = None
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>CUERPO_LOCAL -> </td>'
+    gramatical += '<td>CUERPO_LOCAL.VAL = NONE;</td>'
+    gramatical += '</tr>'
 
 
 def p_lista_local(t):
@@ -336,6 +443,11 @@ def p_lista_local(t):
     '''
     t[1].append(t[2])
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>LISTA_LOCAL -> LISTA_LOCAL1 INSTRUCCION_LOCAL</td>'
+    gramatical += '<td>LISTA_LOCAL1.ADD(INSTRUCCION_LOCAL.VAL); LISTA_LOCAL.VAL = LISTA_LOCAL1.VAL;</td>'
+    gramatical += '</tr>'
 
 
 def p_lista_local_instruccion(t):
@@ -343,6 +455,11 @@ def p_lista_local_instruccion(t):
     LISTA_LOCAL :   INSTRUCCION_LOCAL
     '''
     t[0] = [t[1]]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>LISTA_LOCAL -> INSTRUCCION_LOCAL</td>'
+    gramatical += '<td>LISTA_LOCAL.VAL = Lista(INSTRUCCION_LOCAL.VAL);</td>'
+    gramatical += '</tr>'
 
 
 def p_instruccion_local(t):
@@ -361,6 +478,11 @@ def p_instruccion_local(t):
 
     '''
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>INSTRUCCION_LOCAL -> ETIQUETA | SALTO | DECLARACION ; | ASIGNACION ; | IF | SWITCH | WHILE | DO | FOR | PRINT ; | METODO ;</td>'
+    gramatical += '<td>INSTRUCCION_LOCAL.VAL = ETIQUETA.VAL | SALTO.VAL | DECLARACION.VAL | ASIGNACION.VAL | IF.VAL | SWITCH.VAL | WHILE.VAL | DO.VAL | FOR.VAL | PRINT.VAL | METODO.VAL;</td>'
+    gramatical += '</tr>'
 
 
 def p_instruccion_local_print(t):
@@ -368,6 +490,11 @@ def p_instruccion_local_print(t):
     PRINT   :   _printf parentesis_abre LISTA_EXPRESIONES parentesis_cierra
     '''
     t[0] = clases._PrintF(t[3], str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>PRINT -> printf ( LISTA_EXPRESIONES )</td>'
+    gramatical += '<td>PRINT.VAL = PrintF(LISTA_EXPRESIONES.VAL, lineno)</td>'
+    gramatical += '</tr>'
 
 
 def p_instruccion_local_continue(t):
@@ -375,6 +502,11 @@ def p_instruccion_local_continue(t):
     INSTRUCCION_LOCAL   :   _continue punto_coma
     '''
     t[0] = clases._Continue(str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>INSTRUCCION_LOCAL -> continue;</td>'
+    gramatical += '<td>INSTRUCCION_LOCAL.VAL = Continue(lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_instruccion_local_break(t):
@@ -382,6 +514,11 @@ def p_instruccion_local_break(t):
     INSTRUCCION_LOCAL   :   _break punto_coma
     '''
     t[0] = clases._Break(str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>INSTRUCCION_LOCAL -> break;</td>'
+    gramatical += '<td>INSTRUCCION_LOCAL.VAL = Break(lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_instruccion_local_return(t):
@@ -389,6 +526,11 @@ def p_instruccion_local_return(t):
     INSTRUCCION_LOCAL   :   _return EXPRESION punto_coma
     '''
     t[0] = clases._Return(t[2], str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>INSTRUCCION_LOCAL -> return EXPRESION;</td>'
+    gramatical += '<td>INSTRUCCION_LOCAL.VAL = Return(EXPRESION.val, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_instruccion_local_return_vacio(t):
@@ -396,6 +538,11 @@ def p_instruccion_local_return_vacio(t):
     INSTRUCCION_LOCAL   :   _return punto_coma
     '''
     t[0] = clases._Return(None, str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>INSTRUCCION_LOCAL -> return;</td>'
+    gramatical += '<td>INSTRUCCION_LOCAL.VAL = Return(NONE, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_metodo(t):
@@ -403,6 +550,11 @@ def p_metodo(t):
     METODO  :   identificador parentesis_abre EXPRESIONES parentesis_cierra 
     '''
     t[0] = clases.Metodo(t[1], t[3], str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>METODO -> identificador ( EXPRESIONES )</td>'
+    gramatical += '<td>METODO.VAL = Metodo(identidicador, EXPRESIONES.VAL, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_etiqueta(t):
@@ -410,6 +562,11 @@ def p_etiqueta(t):
     ETIQUETA    :   identificador dos_puntos
     '''
     t[0] = clases.Etiqueta(t[1], str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>ETIQUETA -> identificador:</td>'
+    gramatical += '<td>EITQUETA.VAL = Etiqueta(identificador, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_salto(t):
@@ -417,6 +574,11 @@ def p_salto(t):
     SALTO   :   _goto identificador punto_coma
     '''
     t[0] = clases.Salto(t[2], str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>SALTO -> goto identificador;</td>'
+    gramatical += '<td>SALTO.VAL = Salto(identificador, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_declaracion(t):
@@ -424,6 +586,11 @@ def p_declaracion(t):
     DECLARACION :   TIPO LISTA_DECLARACION
     '''
     t[0] = clases.Declaracion(t[1], t[2])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>DECLARACION -> TIPO LISTA_DECLARACION</td>'
+    gramatical += '<td>DECLARACION.VAL = Declaracion(TIPO.VAL, LISTA_DECLARACION.VAL);</td>'
+    gramatical += '</tr>'
 
 
 def p_lista_declaracion_lista(t):
@@ -432,6 +599,11 @@ def p_lista_declaracion_lista(t):
     '''
     t[1].append(t[3])
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>LISTA_DECLARACION -> LISTA_DECLARACION1 , DECLARACION_FINAL</td>'
+    gramatical += '<td>LISTA_DECLARACION1.ADD(DECLARACION_FINAL.VAL); LISTA_DECLARACION.VAL = LISTA_DECLARACION1.VAL;</td>'
+    gramatical += '</tr>'
 
 
 def p_lista_declaracion_declaracion(t):
@@ -439,6 +611,11 @@ def p_lista_declaracion_declaracion(t):
     LISTA_DECLARACION   :   DECLARACION_FINAL
     '''
     t[0] = [t[1]]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>LISTA_DECLARACION -> DECLARACION_FINAL</td>'
+    gramatical += '<td>LISTA_DEDCLARACION.VAL = Lista(DECLARACION_FINAL.VAL);</td>'
+    gramatical += '</tr>'
 
 
 def p_declaracion_final(t):
@@ -446,6 +623,11 @@ def p_declaracion_final(t):
     DECLARACION_FINAL   :   identificador INDICES
     '''
     t[0] = clases.DeclaracionFinal(t[1], t[2], None, str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>DECLARACION_FINAL -> identificador INDICES</td>'
+    gramatical += '<td>DECLARACION_FINAL.VAL = DeclaracionFinal(identificador, INDICES.VAL, NONE, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_declaracion_final_expresion(t):
@@ -453,6 +635,11 @@ def p_declaracion_final_expresion(t):
     DECLARACION_FINAL   :   identificador INDICES igual EXPRESION
     '''
     t[0] = clases.DeclaracionFinal(t[1], t[2], t[4], str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>DECLARACION_FINAL -> identificador INDICES = EXPRESION</td>'
+    gramatical += '<td>DECLARACION_FINAL.VAL = DeclaracionFinal(identificador, INDICES.VAL, EXPRESIONES.VAL, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_indices(t):
@@ -460,6 +647,11 @@ def p_indices(t):
     INDICES :   ACCESOS
     '''
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>INDICES -> ACCESOS</td>'
+    gramatical += '<td>INDICES.VAL = ACCESOS.VAL</td>'
+    gramatical += '</tr>'
 
 
 def p_indices_vacio(t):
@@ -467,6 +659,11 @@ def p_indices_vacio(t):
     INDICES :
     '''
     t[0] = None
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>INDICES -> </td>'
+    gramatical += '<td>INDICES.VAL = NONE;</td>'
+    gramatical += '</tr>'
 
 
 def p_accesos_lista(t):
@@ -475,6 +672,11 @@ def p_accesos_lista(t):
     '''
     t[1].append(t[2])
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>ACCESOS -> ACCESOS1 ACCESO</td>'
+    gramatical += '<td>ACCESOS1.ADD(ACCESO.VAL); ACCESOS.VAL = ACCESOS1.VAL;</td>'
+    gramatical += '</tr>'
 
 
 def p_accesos_acceso(t):
@@ -482,6 +684,11 @@ def p_accesos_acceso(t):
     ACCESOS :   ACCESO
     '''
     t[0] = [t[1]]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>ACCESOS -> ACCESO</td>'
+    gramatical += '<td>ACCESOS.VAL = Lista(ACCESO.VAL);</td>'
+    gramatical += '</tr>'
 
 
 def p_acceso(t):
@@ -489,6 +696,11 @@ def p_acceso(t):
     ACCESO  :   corchete_abre EXPRESION corchete_cierra 
     '''
     t[0] = t[2]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>ACCESO -> [ EXPRESION ] </td>'
+    gramatical += '<td>ACCESO.VAL = EXPRESION.VAL;</td>'
+    gramatical += '</tr>'
 
 
 def p_acceso_vacio(t):
@@ -496,6 +708,11 @@ def p_acceso_vacio(t):
     ACCESO : corchete_abre corchete_cierra
     '''
     t[0] = []
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>ACCESO -> [ ]</td>'
+    gramatical += '<td>ACCESO.VAL = Lista();</td>'
+    gramatical += '</tr>'
 
 
 def p_asignacion_normal(t):
@@ -504,6 +721,11 @@ def p_asignacion_normal(t):
     '''
     t[0] = clases.AsignacionNormal(
         t[1], t[2], t[3], t[4], str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>ASIGNACION -> identificador INDICES COMPUESTO EXPRESION</td>'
+    gramatical += '<td>ASIGNACION.VAL = AsignacionNormal(identificador, INDICES.VAL, COMPUESTO.VAL, EXPRESION.VAL, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_asignacion_estructura(t):
@@ -512,6 +734,11 @@ def p_asignacion_estructura(t):
     '''
     t[0] = clases.AsignacionEstructura(
         t[1], t[2], t[4], t[5], t[6], t[7], str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>ASIGNACION -> identificador INDICES . identificador INDICES COMPUESTO EXPRESION</td>'
+    gramatical += '<td>ASIGNACION.VAL = AsignacionEstructura(identificador, INDICES.VAL, identificador, INDICES.val, COMPUESTO.VAL, EXPRESION.VAL, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_asignacion_aumento_post(t):
@@ -519,6 +746,11 @@ def p_asignacion_aumento_post(t):
     ASIGNACION  :   identificador aumento %prec NIVEL2
     '''
     t[0] = clases.AsignacionAumento(t[1], str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>ASIGNACION -> identificador ++</td>'
+    gramatical += '<td>ASIGNACION.VAL = AsignacionAumento(identificador, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_asignacion_aumento_pre(t):
@@ -526,6 +758,11 @@ def p_asignacion_aumento_pre(t):
     ASIGNACION  :   aumento identificador %prec NIVEL2
     '''
     t[0] = clases.AsignacionAumento(t[2], str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>ASIGNACION -> ++ identificador</td>'
+    gramatical += '<td>ASIGNACION.VAL = AsignacionAumento(identificador, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_asignacion_decremento_post(t):
@@ -533,6 +770,11 @@ def p_asignacion_decremento_post(t):
     ASIGNACION  :   identificador decremento %prec NIVEL2
     '''
     t[0] = clases.AsignacionDecremento(t[1], str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>ASIGNACION -> identificador --</td>'
+    gramatical += '<td>ASIGNACION.VAL = AsignacionDecremento(identificador, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_asignacion_decremento_pre(t):
@@ -540,6 +782,11 @@ def p_asignacion_decremento_pre(t):
     ASIGNACION  :   decremento identificador %prec NIVEL2
     '''
     t[0] = clases.AsignacionDecremento(t[2], str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>ASIGNACION -> -- identificador</td>'
+    gramatical += '<td>ASIGNACION.VAL = AsignacionDecremento(identificador, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_compuesto(t):
@@ -557,6 +804,11 @@ def p_compuesto(t):
                 |   pleca igual %prec NIVEL14
     '''
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>COMPUESTO -> = | += | -= | *= | /= | %= | <<= | >>= | & | |= | ^= </td>'
+    gramatical += '<td>COMPUESTO.VAL = = | += | -= | *= | /= | %= | <<= | >>= | & | |= | ^=;</td>'
+    gramatical += '</tr>'
 
 
 def p_if(t):
@@ -564,6 +816,11 @@ def p_if(t):
     IF  :   _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     '''
     t[0] = clases._If(t[3], t[6], None, None, str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>IF -> if ( EXPRESION ) { CUERPO_LOCAL }</td>'
+    gramatical += '<td>IF.VAL = If(EXPRESION.VAL, CUERPO_LOCAL.VAL, NONE, NONE, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_if_else(t):
@@ -571,6 +828,11 @@ def p_if_else(t):
     IF  :   _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra ELSE
     '''
     t[0] = clases._If(t[3], t[6], None, t[8], str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>IF -> if ( EXPRESION ) { CUERPO_LOCAL } ELSE</td>'
+    gramatical += '<td>IF.VAL = If(EXPRESION.VAL, CUERPO_LOCAL.VAL, NONE, ELSE.VAL, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_if_elseif(t):
@@ -584,6 +846,11 @@ def p_if_elseif(t):
             _else = t[9].pop()
         _elseifs = _elseifs + t[9]
     t[0] = clases._If(t[3], t[6], _elseifs, _else, str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>IF -> if ( EXPRESION ) { CUERPO_LOCAL } ELSEIF IF_FINAL</td>'
+    gramatical += '<td>IF.VAL = If(EXPRESION.VAL, CUERPO_LOCAL.VAL, ELSEIF.VAL, IF_FINAL.VAL, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_if_final_elseif(t):
@@ -591,6 +858,11 @@ def p_if_final_elseif(t):
     IF_FINAL    :   ELSEIF  IF_FINAL
     '''
     t[0] = [t[1]] + t[2]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>IF_FINAL -> ELSEIF IF_FINAL</td>'
+    gramatical += '<td>IF_FINAL.VAL = Lista(ELSEIF) + IF_FINAL.VAL;</td>'
+    gramatical += '</tr>'
 
 
 def p_if_final_else(t):
@@ -598,6 +870,11 @@ def p_if_final_else(t):
     IF_FINAL    :   ELSE
     '''
     t[0] = [t[1]]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>IF_FINAL -> ELSE</td>'
+    gramatical += '<td>IF_FINAL.VAL = Lista(ELSE.VAL);</td>'
+    gramatical += '</tr>'
 
 
 def p_if_final_vacio(t):
@@ -605,6 +882,11 @@ def p_if_final_vacio(t):
     IF_FINAL    :   
     '''
     t[0] = []
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>IF_FINAL -> </td>'
+    gramatical += '<td>IF_FINAL.VAL = NONE;</td>'
+    gramatical += '</tr>'
 
 
 def p_elseif(t):
@@ -612,6 +894,11 @@ def p_elseif(t):
     ELSEIF  :   _else _if parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     '''
     t[0] = clases._ElseIf(t[4], t[7])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>ELSEIF -> else if ( EXPRESION ) { CUERPO_LOCAL }</td>'
+    gramatical += '<td>ELSEIF.VAL -> ElseIf(EXPRESION.VAL, CUERPO_LOCAL.VAL);</td>'
+    gramatical += '</tr>'
 
 
 def p_else(t):
@@ -619,6 +906,11 @@ def p_else(t):
     ELSE    :   _else llave_abre CUERPO_LOCAL llave_cierra
     '''
     t[0] = clases._Else(t[3])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>ELSE -> else { CUERPO_LOCAL }</td>'
+    gramatical += '<td>ELSE.VAL = Else(CUERPO_LOCAL.VAL);</td>'
+    gramatical += '</tr>'
 
 
 def p_switch(t):
@@ -626,6 +918,11 @@ def p_switch(t):
     SWITCH  :   _switch parentesis_abre EXPRESION parentesis_cierra llave_abre CASES DEFAULT_CASE llave_cierra
     '''
     t[0] = clases._Switch(t[3], t[6], t[7], str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>SWITCH -> switch ( EXPRESION ) { CASES DEFAULT_CASE } </td>'
+    gramatical += '<td>SWITCH.VAL = Switch(EXPRESION.VAL, CASES.VAL, DEFAULT_CASE.VAL, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_cases(t):
@@ -633,6 +930,11 @@ def p_cases(t):
     CASES   :   LISTA_CASE
     '''
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>CASES -> LISTA_CASE</td>'
+    gramatical += '<td>CASES.VAL = LISTA_CASE.VAL</td>'
+    gramatical += '</tr>'
 
 
 def p_cases_vacio(t):
@@ -640,6 +942,11 @@ def p_cases_vacio(t):
     CASES   :
     '''
     t[0] = None
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>CASES -> </td>'
+    gramatical += '<td>CASES.VAL = NONE;</td>'
+    gramatical += '</tr>'
 
 
 def p_lista_case_lista(t):
@@ -648,6 +955,11 @@ def p_lista_case_lista(t):
     '''
     t[1].append(t[2])
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>LISTA_CASE = LISTA_CASE1 CASE</td>'
+    gramatical += '<td>LISTA_CASE1.ADD(CASE.VAL); LISTA_CASE.VAL = LISTA_CASE1.VAL;</td>'
+    gramatical += '</tr>'
 
 
 def p_lista_case_case(t):
@@ -655,6 +967,11 @@ def p_lista_case_case(t):
     LISTA_CASE  :   CASE
     '''
     t[0] = [t[1]]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>LISTA_CASE -> CASE</td>'
+    gramatical += '<td>LISTA_CASE.VAL = Lista(CASE.VAL);</td>'
+    gramatical += '</tr>'
 
 
 def p_case(t):
@@ -662,6 +979,11 @@ def p_case(t):
     CASE    :   _case EXPRESION dos_puntos CUERPO_LOCAL
     '''
     t[0] = clases._Case(t[2], t[4])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>CASE -> case EXPRESION : CUERPO_LOCAL</td>'
+    gramatical += '<td>CASE.VAL = Case(EXPRESION.VAL, CUERPO_LOCAL.VAL);</td>'
+    gramatical += '</tr>'
 
 
 def p_default_case(t):
@@ -669,6 +991,11 @@ def p_default_case(t):
     DEFAULT_CASE    :   _default dos_puntos CUERPO_LOCAL
     '''
     t[0] = clases._DefaultCase(t[3])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>DEFAULT_CASE -> default : CUERPO_LOCAL</td>'
+    gramatical += '<td>DEFAULT_CASE.VAL = DefaultCase(CUERPO_LOCAL.VAL);</td>'
+    gramatical += '</tr>'
 
 
 def p_default_case_vacio(t):
@@ -676,6 +1003,11 @@ def p_default_case_vacio(t):
     DEFAULT_CASE    :
     '''
     t[0] == None
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>DEFAULT_CASE -> </td>'
+    gramatical += '<td>DEFAULT_CASE.VAL = NONE;</td>'
+    gramatical += '</tr>'
 
 
 def p_while(t):
@@ -683,6 +1015,11 @@ def p_while(t):
     WHILE   :   _while parentesis_abre EXPRESION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     '''
     t[0] = clases._While(t[3], t[6], str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>WHILE -> while ( EXPRESION ) { CUERPO_LOCAL }</td>'
+    gramatical += '<td>WHILE.VAL = While(EXPRESION.VAL, CUERPO_LOCAL.val, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_do(t):
@@ -690,6 +1027,11 @@ def p_do(t):
     DO  :   _do llave_abre CUERPO_LOCAL llave_cierra _while parentesis_abre EXPRESION parentesis_cierra punto_coma
     '''
     t[0] = clases._Do(t[3], t[7], str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>DO -> do { CUERPO_LOCAL } while ( EXPRESION ) ; </td>'
+    gramatical += '<td>DO.VAL = Do(CUERPO_LOCAL.VAL, EXPRESION.VAL, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_for(t):
@@ -697,6 +1039,11 @@ def p_for(t):
     FOR :   _for parentesis_abre INICIO_FOR punto_coma EXPRESION punto_coma ASIGNACION parentesis_cierra llave_abre CUERPO_LOCAL llave_cierra
     '''
     t[0] = clases._For(t[3], t[5], t[7], t[10], str(t.slice[1].lineno))
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>FOR -> for ( INICIO_FOR ; EXPRESION ; ASIGNACION ) { CUERPO_LOCAL }</td>'
+    gramatical += '<td>FOR.VAL = For(INICIO_FOR.VAL, EXPRESION.VAL; ASIGNACION.VAL, CUERPO_LOCAL.VAL, lineno);</td>'
+    gramatical += '</tr>'
 
 
 def p_(t):
@@ -705,6 +1052,11 @@ def p_(t):
                 |   ASIGNACION
     '''
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>INICIO_FOR -> DECLARACION | ASIGNACION</td>'
+    gramatical += '<td>INICIO_FOR.VAL = DECLARACION.VAL | ASIGNACION.VAL;</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_aritmetica(t):
@@ -716,6 +1068,11 @@ def p_expresion_aritmetica(t):
                 |   EXPRESION porcentaje EXPRESION 
     '''
     t[0] = clases.ExpresionAritmetica(t[1], t[2], t[3])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>EXPRESION -> EXPRESION1 [+|-|*|/|%] EXPRESION2</td>'
+    gramatical += '<td>EXPRESION.VAL -> ExpresionAritmetica(EXPRESION1.VAL, [+|-|*|/|%], EXPRESION2.VAL);</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_relacional(t):
@@ -728,6 +1085,11 @@ def p_expresion_relacional(t):
                 |   EXPRESION menor_igual EXPRESION
     '''
     t[0] = clases.ExpresionRelacional(t[1], t[2], t[3])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>EXPRESION -> EXPRESION1 [==|!=|>|<|>=|<=] EXPRESION2</td>'
+    gramatical += '<td>EXPRESION.VAL = ExpresionRelacional(EXPRESION1.VAL, [==|!=|>|<|>=|<=], EXPRESION2.VAL);</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_logica(t):
@@ -736,6 +1098,11 @@ def p_expresion_logica(t):
                 |   EXPRESION or EXPRESION 
     '''
     t[0] = clases.ExpresionLogica(t[1], t[2], t[3])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>EXPRESION -> EXPRESION1 [and|or] EXPRESION2</td>'
+    gramatical += '<td>EXPRESION.VAL = ExpresionLogica(EXPRESION1.VAL, [and|or], EXPRESION2.VAL);</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_bit(t):
@@ -747,6 +1114,11 @@ def p_expresion_bit(t):
                 |   EXPRESION elevado EXPRESION
     '''
     t[0] = clases.ExpresionBit(t[1], t[2], t[3])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>EXPRESION -> EXPRESION1 [<<|>>|&|"|"|^] EXPRESION2</td>'
+    gramatical += '<td>EXPRESION.VAL = ExpresionBit(EXPRESION1, [<<|>>|&|"|"|^], EXPRESION2);</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_ternaria(t):
@@ -754,6 +1126,11 @@ def p_expresion_ternaria(t):
     EXPRESION   :   EXPRESION pregunta EXPRESION dos_puntos EXPRESION %prec NIVEL13
     '''
     t[0] = clases.ExpresionTernaria(t[1], t[3], t[5])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_unaria(t):
@@ -763,6 +1140,11 @@ def p_expresion_unaria(t):
                 |   virgulilla EXPRESION %prec NIVEL2
     '''
     t[0] = clases.ExpresionUnaria(t[1], t[2])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_referencia(t):
@@ -770,6 +1152,11 @@ def p_expresion_referencia(t):
     EXPRESION   :   et identificador %prec NIVEL2
     '''
     t[0] = clases.ExpresionReferencia(t[2])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_metodo(t):
@@ -777,6 +1164,11 @@ def p_expresion_metodo(t):
     EXPRESION   :   METODO
     '''
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_parentesis(t):
@@ -784,6 +1176,11 @@ def p_expresion_parentesis(t):
     EXPRESION   :   parentesis_abre EXPRESION parentesis_cierra
     '''
     t[0] = t[2]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_estructura(t):
@@ -791,6 +1188,11 @@ def p_expresion_estructura(t):
     EXPRESION   :   identificador INDICES punto identificador INDICES
     '''
     t[0] = clases.ExpresionEstructura(t[1], t[2], t[4], t[5])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_identificador_arreglo(t):
@@ -798,6 +1200,11 @@ def p_expresion_identificador_arreglo(t):
     EXPRESION   :   identificador ACCESOS
     '''
     t[0] = clases.ExpresionIdentificadorArreglo(t[1], t[2])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_expresiones(t):
@@ -805,6 +1212,11 @@ def p_expresion_expresiones(t):
     EXPRESION   :   llave_abre EXPRESIONES llave_cierra
     '''
     t[0] = clases.ExpresionElementos(t[2])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_sizeof(t):
@@ -812,6 +1224,11 @@ def p_expresion_sizeof(t):
     EXPRESION   :   _sizeof parentesis_abre TIPO parentesis_cierra %prec NIVEL2
     '''
     t[0] = clases._SizeOf(t[3])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_aumento_post(t):
@@ -819,6 +1236,11 @@ def p_expresion_aumento_post(t):
     EXPRESION   :   identificador aumento %prec NIVEL2
     '''
     t[0] = clases.ExpresionAumentoDecremento(t[1], t[2], 'post')
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_aumento_pre(t):
@@ -826,6 +1248,11 @@ def p_expresion_aumento_pre(t):
     EXPRESION   :   aumento identificador %prec NIVEL2
     '''
     t[0] = clases.ExpresionAumentoDecremento(t[2], t[1], 'pre')
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_decremento_post(t):
@@ -833,6 +1260,11 @@ def p_expresion_decremento_post(t):
     EXPRESION   :   identificador decremento %prec NIVEL2
     '''
     t[0] = clases.ExpresionAumentoDecremento(t[1], t[2], 'post')
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_decremento_pre(t):
@@ -840,6 +1272,11 @@ def p_expresion_decremento_pre(t):
     EXPRESION   :   decremento identificador %prec NIVEL2
     '''
     t[0] = clases.ExpresionAumentoDecremento(t[2], t[1], 'pre')
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_scanf(t):
@@ -847,6 +1284,11 @@ def p_expresion_scanf(t):
     EXPRESION   :   _scanf parentesis_abre parentesis_cierra
     '''
     t[0] = clases.ExpresionScan()
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_casteo(t):
@@ -854,31 +1296,61 @@ def p_expresion_casteo(t):
     EXPRESION   :   parentesis_abre TIPO parentesis_cierra EXPRESION %prec NIVEL2
     '''
     t[0] = clases.ExpresionCasteo(t[2], t[4])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_caracter(t):
     'EXPRESION  :   caracter'
     t[0] = clases.Caracter(t[1])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_cadena(t):
     'EXPRESION  :   cadena'
     t[0] = clases.Cadena(t[1])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_entero(t):
     'EXPRESION  :   entero'
     t[0] = clases.Entero(t[1])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_decimal(t):
     'EXPRESION  :   decimal'
     t[0] = clases.Decimal(t[1])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresion_identificador(t):
     'EXPRESION  :   identificador'
     t[0] = clases.Identificador(t[1])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresiones(t):
@@ -886,6 +1358,11 @@ def p_expresiones(t):
     EXPRESIONES :   LISTA_EXPRESIONES
     '''
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_expresiones_vacio(t):
@@ -893,6 +1370,11 @@ def p_expresiones_vacio(t):
     EXPRESIONES :
     '''
     t[0] = None
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_lista_expresiones_lista(t):
@@ -901,6 +1383,11 @@ def p_lista_expresiones_lista(t):
     '''
     t[1].append(t[3])
     t[0] = t[1]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_lista_expresiones_expresion(t):
@@ -908,6 +1395,11 @@ def p_lista_expresiones_expresion(t):
     LISTA_EXPRESIONES   :   EXPRESION
     '''
     t[0] = [t[1]]
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_tipo(t):
@@ -919,6 +1411,11 @@ def p_tipo(t):
             |   _void
     '''
     t[0] = clases.Tipo(t[1], None)
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_tipo_struct(t):
@@ -926,13 +1423,18 @@ def p_tipo_struct(t):
     TIPO    :   _struct identificador
     '''
     t[0] = clases.Tipo(t[1], t[2])
+    global gramatical
+    gramatical += '<tr>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '<td>'+'</td>'
+    gramatical += '</tr>'
 
 
 def p_error(t):
     if not t:
         return
-    mostar_error("ERROR: Sintáctico en: "+str(t.value)+", línea: " +
-                 str(t.lineno)+", columna: "+str(obtener_columna(entrada, t))+".")
+    mostar_error('ERROR: Sintáctico en: '+str(t.value)+', línea: ' +
+                 str(t.lineno)+', columna: '+str(obtener_columna(entrada, t))+'.')
     errores_sintacticos.append(clases._Error(
         str(t.value), str(t.lineno), str(obtener_columna(entrada, t))))
     while True:
@@ -956,7 +1458,7 @@ def mostar_error(mensaje):
 
 
 def parse(_entrada, _errores_lexicos, _errores_sintacticos, _consola):
-    global lexer, parser, entrada, errores_lexicos, errores_sintacticos, consola
+    global lexer, parser, entrada, errores_lexicos, errores_sintacticos, consola, gramatical
     entrada = _entrada
     errores_lexicos = _errores_lexicos
     errores_sintacticos = _errores_sintacticos

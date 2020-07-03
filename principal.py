@@ -345,7 +345,7 @@ class Ui_MainWindow(object):
                 generador = tres_direcciones.TresDirecciones(
                         self.plainTextEdit, instrucciones)
                 generador.generar_codigo()
-                generador.graficar_ast(instrucciones)
+                #generador.graficar_ast(instrucciones)
                 # try:
                 #     generador = tres_direcciones.TresDirecciones(
                 #         self.plainTextEdit, instrucciones)
